@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- socket.io -->
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+
+    <!-- My own stuff -->
+    <link href="css/Quiz.css" rel="stylesheet">
+    <script src="js/Quiz2.js"></script>
+
+
+  </head>
+  <body>
+
+
+
+    <h1>Hello, world!</h1>
+
+    <input id="TeamName">
+
+    <button onClick="setCookie('name', $('#TeamName').val());">Spara</button>
+
+    <div id="BuzzButton"> Buzz</div>
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+
+    <script>
+      init();
+      <!-- För att komma ihåg namn för spelare. -->
+      $(function(){
+        $('#TeamName').val(getCookie('name'));
+      });
+    </script>
+
+
+  </body>
+</html>

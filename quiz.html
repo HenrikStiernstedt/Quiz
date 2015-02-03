@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap 101 Template</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <!-- socket.io -->
+    <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
+
+    <!-- My own stuff -->
+    <link href="css/Quiz.css" rel="stylesheet">
+    <script src="js/Quiz.js"></script>
+
+
+  </head>
+  <body>
+    <div class="container-fluid">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <!--
+      <div class="tabbable" id="tabs-87837">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#panel-774524" data-toggle="tab">Section 1</a>
+          </li>
+          <li>
+            <a href="#panel-635519" data-toggle="tab">Section 2</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="panel-774524">
+            <p>
+              I'm in Section 1.
+            </p>
+          </div>
+          <div class="tab-pane" id="panel-635519">
+            <p>
+              Howdy, I'm in Section 2.
+            </p>
+          </div>
+        </div>
+      </div>
+    -->
+
+      <div class="progress">
+        <div id="TimeBar" class="progress-bar progress-bar-striped" role="progressbar"
+  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+
+  </div>
+      </div>
+
+      <div class="alert alert-success alert-dismissable" >
+         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+        <h4>
+          Alert!
+        </h4> <strong>Warning!</strong> Best check yo self, you're not looking too good.
+        <a href="#" class="alert-link">alert link</a>
+      </div>
+
+      <button type="button" id="BuzzButton" class="btn btn-lg btn-block">Buzz!</button>
+      <!--<button type="button" class="btn btn-block btn-lg btn-success active">Default</button>-->
+
+      <div class="list-group">
+         <a href="#" class="list-group-item active">Home</a>
+        <div class="list-group-item">
+          List header
+        </div>
+        <div class="list-group-item">
+          <h4 class="list-group-item-heading">
+            List group item heading
+          </h4>
+          <p class="list-group-item-text">
+            Hej
+          </p>
+        </div>
+        <div class="list-group-item">
+          <span class="badge">14</span>Help
+        </div> <a class="list-group-item active"><span class="badge">14</span>Help</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+    <input id="TeamName">
+
+    <button onClick="setCookie('name', $('#TeamName').val());">Spara</button>
+
+
+    <ul id="messages"></ul>
+    <form action="">
+      <input id="m" autocomplete="off" /><button>Send</button>
+    </form>
+
+    <script>
+      init();
+      <!-- För att komma ihåg namn för spelare. -->
+      $(function(){
+        $('#TeamName').val(getCookie('name'));
+      });
+    </script>
+
+
+  </body>
+</html>
