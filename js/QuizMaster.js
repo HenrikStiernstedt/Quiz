@@ -18,14 +18,14 @@ function initMaster() {
   })
   */
   socket.on('Buzzed', function(winningTeamName) {
-    $('#ResetBuzzButton').addClass('Active');
     $('#messages').append($('<li>').text('Winning buzz by ' + winningTeamName));
-
+    $('#ResetBuzzButton').addClass('btn-warning');
+    $('#ResetBuzzButton').removeClass('btn-success btn-danger');
   })
 
   $('#ResetBuzzButton').click(function(){
     socket.emit('ResetBuzz');
-    $('#ResetBuzzButton').removeClass('Active');
+    $('#ResetBuzzButton').removeClass('btn-warning');
 
   });
 

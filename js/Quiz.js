@@ -20,8 +20,11 @@ function init() {
     return false;
   });
   socket.on('chat message', function(msg){
-    $('#messages').append($('<li>').text(msg));
+    //$('#messages').append($('<li>').text(msg));
+    $('#ChatBox').append($('<div class="list-group-item">').text(msg));
+
   });
+
   socket.on('ResetBuzz', function() {
     $('#BuzzButton').addClass('btn-warning');
     $('#BuzzButton').removeClass('btn-success btn-danger');
