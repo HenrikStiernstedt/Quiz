@@ -29,69 +29,53 @@
   </head>
   <body>
     <div class="container-fluid">
-  <div class="row clearfix">
-    <div class="col-md-12 column">
-      <!--
-      <div class="tabbable" id="tabs-87837">
-        <ul class="nav nav-tabs">
-          <li class="active">
-            <a href="#panel-774524" data-toggle="tab">Section 1</a>
-          </li>
-          <li>
-            <a href="#panel-635519" data-toggle="tab">Section 2</a>
-          </li>
-        </ul>
-        <div class="tab-content">
-          <div class="tab-pane active" id="panel-774524">
-            <p>
-              I'm in Section 1.
-            </p>
+      <div class="row clearfix">
+        <div class="col-md-6 col-xs-12 column">
+          <div class="progress">
+            <div id="TimeBar" class="progress-bar progress-bar-striped" role="progressbar"
+      aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
+            </div>
           </div>
-          <div class="tab-pane" id="panel-635519">
-            <p>
-              Howdy, I'm in Section 2.
-            </p>
+
+          <div class="alert alert-success alert-dismissable" >
+             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+            <h4>
+              Alert!
+            </h4> <strong>Warning!</strong> Best check yo self, you're not looking too good.
+            <a href="#" class="alert-link">alert link</a>
           </div>
+
+          <button type="button" id="BuzzButton" class="btn btn-lg btn-block">Buzz!</button>
+          <!--<button type="button" class="btn btn-block btn-lg btn-success active">Default</button>-->
+        </div>
+        <div class="col-md-6 col-xs-12">
+
+
+          <div class="list-group" id="ChatBox">
+             <a href="#" class="list-group-item active">Chat</a>
+          </div>
+
+
+          <form role="form">
+            <div class="form-group form-inline">
+               <input type="text" placeholder="Say" class="form-control" id="m" />
+             <button type="submit" class="btn btn-default">Submit</button>
+           </div>
+          </form>
+
+      
+          <input id="TeamName">
+          <button onClick="setCookie('name', $('#TeamName').val());">Spara</button>
+
+          <ul id="messages"></ul>
+          <!--
+          <form action="">
+            <input id="m" autocomplete="off" /><button>Send</button>
+          </form>
+        -->
         </div>
       </div>
-    -->
-
-      <div class="progress">
-        <div id="TimeBar" class="progress-bar progress-bar-striped" role="progressbar"
-  aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%">
-
-  </div>
-      </div>
-
-      <div class="alert alert-success alert-dismissable" >
-         <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4>
-          Alert!
-        </h4> <strong>Warning!</strong> Best check yo self, you're not looking too good.
-        <a href="#" class="alert-link">alert link</a>
-      </div>
-
-      <button type="button" id="BuzzButton" class="btn btn-lg btn-block">Buzz!</button>
-      <!--<button type="button" class="btn btn-block btn-lg btn-success active">Default</button>-->
-
-      <div class="list-group" id="ChatBox">
-         <a href="#" class="list-group-item active">Chat</a>
-      </div>
     </div>
-  </div>
-</div>
-
-
-
-    <input id="TeamName">
-
-    <button onClick="setCookie('name', $('#TeamName').val());">Spara</button>
-
-
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
 
     <script>
       init();

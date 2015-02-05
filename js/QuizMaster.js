@@ -18,7 +18,10 @@ function initMaster() {
   })
   */
   socket.on('Buzzed', function(winningTeamName) {
-    $('#messages').append($('<li>').text('Winning buzz by ' + winningTeamName));
+    $('#ChatBox').append($('<div class="list-group-item">').text(
+      new Date().toLocaleTimeString('sv-SE') + ' ' +
+      'Winning buzz by ' + winningTeamName));
+
     $('#ResetBuzzButton').addClass('btn-warning');
     $('#ResetBuzzButton').removeClass('btn-success btn-danger');
   })

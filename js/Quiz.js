@@ -14,14 +14,21 @@ function init() {
 
   $('form').submit(function(){
     socket.emit('chat message',
-      new Date().toLocaleTimeString('sv-SE') + ' ' +
-      $('#TeamName').val() + ': ' + $('#m').val());
+    {
+      date : new Date(),
+      name : $('#TeamName').val(),
+      text : $('#m').val()
+    });
     $('#m').val('');
     return false;
   });
-  socket.on('chat message', function(msg){
+  socket.on('chat message', function(msgJson){
     //$('#messages').append($('<li>').text(msg));
-    $('#ChatBox').append($('<div class="list-group-item">').text(msg));
+    $('#ChatBox').append($('<div class="list-group-item">').text(
+      new Date().toLocaleTimeString('sv-SE') + ' ' +
+      msgJson.name + ': ' +
+      msgJson.text
+    ));
 
   });
 
