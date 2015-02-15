@@ -32,4 +32,9 @@ function initMaster() {
 
   });
 
+  $('#PingButton').click(function(){
+    socket.emit('StartPing');
+  });
+
+  
 }

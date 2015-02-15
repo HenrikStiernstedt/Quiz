@@ -51,4 +51,9 @@ function init() {
     socket.emit('Buzz', $('#TeamName').val());
   });
 
+  socket.on('Ping', function(pingTime) {
+    socket.emit('PingResponse', pingTime);
+  });
+  
+
 }

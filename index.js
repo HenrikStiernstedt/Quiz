@@ -42,6 +42,17 @@ io.on('connection', function(socket){
     isBuzzed = false;
     io.emit('ResetBuzz', null);
   });
+
+  socket.on('StartPing', function() {
+    console.log('Ping Request from QM.')
+    io.emit('Ping', new Date().getTime());
+  });
+
+  socket.on('PingResponse', function(pingTime) {
+    console.log(new Date().getTime() - pingTime);
+  });
+
+
 });
 
 http.listen(3000, function(){
