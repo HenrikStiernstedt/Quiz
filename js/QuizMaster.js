@@ -1,3 +1,28 @@
+var buzzAudioElement = document.createElement('audio');
+
+function loadSounds() {
+
+  buzzAudioElement.setAttribute('src', 'buzzer.mp3');
+  //audioElement.setAttribute('autoplay', 'autoplay');
+  //audioElement.load()
+  /*
+  $.get();
+  audioElement.addEventListener("load", function() {
+  audioElement.play();
+  }, true);
+  */
+  $('.play').click(function() {
+  buzzAudioElement.play();
+  });
+
+/*
+  $('.pause').click(function() {
+  audioElement.pause();
+  });
+  */
+}
+
+
 function initMaster() {
   var socket = io();
   /*
@@ -24,6 +49,9 @@ function initMaster() {
 
     $('#ResetBuzzButton').addClass('btn-warning');
     $('#ResetBuzzButton').removeClass('btn-success btn-danger');
+
+    buzzAudioElement.play();
+
   })
 
   $('#ResetBuzzButton').click(function(){
@@ -36,5 +64,5 @@ function initMaster() {
     socket.emit('StartPing');
   });
 
-  
+  loadSounds();
 }
