@@ -5,11 +5,21 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 var status =
+{
+  isBuzzed : false,
+  isBuzzActive : false,
+  winningTeamName : null
+};
+
+var chatHistory =
+[
   {
-    isBuzzed : false,
-    isBuzzActive : false,
-    winningTeamName : null
-  };
+    date : new Date(),
+    name : 'Server',
+    text : 'Server started.'
+  }
+];
+
 /*
 var players =
   {
@@ -30,6 +40,10 @@ app.get('/status', function(req, res){
   res.json(status);
 });
 
+app.get('/chatHistory', function(req, res){
+  res.json(chatHistory);
+});
+
 // Ovanstående prylar känns onödigt nu när den här tar in alla filer.
 app.use(express.static(__dirname + '/'));
 
@@ -41,6 +55,7 @@ io.on('connection', function(socket){
   socket.on('new chat message', function(msgJson){
     msgJson.date = new Date();
     io.emit('chat message', msgJson);
+    chatHistory.push(msgJson);
   });
 
   socket.on('disconnect', function(){

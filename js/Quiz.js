@@ -28,7 +28,6 @@ function buzzed(winningTeamName) {
 function getStatusUpdate()
 {
   var status = null;
-  //$.getJSON('/status', )
   status = $.ajax({
     dataType: "json",
     url: '/status',
@@ -38,7 +37,6 @@ function getStatusUpdate()
     }
   });
 }
-
 
 function handleStatusUpdate(status) {
   if(status.isBuzzed)
@@ -52,6 +50,30 @@ function handleStatusUpdate(status) {
     return 2;
   }
   return 0;
+}
+
+function getChatHistory()
+{
+  $.ajax({
+    dataType: "json",
+    url: '/chatHistory',
+    data: null,
+    success: function(history) {
+      handleChatHistory(history)
+    }
+  });
+}
+
+function handleChatHistory(history)
+{
+
+  $.each(history, function(index, value) {
+    $('#ChatBox').append($('<div class="list-group-item">').text(
+      new Date(value.date).toLocaleTimeString('sv-SE') + ' ' +
+      value.name + ': ' +
+      value.text
+    ));
+  });
 }
 
 function init() {
@@ -70,11 +92,16 @@ function init() {
 
   socket.on('chat message', function(msgJson){
     //$('#messages').append($('<li>').text(msg));
-    $('#ChatBox').append($('<div class="list-group-item">').text(
+
+
+    var newChatRow = $('<div class="list-group-item" style="display:none">').text(
       new Date(msgJson.date).toLocaleTimeString('sv-SE') + ' ' +
       msgJson.name + ': ' +
       msgJson.text
-    ));
+    );
+
+    $('#ChatBox').append(newChatRow);
+    newChatRow.show('slow');
   });
 
   socket.on('ResetBuzz', function() {
@@ -94,5 +121,6 @@ function init() {
   });
 
   getStatusUpdate();
+  getChatHistory();
 
 }
