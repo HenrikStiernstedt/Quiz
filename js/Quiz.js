@@ -58,9 +58,9 @@ function init() {
   var socket = io();
 
   $('form').submit(function(){
-    socket.emit('chat message',
+    socket.emit('new chat message',
     {
-      date : new Date(),
+      date : null, // Let the server set the time.
       name : $('#TeamName').val(),
       text : $('#m').val()
     });
@@ -71,7 +71,7 @@ function init() {
   socket.on('chat message', function(msgJson){
     //$('#messages').append($('<li>').text(msg));
     $('#ChatBox').append($('<div class="list-group-item">').text(
-      new Date().toLocaleTimeString('sv-SE') + ' ' +
+      new Date(msgJson.date).toLocaleTimeString('sv-SE') + ' ' +
       msgJson.name + ': ' +
       msgJson.text
     ));

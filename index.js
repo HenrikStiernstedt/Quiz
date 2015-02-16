@@ -38,12 +38,15 @@ io.on('connection', function(socket){
   console.log('a user connected');
   console.log(socket.id);
 
-  socket.on('chat message', function(msgJson){
+  socket.on('new chat message', function(msgJson){
+    msgJson.date = new Date();
     io.emit('chat message', msgJson);
   });
+
   socket.on('disconnect', function(){
     console.log('user disconnected');
   });
+
   socket.on('Buzz', function(teamName){
     if(status.isBuzzed)
     {
