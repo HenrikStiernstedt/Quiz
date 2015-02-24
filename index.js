@@ -4,6 +4,8 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
+var request = require('request');
+
 var status =
 {
   isBuzzed : false,
@@ -46,6 +48,13 @@ app.get('/chatHistory', function(req, res){
 
 // Ovanstående prylar känns onödigt nu när den här tar in alla filer.
 app.use(express.static(__dirname + '/'));
+
+// This is for displaying a map, without displaying the true source.
+app.get('/map/', function(req, res) {
+  request(
+    'http://maps.google.com/maps/api/staticmap?sensor=false&size=512x512&center=istanbul&zoom=10&style=feature:all|element:labels|visibility:off'
+  ).pipe(res);
+});
 
 
 io.on('connection', function(socket){
