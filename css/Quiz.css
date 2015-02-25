@@ -11,10 +11,17 @@ html, body {
     height: 100%;
 }
 
+.container-fluid { height: 100%; }
+
+.hs-height { height: 100% }
+
 .hs-scroll {
   overflow: scroll;
-  height: 400px;  /* Must get a good value here. */
+  height: calc(100% - 150px);
 }
+
+#ChatBox div:nth-child(even) { background: #eee; }
+
 /*
 #BuzzButton { width:100% }
 #BuzzButton.won { background-color: lightgreen; }

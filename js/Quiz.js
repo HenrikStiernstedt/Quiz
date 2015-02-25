@@ -66,14 +66,14 @@ function getChatHistory()
 
 function handleChatHistory(history)
 {
-
-  $.each(history, function(index, value) {
+  for(var i = history.length-1; i>=0; i--) {
+    var value = history[i];
     $('#ChatBox').append($('<div class="list-group-item">').text(
       new Date(value.date).toLocaleTimeString('sv-SE') + ' ' +
       value.name + ': ' +
       value.text
     ));
-  });
+  }
 }
 
 function init() {
@@ -100,7 +100,7 @@ function init() {
       msgJson.text
     );
 
-    $('#ChatBox').append(newChatRow);
+    newChatRow.insertAfter($('#ChatHeader'));
     newChatRow.show('slow');
   });
 
