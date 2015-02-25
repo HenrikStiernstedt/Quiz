@@ -32,7 +32,7 @@ var maps =
   [
     ['Dubai', 10],
     ['istanbul', 10],
-    ['Mexico City', 10],
+    ['Tijuana', 12],
     ['Malmö', 10],
     ['Cape Town', 10],
     ['Jerusalem', 10],
@@ -40,9 +40,19 @@ var maps =
     ['St Petersburg', 10],
     ['London', 10],
     ['Moscow', 12],
+    ['singhapore', 10],
     ['Göteborg', 10],
+    ['Amsterdam', 14],
     ['Rome', 12],
     ['Los Angeles', 10],
     ['venice', 12],
     ['Shanghai', 10],
+    ['Barcelona', 12],
+    ['New York', 10],
+    ['Cydney Australia', 12],
+    ['Honolulu', 11],
+    ['Budapest', 13],
+    ['Tokyo', 10],
+    ['Washington DC', 13]
+
   ]
