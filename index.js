@@ -39,6 +39,10 @@ app.get('/quizmaster', function(req, res){
   res.sendFile(__dirname + '/quizmaster.html');
 });
 
+app.get('/mapgame', function(req, res) {
+  res.sendFile(__dirname + '/mapgame.html');
+});
+
 // Specialare för AJAX och annat som inte behöver pushas ut.
 app.get('/status', function(req, res){
   res.json(status);

@@ -5,6 +5,7 @@
   "dependencies": {
     "express": "^4.10.2",
     "socket.io": "1.2.0",
-    "request": "2.53.0"
+    "request": "2.53.0",
+    "gm": "1.9.0"
   }
 }

@@ -6,11 +6,20 @@ module.exports = {
 }
 
 var request = require('request');
+var gm = require('gm');
+var fs = require('fs');
 
 // Returns a url showing a map of a city. Use a zoom of 10 or 12 for best result.
-function createMapURL(city, zoom)
+function createMapURL(city, zoom, showLables)
 {
-  var urlpattern = 'http://maps.google.com/maps/api/staticmap?sensor=false&size=512x512&center=[city]&zoom=[zoom]&style=feature:all|element:labels|visibility:off';
+  var urlpattern = 'http://maps.google.com/maps/api/staticmap?sensor=false&size=640x640&center=[city]&zoom=[zoom]&style=feature:all|element:labels|visibility:';
+  console.log(showLables);
+  if (showLables) {
+    urlpattern += 'on';
+  } else {
+    urlpattern += 'off';
+  }
+//  urlPattern += (showLables != null ? 'on' : 'off');
   return url = urlpattern.replace('[city]', encodeURIComponent(city)).replace('[zoom]', encodeURIComponent(zoom));
 }
 
@@ -19,12 +28,33 @@ function createMapURL(city, zoom)
 function getMapFromId(mapId, req, res) {
   if(mapId >= 0 && mapId < maps.length)
   {
-    request(createMapURL(maps[mapId][0], maps[mapId][1])).pipe(res);
+    testMapFunction();
+    request(createMapURL(maps[mapId][0], maps[mapId][1], false)).pipe(res);
   }
   else
   {
     res.send('No such map available');
   }
+}
+
+function testMapFunction() {
+  //var readStream = fs.createReadStream('henrik.jpg');
+
+  gm('../henrik.jpg')
+  .identify(function (err, data) {
+    if (!err) console.log(data)
+    else console.log('err: ' + err);
+  });
+  /*
+  gm(readStream, 'henrik.jpg')
+  .size({bufferStream: true}, function(err, size) {
+    this.resize(size.width / 2, size.height / 2)
+    this.write('henrik2.jpg', function (err) {
+      if (!err) console.log('done');
+      else console.log('err: ' + err);
+    });
+  });
+  */
 }
 
 // This is for displaying a map, without displaying the true source.
