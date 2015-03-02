@@ -83,6 +83,10 @@ var maps =
     ['Honolulu', 11],
     ['Budapest', 13],
     ['Tokyo', 10],
-    ['Washington DC', 13]
+    ['Washington DC', 13],
+    ['Lisabon', 10],
+    ['Geneva', 10],
+    ['Helsinki', 11],
+    ['Gibraltar', 12]
 
   ]

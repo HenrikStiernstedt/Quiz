@@ -9,6 +9,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/Quiz.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -22,28 +23,96 @@
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
     <!-- My own stuff -->
+    <script>
 
+    var mapId = 0;
+    var maxMapId = 27;
+
+    $(function(){
+
+      $('#next').click(function() {
+        if(mapId >= maxMapId) mapId = -1;
+        getMap(++mapId);
+      });
+
+      $('#prev').click(function() {
+          if(mapId <= 0) mapId = maxMapId+1;
+        getMap(--mapId);
+      });
+    });
+
+    function getMap(mapId)
+    {
+      /*
+      $.ajax({
+        dataType: "image/png",
+        url: '/map/'+mapId,
+        data: null,
+        success: function(image) {
+          $('#map').attr('src', '/map/'+mapId);
+        }
+      });
+      */
+      //$('#map').fadeOut();
+    /*
+      var img = $("#placeholder").attr('src', '/map/'+mapId)
+      .load(function() {
+          if (
+            !this.complete || typeof this.naturalWidth == "undefined" ||
+            this.naturalWidth == 0)
+          {
+              alert('broken image!');
+          } else {
+*/
+            $('#map').attr('src', '/map/'+mapId);
+        //    $('#map').fadeIn();
+    //      }
+  //    });
+/*
+      $('#map').fadeOut();
+
+      $('#map').attr('src', '/map/'+mapId);
+      $('#map').fadeIn();
+*/
+    }
+    </script>
   </head>
   <body>
     <div class="container-fluid" style="margin:5px;">
       <div class="row clearfix hs-height">
-
         <div class="col-md-6 col-xs-12 column">
+          <div id="next"
+            style="border:3px solid #f99d25; border-radius:500px;
+              width:50px; height:50px;
+              position:fixed;
+              z-inidex:50;
+              background-color:white;
+              padding:12px 5px 5px 7px;">Next</div>
+          <div id="prev"
+            style="border:3px solid #f99d25; border-radius:500px;
+              width:50px; height:50px;
+              position:fixed;
+              top:60px;
+              z-inidex:50;
+              background-color:white;
+              padding:12px 5px 5px 7px;">Prev</div>
           <img
             id="map"
-            src="../map/8"
+            src="../map/0"
             style="border:3px solid #f99d25; border-radius:500px; width:100%;"/>
         </div>
 
+        <!-- style="vertical-align: middle;" hade varit nice här. -->
         <div class="col-md-6 col-xs-12 column">
-          <form role="form">
-            <div class="form-group form-inline">
-              <input type="text" placeholder="City" class="form-control" id="MapGuess" />
-              <button type="submit" class="btn btn-default"
-                onClick="$('#map').hide('slow');">Guess map</button>
-           </div>
-          </form>
-
+          <div>
+            <form role="form">
+              <div class="form-group form-inline">
+                <input type="text" placeholder="City" class="form-control" id="MapGuess" />
+                <button type="submit" class="btn btn-default"
+                  onClick="$('#map').hide('slow');">Guess map</button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
