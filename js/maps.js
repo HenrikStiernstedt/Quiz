@@ -2,7 +2,8 @@
 
 module.exports = {
   createMapURL : createMapURL,
-  getMapFromId : getMapFromId
+  getMapFromId : getMapFromId,
+  guessMap : guessMap
 }
 
 var request = require('request');
@@ -37,6 +38,24 @@ function getMapFromId(mapId, req, res) {
   }
 }
 
+// Very crude compare. Must be replaced with something less explicit.
+// 1: OK
+// 0: Not OK
+// -1: Error
+function guessMap(mapId, guess) {
+  if(mapId >= 0 && mapId < maps.length) {
+    if(maps[mapId][0] == guess)
+    {
+      return 1;
+    } else {
+      return 0;
+    }
+  } else {
+    return -1;
+  }
+
+}
+
 function testMapFunction() {
   //var readStream = fs.createReadStream('henrik.jpg');
 
@@ -61,7 +80,7 @@ function testMapFunction() {
 var maps =
   [
     ['Dubai', 10],
-    ['istanbul', 10],
+    ['Istanbul', 10],
     ['Tijuana', 12],
     ['Malmö', 10],
     ['Cape Town', 10],
@@ -70,7 +89,7 @@ var maps =
     ['St Petersburg', 10],
     ['London', 10],
     ['Moscow', 12],
-    ['singhapore', 10],
+    ['Singhapore', 10],
     ['Göteborg', 10],
     ['Amsterdam', 14],
     ['Rome', 12],

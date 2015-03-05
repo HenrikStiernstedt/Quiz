@@ -4,12 +4,17 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Quiz Time</title>
+    <title>Map Time!</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
+    <!-- jQuery-UI for geobytes autocomplete -->
+    <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.10.3/themes/flick/jquery-ui.css" />
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/Quiz.css" rel="stylesheet">
+    <link href="css/Mapgame.css" rel="stylesheet">
     <script src="js/bootstrap.min.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -22,6 +27,51 @@
     <!-- socket.io -->
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
+
+    <style type="text/css">
+      .ui-menu .ui-menu-item a,
+      .ui-menu .ui-menu-item a.ui-state-hover,
+      .ui-menu .ui-menu-item a.ui-state-active
+      {
+        font-weight: normal;
+        margin: -1px;
+        text-align:left;
+        font-size:14px;
+      }
+      .ui-autocomplete-loading
+      {
+        background: white url("/images/ui-anim_basic_16x16.gif") right center no-repeat;
+      }
+      </style>
+
+    <script type="text/javascript">
+      jQuery(function ()
+      {
+        jQuery("#MapGuess").autocomplete({
+          source: function (request, response) {
+          jQuery.getJSON(
+               "http://gd.geobytes.com/AutoCompleteCity?callback=?&q="+request.term,
+               function (data) {
+                 response(data);
+               }
+             );
+          },
+          minLength: 3,
+          select: function (event, ui) {
+             var selectedObj = ui.item;
+             jQuery("#MapGuess").val(selectedObj.value);
+             return false;
+          },
+          open: function () {
+            jQuery(this).removeClass("ui-corner-all").addClass("ui-corner-top");
+          },
+          close: function () {
+            jQuery(this).removeClass("ui-corner-top").addClass("ui-corner-all");
+          }
+        });
+        jQuery("#MapGuess").autocomplete("option", "delay", 100);
+      });
+    </script>
     <!-- My own stuff -->
     <script>
 
@@ -38,6 +88,19 @@
       $('#prev').click(function() {
           if(mapId <= 0) mapId = maxMapId+1;
         getMap(--mapId);
+      });
+
+      $('#CityButton').click(function() {
+        $.ajax({
+          dataType: "json",
+          url: '/map/guess/'+mapId+'/'+$('#MapGuess').val(),
+          data: null,
+          success: function(data) {
+            $('#MapGuess').css('border', '3px solid #1AAC6A;');
+            //alert(data.returnCode);
+          }
+        });
+        return 0;
       });
     });
 
@@ -81,35 +144,22 @@
     <div class="container-fluid" style="margin:5px;">
       <div class="row clearfix hs-height">
         <div class="col-md-6 col-xs-12 column">
-          <div id="next"
-            style="border:3px solid #f99d25; border-radius:500px;
-              width:50px; height:50px;
-              position:fixed;
-              z-inidex:50;
-              background-color:white;
-              padding:12px 5px 5px 7px;">Next</div>
-          <div id="prev"
-            style="border:3px solid #f99d25; border-radius:500px;
-              width:50px; height:50px;
-              position:fixed;
-              top:60px;
-              z-inidex:50;
-              background-color:white;
-              padding:12px 5px 5px 7px;">Prev</div>
+          <div id="next" class="round-button" style=" right:5px;">Next</div>
+          <div id="prev" class="round-button" style=" left:5px;">Prev</div>
+          <div id="score" class="round-button" style="bottom:0px;"><center>5</center></div>
           <img
             id="map"
             src="../map/0"
-            style="border:3px solid #f99d25; border-radius:500px; width:100%;"/>
+            />
         </div>
 
         <!-- style="vertical-align: middle;" hade varit nice här. -->
         <div class="col-md-6 col-xs-12 column">
           <div>
-            <form role="form">
+            <form role="form" onsubmit="return false;">
               <div class="form-group form-inline">
                 <input type="text" placeholder="City" class="form-control" id="MapGuess" />
-                <button type="submit" class="btn btn-default"
-                  onClick="$('#map').hide('slow');">Guess map</button>
+                <button id="CityButton" class="btn btn-default">Guess map</button>
               </div>
             </form>
           </div>

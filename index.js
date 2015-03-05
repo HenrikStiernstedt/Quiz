@@ -55,6 +55,15 @@ app.get('/chatHistory', function(req, res){
 // Ovanstående prylar känns onödigt nu när den här tar in alla filer.
 app.use(express.static(__dirname + '/'));
 
+// Mapgame server suport
+app.get('/map/guess/:mapId/:city', function(req, res) {
+  var mapId = req.param("mapId");
+  var response =
+  {
+    "returnCode": maps.guessMap(mapId, req.param("city"))
+  }
+  res.json(response);
+});
 
 app.get('/map/:mapId', function(req, res) {
   var mapId = req.param("mapId");
@@ -64,6 +73,7 @@ app.get('/map/:mapId', function(req, res) {
 app.get('/map/:zoom/:city', function(req, res) {
     request(maps.createMapURL(req.param("city"), req.param("zoom"))).pipe(res);
 });
+
 
 
 
