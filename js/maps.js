@@ -7,7 +7,7 @@ module.exports = {
 }
 
 var request = require('request');
-var gm = require('gm');
+//var gm = require('gm');
 var fs = require('fs');
 
 // Returns a url showing a map of a city. Use a zoom of 10 or 12 for best result.
@@ -29,7 +29,7 @@ function createMapURL(city, zoom, showLables)
 function getMapFromId(mapId, req, res) {
   if(mapId >= 0 && mapId < maps.length)
   {
-    testMapFunction();
+    //testMapFunction();
     request(createMapURL(maps[mapId][0], maps[mapId][1], false)).pipe(res);
   }
   else
@@ -56,6 +56,7 @@ function guessMap(mapId, guess) {
 
 }
 
+// GM did not work at all when I started working on a new computer. Disabled it for now.
 function testMapFunction() {
   //var readStream = fs.createReadStream('henrik.jpg');
 
@@ -79,14 +80,14 @@ function testMapFunction() {
 // This is for displaying a map, without displaying the true source.
 var maps =
   [
-    ['Dubai', 10],
+    ['Dubai, DU, United Arab Emirates', 10],
     ['Istanbul', 10],
     ['Tijuana', 12],
     ['Malmö', 10],
     ['Cape Town', 10],
     ['Jerusalem', 10],
     ['Hong Kong', 10],
-    ['St Petersburg', 10],
+    ['Saint Petersburg, SP, Russia', 10],
     ['London', 10],
     ['Moscow', 12],
     ['Singhapore', 10],

@@ -57,7 +57,7 @@ app.use(express.static(__dirname + '/'));
 
 // Mapgame server suport
 app.get('/map/guess/:mapId/:city', function(req, res) {
-  var mapId = req.param("mapId");
+  var mapId = req.params["mapId"];
   var response =
   {
     "returnCode": maps.guessMap(mapId, req.param("city"))
@@ -66,7 +66,7 @@ app.get('/map/guess/:mapId/:city', function(req, res) {
 });
 
 app.get('/map/:mapId', function(req, res) {
-  var mapId = req.param("mapId");
+  var mapId = req.params["mapId"];
   maps.getMapFromId(mapId, req, res);
 });
 
