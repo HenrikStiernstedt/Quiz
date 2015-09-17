@@ -96,8 +96,10 @@
           url: '/map/guess/'+mapId+'/'+$('#MapGuess').val(),
           data: null,
           success: function(data) {
-            $('#MapGuess').css('border', '3px solid #1AAC6A;');
-            //alert(data.returnCode);
+            if(data.returnCode===1)
+            {
+              $('#MapGuess').css({'border-color': '#1AAC6A'})
+            }
           }
         });
         return 0;
