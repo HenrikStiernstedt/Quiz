@@ -82,6 +82,9 @@
 
       $('#next').click(function() {
         if(mapId >= maxMapId) mapId = -1;
+        $('#MapGuess').removeClass('fail').removeClass('success');
+        $('#CityButton').removeClass('fail').removeClass('success');
+        $('#MapGuess').val('');
         getMap(++mapId);
       });
 
@@ -98,7 +101,13 @@
           success: function(data) {
             if(data.returnCode===1)
             {
-              $('#MapGuess').css({'border-color': '#1AAC6A'})
+              $('#MapGuess').addClass('success').removeClass('fail');
+              $('#CityButton').addClass('success').removeClass('fail');
+            }
+            else if(data.returnCode===0)
+            {
+              $('#MapGuess').addClass('fail').removeClass('success');
+              $('#CityButton').addClass('fail').removeClass('success');
             }
           }
         });
@@ -159,9 +168,9 @@
         <div class="col-md-6 col-xs-12 column">
           <div>
             <form role="form" onsubmit="return false;">
-              <div class="form-group form-inline">
-                <input type="text" placeholder="City" class="form-control" id="MapGuess" />
-                <button id="CityButton" class="btn btn-default">Guess map</button>
+              <div class="form-group form-inline answer">
+                <input id="MapGuess" type="text" placeholder="City" class="form-control" />
+                <button id="CityButton" class="btn btn-default">Guess</button>
               </div>
             </form>
           </div>

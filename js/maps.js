@@ -44,6 +44,7 @@ function getMapFromId(mapId, req, res) {
 // -1: Error
 function guessMap(mapId, guess) {
   if(mapId >= 0 && mapId < maps.length) {
+    console.log('Guessed "'+guess+'" for city "' + maps[mapId][0]  + '"');
     if(maps[mapId][0] == guess)
     {
       return 1;
@@ -81,32 +82,32 @@ function testMapFunction() {
 var maps =
   [
     ['Dubai, DU, United Arab Emirates', 10],
-    ['Istanbul', 10],
-    ['Tijuana', 12],
-    ['Malmö', 10],
-    ['Cape Town', 10],
-    ['Jerusalem', 10],
-    ['Hong Kong', 10],
+    ['Istanbul, IB, Turkey', 10],
+    ['Tijuana, MX, Mexico', 12],
+    ['Malmö', 10],  // Skumt
+    ['Cape Town, WC, South Africa', 10],
+    ['Jerusalem, JM, Israel', 10],
+    ['Hong Kong, HK, Hong Kong (SAR)', 10],
     ['Saint Petersburg, SP, Russia', 10],
-    ['London', 10],
-    ['Moscow', 12],
-    ['Singhapore', 10],
-    ['Göteborg', 10],
-    ['Amsterdam', 14],
-    ['Rome', 12],
-    ['Los Angeles', 10],
-    ['venice', 12],
-    ['Shanghai', 10],
-    ['Barcelona', 12],
-    ['New York', 10],
-    ['Cydney Australia', 12],
-    ['Honolulu', 11],
-    ['Budapest', 13],
-    ['Tokyo', 10],
-    ['Washington DC', 13],
-    ['Lisabon', 10],
-    ['Geneva', 10],
-    ['Helsinki', 11],
-    ['Gibraltar', 12]
+    ['London, EN, United Kingdom', 10],
+    ['Moscow, MC, Russia', 12],
+    ['Singapore, SG, Singapore', 10],
+    ['Gothenburg, VG, Sweden', 10],
+    ['Amsterdam, NH, Netherlands', 14],
+    ['Rome, LA, Italy', 12],
+    ['Los Angeles, CA, United States', 10],
+    ['Venice, VE, Italy', 12],
+    ['Shanghai, SH, China', 10],
+    ['Barcelona, CT, Spain', 12],
+    ['New York, NY, United States', 10],
+    ['Cydney, Australia', 12],  // Skumt
+    ['Honolulu, HI, United States', 11],
+    ['Budapest, BU, Hungary', 13],
+    ['Tokyo, TY, Japan', 10],
+    ['Washington DC', 13],  // Skumt
+    ['Lisbon, LI, Portugal', 10],
+    ['Geneva, GE, Switzerland', 10],
+    ['Helsinki, ES, Finland', 11],
+    ['Gibraltar, GI, Gibraltar', 12]
 
   ]

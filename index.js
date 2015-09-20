@@ -12,7 +12,8 @@ var status =
 {
   isBuzzed : false,
   isBuzzActive : false,
-  winningTeamName : null
+  winningTeamName : null,
+  score : null
 };
 
 var chatHistory =
@@ -60,7 +61,7 @@ app.get('/map/guess/:mapId/:city', function(req, res) {
   var mapId = req.params["mapId"];
   var response =
   {
-    "returnCode": maps.guessMap(mapId, req.param("city"))
+    "returnCode": maps.guessMap(mapId, req.params["city"])
   }
   res.json(response);
 });
@@ -71,11 +72,8 @@ app.get('/map/:mapId', function(req, res) {
 });
 
 app.get('/map/:zoom/:city', function(req, res) {
-    request(maps.createMapURL(req.param("city"), req.param("zoom"))).pipe(res);
+    request(maps.createMapURL(req.params["city"], req.params["zoom"])).pipe(res);
 });
-
-
-
 
 // Socket.io code for events
 io.on('connection', function(socket){

@@ -28,13 +28,35 @@ html, body {
   margin: 5px;
 }
 
+#CityButton {
+  border:3px solid  #f99d25;
+  border-radius:0px 500px 500px 0px;
+//  float:right;
+  height:50px;
+}
+
 #map {
   border:3px solid #f99d25;
   border-radius:500px;
   width:100%;
 }
+
 #MapGuess {
-  width:100%;
+  width:80%;
+  border-radius:500px 0px 0px 500px;
   border:3px solid #f99d25;
-  border-radius:500px;
+  height:50px;
+  margin:-7px;
+}
+#MapGuess.fail {
+  border:3px solid #FF2820;
+}
+#MapGuess.success {
+  border:3px solid #1AAC6A;
+}
+#CityButton.fail {
+  border:3px solid #FF2820;
+}
+#CityButton.success {
+  border:3px solid #1AAC6A;
 }
