@@ -1,9 +1,48 @@
+
+var
+  express = require('express'),
+  app = express(),
+  server  = require("http").createServer(app),
+  io = require("socket.io")(server),
+  session = require("express-session")({
+    secret: "my-secret123",
+    resave: true,
+    saveUninitialized: true
+  }),
+  sharedsession = require("express-socket.io-session");
+
+// Attach session
+app.use(session);
+
+// Share session with io sockets
+
+io.use(sharedsession(session));
+
+io.on("connection", function(socket) {
+    // Accept a login event with user's data
+    socket.on("login", function(userdata) {
+        socket.handshake.session.userdata = userdata;
+    });
+    socket.on("logout", function(userdata) {
+        if (socket.handshake.session.userdata) {
+            delete socket.handshake.session.userdata;
+        }
+    });
+});
+
+
+server.listen(3000, function(){
+  console.log('listening on *:3000');
+});
+/////////
+
+/*
 var express = require('express');
 var app = express();
 
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
-
+*/
 var request = require('request');
 
 var maps = require('./js/maps.js');
@@ -79,6 +118,7 @@ app.get('/map/:zoom/:city', function(req, res) {
 io.on('connection', function(socket){
   console.log('a user connected');
   console.log(socket.id);
+  //req.session.socketId = socket.id;
 
   socket.on('new chat message', function(msgJson){
     msgJson.date = new Date();
@@ -124,8 +164,4 @@ io.on('connection', function(socket){
   });
 
 
-});
-
-http.listen(3000, function(){
-  console.log('listening on *:3000');
 });
