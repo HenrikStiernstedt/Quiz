@@ -14,7 +14,6 @@ var fs = require('fs');
 function createMapURL(city, zoom, showLables)
 {
   var urlpattern = 'http://maps.google.com/maps/api/staticmap?sensor=false&size=640x640&center=[city]&zoom=[zoom]&style=feature:all|element:labels|visibility:';
-  console.log(showLables);
   if (showLables) {
     urlpattern += 'on';
   } else {

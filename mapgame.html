@@ -90,6 +90,9 @@
 
       $('#prev').click(function() {
           if(mapId <= 0) mapId = maxMapId+1;
+          $('#MapGuess').removeClass('fail').removeClass('success');
+          $('#CityButton').removeClass('fail').removeClass('success');
+          $('#MapGuess').val('');
         getMap(--mapId);
       });
 

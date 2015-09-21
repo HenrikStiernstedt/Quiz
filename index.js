@@ -11,6 +11,15 @@ var
   }),
   sharedsession = require("express-socket.io-session");
 
+  // No cache
+  app.use(function (req, res, next) {
+      res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
+      res.header('Expires', '-1');
+      res.header('Pragma', 'no-cache');
+      next()
+  });
+
+
 // Attach session
 app.use(session);
 
@@ -18,6 +27,7 @@ app.use(session);
 
 io.use(sharedsession(session));
 
+// I guess I have to ditch those two examples...
 io.on("connection", function(socket) {
     // Accept a login event with user's data
     socket.on("login", function(userdata) {
@@ -107,6 +117,24 @@ app.get('/map/guess/:mapId/:city', function(req, res) {
 
 app.get('/map/:mapId', function(req, res) {
   var mapId = req.params["mapId"];
+
+  if(mapId === 'next') {
+    if(req.session.currentMapId == null) {
+      req.session.currentMapId = 0;
+    } else {
+      req.session.currentMapId++;
+    }
+    mapId = req.session.currentMapId;
+  }
+  if(mapId === 'prev') {
+    if(req.session.currentMapId == null) {
+      req.session.currentMapId = 0;
+    } else {
+      req.session.currentMapId--;
+    }
+    mapId = req.session.currentMapId;
+  }
+
   maps.getMapFromId(mapId, req, res);
 });
 
