@@ -174,8 +174,8 @@ io.on('connection', function(socket){
     }
   });
 
-  socket.on('PingResponse', function(pingTime) {
-    console.log(new Date().getTime() - pingTime);
+  socket.on('PingResponse', function(pingResponse) {
+    console.log((new Date().getTime() - pingResponse.pingTime).toString().padStart(6, " ") + " " + pingResponse.teamName + " ");
   });
 
   // Quizmaster functions below.

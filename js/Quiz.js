@@ -117,7 +117,13 @@ function init() {
   });
 
   socket.on('Ping', function(pingTime) {
-    socket.emit('PingResponse', pingTime);
+    var teamName = $('#TeamName').val();
+    console.log("Pinged!");
+    socket.emit('PingResponse',
+      {
+          pingTime: pingTime,
+          teamName: teamName
+      });
   });
 
   getStatusUpdate();
