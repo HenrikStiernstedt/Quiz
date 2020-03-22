@@ -3,7 +3,10 @@ var
   express = require('express'),
   app = express(),
   server  = require("http").createServer(app),
-  io = require("socket.io")(server),
+  io = require("socket.io")(server, {
+    pingInterval: 10000,
+    pingTimeout: 5000
+  }),
   session = require("express-session")({
     secret: "my-secret123",
     resave: true,
