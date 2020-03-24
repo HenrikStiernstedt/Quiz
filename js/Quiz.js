@@ -79,6 +79,8 @@ function handleChatHistory(history)
 function init() {
   var socket = io();
 
+
+
   $('form').submit(function(){
     socket.emit('new chat message',
     {
@@ -124,6 +126,12 @@ function init() {
           pingTime: pingTime,
           teamName: teamName
       });
+  });
+
+  socket.on('UpdatePlayers', function(players)
+  {
+    console.log("Players:");
+    console.log(players);
   });
 
   getStatusUpdate();
