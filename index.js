@@ -5,7 +5,8 @@ var
   server  = require("http").createServer(app),
   io = require("socket.io")(server, {
     pingInterval: 10000,
-    pingTimeout: 5000
+    pingTimeout: 5000,
+    cookie: true
   }),
   session = require("express-session")({
     secret: "my-secret123",
@@ -27,9 +28,10 @@ var
 app.use(session);
 
 // Share session with io sockets
-
-io.use(sharedsession(session));
-
+io.use(sharedsession(session, {
+    autoSave:true
+}));
+/*
 // I guess I have to ditch those two examples...
 io.on("connection", function(socket) {
     // Accept a login event with user's data
@@ -42,7 +44,7 @@ io.on("connection", function(socket) {
         }
     });
 });
-
+*/
 
 server.listen(3000, function(){
   console.log('listening on *:3000');
@@ -59,12 +61,15 @@ var io = require('socket.io')(http);
 var request = require('request');
 
 var maps = require('./js/maps.js');
+var nextTeamNumber = 1;
+
 
 var status =
 {
   isBuzzed : false,
   isBuzzActive : false,
   winningTeamName : null,
+  winningTeam : null,
   score : null
 };
 
@@ -77,13 +82,8 @@ var chatHistory =
   }
 ];
 
-/*
-var players =
-  {
-    "id" : null
-    "name" : null
-  }
-*/
+var players = new Map();
+
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/quiz.html');
 });
@@ -147,9 +147,22 @@ app.get('/map/:zoom/:city', function(req, res) {
 
 // Socket.io code for events
 io.on('connection', function(socket){
-  console.log('a user connected');
-  console.log(socket.id);
-  //req.session.socketId = socket.id;
+  console.log(socket.id + ' connected.');
+  if (socket.handshake.session.team){
+    console.log('Returning user ' + socket.handshake.session.team);
+    players[socket.handshake.session.team].active = true;
+    players[socket.handshake.session.team].socketId = socket.id;
+  } else {
+
+    socket.handshake.session.team = nextTeamNumber++;
+    console.log("New user " + socket.handshake.session.team);
+    players.set(socket.handshake.session.team,
+      { "score" : 0,
+        "active" : true,
+        "SocketId" : socket.id
+      }
+    );
+  }
 
   socket.on('new chat message', function(msgJson){
     msgJson.date = new Date();
@@ -157,10 +170,18 @@ io.on('connection', function(socket){
     chatHistory.push(msgJson);
   });
 
-  socket.on('disconnect', function(){
-    console.log('user disconnected');
+
+  socket.on('SetName', function(name) {
+    //players.get(socket.id).teamName = pingResponse.teamName;
+    player[socket.handshake.session.team].teamName = name;
   });
 
+  socket.on('disconnect', function(){
+    console.log(socket.id + ' disconnected');
+    players.get(socket.handshake.session.team).active = false;
+  });
+
+  // TODO: Replace teamName with session.teamName...
   socket.on('Buzz', function(teamName){
     if(status.isBuzzed)
     {
@@ -173,12 +194,19 @@ io.on('connection', function(socket){
       status.isBuzzed = true;
       status.isBuzzActive = false;
       status.winningTeamName = teamName;
+      status.winningTeam = socket.handshake.session.team;
+      status.winningId = socket.id;
       io.emit('Buzzed', teamName);
     }
   });
 
   socket.on('PingResponse', function(pingResponse) {
-    console.log((new Date().getTime() - pingResponse.pingTime).toString().padStart(6, " ") + " " + pingResponse.teamName + " ");
+    console.log(
+      socket.handshake.session.team.toString().padStart(6, " ") + "  " + socket.id + " " +
+      (new Date().getTime() - pingResponse.pingTime).toString().padStart(4, " ") + " " + pingResponse.teamName
+    );
+    players.get(socket.handshake.session.team).teamName = pingResponse.teamName;
+    socket.handshake.session.teamName = pingResponse.teamName;
   });
 
   // Quizmaster functions below.
@@ -186,13 +214,46 @@ io.on('connection', function(socket){
     status.isBuzzed = false;
     status.isBuzzActive = true;
     status.winningTeamName = null;
+    status.winningTeam = null;
+    console.log(players);
     io.emit('ResetBuzz', null);
   });
 
+  socket.on('AwardPoints', function() {
+    console.log("Awarding points");
+    players.get(status.winningTeam).score += 1;
+    console.log(Array.from(players.values()));
+    io.emit('UpdatePlayers',  Array.from(players.values()));
+  })
+
+
   socket.on('StartPing', function() {
     console.log('Ping Request from QM.')
+
+    var allConnectedClients = Object.keys(io.sockets.connected);
+    //var clients_in_the_room = io.sockets.adapter.rooms[roomId];
+    //console.log(allConnectedClients);
+    //console.log(Object.keys(io.sockets.connected));
+    for (var clientId in allConnectedClients ) {
+      var client = io.sockets.connected[allConnectedClients[clientId]];
+      //console.log(client);
+      //var client_socket = io.sockets.connected[clientId];//Do whatever you want with this
+      console.log('client: %s', client.id); //Seeing is believing
+      //console.log(client_socket); //Seeing is believing
+    }
+
+    console.log('List all players:');
+    console.log ('Team #  Id                   Ping TeamName');
     io.emit('Ping', new Date().getTime());
   });
 
-
+  // Unused for now.
+  socket.on('ListPlayers', function() {
+    var allConnectedClients = Object.keys(io.sockets.connected);
+    //var clients_in_the_room = io.sockets.adapter.rooms[roomId];
+    for (var clientId in allConnectedClients ) {
+      console.log('client: %s', clientId); //Seeing is believing
+      var client_socket = io.sockets.connected[clientId];//Do whatever you want with this
+    }
+  });
 });

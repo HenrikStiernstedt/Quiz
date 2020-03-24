@@ -64,5 +64,10 @@ function initMaster() {
     socket.emit('StartPing');
   });
 
+  $('#CorrectButton').click(function(){
+    socket.emit('AwardPoints');
+  });
+
+
   loadSounds();
 }
