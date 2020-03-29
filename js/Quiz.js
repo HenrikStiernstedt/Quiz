@@ -83,29 +83,6 @@ function rowStyle(row, index) {
   }
 }
 
-/*
-function rowStyle(row, index) {
-    var classes = [
-      'bg-blue',
-      'bg-green',
-      'bg-orange',
-      'bg-yellow',
-      'bg-red'
-    ]
-
-    if (index % 2 === 0 && index / 2 < classes.length) {
-      return {
-        classes: classes[index / 2]
-      }
-    }
-    return {
-      css: {
-        color: 'blue'
-      }
-    }
-  }
-  */
-
 function handleStatusUpdate(status) {
   if(status.isBuzzed)
   {
@@ -147,6 +124,16 @@ function handleChatHistory(history)
 function init() {
   var socket = io();
 
+  $('#SaveNameButton').click(function(){
+    var newName = $('#TeamName').val();
+    console.log("New name: "+ newName);
+    if(newName)
+    {
+      setCookie('name', newName);
+      socket.emit('SetName', newName);
+
+    }
+  });
 
 
   $('form').submit(function(){
@@ -180,9 +167,9 @@ function init() {
     $('#table').bootstrapTable('refreshOptions', {});
   })
 
-  socket.on('Buzzed', function(winningTeamName) {
-    buzzed(winningTeamName.teamName);
-    lastWinner = winningTeamName.id;
+  socket.on('Buzzed', function(winningTeam) {
+    buzzed(winningTeam.teamName);
+    lastWinner = winningTeam.id;
     $('#table').bootstrapTable('refreshOptions', {});
   })
 

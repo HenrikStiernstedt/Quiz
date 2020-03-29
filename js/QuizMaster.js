@@ -68,8 +68,8 @@ function initMaster() {
     socket.emit('AwardPoints');
   });
 
-  $('#UJpdateButton').click(function(){
-    socket.emit('UpdatePlayers');
+  $('#UpdateButton').click(function(){
+    socket.emit('ListPlayers');
   });
 
   loadSounds();

@@ -59,6 +59,8 @@ var status =
   isBuzzActive : false,
   winningTeamName : null,
   winningTeam : null,
+  buzzList : {},
+  buzzOrder : 0,
   score : null
 };
 
@@ -158,7 +160,8 @@ io.on('connection', function(socket){
         "team" : socket.handshake.session.team,
         "score" : 0,
         "active" : true,
-        "socketId" : socket.id
+        "socketId" : socket.id,
+        "teamName" : null
       }
     );
   }
@@ -171,7 +174,17 @@ io.on('connection', function(socket){
 
 
   socket.on('SetName', function(name) {
+    if(!name || name == "")
+    {
+      return;
+    }
+    if(Object.values(Array.from(players.values())).includes(name)) // BUGG: Kontrollen verkar inte fungera.
+    {
+      return;
+    }
     players.get(socket.handshake.session.team).teamName = name;
+    socket.handshake.session.save();
+    io.emit('UpdatePlayers',  Array.from(players.values()));
   });
 
   socket.on('disconnect', function(){
@@ -252,6 +265,7 @@ io.on('connection', function(socket){
 
   // Unused for now.
   socket.on('ListPlayers', function() {
+    io.emit('UpdatePlayers',  Array.from(players.values()));
     var allConnectedClients = Object.keys(io.sockets.connected);
     //var clients_in_the_room = io.sockets.adapter.rooms[roomId];
     for (var clientId in allConnectedClients ) {
