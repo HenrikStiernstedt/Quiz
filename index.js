@@ -31,20 +31,6 @@ app.use(session);
 io.use(sharedsession(session, {
     autoSave:true
 }));
-/*
-// I guess I have to ditch those two examples...
-io.on("connection", function(socket) {
-    // Accept a login event with user's data
-    socket.on("login", function(userdata) {
-        socket.handshake.session.userdata = userdata;
-    });
-    socket.on("logout", function(userdata) {
-        if (socket.handshake.session.userdata) {
-            delete socket.handshake.session.userdata;
-        }
-    });
-});
-*/
 
 server.listen(3000, function(){
   console.log('listening on *:3000');
@@ -60,9 +46,12 @@ var io = require('socket.io')(http);
 */
 var request = require('request');
 
+app.use('/favicon.ico', express.static('images/favicon.png'));
+
 var maps = require('./js/maps.js');
 var nextTeamNumber = 1;
 
+var players = new Map();
 
 var status =
 {
@@ -82,7 +71,6 @@ var chatHistory =
   }
 ];
 
-var players = new Map();
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/quiz.html');
@@ -98,7 +86,7 @@ app.get('/mapgame', function(req, res) {
 
 // Specialare för AJAX och annat som inte behöver pushas ut.
 app.get('/status', function(req, res){
-  res.json(status);
+  res.json({ status: status, players : Array.from(players.values())});
 });
 
 app.get('/chatHistory', function(req, res){
@@ -147,19 +135,30 @@ app.get('/map/:zoom/:city', function(req, res) {
 
 // Socket.io code for events
 io.on('connection', function(socket){
-  console.log(socket.id + ' connected.');
+  console.log(socket.id + ' connected. Team: ' +socket.handshake.session.team);
   if (socket.handshake.session.team){
     console.log('Returning user ' + socket.handshake.session.team);
-    players[socket.handshake.session.team].active = true;
-    players[socket.handshake.session.team].socketId = socket.id;
+    if(players.get(socket.handshake.session.team))
+    {
+      players.get(socket.handshake.session.team).active = true;
+      players.get(socket.handshake.session.team).socketId = socket.id;
+      socket.handshake.session.save();
+    }
+    else {
+      console.log("Error restoring session. No entry in Players-object for team "+socket.handshake.session.team);
+    }
   } else {
 
     socket.handshake.session.team = nextTeamNumber++;
+    socket.handshake.session.save();
     console.log("New user " + socket.handshake.session.team);
     players.set(socket.handshake.session.team,
-      { "score" : 0,
+      {
+        "id" : socket.handshake.session.team,
+        "team" : socket.handshake.session.team,
+        "score" : 0,
         "active" : true,
-        "SocketId" : socket.id
+        "socketId" : socket.id
       }
     );
   }
@@ -172,8 +171,7 @@ io.on('connection', function(socket){
 
 
   socket.on('SetName', function(name) {
-    //players.get(socket.id).teamName = pingResponse.teamName;
-    player[socket.handshake.session.team].teamName = name;
+    players.get(socket.handshake.session.team).teamName = name;
   });
 
   socket.on('disconnect', function(){
@@ -196,7 +194,7 @@ io.on('connection', function(socket){
       status.winningTeamName = teamName;
       status.winningTeam = socket.handshake.session.team;
       status.winningId = socket.id;
-      io.emit('Buzzed', teamName);
+      io.emit('Buzzed', {id : status.winningTeam, teamName: teamName});
     }
   });
 
@@ -220,12 +218,17 @@ io.on('connection', function(socket){
   });
 
   socket.on('AwardPoints', function() {
-    console.log("Awarding points");
-    players.get(status.winningTeam).score += 1;
+    if(status.winningTeam)
+    {
+      console.log("Awarding points");
+      players.get(status.winningTeam).score += 1;
+    }
+    else {
+      console.log("No winning team");
+    }
     console.log(Array.from(players.values()));
     io.emit('UpdatePlayers',  Array.from(players.values()));
   })
-
 
   socket.on('StartPing', function() {
     console.log('Ping Request from QM.')

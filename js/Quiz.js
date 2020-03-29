@@ -33,10 +33,78 @@ function getStatusUpdate()
     url: '/status',
     data: null,
     success: function(status) {
-      handleStatusUpdate(status)
+      handleStatusUpdate(status.status);
+      updatePlayers(status.players);
     }
   });
 }
+
+function updatePlayers(players)
+{
+  $('#table').bootstrapTable("destroy");
+  $('#table').bootstrapTable({
+    columns: [{
+      field: 'id',
+      title: '#',
+      sortable: true
+    },{
+      field: 'teamName',
+      title: 'Team',
+      sortable: true,
+      'data-cell-style': "cellStyle"
+    }, {
+      field: 'active',
+      title: 'Active'
+    }, {
+      field: 'score',
+      title: 'Score',
+      sortable: true
+    }],
+    data: players
+  })
+}
+
+var lastWinner = 3;
+
+function rowStyle(row, index) {
+  if(row.id == lastWinner)
+  {
+    return {
+      classes: 'text-nowrap lastWinner',
+      css: {"background-color": "yellow" }
+    };
+  }
+  else
+  {
+    return {
+      classes: 'text-nowrap normal',
+      css: {}
+    };
+  }
+}
+
+/*
+function rowStyle(row, index) {
+    var classes = [
+      'bg-blue',
+      'bg-green',
+      'bg-orange',
+      'bg-yellow',
+      'bg-red'
+    ]
+
+    if (index % 2 === 0 && index / 2 < classes.length) {
+      return {
+        classes: classes[index / 2]
+      }
+    }
+    return {
+      css: {
+        color: 'blue'
+      }
+    }
+  }
+  */
 
 function handleStatusUpdate(status) {
   if(status.isBuzzed)
@@ -108,10 +176,14 @@ function init() {
 
   socket.on('ResetBuzz', function() {
     resetBuzzButton();
+    lastWinner = null;
+    $('#table').bootstrapTable('refreshOptions', {});
   })
 
   socket.on('Buzzed', function(winningTeamName) {
-    buzzed(winningTeamName);
+    buzzed(winningTeamName.teamName);
+    lastWinner = winningTeamName.id;
+    $('#table').bootstrapTable('refreshOptions', {});
   })
 
   $('#BuzzButton').click(function(){
@@ -132,6 +204,9 @@ function init() {
   {
     console.log("Players:");
     console.log(players);
+
+    updatePlayers(players);
+
   });
 
   getStatusUpdate();

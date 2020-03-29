@@ -11,6 +11,10 @@
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <script src="js/bootstrap.min.js"></script>
 
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
+
+
   <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -41,6 +45,15 @@
 
           <button type="button" id="ResetBuzzButton" class="btn btn-lg btn-block">Reset Buzz!</button>
           <!--<button type="button" class="btn btn-block btn-lg btn-success active">Default</button>-->
+          <div id="ScoreBoard" class="list-group vs-scroll" style="width:100%">
+            <div class="list-group-item">
+
+                <table id="table" class="table-striped table-sm" data-unique-id="id" data-row-style="rowStyle">
+
+                </table>
+
+            </div>
+          </div>
 
         </div>
         <div class="col-md-6 col-xs-12 hs-height">
@@ -66,8 +79,8 @@
 
           <ul id="messages"></ul>
           <button name="Ping" id="PingButton">Ping!</button>
-          <button name="Ping" id="CorrectButton">Correct!</button>
-
+          <button name="Correct" id="CorrectButton">Correct!</button>
+          <button name="Update" id="UpdateButton">Update!</button>
         </div>
       </div>
     </div>
@@ -76,5 +89,6 @@
       initMaster();
 
     </script>
+    <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
   </body>
 </html>

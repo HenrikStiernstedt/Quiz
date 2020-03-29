@@ -42,10 +42,10 @@ function initMaster() {
     $('#BuzzButton').removeClass('won lost');
   })
   */
-  socket.on('Buzzed', function(winningTeamName) {
+  socket.on('Buzzed', function(winningTeam) {
     $('#ChatBox').append($('<div class="list-group-item">').text(
       new Date().toLocaleTimeString('sv-SE') + ' ' +
-      'Winning buzz by ' + winningTeamName));
+      'Winning buzz by ' + winningTeam.teamName));
 
     $('#ResetBuzzButton').addClass('btn-warning');
     $('#ResetBuzzButton').removeClass('btn-success btn-danger');
@@ -68,6 +68,9 @@ function initMaster() {
     socket.emit('AwardPoints');
   });
 
+  $('#UJpdateButton').click(function(){
+    socket.emit('UpdatePlayers');
+  });
 
   loadSounds();
 }
