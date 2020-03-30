@@ -9,6 +9,11 @@ function getCookie(key) {
     return keyValue ? keyValue[2] : null;
 }
 
+function getTeamTableRow(teamId)
+{
+  return $('.table tr td:first-child:contains("'+teamId+'")').parent();
+}
+
 function resetBuzzButton()
 {
   $('#BuzzButton').addClass('btn-warning');
@@ -35,7 +40,19 @@ function getStatusUpdate()
     success: function(status) {
       handleStatusUpdate(status.status);
       updatePlayers(status.players);
+      if(!status.nameRequired.name)
+      {
+        showNamePrompt();
+      }
+
     }
+  });
+}
+
+function showNamePrompt()
+{
+  $('#myModal').on('shown.bs.modal', function () {
+    $('#myInput').trigger('focus')
   });
 }
 
@@ -194,6 +211,12 @@ function init() {
 
     updatePlayers(players);
 
+  });
+
+  socket.on('ScorePoint', function(scoreInfo)
+  {
+    //getTeamTableRow(scoreInfo.team).addClass('table-success');
+    getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html(getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html() + ' <i class="fas fa-trophy"></i>');
   });
 
   getStatusUpdate();

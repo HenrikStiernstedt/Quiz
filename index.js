@@ -88,7 +88,13 @@ app.get('/mapgame', function(req, res) {
 
 // Specialare för AJAX och annat som inte behöver pushas ut.
 app.get('/status', function(req, res){
-  res.json({ status: status, players : Array.from(players.values())});
+  res.json(
+    {
+      status: status,
+      players: Array.from(players.values()),
+      nameRequired: { id: req.session.team, name: req.session.teamName }
+    }
+);
 });
 
 app.get('/chatHistory', function(req, res){
@@ -231,16 +237,18 @@ io.on('connection', function(socket){
   });
 
   socket.on('AwardPoints', function() {
+    var scoreValue = 1;
     if(status.winningTeam)
     {
       console.log("Awarding points");
-      players.get(status.winningTeam).score += 1;
+      players.get(status.winningTeam).score += scoreValue;
     }
     else {
       console.log("No winning team");
     }
     console.log(Array.from(players.values()));
     io.emit('UpdatePlayers',  Array.from(players.values()));
+    io.emit('ScorePoint', { team: status.winningTeam, scoreValue: scoreValue });
   })
 
   socket.on('StartPing', function() {

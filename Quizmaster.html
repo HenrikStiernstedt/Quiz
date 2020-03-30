@@ -32,6 +32,26 @@
 
 </head>
   <body>
+    <div id="myModal" class="modal" tabindex="-1" role="dialog">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Modal title</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Please enter your name</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div class="container-fluid">
       <div class="row clearfix hs-height">
         <div class="col-md-6 col-xs-12 column">
@@ -57,10 +77,6 @@
 
         </div>
         <div class="col-md-6 col-xs-12 hs-height">
-          <div class="list-group hs-scroll" id="ChatBox">
-             <a href="#" id="ChatHeader" class="list-group-item active">Chat</a>
-          </div>
-
           <form role="form">
             <div class="form-group form-inline">
                <input type="text" placeholder="Say" class="form-control" id="m" />
@@ -75,14 +91,23 @@
               <button id="SaveNameButton" type="button" class="btn btn-default">Save Name</button>
            </div>
           </form>
-
-          <ul id="messages"></ul>
+          
           <button name="Ping" id="PingButton">Ping!</button>
           <button name="Correct" id="CorrectButton">Correct!</button>
           <button name="Update" id="UpdateButton">Update!</button>
+
+          <div class="list-group hs-scroll" id="ChatBox">
+             <a href="#" id="ChatHeader" class="list-group-item active">Chat</a>
+          </div>
+
+          <ul id="messages"></ul>
+
         </div>
       </div>
     </div>
+
+
+
     <script>
       init();
       initMaster();
