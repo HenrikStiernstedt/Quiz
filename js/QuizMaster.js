@@ -65,7 +65,11 @@ function initMaster() {
   });
 
   $('#CorrectButton').click(function(){
-    socket.emit('AwardPoints');
+    socket.emit('AwardPoints', 1);
+  });
+
+  $('#IncorrectButton').click(function(){
+    socket.emit('AwardPoints', 0);
   });
 
   $('#UpdateButton').click(function(){

@@ -59,7 +59,7 @@ var status =
   isBuzzActive : false,
   winningTeamName : null,
   winningTeam : null,
-  buzzList : {},
+  buzzList : [],
   buzzOrder : 0,
   score : null
 };
@@ -190,7 +190,7 @@ io.on('connection', function(socket){
     }
     players.get(socket.handshake.session.team).teamName = name;
     socket.handshake.session.save();
-    io.emit('UpdatePlayers',  Array.from(players.values()));
+    io.emit('UpdatePlayers', {status: status, players: Array.from(players.values())});
   });
 
   socket.on('disconnect', function(){
@@ -200,9 +200,18 @@ io.on('connection', function(socket){
 
   // TODO: Replace teamName with session.teamName...
   socket.on('Buzz', function(teamName){
+    if(status.buzzList.includes(socket.handshake.session.team))
+    {
+      console.log('Extra buzz from ' + teamName);
+      return;
+    }
+    else {
+      status.buzzList.push(socket.handshake.session.team);
+    }
     if(status.isBuzzed)
     {
-      console.log('Too slow buzz from ' + teamName);
+      console.log('Too slow buzz from ' + teamName + '. In queue as #' + (status.buzzList.length + 1));
+      io.emit('UpdatePlayers', {status: status, players: Array.from(players.values()) } );
     }
     else if (!status.isBuzzActive) {
       console.log('Random buzz from ' + teamName);
@@ -213,7 +222,8 @@ io.on('connection', function(socket){
       status.winningTeamName = teamName;
       status.winningTeam = socket.handshake.session.team;
       status.winningId = socket.id;
-      io.emit('Buzzed', {id : status.winningTeam, teamName: teamName});
+
+      io.emit('Buzzed', {id : status.winningTeam, teamName: teamName, status: status, players: Array.from(players.values())});
     }
   });
 
@@ -232,22 +242,29 @@ io.on('connection', function(socket){
     status.isBuzzActive = true;
     status.winningTeamName = null;
     status.winningTeam = null;
+    status.buzzList = [];
     console.log(players);
     io.emit('ResetBuzz', null);
   });
 
-  socket.on('AwardPoints', function() {
-    var scoreValue = 1;
+  // If scoreValue > 0, count as a win.
+  // If scoreValue <= 0, cont as a fail and proceede to next player in queue.
+  socket.on('AwardPoints', function(scoreValue) {
+
     if(status.winningTeam)
     {
-      console.log("Awarding points");
+      console.log("Awarding points: " + scoreValue);
       players.get(status.winningTeam).score += scoreValue;
+      if(scoreValue <= 0)
+      {
+        status.buzzOrder++;
+      }
     }
     else {
       console.log("No winning team");
     }
     console.log(Array.from(players.values()));
-    io.emit('UpdatePlayers',  Array.from(players.values()));
+    io.emit('UpdatePlayers', {status: status, players: Array.from(players.values())});
     io.emit('ScorePoint', { team: status.winningTeam, scoreValue: scoreValue });
   })
 
@@ -273,7 +290,7 @@ io.on('connection', function(socket){
 
   // Unused for now.
   socket.on('ListPlayers', function() {
-    io.emit('UpdatePlayers',  Array.from(players.values()));
+    io.emit('UpdatePlayers', {status: status, players: Array.from(players.values())});
     var allConnectedClients = Object.keys(io.sockets.connected);
     //var clients_in_the_room = io.sockets.adapter.rooms[roomId];
     for (var clientId in allConnectedClients ) {

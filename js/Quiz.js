@@ -81,7 +81,7 @@ function updatePlayers(players)
   })
 }
 
-var lastWinner = 3;
+var lastWinner = null;
 
 function rowStyle(row, index) {
   if(row.id == lastWinner)
@@ -184,9 +184,14 @@ function init() {
     $('#table').bootstrapTable('refreshOptions', {});
   })
 
-  socket.on('Buzzed', function(winningTeam) {
-    buzzed(winningTeam.teamName);
-    lastWinner = winningTeam.id;
+  socket.on('Buzzed', function(response)
+  {
+    if(response.id != null)
+    {
+      buzzed(response.teamName);
+      lastWinner = response.id;
+    }
+    updatePlayers(response.players);
     $('#table').bootstrapTable('refreshOptions', {});
   })
 
@@ -204,12 +209,12 @@ function init() {
       });
   });
 
-  socket.on('UpdatePlayers', function(players)
+  socket.on('UpdatePlayers', function(status)
   {
     console.log("Players:");
-    console.log(players);
+    console.log(status.players);
 
-    updatePlayers(players);
+    updatePlayers(status.players);
 
   });
 
