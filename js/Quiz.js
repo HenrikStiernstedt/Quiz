@@ -56,6 +56,8 @@ function showNamePrompt()
   });
 }
 
+var _players = null;
+
 function updatePlayers(players)
 {
   $('#table').bootstrapTable("destroy");
@@ -78,7 +80,9 @@ function updatePlayers(players)
       sortable: true
     }],
     data: players
-  })
+  });
+
+  _players = players;
 }
 
 var lastWinner = null;
@@ -193,6 +197,7 @@ function init() {
     }
     updatePlayers(response.players);
     $('#table').bootstrapTable('refreshOptions', {});
+
   })
 
   $('#BuzzButton').click(function(){
@@ -221,7 +226,16 @@ function init() {
   socket.on('ScorePoint', function(scoreInfo)
   {
     //getTeamTableRow(scoreInfo.team).addClass('table-success');
-    getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html(getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html() + ' <i class="fas fa-trophy"></i>');
+    console.log(scoreInfo);
+    if(scoreInfo.scoreValue > 0)
+    {
+      getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html(getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html() + ' <i class="fas fa-trophy"></i>');
+    }
+    else {
+      //getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html(getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html() + ' <i class="far fa-angry"></i>');
+      var teamName = _players.filter( obj => obj.id === scoreInfo.team)[0].teamName;
+      $("#table").bootstrapTable('updateCellByUniqueId', {id: scoreInfo.teamId, field: 'teamName', value: teamName + ' <i class="far fa-angry"></i>'});
+    }
   });
 
   getStatusUpdate();
