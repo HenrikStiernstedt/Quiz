@@ -233,6 +233,7 @@ function init() {
     }
     else {
       //getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html(getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html() + ' <i class="far fa-angry"></i>');
+      // Om man vill använda inbyggda funktioner i bootstrapTable istället kan man göra enligt nedanstående.
       var teamName = _players.filter( obj => obj.id === scoreInfo.team)[0].teamName;
       $("#table").bootstrapTable('updateCellByUniqueId', {id: scoreInfo.teamId, field: 'teamName', value: teamName + ' <i class="far fa-angry"></i>'});
     }

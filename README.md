@@ -34,3 +34,8 @@ TODO:
 
 * Majority fails. Everyone types in a hopefully unique item from a list of items.
   Ie. A car beginning with A. Everyone who have typed in a unique car model gets a point.
+
+
+* New public score board and question display.
+  This one is supposed to be streamed online or just let everyone have surf to the page
+  directly. To be used in tandem with the phone.

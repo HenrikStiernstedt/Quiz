@@ -31,3 +31,14 @@ html, body {
 #messages li { padding: 5px 10px; }
 #messages li:nth-child(odd) { background: #eee; }
 */
+
+/*
+ Some quick an simple table styleing.
+*/
+table {
+  border-collapse: collapse;
+}
+
+table, th, td {
+  border: 1px solid black;
+}
