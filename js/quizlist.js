@@ -2,25 +2,69 @@
 var vm = new Vue({
   el: '#app',
   data: {
-    message: 'Hello Vue!',
     players: [{
         "id" : 0,
         "team" : 0,
         "score" : 0,
         "active" : false,
         "socketId" : "",
-        "teamName" : null
+        "teamName" : null,
+        "buzzOrder": 0,
+        "isCorrect": null,
+        "answer" : null,
+        "questionScore" : 0
     }],
     status: {
       "isBuzzed" : false,
       "isBuzzActive" : true,
       "winningTeamName" : null,
       "winningTeam" : null,
-      "buzzList" : []
+      "buzzList" : [0],
+      question : {
+        questionType : "",
+        questionText: "",
+        questionScore: 0,
+        questionClues : [{
+          "clueScore" : 0,
+          "clueText" : ""
+        }]
+      },
+      pendingAnswers: [{
+        "id" : 0,
+        "answer": "",
+        "questionScore": 0,
+        "clueScore": 0
+      }]
+    },
+    player:
+    {
+      "id" : 0,
+      "teamName" : "Henrik Hård",
+      "answer" : "",
+      "pendingAnswer": ""
+    },
+    quizMaster :
+    {
+      pendingQuestion : {
+        questionType : "",
+        questionText: "",
+        questionScore: 0,
+        questionClues : [{
+          "clueScore" : 0,
+          "clueText" : ""
+        }]
+      }
     }
   }
 });
 
+
+
+
+/*
+  // För att ersätta ett player-objekt med ett annat.
+  Vue.set(vm.players, 1, ({ });
+*/
 function getStatusUpdate()
 {
   var status = null;
@@ -29,11 +73,8 @@ function getStatusUpdate()
     url: '/status',
     data: null,
     success: function(serverStatus) {
-      console.log(serverStatus.players);
       vm.status = (serverStatus.status);
-      handleStatusUpdate(serverStatus.status);
       vm.players = (serverStatus.players);
-      updatePlayers(serverStatus.players);
     }
   });
 }
@@ -50,9 +91,17 @@ function getChatHistory()
   });
 }
 
-function initQuizlist() {
-  var socket = io();
+var socket = io();
 
+function givePoints(score, team)
+{
+  console.log(score + " points to " + team);
+  socket.emit('AwardPointsToTeam', score, team);
+}
+
+
+
+function initQuizlist() {
 
   socket.on('chat message', function(msgJson){
     //$('#messages').append($('<li>').text(msg));
@@ -67,11 +116,15 @@ function initQuizlist() {
     newChatRow.show('slow');
   });
 
+  socket.on('QuestionUpdated', function(question) {
+    vm.status.question = question;
+  });
+
   socket.on('ResetBuzz', function() {
     resetBuzzButton();
     lastWinner = null;
     $('#table').bootstrapTable('refreshOptions', {});
-  })
+  });
 
   socket.on('Buzzed', function(response)
   {
@@ -80,50 +133,51 @@ function initQuizlist() {
       buzzed(response.teamName);
       lastWinner = response.id;
     }
-    updatePlayers(response.players);
-    $('#table').bootstrapTable('refreshOptions', {});
+    //updatePlayers(response.players);
+    vm.players = response.players;
+    vm.status = response.status;
 
-  })
+  });
+
+  $('#RenameButton').click(function(){
+    console.log("New name sent");
+    socket.emit('SetName', vm.player.teamName);
+  });
 
   $('#BuzzButton').click(function(){
-    socket.emit('Buzz', $('#TeamName').val());
+    socket.emit('Buzz', vm.player.pendingAnswer);
   });
 
   socket.on('Ping', function(pingTime) {
-    var teamName = $('#TeamName').val();
     console.log("Pinged!");
     socket.emit('PingResponse',
       {
           pingTime: pingTime,
-          teamName: teamName
+          teamName: vm.player.teamName
       });
   });
 
-  socket.on('UpdatePlayers', function(status)
+  socket.on("Welcome", function(player) {
+    console.log("Welcomed!");
+    console.log(player);
+    vm.player = player;
+  });
+
+  socket.on('UpdatePlayers', function(statusHolder)
   {
     console.log("Players:");
-    console.log(status.players);
+    console.log(statusHolder.players);
 
-    vm.players = status.players;
-    updatePlayers(status.players);
-
+    vm.players = statusHolder.players;
+    vm.status = statusHolder.status;
   });
 
-  socket.on('ScorePoint', function(scoreInfo)
-  {
-    //getTeamTableRow(scoreInfo.team).addClass('table-success');
-    console.log(scoreInfo);
-    if(scoreInfo.scoreValue > 0)
-    {
-      getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html(getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html() + ' <i class="fas fa-trophy"></i>');
-    }
-    else {
-      //getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html(getTeamTableRow(scoreInfo.team).find('td:nth-child(2)').html() + ' <i class="far fa-angry"></i>');
-      // Om man vill använda inbyggda funktioner i bootstrapTable istället kan man göra enligt nedanstående.
-      var teamName = _players.filter( obj => obj.id === scoreInfo.team)[0].teamName;
-      $("#table").bootstrapTable('updateCellByUniqueId', {id: scoreInfo.teamId, field: 'teamName', value: teamName + ' <i class="far fa-angry"></i>'});
-    }
+  $('#UpdateQuestion').click(function(){
+    console.log("Uppdaterar frågan!");
+    console.log(vm.quizMaster.pendingQuestion);
+    socket.emit('setQuestion', vm.quizMaster.pendingQuestion);
   });
+
 
   getStatusUpdate();
   getChatHistory();

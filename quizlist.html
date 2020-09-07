@@ -36,7 +36,7 @@
   </head>
   <body>
 
-
+  <div id="app">
     <div class="container-fluid" style="height: 100%">
       <div class="row clearfix hs-height">
         <div class="col-md-6 col-xs-12 column">
@@ -55,42 +55,76 @@
             <a href="#" class="alert-link">alert link</a>
           </div>
 -->
-          <button type="button" id="BuzzButton_dummy" class="btn btn-lg btn-block">Buzz!</button>
+
+
           <!--<button type="button" class="btn btn-block btn-lg btn-success active">Default</button>-->
 
 
-          <div id="app">
-            <strong>{{ message }}</strong>
-            <table style="">
-              <tr>
-                <th>#</th>
-                <th>Name</th>
-                <th>Status</th>
-                <th>score</th>
-              </tr>
-              <template v-for="player in players">
-                <tr>
-                  <td>{{ player.team }}</td>
-                  <td>{{ player.teamName }}</td>
-                  <td></td>
-                  <td> {{player.score}}</td>
-              </tr>
-              </template >
-            </table>
-          </div>
 
 
-          <div id="ScoreBoard" class="list-group vs-scroll" style="width:100%">
-            <div class="list-group-item">
 
-                <table id="table" class="table-striped table-sm " data-unique-id="id" data-row-style="rowStyle"></table>
+              <!-- Kontroller för spelare -->
+            <div class="personalInfo col-md-6 col-xs-12">
+              <strong>{{status.question.questionType}} {{ status.question.questionText }}</strong> värd {{status.question.questionScore}} poäng. <div v-if="status.winningTeamName">{{status.winningTeamName}} har buzzat.</div>
 
+              <div id="player">
+                Du är team #{{player.id}} med namn <input v-model="player.teamName" /><button type="button" id="RenameButton" >Byt namn</button>
+
+                <button type="button" id="BuzzButton" class="btn btn-lg btn-block BuzzButton">Buzz!</button>
+                <div v-if="player.answer">Du har svarat: {{player.answer}}</div>
+
+                Svar: <input v-model="player.pendingAnswer" />
+              </div>
             </div>
-          </div>
+
+            <!-- Kontroller för score board -->
+            <div class="playerTable col-md-12 col-xs-12">
+              <table style="">
+                <tr>
+                  <th>#</th>
+                  <th>Namn</th>
+                  <th>Status</th>
+                  <th>Svar</th>
+                  <th>Poäng</th>
+                  <th>Knappar</th>
+                </tr>
+                <template v-for="p in players" ><!-- v-bind:key="player.team" -->
+                  <tr v-bind:id="p.team">
+                    <td>{{ p.team }}</td>
+                    <td v-bind:class="[player.id == p.team ?  'you' : '']">{{ p.teamName }}</td>
+                    <td>
+                      <span v-if="p.active">Active </span>
+                      <span v-if="p.buzzOrder">Buzz: {{ p.buzzOrder }}</span>
+                    </td>
+                    <td>
+                      <span v-if="p.questionScore > 0"> {{p.questionScore}} - {{ p.answer }} - {{ p.isCorrect }}</span>
+                    </td>
+                    <td> {{p.score}}</td>
+                    <td><a onClick="givePoints(1, $(this).parent().parent().attr('id'));">Give Points</a> </td>
+                </tr>
+                </template >
+              </table>
+            </div>
 
         </div>
+        <p></p>
+
+
+
+
         <div class="col-md-6 col-xs-12 hs-height">
 
+          <!-- Kontroller för QuizMaster -->
+          <div class="quizMasterInfo col-md-6 col-xs-12">
+            Du är QuizMaster
+            Frågetyp: <select type="select" v-model="quizMaster.pendingQuestion.questionType" ><option value="RED_THREAD">Röda tråden</option></select>
+            Fråga: <input v-model="quizMaster.pendingQuestion.questionText" />
+            Poäng: <input v-model="quizMaster.pendingQuestion.questionScore" />
+            <button type="button" id="UpdateQuestion">Uppdatera fråga</button>
+
+          </div>
+
+        <!-- Kontroller för chat -->
           <div class="list-group hs-scroll" id="ChatBox">
              <a href="#" id="ChatHeader" class="list-group-item active">Chat</a>
           </div>
@@ -105,7 +139,7 @@
       </div>
     </div>
 
-
+    </div>
     <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
     <script src="js/Quizlist.js"></script>
 
