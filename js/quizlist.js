@@ -1,4 +1,5 @@
 
+
 var vm = new Vue({
   el: '#app',
   data: {
@@ -80,6 +81,13 @@ var vm = new Vue({
     },
     buzz: function () {
       socket.emit('Buzz', vm.player.pendingAnswer);
+      vm.player.pendingAnswer = "";
+      /*
+      if(vm.status.question.questionType == "BUZZ_RUSH")
+      {
+        buzzAudioElement.play();
+      }
+      */
     }
   }
 });
@@ -129,7 +137,14 @@ function givePoints(score, team, isCorrectAnswer)
   socket.emit('AwardPointsToTeam', parseInt(score), team, isCorrectAnswer);
 }
 
+var buzzAudioElement = document.createElement('audio');
 
+function loadSounds() {
+  buzzAudioElement.setAttribute('src', 'buzzer.mp3');
+  $('.play').click(function() {
+  buzzAudioElement.play();
+  });
+}
 
 function initQuizlist() {
 
@@ -173,10 +188,6 @@ function initQuizlist() {
   $('#RenameButton').click(function(){
     console.log("New name sent");
     socket.emit('SetName', vm.player.teamName);
-  });
-
-  $('#BuzzButton').click(function(){
-    socket.emit('Buzz', vm.player.pendingAnswer);
   });
 
   socket.on('Ping', function(pingTime) {
@@ -237,5 +248,6 @@ function initQuizlist() {
 
   getStatusUpdate();
   getChatHistory();
+  loadSounds();
 
 }

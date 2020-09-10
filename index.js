@@ -112,7 +112,7 @@ var data = {
 data.players.pop();
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/quiz.html');
+  res.sendFile(__dirname + '/quizlist.html');
 });
 
 app.get('/quizmaster', function(req, res){
@@ -445,6 +445,7 @@ io.on('connection', function(socket){
     if(!verifyQM(socket.handshake.session.team, "CompleteQuestion")) { return; }
 
     console.log("Avslutar frågan.");
+    data.status.isBuzzActive = false;
 
     data.players.forEach(player => {
       // TODO: Aslo check if the answer was correct.
@@ -505,6 +506,10 @@ io.on('connection', function(socket){
     var player = getCurrentPlayer(teamId);
     if(player != undefined)
     {
+      if(!player.score)
+      {
+        player.score = 0;
+      }
       player.score += parseInt(score);
       if(isCorectAnswer)
       {
