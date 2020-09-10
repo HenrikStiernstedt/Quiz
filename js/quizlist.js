@@ -16,12 +16,13 @@ var vm = new Vue({
     }],
     status: {
       "isBuzzed" : false,
-      "isBuzzActive" : true,
+      "isBuzzActive" : false,
       "winningTeamName" : null,
       "winningTeam" : null,
       "buzzList" : [0],
+      quizMasterId: 0,
       question : {
-        questionType : "",
+        questionType : "BUZZ_RUSH",
         questionText: "",
         questionScore: 0,
         questionClues : [{
@@ -39,9 +40,11 @@ var vm = new Vue({
     player:
     {
       "id" : 0,
-      "teamName" : "Henrik Hård",
+      "teamName" : "",
       "answer" : "",
-      "pendingAnswer": ""
+      "pendingAnswer": "",
+      "isQuizMaster": false,
+      "quizMasterPassword": ""
     },
     quizMaster :
     {
@@ -54,6 +57,29 @@ var vm = new Vue({
           "clueText" : ""
         }]
       }
+    }
+  },
+  methods: {
+    say: function (message) {
+      alert(message)
+    },
+    updateQuestion: function () {
+      console.log("Uppdaterar frågan!");
+      console.log(vm.quizMaster.pendingQuestion);
+      socket.emit('UpdateQuestion', 'UPDATE', vm.quizMaster.pendingQuestion);
+    },
+    completeQuestion: function () {
+      console.log("Avslutar frågan!");
+      console.log(vm.quizMaster.pendingQuestion);
+      socket.emit('CompleteQuestion', vm.quizMaster.pendingQuestion);
+    },
+    newQuestion: function () {
+      console.log("Ny fråga!");
+      console.log(vm.quizMaster.pendingQuestion);
+      socket.emit('UpdateQuestion', 'NEW', vm.quizMaster.pendingQuestion);
+    },
+    buzz: function () {
+      socket.emit('Buzz', vm.player.pendingAnswer);
     }
   }
 });
@@ -93,10 +119,14 @@ function getChatHistory()
 
 var socket = io();
 
-function givePoints(score, team)
+function givePoints(score, team, isCorrectAnswer)
 {
-  console.log(score + " points to " + team);
-  socket.emit('AwardPointsToTeam', score, team);
+  console.log(score + " points to " + team + '. ' + isCorrectAnswer ? 'Answer is markes as corect' : '');
+  if(score == NaN)
+  {
+    score = 0;
+  }
+  socket.emit('AwardPointsToTeam', parseInt(score), team, isCorrectAnswer);
 }
 
 
@@ -117,13 +147,14 @@ function initQuizlist() {
   });
 
   socket.on('QuestionUpdated', function(question) {
+    console.log("Incomming updated question");
+    console.log(question);
     vm.status.question = question;
   });
 
-  socket.on('ResetBuzz', function() {
-    resetBuzzButton();
-    lastWinner = null;
-    $('#table').bootstrapTable('refreshOptions', {});
+  socket.on('ResetBuzz', function(status) {
+    //resetBuzzButton();
+    vm.status = status;
   });
 
   socket.on('Buzzed', function(response)
@@ -172,12 +203,37 @@ function initQuizlist() {
     vm.status = statusHolder.status;
   });
 
-  $('#UpdateQuestion').click(function(){
-    console.log("Uppdaterar frågan!");
-    console.log(vm.quizMaster.pendingQuestion);
-    socket.emit('setQuestion', vm.quizMaster.pendingQuestion);
+
+
+  $('#MakeMeQuizMaster').click(function(){
+    socket.emit('MakeMeQuizMaster', vm.player.quizMasterPassword);
   });
 
+
+  $('form').submit(function(){
+    socket.emit('new chat message',
+    {
+      date : null, // Let the server set the time.
+      name : $('#TeamName').val(),
+      text : $('#m').val()
+    });
+    $('#m').val('');
+    return false;
+  });
+
+  socket.on('chat message', function(msgJson){
+    //$('#messages').append($('<li>').text(msg));
+
+
+    var newChatRow = $('<div class="list-group-item" style="display:none">').text(
+      new Date(msgJson.date).toLocaleTimeString('sv-SE') + ' ' +
+      msgJson.name + ': ' +
+      msgJson.text
+    );
+
+    newChatRow.insertAfter($('#ChatHeader'));
+    newChatRow.show('slow');
+  });
 
   getStatusUpdate();
   getChatHistory();

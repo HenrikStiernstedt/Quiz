@@ -56,7 +56,6 @@ function showNamePrompt()
   });
 }
 
-var _players = null;
 
 function updatePlayers(players)
 {
@@ -82,7 +81,7 @@ function updatePlayers(players)
     data: players
   });
 
-  _players = players;
+  
 }
 
 var lastWinner = null;
