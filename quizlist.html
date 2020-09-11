@@ -90,7 +90,7 @@
                 </span>
                 <span v-else-if="status.isBuzzActive">
                   <div class="input-group input-group-lg mb-3">
-                    <input v-model="player.pendingAnswer" type="text" class="form-control" placeholder="Svar" aria-label="Lagnamn" aria-describedby="basic-addon2">
+                    <input v-model="player.pendingAnswer" @keyup.enter="buzz()" type="text" class="form-control" placeholder="Svar" aria-label="Lagnamn" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button class="btn btn-outline-secondary" v-on:click="buzz()" type="button">Svara</button>
                     </div>
@@ -185,13 +185,16 @@
             <button type="button" class="btn btn-primary mb-2" v-on:click="completeQuestion()">Avsluta fråga</button>
             <button type="button" class="btn btn-primary mb-2" v-on:click="newQuestion()">Ny fråga</button>
 
+            <button type="button" class="btn btn-primary mb-2" v-on:click="purge()">Rensa inaktiva</button>
+
+
           </div>
           <div v-else class="card">
             <div class="card-body">
               <div class="input-group input-group-sm mb-3">
-                <input v-model="player.teamName" type="text" class="form-control" placeholder="Lagnamn" aria-label="Lagnamn" aria-describedby="basic-addon2" autocomplete="off">
+                <input v-model="player.teamName" @keyup.enter="updateName()"  type="text" class="form-control" placeholder="Lagnamn" aria-label="Lagnamn" aria-describedby="basic-addon2" autocomplete="off">
                 <div class="input-group-append">
-                  <button class="btn btn-outline-secondary" type="button" id="RenameButton">Byt namn</button>
+                  <button class="btn btn-outline-secondary" v-on:click="updateName()" type="button">Byt namn</button>
                 </div>
               </div>
               <div class="input-group input-group-sm mb-3">

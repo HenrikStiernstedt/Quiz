@@ -64,6 +64,17 @@ var vm = new Vue({
     say: function (message) {
       alert(message)
     },
+    updateName : function() {
+      console.log("New name sent");
+      socket.emit('SetName', vm.player.teamName);
+    },
+    purge : function() {
+      if(confirm("Är du säker?"))
+      {
+        socket.emit('Purge');
+      }
+    },
+
     updateQuestion: function () {
       console.log("Uppdaterar frågan!");
       console.log(vm.quizMaster.pendingQuestion);
@@ -185,11 +196,6 @@ function initQuizlist() {
 
   });
 
-  $('#RenameButton').click(function(){
-    console.log("New name sent");
-    socket.emit('SetName', vm.player.teamName);
-  });
-
   socket.on('Ping', function(pingTime) {
     console.log("Pinged!");
     socket.emit('PingResponse',
@@ -249,5 +255,6 @@ function initQuizlist() {
   getStatusUpdate();
   getChatHistory();
   loadSounds();
+
 
 }

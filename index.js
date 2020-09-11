@@ -240,6 +240,14 @@ io.on('connection', function(socket){
     chatHistory.push(msgJson);
   });
 
+  socket.on('Purge', function()
+  {
+    if(!verifyQM(socket.handshake.session.team, "Purge")) {
+      return;
+    }
+    data.players = data.players.filter( obj => obj.active);
+    io.emit('UpdatePlayers', {status: data.status, players: data.players });
+  });
 
   socket.on('SetName', function(name) {
     if(!name || name == "")
@@ -255,6 +263,7 @@ io.on('connection', function(socket){
     var player = getCurrentPlayer(socket.handshake.session.team);
     player.teamName = name;
     //players.get(socket.handshake.session.team).teamName = name;
+    socket.handshake.session.teamName = name;
     socket.handshake.session.save();
     io.emit('UpdatePlayers', {status: data.status, players: data.players});
   });
@@ -310,6 +319,7 @@ io.on('connection', function(socket){
     {
       data.status.quizMasterId = socket.handshake.session.team;
       player.teamName = 'QuizMaster';
+      socket.handshake.session.teamName = player.teamName;
 
       io.sockets.connected[socket.id].emit('Welcome',
         {
