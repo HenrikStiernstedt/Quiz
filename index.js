@@ -203,7 +203,17 @@ io.on('connection', function(socket){
       io.emit('UpdatePlayers', {status: data.status, players: data.players });
     }
     else {
+      // We have a session, but no player entry. A state cased by purge.
       console.log("Error restoring session. No entry in Players-object for team "+socket.handshake.session.team);
+      player =  {
+              "id" : socket.handshake.session.team,
+              "team" : socket.handshake.session.team,
+              "score" : 0,
+              "active" : true,
+              "socketId" : socket.id,
+              "teamName" : "Team " + socket.handshake.session.teamName != null ? socket.handshake.session.teamName : "Team " + socket.handshake.session.team
+            };
+      data.players.push(player);
     }
   } else {
     // New player
@@ -514,17 +524,28 @@ io.on('connection', function(socket){
     if(!verifyQM(socket.handshake.session.team, "AwardPointsToTeam")) { return; }
 
     var player = getCurrentPlayer(teamId);
+
+    // if we are to update correctness, make it a toggle.  If false, just update the score directly.
+
+
     if(player != undefined)
     {
       if(!player.score)
       {
         player.score = 0;
       }
-      player.score += parseInt(score);
+
       if(isCorectAnswer)
       {
-        player.isCorrect = true;
+        player.isCorrect = !player.isCorrect;
+        if(!player.isCorrect)
+        {
+          score = -parseInt(score);
+        }
       }
+      
+      player.score += parseInt(score);
+
     }
     else {
       console.log("No player with id = " + teamId);

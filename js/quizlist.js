@@ -71,9 +71,11 @@ var vm = new Vue({
     purge : function() {
       if(confirm("Är du säker?"))
       {
+        console.log("Purge initiated.");
         socket.emit('Purge');
       }
     },
+    givePoints : givePoints,
 
     updateQuestion: function () {
       console.log("Uppdaterar frågan!");
@@ -89,6 +91,7 @@ var vm = new Vue({
       console.log("Ny fråga!");
       console.log(vm.quizMaster.pendingQuestion);
       socket.emit('UpdateQuestion', 'NEW', vm.quizMaster.pendingQuestion);
+      popAudioElement.play();
     },
     buzz: function () {
       socket.emit('Buzz', vm.player.pendingAnswer);
@@ -149,11 +152,16 @@ function givePoints(score, team, isCorrectAnswer)
 }
 
 var buzzAudioElement = document.createElement('audio');
+var popAudioElement = document.createElement('audio');
 
 function loadSounds() {
   buzzAudioElement.setAttribute('src', 'buzzer.mp3');
   $('.play').click(function() {
-  buzzAudioElement.play();
+    buzzAudioElement.play();
+  });
+  popAudioElement.setAttribute('src', 'pop.mp4');
+  $('.play').click(function() {
+    popAudioElement.play();
   });
 }
 
