@@ -84,6 +84,7 @@ var data = {
     "buzzList" : [],
     quizMasterId: 0,
     question : { // TODO: Defaultfrågan är hårdkodad tills vidare.
+      questionNumber: 0,
       questionType : "BUZZ_RUSH",
       questionText: "Vem där?",
       correctAnswer: "",
@@ -420,10 +421,18 @@ io.on('connection', function(socket){
       return;
     }
 
-    data.status.question = question;
+
 
     if(action == 'NEW')
     {
+      if(question.questionNumber == "")
+      {
+        console.log("Old value");
+        console.log(data.status.question.questionNumber);
+        console.log(data.status.question.questionNumber + 1);
+        question.questionNumber = (parseInt(data.status.question.questionNumber) + 1);
+      }
+
       data.status.isBuzzed = false;
       data.status.isBuzzActive = true;
       data.status.winningTeamName = null;
@@ -456,6 +465,7 @@ io.on('connection', function(socket){
       data.status.isBuzzActive = true; // Stäng av buzzern om det inte är aktuellt längre.
     }
 
+    data.status.question = question;
     //io.emit('QuestionUpdated', data.status.question);
     io.emit('UpdatePlayers', {status: data.status, players: data.players });
 
@@ -543,7 +553,7 @@ io.on('connection', function(socket){
           score = -parseInt(score);
         }
       }
-      
+
       player.score += parseInt(score);
 
     }

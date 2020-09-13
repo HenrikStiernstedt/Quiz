@@ -23,8 +23,10 @@ var vm = new Vue({
       "buzzList" : [0],
       quizMasterId: 0,
       question : {
+        questionNumber: 0,
         questionType : "BUZZ_RUSH",
         questionText: "",
+        correctAnswer: "",
         questionScore: 0,
         questionClues : [{
           "clueScore" : 0,
@@ -50,8 +52,10 @@ var vm = new Vue({
     quizMaster :
     {
       pendingQuestion : {
+        questionNumber: 0,
         questionType : "",
         questionText: "",
+        correctAnswer: "",
         questionScore: 0,
         questionClues : [{
           "clueScore" : 0,

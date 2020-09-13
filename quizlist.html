@@ -72,19 +72,21 @@
 
               <!-- Kontroller för spelare -->
             <div class="personalInfo col-sm-6">
-
-              <div class="alert alert-primary" role="alert">
-                <span v-if="status.question.questionType == 'RED_THREAD'">Röda tråden<br /></span>
-                <span v-if="status.question.questionType == 'MAJOR_VICTORY'">Majoreteten bestämmer<br /></span>
-                <span v-if="status.question.questionType == 'BUZZ_RUSH'">Handen på buzzern<br /></span>
-                <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
-                <span v-if="status.question.questionScore != '0'"><br/>Värd
-                  <transition name="bounce" mode="out-in">
-                    <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
-                  </transition>
-                 poäng
-               </span>
-              </div>
+              <transition name="slide-fade" >
+                <div class="alert alert-primary" role="alert" :key="status.question.questionNumber">
+                  Fråga nummer {{status.question.questionNumber}}:
+                  <span v-if="status.question.questionType == 'RED_THREAD'">Röda tråden<br /></span>
+                  <span v-if="status.question.questionType == 'MAJOR_VICTORY'">Majoreteten bestämmer<br /></span>
+                  <span v-if="status.question.questionType == 'BUZZ_RUSH'">Handen på buzzern<br /></span>
+                  <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                  <span v-if="status.question.questionScore != '0'"><br/>Värd
+                    <transition name="bounce" mode="out-in">
+                      <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
+                    </transition>
+                   poäng
+                 </span>
+                </div>
+              </transition>
 
               <!-- Answer area -->
               <div id="player">
@@ -169,6 +171,12 @@
             Du är QuizMaster
             <div class="input-group mb-3">
               <div class="input-group-prepend">
+                <span class="input-group-text" id="asdf">Frågenummer</span>
+              </div>
+              <input v-model="quizMaster.pendingQuestion.questionNumber" type="text" class="form-control" aria-label="Default" aria-describedby="asdf">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
                 <span class="input-group-text" id="inputGroup-sizing-default">Frågetyp</span>
               </div>
               <select class="form-control" type="select" v-model="quizMaster.pendingQuestion.questionType" >
@@ -189,6 +197,12 @@
                 <span class="input-group-text" id="asdf">Poäng</span>
               </div>
               <input v-model="quizMaster.pendingQuestion.questionScore" type="text" class="form-control" aria-label="Default" aria-describedby="asdf">
+            </div>
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="asdf">Svar</span>
+              </div>
+              <input v-model="quizMaster.pendingQuestion.correctAnswer" type="text" class="form-control" aria-label="Default" aria-describedby="asdf">
             </div>
             <button type="button" class="btn btn-primary mb-2" v-on:click="updateQuestion()">Uppdatera fråga</button>
             <button type="button" class="btn btn-primary mb-2" v-on:click="completeQuestion()">Avsluta fråga</button>
