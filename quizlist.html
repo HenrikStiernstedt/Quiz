@@ -72,6 +72,9 @@
 
               <!-- Kontroller för spelare -->
             <div class="personalInfo col-sm-6">
+
+              <!-- Question area -->
+<!--
               <transition name="slide-fade" >
                 <div class="alert alert-primary" role="alert" :key="status.question.questionNumber">
                   Fråga nummer {{status.question.questionNumber}}:
@@ -87,7 +90,69 @@
                  </span>
                 </div>
               </transition>
+-->
+          <transition name="slide">
+              <div class="card slideContainer"  v-bind:key="status.question.questionNumber">
 
+                <span v-if="status.question.questionType == 'MAJOR_VICTORY'">
+                  <img class="card-img-top" src="images/majority_rules.jpg" alt="Majoriteten vinner">
+                  <div class="card-body">
+                    <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
+                    <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Majoriteten vinner</h5>
+                    <p class="card-text">
+                      <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                      <span v-if="status.question.questionScore != '0'"><br/>Värd
+                        <transition name="bounce" mode="out-in">
+                          <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
+                        </transition>
+                       poäng
+                      </span>
+                    </p>
+
+                  </div>
+                </span>
+
+                <span v-if="status.question.questionType == 'RED_THREAD'">
+                  <img class="card-img-top" src="images/Pasparet.jpg" alt="Röda tråden">
+                  <div class="card-body">
+                    <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
+                    <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Röda tråden</h5>
+                    <p class="card-text">
+                      <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                      <span v-if="status.question.questionScore != '0'"><br/>Värd
+                        <transition name="bounce" mode="out-in">
+                          <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
+                        </transition>
+                       poäng
+                     </span>
+                    </p>
+
+                  </div>
+                </span>
+
+                <span v-if="status.question.questionType == 'BUZZ_RUSH'">
+                  <img class="card-img-top" src="images/buzzers2.png" alt="Buzzers">
+                  <div class="card-body">
+                    <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
+                    <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Handen på buzzern!</h5>
+                    <p class="card-text">
+                      <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                      <span v-if="status.question.questionScore != '0'"><br/>Värd
+                        <transition name="bounce" mode="out-in">
+                          <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
+                        </transition>
+                       poäng
+                     </span>
+                    </p>
+
+                  </div>
+                </span>
+
+              </div>
+
+
+            </transition>
+          </div>
               <!-- Answer area -->
               <div id="player">
                 <span v-if="status.question.questionType == 'BUZZ_RUSH'">
@@ -106,7 +171,7 @@
 
               </div>
               <!-- End of Answer area -->
-            </div>
+
 
             <!-- Kontroller för score board -->
             <div class="playerTable col-sm-6">

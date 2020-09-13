@@ -53,9 +53,27 @@ table, th, td {
 }
 
 .personalInfo {
-  min-height: 200px;
+  min-height: 400px;
 }
 
+.card-img-top {
+
+}
+
+.QuestionScoreOverlay {
+  position: absolute;
+  height: 2.75em;
+  min-width: 2.75em;
+  -webkit-box-align: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  top: 50px;
+  right: 0px;
+  color: white;
+  background-color: red;
+  border-radius: .575em 0 0 .575em;
+}
 
 /*
  * ANIMATIONS!
@@ -96,17 +114,62 @@ table, th, td {
    }
  }
 
+ .slideContainer {
+   overflow: hidden;
+   position: absolute;
+   /*height: 200px;*/
+/*   width: 400px;:*/
+ }
+
+
+.slide-leave-active,
+.slide-enter-active {
+   transition: .9s;
+}
+ .slide-enter {
+   transform: scale(0.9);
+   z-index: 0;
+}
+.slide-leave-to {
+   transform: translate(-150%, 0);
+   z-index: 5000;
+}
+.slide-leave {
+   z-index: 5000;
+}
+
 /* Enter and leave animations can use different */
 /* durations and timing functions.              */
 .slide-fade-enter-active {
-  transition: all .6s ease;
+   animation: slide-in 1s
 }
 .slide-fade-leave-active {
   /*transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);*/
-  transform: translateX(10px);
+  animation: slide-out 1s
 }
-.slide-fade-enter, .slide-fade-leave-to
-/* .slide-fade-leave-active below version 2.1.8 */ {
-  transform: translateX(10px);
-  opacity: 0;
+
+@keyframes slide-out {
+  0% {
+    transform: scale(0);
+  }
+  10% {
+    transform: translateX(-20px);
+    transform: translateY(20px);
+
+  }
+  100% {
+    transform: translateX(300px);
+    transform: translateY(20px);
+  }
+}
+
+@keyframes slide-in {
+  0% {
+    transform: scale(0);
+    transform: translateX(30px);
+    transform: translateY(0px);
+  }
+  100% {
+    transform: scale(0);
+  }
 }
