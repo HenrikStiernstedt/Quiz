@@ -16,12 +16,19 @@ var
   sharedsession = require("express-socket.io-session");
 
   // No cache
+/*
   app.use(function (req, res, next) {
       res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
       res.header('Expires', '-1');
       res.header('Pragma', 'no-cache');
       next()
   });
+  */
+/*
+const nocache = require('nocache');
+app.use(nocache());
+*/
+
 
 const fs = require('fs');
 
@@ -121,7 +128,9 @@ app.get('/quizmaster', function(req, res){
 });
 
 // Ovanstående prylar känns onödigt nu när den här tar in alla filer.
-app.use(express.static(__dirname + '/'));
+app.use(express.static(__dirname + '/', {
+    maxage: 3600000 // 1h.
+}));
 
 // Specialare för AJAX och annat som inte behöver pushas ut.
 app.get('/status', function(req, res){
