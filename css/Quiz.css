@@ -53,7 +53,7 @@ table, th, td {
 }
 
 .questionInfo {
-  min-height: 400px;
+  /*min-height: 400px;*/
   display: grid;
 }
 

@@ -95,7 +95,7 @@
               <div class="card slideContainer"  v-bind:key="status.question.questionNumber">
 
                 <span v-if="status.question.questionType == 'MAJOR_VICTORY'">
-                  <img class="card-img-top" src="images/majorityrules2.png" alt="Majoriteten vinner">
+                  <img class="card-img-top" src="images/majorityrules3.png" alt="Majoriteten vinner">
                   <div class="card-body">
                     <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                     <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Majoriteten vinner</h5>
@@ -113,7 +113,7 @@
                 </span>
 
                 <span v-if="status.question.questionType == 'RED_THREAD'">
-                  <img class="card-img-top" src="images/Pasparet.jpg" alt="Röda tråden">
+                  <img class="card-img-top" src="images/Pasparet2.jpg" alt="Röda tråden">
                   <div class="card-body">
                     <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                     <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Röda tråden</h5>
@@ -131,7 +131,7 @@
                 </span>
 
                 <span v-if="status.question.questionType == 'BUZZ_RUSH'">
-                  <img class="card-img-top" src="images/buzzers2.png" alt="Buzzers">
+                  <img class="card-img-top" src="images/buzzers3.png" alt="Buzzers">
                   <div class="card-body">
                     <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                     <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Handen på buzzern!</h5>
