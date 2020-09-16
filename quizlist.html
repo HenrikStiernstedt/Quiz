@@ -178,16 +178,19 @@
               <div class="card">
                 <div class="card-body">
                   <table style="">
-                    <tr>
-                      <th>#</th>
-                      <th>Namn</th>
-                      <th>Status</th>
-                      <th>Svar</th>
-                      <th>Poäng</th>
-                      <th v-if="player.isQuizMaster">Knappar</th>
-                    </tr>
-                    <template v-for="p in players" ><!-- v-bind:key="player.team" -->
-                      <tr v-bind:id="p.team" v-bind:questionScore="p.questionScore">
+                    <thead>
+                      <tr>
+                        <th>#</th>
+                        <th>Namn</th>
+                        <th>Status</th>
+                        <th>Svar</th>
+                        <th>Poäng</th>
+                        <th v-if="player.isQuizMaster">Knappar</th>
+                      </tr>
+                    </thead>
+                  <tbody name="flip-list" is="transition-group">
+
+                      <tr v-for="p in players" v-bind:key="p.team" v-bind:id="p.team" v-bind:questionScore="p.questionScore">
                         <td>{{ p.team }}</td>
                         <td v-bind:class="[player.id == p.team ?  'you' : '']">{{ p.teamName }}</td>
                         <td>
@@ -217,7 +220,8 @@
                           <a onClick="givePoints(-1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-down"></i></a>
                         </td>
                     </tr>
-                    </template >
+
+                  </tbody>
                   </table>
                 </div>
               </div>

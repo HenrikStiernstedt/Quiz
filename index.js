@@ -476,6 +476,17 @@ io.on('connection', function(socket){
 
     data.status.question = question;
     //io.emit('QuestionUpdated', data.status.question);
+
+    // Sort player array according to score.
+    data.players.sort(function (a, b) {
+      if (a.score > b.score) {
+          return -1;
+      }
+      if (b.score > a.score) {
+          return 1;
+      }
+      return 0;
+  });
     io.emit('UpdatePlayers', {status: data.status, players: data.players });
 
   });
