@@ -71,7 +71,7 @@
 
 
               <!-- Kontroller för spelare -->
-            <div class="personalInfo col-sm-6">
+            <div class="questionInfo col-sm-6">
 
               <!-- Question area -->
 <!--
@@ -95,7 +95,7 @@
               <div class="card slideContainer"  v-bind:key="status.question.questionNumber">
 
                 <span v-if="status.question.questionType == 'MAJOR_VICTORY'">
-                  <img class="card-img-top" src="images/majority_rules.jpg" alt="Majoriteten vinner">
+                  <img class="card-img-top" src="images/majorityrules2.png" alt="Majoriteten vinner">
                   <div class="card-body">
                     <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                     <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Majoriteten vinner</h5>
@@ -154,7 +154,7 @@
             </transition>
           </div>
               <!-- Answer area -->
-              <div id="player">
+              <div id="player" class="col-sm-6">
                 <span v-if="status.question.questionType == 'BUZZ_RUSH'">
                   <div v-if="status.winningTeam == player.id" v-on:click="buzz()" class="alert alert-success" role="alert">Du har buzzat!</div>
                   <div v-else-if="status.winningTeam" v-on:click="buzz()" class="alert alert-warning" role="alert">{{status.winningTeamName}} har buzzat.</div>

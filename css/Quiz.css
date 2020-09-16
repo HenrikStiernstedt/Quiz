@@ -52,8 +52,15 @@ table, th, td {
   background-color: lightblue
 }
 
-.personalInfo {
+.questionInfo {
   min-height: 400px;
+  display: grid;
+}
+
+.slideContainer {
+  grid-column: 1;
+  grid-row: 1;
+  overflow: hidden;
 }
 
 .card-img-top {
@@ -61,8 +68,10 @@ table, th, td {
 }
 
 .QuestionScoreOverlay {
+  display: flex;
+  align-items: center;
   position: absolute;
-  height: 2.75em;
+  height: 1.75em;
   min-width: 2.75em;
   -webkit-box-align: center;
   align-items: center;
@@ -114,12 +123,6 @@ table, th, td {
    }
  }
 
- .slideContainer {
-   overflow: hidden;
-   position: absolute;
-   /*height: 200px;*/
-/*   width: 400px;:*/
- }
 
 
 .slide-leave-active,
