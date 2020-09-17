@@ -129,7 +129,7 @@ app.get('/quizmaster', function(req, res){
 
 // Ovanstående prylar känns onödigt nu när den här tar in alla filer.
 app.use(express.static(__dirname + '/', {
-    maxage: 3600000 // 1h.
+    maxage: 0 
 }));
 
 // Specialare för AJAX och annat som inte behöver pushas ut.
