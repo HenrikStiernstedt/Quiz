@@ -127,6 +127,9 @@ function getStatusUpdate()
     success: function(serverStatus) {
       vm.status = (serverStatus.status);
       vm.players = (serverStatus.players);
+
+      // Trying to get team name restored after a reload.
+      //vm.player.teamName = status.nameRequired.name;
     }
   });
 }
