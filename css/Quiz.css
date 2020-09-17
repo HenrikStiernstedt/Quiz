@@ -57,6 +57,10 @@ table, th, td {
   display: grid;
 }
 
+.answerArea {
+  background-color: lightblue
+}
+
 .slideContainer {
   grid-column: 1;
   grid-row: 1;
@@ -93,6 +97,13 @@ table, th, td {
 }
 .flip-leave-active {
 
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: all .4s;
+}
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 
  .bounce-enter-active {

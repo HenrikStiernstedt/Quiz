@@ -155,20 +155,25 @@
           </div>
               <!-- Answer area -->
               <div id="player" class="col-sm-6">
-                <span v-if="status.question.questionType == 'BUZZ_RUSH'">
-                  <div v-if="status.winningTeam == player.id" v-on:click="buzz()" class="alert alert-success" role="alert">Du har buzzat!</div>
-                  <div v-else-if="status.winningTeam" v-on:click="buzz()" class="alert alert-warning" role="alert">{{status.winningTeamName}} har buzzat.</div>
-                  <div v-else-if="status.isBuzzActive" v-on:click="buzz()" type="button" class="btn btn-primary btn-lg btn-block">Buzz!</div>
-                </span>
-                <span v-else-if="status.isBuzzActive">
-                  <div class="input-group input-group-lg mb-3">
-                    <input v-model="player.pendingAnswer" @keyup.enter="buzz()" type="text" class="form-control" placeholder="Svar" aria-label="Lagnamn" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" v-on:click="buzz()" type="button">Svara</button>
+                <transition name="fade" mode="out-in">
+                  <div class="card answerArea"  v-bind:key="status.question.questionType"> <!-- Only update on new question type. -->
+                    <div class="card-body">
+                      <span v-if="status.question.questionType == 'BUZZ_RUSH'">
+                        <div v-if="status.winningTeam == player.id" v-on:click="buzz()" class="alert alert-success" role="alert">Du har buzzat!</div>
+                        <div v-else-if="status.winningTeam" v-on:click="buzz()" class="alert alert-warning" role="alert">{{status.winningTeamName}} har buzzat.</div>
+                        <div v-else-if="status.isBuzzActive" v-on:click="buzz()" type="button" class="btn btn-primary btn-lg btn-block">Buzz!</div>
+                      </span>
+                      <span v-else-if="status.isBuzzActive">
+                        <div class="input-group input-group-lg mb-3">
+                          <input v-model="player.pendingAnswer" @keyup.enter="buzz()" type="text" class="form-control" placeholder="Svar" aria-label="Lagnamn" aria-describedby="basic-addon2">
+                          <div class="input-group-append">
+                            <button class="btn btn-outline-secondary" v-on:click="buzz()" type="button">Svara</button>
+                          </div>
+                        </div>
+                      </span>
                     </div>
                   </div>
-                </span>
-
+                </transition>
               </div>
               <!-- End of Answer area -->
 
@@ -199,6 +204,7 @@
                           <i v-else class="fas fa-skull-crossbones"></i>
                           <span v-if="p.buzzOrder">Buzz: {{ p.buzzOrder }}</span>
                           <i v-if="status.winningTeam == p.team" class="far fa-hand-paper"></i>
+                          <i v-if="p.isCorrect" class="far fa-star"></i>
                         </td>
                         <td>
 
@@ -209,13 +215,12 @@
                           </transition>
                           <span v-if="p.answer">"{{ p.answer }}"</span>
 
-                          <i v-if="p.isCorrect" class="far fa-star"></i>
+
                         </td>
                         <td> {{p.score}}</td>
                         <td v-if="player.isQuizMaster">
 
-                          <a v-on:Click="givePoints(status.question.questionScore, p.id, true)"><i class="far fa-star"></i></a>
-                          <a onClick="givePoints(parseInt($(this).parent().parent().attr('questionScore')), $(this).parent().parent().attr('id'), true);"><i class="far fa-star"></i></a>
+                          <a v-on:Click="givePoints(status.question.questionScore, p.id, true)"><i v-if="p.isCorrect" class="far fa-star"></i><i v-else class="fas fa-star"></i></a>
                           <a onClick="givePoints(1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-up"></i></a>
                           <a onClick="givePoints(-1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-down"></i></a>
                         </td>
