@@ -95,10 +95,10 @@
               <div class="card slideContainer"  v-bind:key="status.question.questionNumber">
 
                 <span v-if="status.question.questionType == 'MAJOR_VICTORY'">
-                  <img class="card-img-top" src="images/majorityrules3.png" alt="Majoriteten vinner">
+                  <img class="card-img-top" src="images/majorityrules3.png" alt="Majoriteten bestämmer">
                   <div class="card-body">
                     <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
-                    <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Majoriteten vinner</h5>
+                    <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Majoriteten bestämmer</h5>
                     <p class="card-text">
                       <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
                       <span v-if="status.question.questionScore != '0'"><br/>Värd
@@ -210,17 +210,18 @@
 
 
                           <transition name="bounce">
-                            <span v-if="p.questionScore > 0 && p.isCorrect" class="badge badge-pill badge-success">{{p.questionScore}}</span>
-                            <span v-else-if="p.questionScore > 0" class="badge badge-pill badge-secondary">{{p.questionScore}}</span>
+                            <span v-if="p.questionScore > 0 && p.isCorrect" class="badge badge-pill badge-success questionScore">{{p.questionScore}}</span>
+                            <span v-else-if="p.questionScore > 0" class="badge badge-pill badge-secondary questionScore">{{p.questionScore}}</span>
                           </transition>
-                          <span v-if="p.answer">"{{ p.answer }}"</span>
+                          <span v-if="p.answer">{{ p.answer }}</span>
 
 
                         </td>
                         <td> {{p.score}}</td>
                         <td v-if="player.isQuizMaster">
 
-                          <a v-on:Click="givePoints(status.question.questionScore, p.id, true)"><i v-if="p.isCorrect" class="far fa-star"></i><i v-else class="fas fa-star"></i></a>
+                          <a v-on:Click="givePoints(p.questionScore, p.id, true)"><i v-if="p.isCorrect" class="far fa-star"></i><i v-else class="fas fa-star"></i></a>
+                          <a onClick="givePoints($(this).parent().parent().attr('questionScore'), $(this).parent().parent().attr('id'), false);">test</a>
                           <a onClick="givePoints(1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-up"></i></a>
                           <a onClick="givePoints(-1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-down"></i></a>
                         </td>
