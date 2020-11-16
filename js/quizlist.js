@@ -46,6 +46,7 @@ var vm = new Vue({
       "teamName" : "",
       "answer" : "",
       "pendingAnswer": "",
+      "submittedAnswer": "",
       "isQuizMaster": false,
       "quizMasterPassword": ""
     },
@@ -98,7 +99,13 @@ var vm = new Vue({
       popAudioElement.play();
     },
     buzz: function () {
-      socket.emit('Buzz', vm.player.pendingAnswer);
+      socket.emit('Buzz', vm.player.pendingAnswer, function (answer)
+        {
+          console.log("You answered " + answer);
+          // vm.player.submittedAnswer = answer;
+
+        });
+      vm.player.submittedAnswer = vm.player.pendingAnswer;
       vm.player.pendingAnswer = "";
       /*
       if(vm.status.question.questionType == "BUZZ_RUSH")
@@ -233,6 +240,12 @@ function initQuizlist() {
 
     vm.players = statusHolder.players;
     vm.status = statusHolder.status;
+
+    if(statusHolder.action == 'clear')
+    {
+      vm.player.submittedAnswer = "";
+    }
+
   });
 
 

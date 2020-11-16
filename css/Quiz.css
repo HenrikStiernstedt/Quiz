@@ -35,13 +35,38 @@ html, body {
 /*
  Some quick an simple table styleing.
 */
+/*
 table {
   border-collapse: collapse;
 }
 
 table, th, td {
-  border: 1px solid black;
+  border: 1px solid lightgray;
   padding: 1px;
+}
+*/
+table {
+    border-collapse:separate;
+    border:solid black 2px;
+    border-radius:0.25rem;
+    -moz-border-radius:0.25rem;
+    border-spacing: 0px;
+    border-color: lightgray;
+}
+
+td, th {
+    border-left:solid lightgray 2px;
+    border-top:solid lightgray 1px;
+    border-bottom:solid lightgray 1px;
+}
+
+th {
+    /*background-color: blue;*/
+    border-top: none;
+}
+
+td:first-child, th:first-child {
+     border-left: none;
 }
 
 .you {
@@ -86,6 +111,14 @@ table, th, td {
   color: white;
   background-color: red;
   border-radius: .575em 0 0 .575em;
+}
+
+.MaxWidth {
+  width: 100%;
+}
+
+.NameCell {
+  overflow: hidden;
 }
 
 /*
@@ -190,4 +223,32 @@ table, th, td {
 
 .flip-list-move {
   transition: transform 1s;
+}
+
+
+.shaking {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0) rotate(0deg);
+    transform: rotate(0deg);
+    backface-visibility: hidden;
+    perspective: 1000px;
+    animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(0, 0px, 0) rotate(0deg);;
+  }
+
+  20%, 80% {
+    transform: translate3d(0, -2px, 0) rotate(5deg);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(0, 0px, 0) rotate(0deg);
+  }
+
+  40%, 60% {
+    transform: translate3d(0, -2px, 0) rotate(-5deg);
+  }
 }

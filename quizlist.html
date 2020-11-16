@@ -170,6 +170,9 @@
                             <button class="btn btn-outline-secondary" v-on:click="buzz()" type="button">Svara</button>
                           </div>
                         </div>
+                        <div>
+                          <span v-if="player.submittedAnswer">Du har svarat: {{player.submittedAnswer}}</span>
+                        </div>
                       </span>
                     </div>
                   </div>
@@ -181,15 +184,15 @@
             <!-- Kontroller för score board -->
             <div class="playerTable col-sm-6">
               <div class="card">
-                <div class="card-body">
-                  <table style="">
+                <div class="card-body" style="padding:0px;">
+                  <table style="" class="MaxWidth">
                     <thead>
                       <tr>
-                        <th>#</th>
-                        <th>Namn</th>
-                        <th>Status</th>
+                        <th style="width:25px;">#</th>
+                        <th style="width:200px;">Namn</th>
+                        <th style="width:100px;">Status</th>
                         <th>Svar</th>
-                        <th>Poäng</th>
+                        <th style="width:50px;">Poäng</th>
                         <th v-if="player.isQuizMaster">Knappar</th>
                       </tr>
                     </thead>
@@ -197,13 +200,13 @@
 
                       <tr v-for="p in players" v-bind:key="p.team" v-bind:id="p.team" v-bind:questionScore="p.questionScore">
                         <td>{{ p.team }}</td>
-                        <td v-bind:class="[player.id == p.team ?  'you' : '']">{{ p.teamName }}</td>
+                        <td v-bind:class="[player.id == p.team ?  'you' : '']" class="NameCell">{{ p.teamName }}</td>
                         <td>
                           <i v-if="player.id == p.team" class="fas fa-user" data-toggle="tooltip" title="Detta är du"></i>
                           <i v-else-if="p.active" class="far fa-user"></i>
                           <i v-else class="fas fa-skull-crossbones"></i>
                           <span v-if="p.buzzOrder">Buzz: {{ p.buzzOrder }}</span>
-                          <i v-if="status.winningTeam == p.team" class="far fa-hand-paper"></i>
+                          <i v-if="status.winningTeam == p.team" class="far fa-hand-paper shaking"></i>
                           <i v-if="p.isCorrect" class="far fa-star"></i>
                         </td>
                         <td>
@@ -220,8 +223,7 @@
                         <td> {{p.score}}</td>
                         <td v-if="player.isQuizMaster">
 
-                          <a v-on:Click="givePoints(p.questionScore, p.id, true)"><i v-if="p.isCorrect" class="far fa-star"></i><i v-else class="fas fa-star"></i></a>
-                          <a onClick="givePoints($(this).parent().parent().attr('questionScore'), $(this).parent().parent().attr('id'), false);">test</a>
+                          <a v-on:Click="givePoints((p.questionScore ? p.questionScore : status.question.questionScore), p.id, true)"><i v-if="p.isCorrect" class="far fa-star"></i><i v-else class="fas fa-star"></i></a>
                           <a onClick="givePoints(1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-up"></i></a>
                           <a onClick="givePoints(-1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-down"></i></a>
                         </td>
@@ -290,7 +292,7 @@
           <div v-else class="card">
             <div class="card-body">
               <div class="input-group input-group-sm mb-3">
-                <input v-model="player.teamName" @keyup.enter="updateName()"  type="text" class="form-control" placeholder="Lagnamn" aria-label="Lagnamn" aria-describedby="basic-addon2" autocomplete="off">
+                <input v-model="player.teamName" @keyup.enter="updateName()"  type="text" class="form-control" placeholder="Lagnamn" maxlength="40" aria-label="Lagnamn" aria-describedby="basic-addon2" autocomplete="off">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" v-on:click="updateName()" type="button">Byt namn</button>
                 </div>

@@ -129,7 +129,7 @@ app.get('/quizmaster', function(req, res){
 
 // Ovanstående prylar känns onödigt nu när den här tar in alla filer.
 app.use(express.static(__dirname + '/', {
-    maxage: 0 
+    maxage: 0
 }));
 
 // Specialare för AJAX och annat som inte behöver pushas ut.
@@ -363,7 +363,7 @@ io.on('connection', function(socket){
  * Socket.io code for GAME EVENTS
  ******************************************************************************/
 
-  socket.on('Buzz', function(answer){
+  socket.on('Buzz', function(answer, fn){
     var player = getCurrentPlayer(socket.handshake.session.team);
     teamName = player.teamName;
 
@@ -382,6 +382,7 @@ io.on('connection', function(socket){
       io.emit('UpdatePlayers', {status: data.status, players: data.players } );
 
       console.log(data.status);
+      fn(answer);
       return;
     }
     else if(data.status.question.questionType == 'BUZZ_RUSH')
@@ -390,6 +391,7 @@ io.on('connection', function(socket){
       if(data.status.buzzList.includes(socket.handshake.session.team))
       {
         console.log('Extra buzz from ' + teamName);
+        fn('Extra buzz from ' + teamName);
         return;
       }
       else {
@@ -410,6 +412,14 @@ io.on('connection', function(socket){
         data.status.winningTeam = socket.handshake.session.team;
         data.status.winningId = socket.id;
 
+        addOrReplace(data.answers, {
+          "id" : socket.handshake.session.team,
+          "answer": null,
+          "questionScore": data.status.question.questionScore,
+          "clueScore": null
+        });
+
+        fn("Buzz!");
         io.emit('UpdatePlayers', {status: data.status, players: data.players } );
 
         //io.emit('Buzzed', {id : data.status.winningTeam, teamName: teamName, status: data.status, players: data.players});
@@ -417,6 +427,7 @@ io.on('connection', function(socket){
     }
     else {
       console.log("WARN: Buzz with unknown question type.");
+      fn("WARN: Buzz with unknown question type.");
     }
 
   });
@@ -430,10 +441,11 @@ io.on('connection', function(socket){
       return;
     }
 
-
+    var clientAction = 'none';
 
     if(action == 'NEW')
     {
+      clientAction = "clear";
       if(question.questionNumber == "")
       {
         console.log("Old value");
@@ -487,7 +499,7 @@ io.on('connection', function(socket){
       }
       return 0;
   });
-    io.emit('UpdatePlayers', {status: data.status, players: data.players });
+    io.emit('UpdatePlayers', {status: data.status, players: data.players, action: clientAction });
 
   });
 
