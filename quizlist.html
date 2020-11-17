@@ -199,12 +199,18 @@
                   <tbody name="flip-list" is="transition-group">
 
                       <tr v-for="p in players" v-bind:key="p.team" v-bind:id="p.team" v-bind:questionScore="p.questionScore">
-                        <td>{{ p.team }}</td>
-                        <td v-bind:class="[player.id == p.team ?  'you' : '']" class="NameCell">{{ p.teamName }}</td>
+                        <td>
+                          {{ p.team }}
+                        </td>
+                        <td v-bind:class="[player.id == p.team ?  'you' : '']" class="NameCell">{{ p.teamName }}
+                          <transition name="bounce" mode="out-in">
+                            <span :key="p.NumberOfWins" title="Antal vinster i matchen" v-if="p.NumberOfWins > 0" class="badge badge-pill badge-warning">{{p.NumberOfWins}}</span>
+                          </transition>
+                        </td>
                         <td>
                           <i v-if="player.id == p.team" class="fas fa-user" data-toggle="tooltip" title="Detta är du"></i>
                           <i v-else-if="p.active" class="far fa-user"></i>
-                          <i v-else class="fas fa-skull-crossbones"></i>
+                          <i title="Disconnected" v-else class="fas fa-skull-crossbones"></i>
                           <span v-if="p.buzzOrder">Buzz: {{ p.buzzOrder }}</span>
                           <i v-if="status.winningTeam == p.team" class="far fa-hand-paper shaking"></i>
                           <i v-if="p.isCorrect" class="far fa-star"></i>
@@ -281,11 +287,17 @@
               </div>
               <input v-model="quizMaster.pendingQuestion.correctAnswer" type="text" class="form-control" aria-label="Default" aria-describedby="asdf">
             </div>
-            <button type="button" class="btn btn-primary mb-2" v-on:click="updateQuestion()">Uppdatera fråga</button>
-            <button type="button" class="btn btn-primary mb-2" v-on:click="completeQuestion()">Avsluta fråga</button>
-            <button type="button" class="btn btn-primary mb-2" v-on:click="newQuestion()">Ny fråga</button>
-
-            <button type="button" class="btn btn-primary mb-2" v-on:click="purge()">Rensa inaktiva</button>
+            <div class="btn-group" role="group" aria-label="Question-buttons">
+              <button type="button" class="btn btn-primary mb-2" v-on:click="updateQuestion()">Uppdatera fråga</button>
+              <button type="button" class="btn btn-primary mb-2" v-on:click="completeQuestion()">Avsluta fråga</button>
+            </div>
+            <div class="btn-group" role="group" aria-label="New-Question">
+              <button type="button" class="btn btn-primary mb-2" v-on:click="newQuestion()">Ny fråga</button>
+            </div>
+            <div class="btn-group-prepend" role="group" aria-label="Game-buttons">
+              <button type="button" class="btn btn-primary mb-2" v-on:click="newGame()">Ny omgång</button>
+              <button type="button" class="btn btn-primary mb-2" v-on:click="purge()">Rensa inaktiva</button>
+            </div>
 
 
           </div>
