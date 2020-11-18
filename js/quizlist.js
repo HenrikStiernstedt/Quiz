@@ -11,6 +11,7 @@ var vm = new Vue({
         "socketId" : "",
         "teamName" : null,
         "buzzOrder": 0,
+        "HasBuzzd": false,
         "isCorrect": null,
         "answer" : null,
         "questionScore" : 0,
@@ -74,6 +75,9 @@ var vm = new Vue({
       console.log("New name sent");
       socket.emit('SetName', vm.player.teamName);
     },
+    MakeMeQuizMaster : function() {
+      socket.emit('MakeMeQuizMaster', vm.player.quizMasterPassword);
+    },
     purge : function() {
       if(confirm("Är du säker?"))
       {
@@ -122,6 +126,9 @@ var vm = new Vue({
         buzzAudioElement.play();
       }
       */
+    },
+    getCurrentPlayer: function(array, id) {
+      return array.filter( obj => obj.team == id)[0];
     }
   }
 });
@@ -256,13 +263,6 @@ function initQuizlist() {
     }
 
   });
-
-
-
-  $('#MakeMeQuizMaster').click(function(){
-    socket.emit('MakeMeQuizMaster', vm.player.quizMasterPassword);
-  });
-
 
   $('form').submit(function(){
     socket.emit('new chat message',

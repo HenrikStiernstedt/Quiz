@@ -79,6 +79,7 @@ var data = {
       "socketId" : "",
       "teamName" : null,
       "buzzOrder": 0,
+      "HasBuzzd": false,
       "isCorrect": null,
       "answer" : null,
       "questionScore" : 0,
@@ -400,13 +401,19 @@ io.on('connection', function(socket){
       else {
         data.status.buzzList.push(socket.handshake.session.team);
       }
+
       if(data.status.isBuzzed)
       {
         console.log('Too slow buzz from ' + teamName + '. In queue as #' + (data.status.buzzList.length + 1));
-        io.emit('UpdatePlayers', {status: data.status, players: data.players } );
+        //io.emit('UpdatePlayers', {status: data.status, players: data.players } );
       }
       else if (!data.status.isBuzzActive) {
         console.log('Random buzz from ' + teamName);
+      }
+      else if(player.HasBuzzed)
+      {
+        console.log('Double buzz from '+ teamName +'. Has already buzzed this round.');
+        return;
       } else {
         console.log('Buzz from ' + teamName);
         data.status.isBuzzed = true;
@@ -414,6 +421,7 @@ io.on('connection', function(socket){
         data.status.winningTeamName = teamName;
         data.status.winningTeam = socket.handshake.session.team;
         data.status.winningId = socket.id;
+        player.HasBuzzed = true;
 
         addOrReplace(data.answers, {
           "id" : socket.handshake.session.team,
@@ -580,7 +588,9 @@ io.on('connection', function(socket){
         }
       }
 
+
       player.score += parseInt(score);
+
 
     }
     else {
@@ -643,6 +653,7 @@ function resetPlayers(endTheGame) {
     player.buzzOrde = 0,
     player.isCorrect = null,
     player.answer = null,
+    player.HasBuzzed = false,
     player.questionScore = 0,
     player.NumberOfWins += (endTheGame && player.score == winningScore ? 1 : 0), // Om vi avslutar spelet får winnaren en pinne i totalen.
     player.score = (endTheGame ? 0 : player.score) // Om vi avslutar spelet, nolla allas poäng.
