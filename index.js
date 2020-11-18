@@ -81,7 +81,8 @@ var data = {
       "buzzOrder": 0,
       "isCorrect": null,
       "answer" : null,
-      "questionScore" : 0
+      "questionScore" : 0,
+      "NumberOfWins": 0
   }],
   status: {
     "isBuzzed" : false,
@@ -213,7 +214,7 @@ io.on('connection', function(socket){
       io.emit('UpdatePlayers', {status: data.status, players: data.players });
     }
     else {
-      // We have a session, but no player entry. A state cased by purge.
+      // We have a session, but no player entry. A state caused by purge.
       console.log("Error restoring session. No entry in Players-object for team "+socket.handshake.session.team);
       player =  {
               "id" : socket.handshake.session.team,
@@ -221,7 +222,8 @@ io.on('connection', function(socket){
               "score" : 0,
               "active" : true,
               "socketId" : socket.id,
-              "teamName" : "Team " + socket.handshake.session.teamName != null ? socket.handshake.session.teamName : "Team " + socket.handshake.session.team
+              "teamName" : "Team " + socket.handshake.session.teamName != null ? socket.handshake.session.teamName : "Team " + socket.handshake.session.team,
+              "NumberOfWins": 0
             };
       data.players.push(player);
     }
@@ -236,7 +238,8 @@ io.on('connection', function(socket){
             "score" : 0,
             "active" : true,
             "socketId" : socket.id,
-            "teamName" : "Team " + socket.handshake.session.team
+            "teamName" : "Team " + socket.handshake.session.team,
+            "NumberOfWins": 0
           };
     data.players.push(player);
 
@@ -446,7 +449,7 @@ io.on('connection', function(socket){
     if(action == 'NEW')
     {
       clientAction = "clear";
-      if(question.questionNumber == "")
+      if(question.questionNumber == "" || question.questionNumber == "0")
       {
         console.log("Old value");
         console.log(data.status.question.questionNumber);
@@ -454,23 +457,14 @@ io.on('connection', function(socket){
         question.questionNumber = (parseInt(data.status.question.questionNumber) + 1);
       }
 
-      data.status.isBuzzed = false;
-      data.status.isBuzzActive = true;
-      data.status.winningTeamName = null;
-      data.status.winningTeam = null;
-      data.status.buzzList = [];
-
-      // Clear any previously entered answers.
-      data.status.pendingAnswers = [{}];
-      data.answers = [{}];
-
-      data.players.forEach(player => {
-        player.buzzOrde = 0,
-        player.isCorrect = null,
-        player.answer = null,
-        player.questionScore =  0
-      });
+      resetPlayers(false);
     }
+    else if(question.questionNumber == "" || question.questionNumber == "0")
+    {
+        // Se till att behålla frågenummer även om vi uppdaterar frågan med blankt.
+      question.questionNumber = data.status.question.questionNumber
+    }
+
 
     if(data.status.question.questionType == "BUZZ_RUSH")
     {
@@ -595,6 +589,23 @@ io.on('connection', function(socket){
     io.emit('UpdatePlayers', { status: data.status, players: data.players });
   });
 
+  socket.on('NewGame', function() {
+    if(!verifyQM(socket.handshake.session.team, "AwardPointsToTeam")) { return; }
+    resetPlayers(true);
+
+    // Sort player array according to score.
+    data.players.sort(function (a, b) {
+      if (a.NumberOfWins > b.NumberOfWins) {
+          return -1;
+      }
+      if (b.NumberOfWins > a.NumberOfWins) {
+          return 1;
+      }
+      return 0;
+    });
+
+    io.emit('UpdatePlayers', { status: data.status, players: data.players, action: 'clear' });
+  });
 
   // Unused for now.
   socket.on('ListPlayers', function() {
@@ -606,4 +617,35 @@ io.on('connection', function(socket){
       var client_socket = io.sockets.connected[clientId];//Do whatever you want with this
     }
   });
+
+
 });
+
+function resetPlayers(endTheGame) {
+  data.status.isBuzzed = false;
+  data.status.isBuzzActive = true;
+  data.status.winningTeamName = null;
+  data.status.winningTeam = null;
+  data.status.buzzList = [];
+
+  // Clear any previously entered answers.
+  data.status.pendingAnswers = [{}];
+  data.answers = [{}];
+
+  var winningScore;
+  if(endTheGame)
+  {
+    winningScore = Math.max.apply(Math, data.players.map(function(o) { return o.score; }))
+  }
+
+
+  data.players.forEach(player => {
+    player.buzzOrde = 0,
+    player.isCorrect = null,
+    player.answer = null,
+    player.questionScore = 0,
+    player.NumberOfWins += (endTheGame && player.score == winningScore ? 1 : 0), // Om vi avslutar spelet får winnaren en pinne i totalen.
+    player.score = (endTheGame ? 0 : player.score) // Om vi avslutar spelet, nolla allas poäng.
+
+  });
+}

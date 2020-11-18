@@ -13,7 +13,8 @@ var vm = new Vue({
         "buzzOrder": 0,
         "isCorrect": null,
         "answer" : null,
-        "questionScore" : 0
+        "questionScore" : 0,
+        "NumberOfWins": 0
     }],
     status: {
       "isBuzzed" : false,
@@ -97,6 +98,14 @@ var vm = new Vue({
       console.log(vm.quizMaster.pendingQuestion);
       socket.emit('UpdateQuestion', 'NEW', vm.quizMaster.pendingQuestion);
       popAudioElement.play();
+    },
+    newGame: function() {
+      if(confirm("Är du säker?"))
+      {
+        console.log("Ny omgång!");
+        socket.emit('NewGame');
+        popAudioElement.play();
+      }
     },
     buzz: function () {
       socket.emit('Buzz', vm.player.pendingAnswer, function (answer)
