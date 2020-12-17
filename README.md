@@ -55,8 +55,7 @@ TODO:
 
 * "I'm ready"-notification for players to signal that we're ready to move on to the next wuestion.
 
-* "I'm confidnet"-taunt emotion indicator as well as "I have no clue"-indicator. Just for fun, or maybe with some penalty 
-if a confident player guesses wrong. Maybe a counter for most taunts in a game? 
+* "I'm confident"-taunt emotion indicator as well as "I have no clue"-indicator. Just for fun, or maybe with some penalty if a confident player guesses wrong. Maybe a counter for most taunts in a game? - Partly implemented.
 
 * More automatication for question types. Maybe with some kind of template to follow, or just skip 
 some of the freedom the Quizmaster has today that really is not needed. 
