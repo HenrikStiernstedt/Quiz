@@ -39,9 +39,9 @@ TODO:
 * Add button for rejecting an answer and preventing the player from buzzing again this round.
 
 * More game modes!
-** Standard quiz mode where every correct answer gives a point.
+* * Standard quiz mode where every correct answer gives a point.
 
-** Majority fails. Everyone types in a hopefully unique item from a list of items.
+* * Majority fails. Everyone types in a hopefully unique item from a list of items.
   Ie. A car beginning with A. Everyone who have typed in a unique car model gets 2 points.
   Failing to enter a car model gives no points. Having the same answer as anyone else gives
   1 point.
@@ -57,6 +57,15 @@ TODO:
 
 * "I'm confidnet"-taunt emotion indicator as well as "I have no clue"-indicator. Just for fun, or maybe with some penalty 
 if a confident player guesses wrong. Maybe a counter for most taunts in a game? 
+
+* More automatication for question types. Maybe with some kind of template to follow, or just skip 
+some of the freedom the Quizmaster has today that really is not needed. 
+
+* Preconfigured questions. Today it's mostly an answering sheet and protocol, not good at displaying questions, even though it's possible.
+
+* Better flow when displaying the correct answer and more satisfying animations when you get points. Sounds! Stars!
+
+* Postpone the adding of correct stores to the total score. Give all points at the same time and then reorder the player list. 
 
 
 How to run as QuizMaster
