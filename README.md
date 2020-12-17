@@ -32,23 +32,31 @@ TODO:
 =====
 * Add modal for name prompt if no name has been entered for the session.
 
+* Hide the QuizMaster-password field as it is not important for the majority of players.
+
 * Add answering list in order to let players queue up answers.
 
 * Add button for rejecting an answer and preventing the player from buzzing again this round.
 
 * More game modes!
+** Standard quiz mode where every correct answer gives a point.
 
-* Automatic score calculations.
-
-* Majority fails. Everyone types in a hopefully unique item from a list of items.
+** Majority fails. Everyone types in a hopefully unique item from a list of items.
   Ie. A car beginning with A. Everyone who have typed in a unique car model gets 2 points.
   Failing to enter a car model gives no points. Having the same answer as anyone else gives
   1 point.
+
+* Automatic score calculations.
 
 * New public score board and question display.
   This one is supposed to be streamed online or just let everyone have surf to the page
   directly. To be used in tandem with the phone. So far you can always use an
   unused client as the scoreboard.
+
+* "I'm ready"-notification for players to signal that we're ready to move on to the next wuestion.
+
+* "I'm confidnet"-taunt emotion indicator as well as "I have no clue"-indicator. Just for fun, or maybe with some penalty 
+if a confident player guesses wrong. Maybe a counter for most taunts in a game? 
 
 
 How to run as QuizMaster
