@@ -296,8 +296,11 @@ io.on('connection', function(socket){
     console.log(new Date().toLocaleTimeString() + ' ' + socket.id + ' disconnected');
 //    players.get(socket.handshake.session.team).active = false;
     var player = getCurrentPlayer(socket.handshake.session.team);
-    player.active = false;
-    io.emit('UpdatePlayers', {status: data.status, players: data.players });
+    if(player)
+    {
+      player.active = false;
+      io.emit('UpdatePlayers', {status: data.status, players: data.players });
+    }
   });
 
   socket.on('StartPing', function() {
