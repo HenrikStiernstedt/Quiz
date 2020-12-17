@@ -49,3 +49,16 @@ TODO:
   This one is supposed to be streamed online or just let everyone have surf to the page
   directly. To be used in tandem with the phone. So far you can always use an
   unused client as the scoreboard.
+
+
+How to run as QuizMaster
+========================
+Tanken är att frågenummer skall räkans upp automatiskt om man bara lämnar det blankt. Sen måste man välja en frågetyp. Den är inte vad från början då det blir lite skumt innan amn tryckt på "Ny fråga" en gång efter omstart. Sen får man fylla i poäng så att den är något vettigt, t.ex. 10. Fältet "Fråga" är helt frivilligt, men det skrivs då ut på frågekortet. "Svar" används inte alls än. 
+ 
+Det som man sen behöver ha koll på är att använda "uppdatera fråga" om man behöver rätta något eller vill sänka poängen inför nästa ledtråd i På spåret. "Avsluta fråga" visar upp vad alla har svarat och då kan man anävnda stjärnan i spelarlistan för att markera vilka spelare som svarat rätt. De får då så många poäng som de svarat på, alternativt så många poäng som frågan är värd om man kör "buzzer"-frågetypen. När man är redo för nästa fråga är det viktigt att ställa in alla fält rätt först och sen trycka på "Ny fråga". Då animeras det så att den gamla frågan försvinner och en ny kommer in. 
+
+Det jag oftast gör fel på är att trycka "Ny fråga" innan jag ställt in alla fält rätt först. Men det går att justera fälten och trycka på "uppdatera fråga" för att komma undan med det... men det är inte lika snyggt.
+
+Till sist har du "pil upp" och "pil ned" som ger respektive tar poäng av en spelare rakt av om man behöver korrigera något.
+
+Om man trycker på "Ny omgång" får de med högst poäng en guldpeng och i övrigt nollställs allas poäng. 
