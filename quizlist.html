@@ -211,9 +211,11 @@
                           </transition>
                         </td>
                         <td>
-                          <i v-if="player.id == p.team" class="fas fa-user" data-toggle="tooltip" title="Detta är du"></i>
-                          <i v-else-if="p.active" class="far fa-user"></i>
-                          <i title="Disconnected" v-else class="fas fa-skull-crossbones"></i>
+                          <transition name="fade" mode="out-in">
+                            <i :key="p.emote" v-if="player.id == p.team" :class="p.emote" class="far fa-2x" data-toggle="tooltip" title="Detta är du"></i>
+                            <i :key="p.emote" v-else-if="p.active" :class="p.emote" class="far fa-2x"></i>
+                            <i :key="p.emote" title="Disconnected" v-else class="fas fa-skull-crossbones fa-2x"></i>
+                          </transition>
                           <span v-if="p.buzzOrder">Buzz: {{ p.buzzOrder }}</span>
                           <i v-if="status.winningTeam == p.team" class="far fa-hand-paper shaking"></i>
                           <i v-if="status.winningTeam !== p.team && p.HasBuzzed" class="far fa-frown"></i>
@@ -313,6 +315,13 @@
                   <button class="btn btn-outline-secondary" v-on:click="updateName()" type="button">Byt namn</button>
                 </div>
               </div>
+              <!-- Emotion buttons -->
+              <div class="btn-group" role="group" aria-label="Emotion-buttons">
+                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(1)"><span class="far fa-smile-beam"></span></button>
+                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(0)"><span class="far fa-smile"></span></button>
+                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(-1)"><span class="far fa-flushed"></span></button>
+              </div>
+              <!-- Make me QuizMaster buttons -->
               <div class="input-group input-group-sm mb-3">
                 <input v-model="player.quizMasterPassword" @keyup.enter="MakeMeQuizMaster()" type="password" class="form-control" placeholder="" aria-label="QM" aria-describedby="basic-addon2" autocomplete="off">
                 <div class="input-group-append">

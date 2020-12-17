@@ -15,7 +15,9 @@ var vm = new Vue({
         "isCorrect": null,
         "answer" : null,
         "questionScore" : 0,
-        "NumberOfWins": 0
+        "NumberOfWins": 0,
+        "emote" : "",
+        "confidenceLevel": 0
     }],
     status: {
       "isBuzzed" : false,
@@ -75,6 +77,12 @@ var vm = new Vue({
       console.log("New name sent");
       socket.emit('SetName', vm.player.teamName);
     },
+
+    SetConfidenceLevel : function(confidenceLevel) {
+      console.log("SetConfidenceLevel: " + confidenceLevel);
+      socket.emit('SetConfidenceLevel', confidenceLevel);
+    },
+
     MakeMeQuizMaster : function() {
       socket.emit('MakeMeQuizMaster', vm.player.quizMasterPassword);
     },
