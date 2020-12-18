@@ -15,6 +15,8 @@ var
   }),
   sharedsession = require("express-socket.io-session");
 
+  var share = require('./js/share.js');
+
   // No cache
 /*
   app.use(function (req, res, next) {
@@ -235,7 +237,7 @@ io.on('connection', function(socket){
     socket.handshake.session.team = nextTeamNumber++;
     socket.handshake.session.save();
     console.log("New user " + socket.handshake.session.team);
-    var emote = getEmoteFromConfidenceLevel(0);
+    var emote = share.getEmoteFromConfidenceLevel(0);
     player =  {
             "id" : socket.handshake.session.team,
             "team" : socket.handshake.session.team,
@@ -243,6 +245,11 @@ io.on('connection', function(socket){
             "active" : true,
             "socketId" : socket.id,
             "teamName" : "Team " + socket.handshake.session.team,
+            "HasBuzzd": false,
+            "buzzOrder": null,
+            "isCorrect": null,
+            "answer" : null,
+            "questionScore" : 0,
             "NumberOfWins": 0,
             "emote": emote,
             "confidenceLevel": 0
@@ -301,7 +308,7 @@ io.on('connection', function(socket){
   {
     var player = getCurrentPlayer(socket.handshake.session.team);
     player.confidenceLevel = confidenceLevel;
-    player.emote = getEmoteFromConfidenceLevel(confidenceLevel);
+    player.emote = share.getEmoteFromConfidenceLevel(confidenceLevel);
     io.emit('UpdatePlayers', {status: data.status, players: data.players});
   });
 
@@ -671,7 +678,7 @@ function resetPlayers(endTheGame) {
     player.answer = null,
     player.HasBuzzed = false,
     player.confidenceLevel = 0,
-    player.emote = getEmoteFromConfidenceLevel(0),
+    player.emote = share.getEmoteFromConfidenceLevel(0),
     player.questionScore = 0,
     player.NumberOfWins += (endTheGame && player.score == winningScore ? 1 : 0), // Om vi avslutar spelet får winnaren en pinne i totalen.
     player.score = (endTheGame ? 0 : player.score) // Om vi avslutar spelet, nolla allas poäng.
@@ -680,12 +687,4 @@ function resetPlayers(endTheGame) {
 
 }
 
-function getEmoteFromConfidenceLevel(confidenceLevel)
-  {
-    switch(confidenceLevel)
-    {
-      case 1 : return "fa-smile-beam";
-      case 0 : return "fa-smile";
-      case -1 : return "fa-flushed"
-    }
-  }
+

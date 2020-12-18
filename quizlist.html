@@ -36,6 +36,7 @@
     <!-- My own stuff -->
     <link href="css/Quiz.css" rel="stylesheet">
     <script src="js/Quiz.js"></script>
+    <script src="js/share.js"></script>
 
 
   </head>
@@ -193,7 +194,7 @@
                       <tr>
                         <th style="width:25px;">#</th>
                         <th style="width:200px;">Namn</th>
-                        <th style="width:100px;">Status</th>
+                        <th style="width:110px;">Status</th>
                         <th>Svar</th>
                         <th style="width:50px;">Poäng</th>
                         <th v-if="player.isQuizMaster">Knappar</th>
@@ -211,15 +212,15 @@
                           </transition>
                         </td>
                         <td>
-                          <transition name="fade" mode="out-in">
+                          <transition name="qbounce" mode="out-in">
                             <i :key="p.emote" v-if="player.id == p.team" :class="p.emote" class="far fa-2x" data-toggle="tooltip" title="Detta är du"></i>
                             <i :key="p.emote" v-else-if="p.active" :class="p.emote" class="far fa-2x"></i>
                             <i :key="p.emote" title="Disconnected" v-else class="fas fa-skull-crossbones fa-2x"></i>
                           </transition>
                           <span v-if="p.buzzOrder">Buzz: {{ p.buzzOrder }}</span>
-                          <i v-if="status.winningTeam == p.team" class="far fa-hand-paper shaking"></i>
-                          <i v-if="status.winningTeam !== p.team && p.HasBuzzed" class="far fa-frown"></i>
-                          <i v-if="p.isCorrect" class="far fa-star"></i>
+                          <i v-if="status.winningTeam == p.team" class="far fa-hand-paper shaking fa-2x"></i>
+                          <i v-if="status.winningTeam !== p.team && p.HasBuzzed" class="far fa-frown fa-2x"></i>
+                          <i v-if="p.isCorrect" class="far fa-star fa-2x"></i>
                         </td>
                         <td>
 
@@ -235,9 +236,9 @@
                         <td> {{p.score}}</td>
                         <td v-if="player.isQuizMaster">
 
-                          <a v-on:Click="givePoints((p.questionScore ? p.questionScore : status.question.questionScore), p.id, true)"><i v-if="p.isCorrect" class="far fa-star"></i><i v-else class="fas fa-star"></i></a>
-                          <a onClick="givePoints(1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-up"></i></a>
-                          <a onClick="givePoints(-1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-down"></i></a>
+                          <a v-on:Click="givePoints((p.questionScore ? p.questionScore : status.question.questionScore), p.id, true)"><i v-if="p.isCorrect" class="far fa-star fa-2x"></i><i v-else class="fas fa-star fa-2x"></i></a>
+                          <a onClick="givePoints(1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-up fa-2x"></i></a>
+                          <a onClick="givePoints(-1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-down fa-2x"></i></a>
                         </td>
                     </tr>
 
@@ -307,7 +308,7 @@
 
 
           </div>
-          <div v-else class="card">
+          <div class="card">
             <div class="card-body">
               <div class="input-group input-group-sm mb-3">
                 <input v-model="player.teamName" @keyup.enter="updateName()"  type="text" class="form-control" placeholder="Lagnamn" maxlength="40" aria-label="Lagnamn" aria-describedby="basic-addon2" autocomplete="off">
@@ -317,9 +318,12 @@
               </div>
               <!-- Emotion buttons -->
               <div class="btn-group" role="group" aria-label="Emotion-buttons">
-                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(1)"><span class="far fa-smile-beam"></span></button>
-                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(0)"><span class="far fa-smile"></span></button>
-                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(-1)"><span class="far fa-flushed"></span></button>
+                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(2)"><span class="far fa-grin-stars fa-2x"></span></button>
+                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(1)"><span class="far fa-smile-beam fa-2x"></span></button>
+                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(0)"><span class="far fa-smile fa-2x"></span></button>
+                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(-1)"><span class="far fa-meh fa-2x"></span></button>
+                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(-2)"><span class="far fa-grimace fa-2x"></span></button>
+                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(-3)"><span class="far fa-flushed fa-2x"></span></button>
               </div>
               <!-- Make me QuizMaster buttons -->
               <div class="input-group input-group-sm mb-3">
