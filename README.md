@@ -66,6 +66,8 @@ some of the freedom the Quizmaster has today that really is not needed.
 
 * Postpone the adding of correct stores to the total score. Give all points at the same time and then reorder the player list. 
 
+* Multiple answers for combo questions.
+
 
 How to run as QuizMaster
 ========================

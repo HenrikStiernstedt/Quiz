@@ -270,3 +270,22 @@ td:first-child, th:first-child {
     transform: translate3d(0, -2px, 0) rotate(-5deg);
   }
 }
+
+
+.headShake {
+  animation: headShake 2.0s ease-in-out both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+  animation-iteration-count: infinite;
+}
+
+@keyframes headShake {
+  25% {
+    transform: translate3d(-2px, 0, 0) rotate(-15deg);
+  }
+  
+  75% {
+    transform: translate3d(2px, 0, 0) rotate(15deg);
+  }
+}

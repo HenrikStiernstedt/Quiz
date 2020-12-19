@@ -213,14 +213,17 @@
                         </td>
                         <td>
                           <transition name="qbounce" mode="out-in">
-                            <i :key="p.emote" v-if="player.id == p.team" :class="p.emote" class="far fa-2x" data-toggle="tooltip" title="Detta är du"></i>
+                            
+                            <!--<i :key="p.emote" v-if="player.id == p.team" :class="p.emote" class="far fa-2x" data-toggle="tooltip" title="Detta är du"></i>-->
+                            <i :key="1" v-if="p.isCorrect" class="far fa-grin-stars fa-2x shaking"></i>
+                            <i :key="2" v-else-if="status.winningTeam !== p.team && p.HasBuzzed" class="far fa-sad-cry fa-2x headShake"></i>
                             <i :key="p.emote" v-else-if="p.active" :class="p.emote" class="far fa-2x"></i>
-                            <i :key="p.emote" title="Disconnected" v-else class="fas fa-skull-crossbones fa-2x"></i>
+                            <i :key="p.emote" title="Disconnected" v-else class="far fa-dizzy fa-2x"></i>
                           </transition>
                           <span v-if="p.buzzOrder">Buzz: {{ p.buzzOrder }}</span>
                           <i v-if="status.winningTeam == p.team" class="far fa-hand-paper shaking fa-2x"></i>
-                          <i v-if="status.winningTeam !== p.team && p.HasBuzzed" class="far fa-frown fa-2x"></i>
-                          <i v-if="p.isCorrect" class="far fa-star fa-2x"></i>
+                          <!--<i v-if="status.winningTeam !== p.team && p.HasBuzzed" class="far fa-frown fa-2x"></i>
+                          <i v-if="p.isCorrect" class="far fa-star fa-2x"></i> -->
                         </td>
                         <td>
 
@@ -318,12 +321,19 @@
               </div>
               <!-- Emotion buttons -->
               <div class="btn-group" role="group" aria-label="Emotion-buttons">
+                <!--
                 <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(2)"><span class="far fa-grin-stars fa-2x"></span></button>
                 <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(1)"><span class="far fa-smile-beam fa-2x"></span></button>
                 <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(0)"><span class="far fa-smile fa-2x"></span></button>
                 <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(-1)"><span class="far fa-meh fa-2x"></span></button>
                 <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(-2)"><span class="far fa-grimace fa-2x"></span></button>
                 <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(-3)"><span class="far fa-flushed fa-2x"></span></button>
+              -->
+
+                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(player.confidenceLevel+1)" :disabled="player.confidenceLevel >= environment.maxConfidence" ><span class="fas fa-arrow-circle-up"></span></button>
+                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(player.confidenceLevel-1)" :disabled="player.confidenceLevel <= environment.minConfidence"><span class="fas fa-arrow-circle-down"></span></button>
+                
+
               </div>
               <!-- Make me QuizMaster buttons -->
               <div class="input-group input-group-sm mb-3">

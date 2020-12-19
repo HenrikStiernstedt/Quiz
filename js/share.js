@@ -1,21 +1,24 @@
 (function(exports){
-/*
-    exports.test = function(){
-         return 'This is a function from shared module';
-    };
-  */
-
+  /*
+   * Emojies and confedence 
+   */
     exports.getEmoteFromConfidenceLevel = function(confidenceLevel)
     {
         switch(confidenceLevel)
         {
-            case 2 : return "fa-grin-stars";
-            case 1 : return "fa-smile-beam";
-            case 0 : return "fa-smile";
-            case -1 : return "fa-meh";
-            case -2 : return "fa-grimace";
-            case -3 : return "fa-flushed";
+          case 100 : return "fa-grin-stars shaking";
+          case 2 : return "fa-laugh";
+          case 1 : return "fa-smile-beam";
+          case 0 : return "fa-smile";
+          case -1 : return "fa-meh";
+          case -2 : return "fa-grimace";
+          case -3 : return "fa-flushed";
+          //case -4 : return "fa-flushed headShake";
+          case -100: return "fa-sad-cry headShake";
         }
     };
+
+    exports.maxConfidence = 2;
+    exports.minConfidence = -3;
 
   }(typeof exports === 'undefined' ? this.share = {} : exports));

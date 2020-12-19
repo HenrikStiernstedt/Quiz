@@ -248,7 +248,7 @@ io.on('connection', function(socket){
             "HasBuzzd": false,
             "buzzOrder": null,
             "isCorrect": null,
-            "answer" : null,
+            "answer" : null,  
             "questionScore" : 0,
             "NumberOfWins": 0,
             "emote": emote,
@@ -266,7 +266,9 @@ io.on('connection', function(socket){
         teamName: player.teamName,
         answer: "",
         pendingAnswer: "",
-        isQuizMaster: (player.id == data.status.quizMasterId ? true : false)
+        isQuizMaster: (player.id == data.status.quizMasterId ? true : false),
+        answer: null, // TODO: Hur återställer vi "answer" vid reconnect? //getCurrentObject(data.answers, socket.handshake.session.team) ? getCurrentObject(data.answers, socket.handshake.session.team).answer : null,
+        confidenceLevel: player.confidenceLevel
     }
   );
 
@@ -374,7 +376,8 @@ io.on('connection', function(socket){
             teamName: player.teamName,
             answer: "",
             pendingAnswer: "",
-            isQuizMaster: true
+            isQuizMaster: true,
+            confidenceLevel: 0
         }
       );
 
@@ -678,7 +681,9 @@ function resetPlayers(endTheGame) {
     player.answer = null,
     player.HasBuzzed = false,
     player.confidenceLevel = 0,
-    player.emote = share.getEmoteFromConfidenceLevel(0),
+    //player.emote = 0),
+    player.emote = share.getEmoteFromConfidenceLevel(endTheGame && player.score == winningScore ? 100 : 0),
+    player.confidenceLevel = 0;
     player.questionScore = 0,
     player.NumberOfWins += (endTheGame && player.score == winningScore ? 1 : 0), // Om vi avslutar spelet får winnaren en pinne i totalen.
     player.score = (endTheGame ? 0 : player.score) // Om vi avslutar spelet, nolla allas poäng.

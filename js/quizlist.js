@@ -52,21 +52,27 @@ var vm = new Vue({
       "pendingAnswer": "",
       "submittedAnswer": "",
       "isQuizMaster": false,
-      "quizMasterPassword": ""
+      "quizMasterPassword": "",
+      "confidenceLevel": 0
     },
     quizMaster :
     {
       pendingQuestion : {
         questionNumber: 0,
-        questionType : "",
+        questionType : "BUZZ_RUSH",
         questionText: "",
         correctAnswer: "",
-        questionScore: 0,
+        questionScore: 2,
         questionClues : [{
           "clueScore" : 0,
           "clueText" : ""
         }]
       }
+    },
+    environment :
+    {
+      maxConfidence: 2,
+      minConfidence: -3
     }
   },
   methods: {
@@ -80,6 +86,7 @@ var vm = new Vue({
 
     SetConfidenceLevel : function(confidenceLevel) {
       console.log("SetConfidenceLevel: " + confidenceLevel);
+      vm.player.confidenceLevel = confidenceLevel;
       socket.emit('SetConfidenceLevel', confidenceLevel);
     },
 
