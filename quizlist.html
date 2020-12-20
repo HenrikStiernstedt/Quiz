@@ -45,54 +45,9 @@
   <div id="app">
     <div class="container-fluid" style="height: 100%">
       <div class="row clearfix hs-height">
-<!--
-        <div class="col-sm-12">
-          <div class="progress">
-            <div v-if="status.winningTeamName" class="progress-bar progress-bar-striped bg-warning" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%" ></div>
-            <div v-else-if="status.isBuzzActive" class="progress-bar progress-bar-striped progress-bar-animated bg-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%"></div>
-            <div v-else  class="progress-bar progress-bar-striped bg-info" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%"></div>
-          </div>
-        </div>
--->
 
-<!--
-          <div class="alert alert-success alert-dismissable" >
-             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4>
-              Alert!
-            </h4> <strong>Warning!</strong> Best check yo self, you're not looking too good.
-            <a href="#" class="alert-link">alert link</a>
-          </div>
--->
-
-
-          <!--<button type="button" class="btn btn-block btn-lg btn-success active">Default</button>-->
-
-
-
-
-
-              <!-- Kontroller för spelare -->
-            <div class="questionInfo col-sm-6">
-
-              <!-- Question area -->
-<!--
-              <transition name="slide-fade" >
-                <div class="alert alert-primary" role="alert" :key="status.question.questionNumber">
-                  Fråga nummer {{status.question.questionNumber}}:
-                  <span v-if="status.question.questionType == 'RED_THREAD'">Röda tråden<br /></span>
-                  <span v-if="status.question.questionType == 'MAJOR_VICTORY'">Majoreteten bestämmer<br /></span>
-                  <span v-if="status.question.questionType == 'BUZZ_RUSH'">Handen på buzzern<br /></span>
-                  <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
-                  <span v-if="status.question.questionScore != '0'"><br/>Värd
-                    <transition name="bounce" mode="out-in">
-                      <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
-                    </transition>
-                   poäng
-                 </span>
-                </div>
-              </transition>
--->
+        <!-- Kontroller för spelare -->
+        <div class="questionInfo col-sm-6">
           <transition name="slide">
               <div class="card slideContainer"  v-bind:key="status.question.questionNumber">
 
@@ -311,6 +266,7 @@
 
 
           </div>
+          <!-- Administration-->
           <div class="card">
             <div class="card-body">
               <div class="input-group input-group-sm mb-3">
@@ -321,22 +277,11 @@
               </div>
               <!-- Emotion buttons -->
               <div class="btn-group" role="group" aria-label="Emotion-buttons">
-                <!--
-                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(2)"><span class="far fa-grin-stars fa-2x"></span></button>
-                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(1)"><span class="far fa-smile-beam fa-2x"></span></button>
-                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(0)"><span class="far fa-smile fa-2x"></span></button>
-                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(-1)"><span class="far fa-meh fa-2x"></span></button>
-                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(-2)"><span class="far fa-grimace fa-2x"></span></button>
-                <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(-3)"><span class="far fa-flushed fa-2x"></span></button>
-              -->
-
                 <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(player.confidenceLevel+1)" :disabled="player.confidenceLevel >= environment.maxConfidence" ><span class="fas fa-arrow-circle-up"></span></button>
                 <button type="button" class="btn btn mb-2" v-on:click="SetConfidenceLevel(player.confidenceLevel-1)" :disabled="player.confidenceLevel <= environment.minConfidence"><span class="fas fa-arrow-circle-down"></span></button>
-                
-
               </div>
               <!-- Make me QuizMaster buttons -->
-              <div class="input-group input-group-sm mb-3">
+              <div v-if="!player.isQuizMaster" class="input-group input-group-sm mb-3">
                 <input v-model="player.quizMasterPassword" @keyup.enter="MakeMeQuizMaster()" type="password" class="form-control" placeholder="" aria-label="QM" aria-describedby="basic-addon2" autocomplete="off">
                 <div class="input-group-append">
                   <button class="btn btn-outline-secondary" v-on:click="MakeMeQuizMaster()" type="button">QM pwd</button>

@@ -17,21 +17,6 @@ var
 
   var share = require('./js/share.js');
 
-  // No cache
-/*
-  app.use(function (req, res, next) {
-      res.header('Cache-Control', 'private, no-cache, no-store, must-revalidate');
-      res.header('Expires', '-1');
-      res.header('Pragma', 'no-cache');
-      next()
-  });
-  */
-/*
-const nocache = require('nocache');
-app.use(nocache());
-*/
-
-
 const fs = require('fs');
 
 // Attach session
@@ -45,15 +30,6 @@ io.use(sharedsession(session, {
 server.listen(3000, function(){
   console.log('listening on *:3000');
 });
-/////////
-
-/*
-var express = require('express');
-var app = express();
-
-var http = require('http').Server(app);
-var io = require('socket.io')(http);
-*/
 var request = require('request');
 
 app.use('/favicon.ico', express.static('images/favicon.png'));

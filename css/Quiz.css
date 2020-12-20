@@ -92,9 +92,10 @@ td:first-child, th:first-child {
   overflow: hidden;
 }
 
+/*
 .card-img-top {
-
 }
+*/
 
 .QuestionScoreOverlay {
   display: flex;
