@@ -184,6 +184,10 @@ function getChatHistory()
   });
 }
 
+function getThisPlayer() {
+  return vm.players.filter( obj => obj.team == vm.player.id)[0];
+}
+
 var socket = io();
 
 function givePoints(score, team, isCorrectAnswer)
@@ -276,6 +280,12 @@ function initQuizlist() {
     {
       vm.player.submittedAnswer = "";
     }
+
+    // Update this player
+    var p = getThisPlayer();
+    vm.player.confidenceLevel = p?.confidenceLevel || 0;
+
+
 
   });
 
