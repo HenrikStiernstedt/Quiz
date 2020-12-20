@@ -112,6 +112,10 @@ var vm = new Vue({
       console.log(vm.quizMaster.pendingQuestion);
       socket.emit('CompleteQuestion', vm.quizMaster.pendingQuestion);
     },
+    autoCorrect: function() {
+      console.log("Autocorrecting with answer: " + vm.quizMaster.pendingQuestion.correctAnswer);
+      socket.emit("AutoCorrect", vm.quizMaster.pendingQuestion.correctAnswer);
+    },
     newQuestion: function () {
       console.log("Ny fråga!");
       console.log(vm.quizMaster.pendingQuestion);

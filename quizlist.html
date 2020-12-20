@@ -268,7 +268,8 @@
             </div>
             <div class="btn-group" role="group" aria-label="Question-buttons">
               <button type="button" class="btn btn-primary mb-2" v-on:click="updateQuestion()">Uppdatera fråga</button>
-              <button type="button" class="btn btn-primary mb-2" v-on:click="completeQuestion()">Avsluta fråga</button>
+              <button type="button" class="btn btn-primary mb-2" v-on:click="completeQuestion()" :disabled="!status.isBuzzActive">Avsluta fråga</button>
+              <button type="button" class="btn btn-primary mb-2" v-on:click="autoCorrect()" :disabled="status.isBuzzActive">Rätta</button>
             </div>
             <div class="btn-group" role="group" aria-label="New-Question">
               <button type="button" class="btn btn-primary mb-2" v-on:click="newQuestion()">Ny fråga</button>

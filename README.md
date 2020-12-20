@@ -44,8 +44,8 @@ quiz. But the quiz master controls all scoring.
 
 ## QuizMaster GUI
 * Automatic score calculations.
-  - Based on QuizMaster's answer.
-  - Based on majority rules answer (with possible override).
+  - [ x Based on QuizMaster's answer.
+  - [ ] Based on majority rules answer (with possible override).
 
 * New public score board and question display.
   This one is supposed to be streamed online or just let everyone have surf to the page

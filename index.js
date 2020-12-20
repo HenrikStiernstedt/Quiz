@@ -531,6 +531,34 @@ io.on('connection', function(socket){
 
   });
 
+  socket.on("AutoCorrect", function(correctAnswer)  {
+    // Autocorrect only works on public answers at the moment. User "Avsluta fråga" först.
+    console.log("AutoCorrecting with answer: " + correctAnswer);
+    if(correctAnswer == null) {return; }
+
+    data.players.forEach(player => {
+
+      var currentScore = player.questionScore ? player.questionScore : data.status.question.questionScore;
+
+      if(player.answer && player.answer.toLowerCase() == correctAnswer.toLowerCase()) {
+        if(!player.isCorrect)
+        {
+          player.score += currentScore; // TODO: Remove this score calculation. It should be done at a later stage instead. 
+        }
+        player.isCorrect = true;
+      } 
+      else
+      {
+        if(player.isCorrect)
+        {
+          player.score -= currentScore; // TODO: Remove this score calculation. It should be done at a later stage instead. 
+        }
+        player.isCorrect = false;
+      }
+    });
+    io.emit('UpdatePlayers', {status: data.status, players: data.players });
+  });
+
   socket.on('ResetBuzz', function() {
     data.status.isBuzzed = false;
     data.status.isBuzzActive = true;
