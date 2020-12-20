@@ -373,7 +373,7 @@ io.on('connection', function(socket){
     var player = getCurrentPlayer(socket.handshake.session.team);
     teamName = player.teamName;
 
-    if(data.status.question.questionType == 'RED_THREAD' || data.status.question.questionType == 'MAJOR_VICTORY')
+    if(data.status.question.questionType == 'RED_THREAD' || data.status.question.questionType == 'MAJOR_VICTORY' || data.status.question.questionType == 'QUIZ')
     {
       addOrReplace(data.answers, {
         "id" : socket.handshake.session.team,

@@ -46,7 +46,7 @@
     <div class="container-fluid" style="height: 100%">
       <div class="row clearfix hs-height">
 
-        <!-- Kontroller för spelare -->
+        <!-- Frågekort -->
         <div class="questionInfo col-sm-6">
           <transition name="slide">
             <div class="card slideContainer"  v-bind:key="status.question.questionNumber">
@@ -55,7 +55,25 @@
                 <img class="card-img-top" src="images/majorityrules3.png" alt="Majoriteten bestämmer">
                 <div class="card-body">
                   <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
-                  <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Majoriteten bestämmer</h5>
+                  <h5 class="card-title">Fråga {{status.question.questionNumber}}: Majoriteten bestämmer</h5>
+                  <p class="card-text">
+                    <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                    <span v-if="status.question.questionScore != '0'"><br/>Värd
+                      <transition name="bounce" mode="out-in">
+                        <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
+                      </transition>
+                      poäng
+                    </span>
+                  </p>
+
+                </div>
+              </span>
+
+              <span v-if="status.question.questionType == 'QUIZ'">
+                <img class="card-img-top" src="images/quiz.jpg" alt="Quiz">
+                <div class="card-body">
+                  <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
+                  <h5 class="card-title">Fråga {{status.question.questionNumber}}: Quiz</h5>
                   <p class="card-text">
                     <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
                     <span v-if="status.question.questionScore != '0'"><br/>Värd
@@ -70,10 +88,10 @@
               </span>
 
               <span v-if="status.question.questionType == 'RED_THREAD'">
-                <img class="card-img-top" src="images/Pasparet2.png" alt="Röda tråden">
+                <img class="card-img-top" src="images/Pasparet3.jpg" alt="Röda tråden">
                 <div class="card-body">
                   <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
-                  <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Röda tråden</h5>
+                  <h5 class="card-title">Fråga {{status.question.questionNumber}}: Röda tråden</h5>
                   <p class="card-text">
                     <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
                     <span v-if="status.question.questionScore != '0'"><br/>Värd
@@ -91,7 +109,7 @@
                 <img class="card-img-top" src="images/buzzers3.png" alt="Buzzers">
                 <div class="card-body">
                   <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
-                  <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Handen på buzzern!</h5>
+                  <h5 class="card-title">Fråga {{status.question.questionNumber}}: Handen på buzzern!</h5>
                   <p class="card-text">
                     <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
                     <span v-if="status.question.questionScore != '0'"><br/>Värd
@@ -111,7 +129,7 @@
           </transition>
         </div>
         <!-- Answer area -->
-        <div id="player" class="col-sm-6">
+        <div id="player" class="col-sm-6" style="min-height:110px;">
           <transition name="fade" mode="out-in">
             <div class="card answerArea"  v-bind:key="status.question.questionType"> <!-- Only update on new question type. -->
               <div class="card-body">
@@ -224,6 +242,7 @@
               </div>
               <select class="form-control" type="select" v-model="quizMaster.pendingQuestion.questionType" >
                 <option value="RED_THREAD">Röda tråden</option>
+                <option value="QUIZ">Quiz</option>
                 <option value="MAJOR_VICTORY">Majoriteten bestämmer</option>
                 <option value="BUZZ_RUSH">Handen på Buzzern</option>
               </select>

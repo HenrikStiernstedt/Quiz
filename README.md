@@ -16,8 +16,7 @@ Enter the QuizMaster password to enter as Quiz Master to control the game.
 The QuizMaster does not see anything the other player sees, so he can join the
 quiz. But the quiz master controls all scoring.
 
-Game modes
-===========
+# Game modes
 * "Röda tråden"-style. Start on 5 points and get clues all the way down to 1 point.
    May chose to change answer, but last edited point level is the final score.
    Everyone types in their answers on their phones hidden from each others.
@@ -28,25 +27,22 @@ Game modes
 
 * Buzz! Whoever buzzes first is allowed to answer. Points are awarded manually.
 
-TODO:
-=====
+# TODO:
+
+## Player GUI
 * [ ] Add modal for name prompt if no name has been entered for the session.
 
 * [ ] Hide the QuizMaster-password field as it is not important for the majority of players.
 
-* [ ] Add answering list in order to let players queue up answers.
+* "I'm ready"-notification for players to signal that we're ready to move on to the next question.
 
-* [x] Add button for rejecting an answer and preventing the player from buzzing again this round.
-  - Solved by clicking "uppdatera fråga" after an answer. 
+* "I'm confident"-taunt emotion indicator as well as "I have no clue"-indicator. Just for fun, or maybe with some penalty if a confident player guesses wrong. Maybe a counter for most taunts in a game? - Partly implemented.
 
-* More game modes!
-  - Standard quiz mode where every correct answer gives a point.
+* Multiple answers for combo questions.
 
-  - Majority fails. Everyone types in a hopefully unique item from a list of items.
-  Ie. A car beginning with A. Everyone who have typed in a unique car model gets 2 points.
-  Failing to enter a car model gives no points. Having the same answer as anyone else gives
-  1 point.
+* Help sections for the rules for all game modes.
 
+## QuizMaster GUI
 * Automatic score calculations.
   - Based on QuizMaster's answer.
   - Based on majority rules answer (with possible override).
@@ -55,10 +51,6 @@ TODO:
   This one is supposed to be streamed online or just let everyone have surf to the page
   directly. To be used in tandem with the phone. So far you can always use an
   unused client as the scoreboard.
-
-* "I'm ready"-notification for players to signal that we're ready to move on to the next question.
-
-* "I'm confident"-taunt emotion indicator as well as "I have no clue"-indicator. Just for fun, or maybe with some penalty if a confident player guesses wrong. Maybe a counter for most taunts in a game? - Partly implemented.
 
 * More automatication for question types. Maybe with some kind of template to follow, or just skip 
 some of the freedom the Quizmaster has today that really is not needed. 
@@ -69,11 +61,26 @@ some of the freedom the Quizmaster has today that really is not needed.
 
 * Postpone the adding of correct stores to the total score. Give all points at the same time and then reorder the player list. 
 
-* Multiple answers for combo questions.
+## Game modes
+### Buzz
+* [ ] Add answering list in order to let players queue up answers.
+* [x] Add button for rejecting an answer and preventing the player from buzzing again this round.
+  - Solved by clicking "uppdatera fråga" after an answer. 
+
+### Röda tråden
+
+### Quiz
+  - [x] Standard quiz mode where every correct answer gives a point.
+
+### More game modes
+  - [ ] Majority fails. Everyone types in a hopefully unique item from a list of items.
+  Ie. A car beginning with A. Everyone who have typed in a unique car model gets 2 points.
+  Failing to enter a car model gives no points. Having the same answer as anyone else gives
+  1 point.
 
 
-How to run as QuizMaster
-========================
+
+# How to run as QuizMaster
 Tanken är att frågenummer skall räkans upp automatiskt om man bara lämnar det blankt. Sen måste man välja en frågetyp. Den är inte vad från början då det blir lite skumt innan amn tryckt på "Ny fråga" en gång efter omstart. Sen får man fylla i poäng så att den är något vettigt, t.ex. 10. Fältet "Fråga" är helt frivilligt, men det skrivs då ut på frågekortet. "Svar" används inte alls än. 
  
 Det som man sen behöver ha koll på är att använda "uppdatera fråga" om man behöver rätta något eller vill sänka poängen inför nästa ledtråd i På spåret. "Avsluta fråga" visar upp vad alla har svarat och då kan man anävnda stjärnan i spelarlistan för att markera vilka spelare som svarat rätt. De får då så många poäng som de svarat på, alternativt så många poäng som frågan är värd om man kör "buzzer"-frågetypen. När man är redo för nästa fråga är det viktigt att ställa in alla fält rätt först och sen trycka på "Ny fråga". Då animeras det så att den gamla frågan försvinner och en ny kommer in. 
