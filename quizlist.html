@@ -49,167 +49,162 @@
         <!-- Kontroller för spelare -->
         <div class="questionInfo col-sm-6">
           <transition name="slide">
-              <div class="card slideContainer"  v-bind:key="status.question.questionNumber">
+            <div class="card slideContainer"  v-bind:key="status.question.questionNumber">
 
-                <span v-if="status.question.questionType == 'MAJOR_VICTORY'">
-                  <img class="card-img-top" src="images/majorityrules3.png" alt="Majoriteten bestämmer">
-                  <div class="card-body">
-                    <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
-                    <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Majoriteten bestämmer</h5>
-                    <p class="card-text">
-                      <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
-                      <span v-if="status.question.questionScore != '0'"><br/>Värd
-                        <transition name="bounce" mode="out-in">
-                          <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
-                        </transition>
-                       poäng
-                      </span>
-                    </p>
+              <span v-if="status.question.questionType == 'MAJOR_VICTORY'">
+                <img class="card-img-top" src="images/majorityrules3.png" alt="Majoriteten bestämmer">
+                <div class="card-body">
+                  <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
+                  <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Majoriteten bestämmer</h5>
+                  <p class="card-text">
+                    <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                    <span v-if="status.question.questionScore != '0'"><br/>Värd
+                      <transition name="bounce" mode="out-in">
+                        <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
+                      </transition>
+                      poäng
+                    </span>
+                  </p>
 
-                  </div>
-                </span>
-
-                <span v-if="status.question.questionType == 'RED_THREAD'">
-                  <img class="card-img-top" src="images/Pasparet2.png" alt="Röda tråden">
-                  <div class="card-body">
-                    <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
-                    <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Röda tråden</h5>
-                    <p class="card-text">
-                      <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
-                      <span v-if="status.question.questionScore != '0'"><br/>Värd
-                        <transition name="bounce" mode="out-in">
-                          <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
-                        </transition>
-                       poäng
-                     </span>
-                    </p>
-
-                  </div>
-                </span>
-
-                <span v-if="status.question.questionType == 'BUZZ_RUSH'">
-                  <img class="card-img-top" src="images/buzzers3.png" alt="Buzzers">
-                  <div class="card-body">
-                    <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
-                    <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Handen på buzzern!</h5>
-                    <p class="card-text">
-                      <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
-                      <span v-if="status.question.questionScore != '0'"><br/>Värd
-                        <transition name="bounce" mode="out-in">
-                          <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
-                        </transition>
-                       poäng
-                     </span>
-                    </p>
-
-                  </div>
-                </span>
-
-              </div>
-
-
-            </transition>
-          </div>
-              <!-- Answer area -->
-              <div id="player" class="col-sm-6">
-                <transition name="fade" mode="out-in">
-                  <div class="card answerArea"  v-bind:key="status.question.questionType"> <!-- Only update on new question type. -->
-                    <div class="card-body">
-                      <span v-if="status.question.questionType == 'BUZZ_RUSH'">
-                        <div v-if="status.winningTeam == player.id" v-on:click="buzz()" class="alert alert-success" role="alert">Du har buzzat!</div>
-                        <div v-else-if="status.winningTeam" v-on:click="buzz()" class="alert alert-warning" role="alert">{{status.winningTeamName}} har buzzat.</div>
-                        <div v-else-if="getCurrentPlayer(players, player.id).HasBuzzed" v-on:click="buzz()" type="button" class="btn btn-danger btn-lg btn-block">Du har redan buzzat!</div>
-                        <div v-else-if="status.isBuzzActive" v-on:click="buzz()" type="button" class="btn btn-primary btn-lg btn-block">Buzz!</div>
-
-                      </span>
-                      <span v-else-if="status.isBuzzActive">
-                        <div class="input-group input-group-lg mb-3">
-                          <input v-model="player.pendingAnswer" @keyup.enter="buzz()" type="text" class="form-control" placeholder="Svar" aria-label="Lagnamn" aria-describedby="basic-addon2">
-                          <div class="input-group-append">
-                            <button class="btn btn-outline-secondary" v-on:click="buzz()" type="button">Svara</button>
-                          </div>
-                        </div>
-                        <div>
-                          <span v-if="player.submittedAnswer">Du har svarat: {{player.submittedAnswer}}</span>
-                        </div>
-                      </span>
-                    </div>
-                  </div>
-                </transition>
-              </div>
-              <!-- End of Answer area -->
-
-
-            <!-- Kontroller för score board -->
-            <div class="playerTable col-sm-6">
-              <div class="card">
-                <div class="card-body" style="padding:0px;">
-                  <table class="MaxWidth">
-                    <thead>
-                      <tr>
-                        <th style="width:25px;">#</th>
-                        <th style="width:200px;">Namn</th>
-                        <th style="width:110px;">Status</th>
-                        <th>Svar</th>
-                        <th style="width:50px;">Poäng</th>
-                        <th v-if="player.isQuizMaster">Knappar</th>
-                      </tr>
-                    </thead>
-                  <tbody name="flip-list" is="transition-group">
-
-                      <tr v-for="p in players" v-bind:key="p.team" v-bind:id="p.team" v-bind:questionScore="p.questionScore">
-                        <td>
-                          {{ p.team }}
-                        </td>
-                        <td v-bind:class="[player.id == p.team ?  'you' : '']" class="NameCell">{{ p.teamName }}
-                          <transition name="bounce" mode="out-in">
-                            <span :key="p.NumberOfWins" title="Antal vinster i matchen" v-if="p.NumberOfWins > 0" class="badge badge-pill badge-warning">{{p.NumberOfWins}}</span>
-                          </transition>
-                        </td>
-                        <td>
-                          <transition name="qbounce" mode="out-in">
-                            
-                            <!--<i :key="p.emote" v-if="player.id == p.team" :class="p.emote" class="far fa-2x" data-toggle="tooltip" title="Detta är du"></i>-->
-                            <i :key="1" v-if="p.isCorrect" class="far fa-grin-stars fa-2x shaking"></i>
-                            <i :key="2" v-else-if="status.winningTeam !== p.team && p.HasBuzzed" class="far fa-sad-cry fa-2x headShake"></i>
-                            <i :key="p.emote" v-else-if="p.active" :class="p.emote" class="far fa-2x"></i>
-                            <i :key="p.emote" title="Disconnected" v-else class="far fa-dizzy fa-2x"></i>
-                          </transition>
-                          <span v-if="p.buzzOrder">Buzz: {{ p.buzzOrder }}</span>
-                          <i v-if="status.winningTeam == p.team" class="far fa-hand-paper shaking fa-2x"></i>
-                          <!--<i v-if="status.winningTeam !== p.team && p.HasBuzzed" class="far fa-frown fa-2x"></i>
-                          <i v-if="p.isCorrect" class="far fa-star fa-2x"></i> -->
-                        </td>
-                        <td>
-
-
-                          <transition name="bounce">
-                            <span v-if="p.questionScore > 0 && p.isCorrect" class="badge badge-pill badge-success questionScore">{{p.questionScore}}</span>
-                            <span v-else-if="p.questionScore > 0" class="badge badge-pill badge-secondary questionScore">{{p.questionScore}}</span>
-                          </transition>
-                          <span v-if="p.answer">{{ p.answer }}</span>
-
-
-                        </td>
-                        <td> {{p.score}}</td>
-                        <td v-if="player.isQuizMaster">
-
-                          <a v-on:Click="givePoints((p.questionScore ? p.questionScore : status.question.questionScore), p.id, true)"><i v-if="p.isCorrect" class="far fa-star fa-2x"></i><i v-else class="fas fa-star fa-2x"></i></a>
-                          <a onClick="givePoints(1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-up fa-2x"></i></a>
-                          <a onClick="givePoints(-1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-down fa-2x"></i></a>
-                        </td>
-                    </tr>
-
-                  </tbody>
-                  </table>
                 </div>
-              </div>
+              </span>
+
+              <span v-if="status.question.questionType == 'RED_THREAD'">
+                <img class="card-img-top" src="images/Pasparet2.png" alt="Röda tråden">
+                <div class="card-body">
+                  <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
+                  <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Röda tråden</h5>
+                  <p class="card-text">
+                    <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                    <span v-if="status.question.questionScore != '0'"><br/>Värd
+                      <transition name="bounce" mode="out-in">
+                        <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
+                      </transition>
+                      poäng
+                    </span>
+                  </p>
+
+                </div>
+              </span>
+
+              <span v-if="status.question.questionType == 'BUZZ_RUSH'">
+                <img class="card-img-top" src="images/buzzers3.png" alt="Buzzers">
+                <div class="card-body">
+                  <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
+                  <h5 class="card-title">Fråga nummer {{status.question.questionNumber}}: Handen på buzzern!</h5>
+                  <p class="card-text">
+                    <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                    <span v-if="status.question.questionScore != '0'"><br/>Värd
+                      <transition name="bounce" mode="out-in">
+                        <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
+                      </transition>
+                      poäng
+                    </span>
+                  </p>
+
+                </div>
+              </span>
+
             </div>
 
 
+          </transition>
+        </div>
+        <!-- Answer area -->
+        <div id="player" class="col-sm-6">
+          <transition name="fade" mode="out-in">
+            <div class="card answerArea"  v-bind:key="status.question.questionType"> <!-- Only update on new question type. -->
+              <div class="card-body">
+                <span v-if="status.question.questionType == 'BUZZ_RUSH'">
+                  <div v-if="status.winningTeam == player.id" v-on:click="buzz()" class="alert alert-success" role="alert">Du har buzzat!</div>
+                  <div v-else-if="status.winningTeam" v-on:click="buzz()" class="alert alert-warning" role="alert">{{status.winningTeamName}} har buzzat.</div>
+                  <div v-else-if="getCurrentPlayer(players, player.id).HasBuzzed" v-on:click="buzz()" type="button" class="btn btn-danger btn-lg btn-block">Du har redan buzzat!</div>
+                  <div v-else-if="status.isBuzzActive" v-on:click="buzz()" type="button" class="btn btn-primary btn-lg btn-block">Buzz!</div>
+
+                </span>
+                <span v-else-if="status.isBuzzActive">
+                  <div class="input-group input-group-lg mb-3">
+                    <input v-model="player.pendingAnswer" @keyup.enter="buzz()" type="text" class="form-control" placeholder="Svar" aria-label="Lagnamn" aria-describedby="basic-addon2">
+                    <div class="input-group-append">
+                      <button class="btn btn-outline-secondary" v-on:click="buzz()" type="button">Svara</button>
+                    </div>
+                  </div>
+                  <div>
+                    <span v-if="player.submittedAnswer">Du har svarat: {{player.submittedAnswer}}</span>
+                  </div>
+                </span>
+              </div>
+            </div>
+          </transition>
+        </div>
+        <!-- End of Answer area -->
 
 
+        <!-- Kontroller för score board -->
+        <div class="playerTable col-sm-6">
+          <div class="card">
+            <div class="card-body" style="padding:0px;">
+              <table class="MaxWidth">
+                <thead>
+                  <tr>
+                    <th style="width:25px;">#</th>
+                    <th style="width:200px;">Namn</th>
+                    <th style="width:110px;">Status</th>
+                    <th>Svar</th>
+                    <th style="width:50px;">Poäng</th>
+                    <th v-if="player.isQuizMaster">Knappar</th>
+                  </tr>
+                </thead>
+              <tbody name="flip-list" is="transition-group">
 
+                  <tr v-for="p in players" v-bind:key="p.team" v-bind:id="p.team" v-bind:questionScore="p.questionScore">
+                    <td>
+                      {{ p.team }}
+                    </td>
+                    <td v-bind:class="[player.id == p.team ?  'you' : '']" class="NameCell">{{ p.teamName }}
+                      <transition name="bounce" mode="out-in">
+                        <span :key="p.NumberOfWins" title="Antal vinster i matchen" v-if="p.NumberOfWins > 0" class="badge badge-pill badge-warning">{{p.NumberOfWins}}</span>
+                      </transition>
+                    </td>
+                    <td>
+                      <transition name="qbounce" mode="out-in">
+                        
+                        <!--<i :key="p.emote" v-if="player.id == p.team" :class="p.emote" class="far fa-2x" data-toggle="tooltip" title="Detta är du"></i>-->
+                        <i :key="1" v-if="p.isCorrect" class="far fa-grin-stars fa-2x shaking"></i>
+                        <i :key="2" v-else-if="status.winningTeam !== p.team && p.HasBuzzed" class="far fa-sad-cry fa-2x headShake"></i>
+                        <i :key="p.emote" v-else-if="p.active" :class="p.emote" class="far fa-2x"></i>
+                        <i :key="p.emote" title="Disconnected" v-else class="far fa-dizzy fa-2x"></i>
+                      </transition>
+                      <span v-if="p.buzzOrder">Buzz: {{ p.buzzOrder }}</span>
+                      <i v-if="status.winningTeam == p.team" class="far fa-hand-paper shaking fa-2x"></i>
+                      <!--<i v-if="status.winningTeam !== p.team && p.HasBuzzed" class="far fa-frown fa-2x"></i>
+                      <i v-if="p.isCorrect" class="far fa-star fa-2x"></i> -->
+                    </td>
+                    <td>
+
+
+                      <transition name="bounce">
+                        <span v-if="p.questionScore > 0 && p.isCorrect" class="badge badge-pill badge-success questionScore">{{p.questionScore}}</span>
+                        <span v-else-if="p.questionScore > 0" class="badge badge-pill badge-secondary questionScore">{{p.questionScore}}</span>
+                      </transition>
+                      <span v-if="p.answer">{{ p.answer }}</span>
+
+
+                    </td>
+                    <td> {{p.score}}</td>
+                    <td v-if="player.isQuizMaster">
+
+                      <a v-on:Click="givePoints((p.questionScore ? p.questionScore : status.question.questionScore), p.id, true)"><i v-if="p.isCorrect" class="far fa-star fa-2x"></i><i v-else class="fas fa-star fa-2x"></i></a>
+                      <a onClick="givePoints(1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-up fa-2x"></i></a>
+                      <a onClick="givePoints(-1, $(this).parent().parent().attr('id'), false);"><i class="fas fa-caret-down fa-2x"></i></a>
+                    </td>
+                </tr>
+
+              </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
 
         <div class="col-sm-6 hs-height">
 
