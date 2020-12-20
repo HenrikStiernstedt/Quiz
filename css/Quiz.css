@@ -22,29 +22,6 @@ html, body {
 
 #ChatBox div:nth-child(even) { background: #eee; }
 
-/*
-#BuzzButton { width:100% }
-#BuzzButton.won { background-color: lightgreen; }
-#BuzzButton.lost { background-color: lightcoral; }
-#BuzzButton.active { font-style: bold; }
-#messages { list-style-type: none; margin: 0; padding: 0; }
-#messages li { padding: 5px 10px; }
-#messages li:nth-child(odd) { background: #eee; }
-*/
-
-/*
- Some quick an simple table styleing.
-*/
-/*
-table {
-  border-collapse: collapse;
-}
-
-table, th, td {
-  border: 1px solid lightgray;
-  padding: 1px;
-}
-*/
 table {
     border-collapse:separate;
     border:solid black 2px;
@@ -80,6 +57,15 @@ td:first-child, th:first-child {
 .questionInfo {
   /*min-height: 400px;*/
   display: grid;
+  margin-bottom: 10px;
+}
+
+.playerTable .card {
+  border-width: 0px;
+}
+
+.playerTable tr {
+  background-color: white;
 }
 
 .answerArea {
