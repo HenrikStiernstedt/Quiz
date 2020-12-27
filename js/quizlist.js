@@ -131,6 +131,10 @@ var vm = new Vue({
       }
     },
     buzz: function () {
+      if(vm.status.question.questionType != "BUZZ_RUSH" && !vm.player.pendingAnswer)
+      {
+        return;
+      }
       socket.emit('Buzz', vm.player.pendingAnswer, function (answer)
         {
           console.log("You answered " + answer);

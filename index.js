@@ -532,30 +532,115 @@ io.on('connection', function(socket){
   });
 
   socket.on("AutoCorrect", function(correctAnswer)  {
+    if(!verifyQM(socket.handshake.session.team, "AutoCorrect")) { return; }
     // Autocorrect only works on public answers at the moment. User "Avsluta fråga" först.
-    console.log("AutoCorrecting with answer: " + correctAnswer);
-    if(correctAnswer == null) {return; }
 
-    data.players.forEach(player => {
+    if(data.status.question.questionType == "RED_THREAD" || data.status.question.questionType == "QUIZ")
+    {
+      console.log("AutoCorrecting with answer: " + correctAnswer);
+      if(correctAnswer == null) {return; }
 
-      var currentScore = player.questionScore ? player.questionScore : data.status.question.questionScore;
+      data.players.forEach(player => {
 
-      if(player.answer && player.answer.toLowerCase() == correctAnswer.toLowerCase()) {
-        if(!player.isCorrect)
+        var currentScore = player.questionScore ? player.questionScore : data.status.question.questionScore;
+
+        if(player.answer && player.answer.toLowerCase() == correctAnswer.toLowerCase()) {
+          if(!player.isCorrect)
+          {
+            player.score += currentScore; // TODO: Remove this score calculation. It should be done at a later stage instead. 
+          }
+          player.isCorrect = true;
+        } 
+        else
         {
-          player.score += currentScore; // TODO: Remove this score calculation. It should be done at a later stage instead. 
+          if(player.isCorrect)
+          {
+            player.score -= currentScore; // TODO: Remove this score calculation. It should be done at a later stage instead. 
+          }
+          player.isCorrect = false;
         }
-        player.isCorrect = true;
-      } 
-      else
-      {
-        if(player.isCorrect)
+      });
+    }
+    else if(data.status.question.questionType == "MAJOR_VICTORY")
+    {
+      console.log("AutoCorrecting for  majority rules");
+
+      // Count the number of each similar answer.
+      // Check what palayers answered the most common answer, which can be two different answers if they get the same count
+      // Give out points.
+      
+      var answers = [];
+      var maxNumberOfAnswers = 0;
+
+      data.answers.forEach(answer => {
+        console.log("Investigating: " + answer.answer);
+        if(answer.answer == undefined || answer.answer == null || answer.answer == "")
         {
-          player.score -= currentScore; // TODO: Remove this score calculation. It should be done at a later stage instead. 
+          console.log("No valid answer found");
         }
-        player.isCorrect = false;
-      }
-    });
+        else
+        {
+          var currentAnswer = getCurrentObject(answers, answer.answer.toLowerCase());
+
+          console.log("CurrentAnswer = " + currentAnswer );
+
+          if(!currentAnswer && currentAnswer == undefined)
+          {
+            answers.push({
+              "id": answer.answer.toLowerCase(),
+              "count": 1,
+              "playerIds": [ answer.id ]
+            });
+            if(maxNumberOfAnswers == 0)
+            {
+              maxNumberOfAnswers = 1;
+            }
+          }
+          else {
+            currentAnswer.count++;
+            currentAnswer.playerIds.push(answer.id);
+
+            if(maxNumberOfAnswers < currentAnswer.count)
+            {
+              maxNumberOfAnswers = currentAnswer.count;
+            }
+          }
+        }
+      });
+
+      console.log(answers);
+
+      answers.forEach(answer => {
+        console.log(answer.count);
+        if(answer.count == maxNumberOfAnswers)
+        {
+          console.log("Players answering with answer " + answer.id);
+        }
+        
+        answer.playerIds.forEach(playerId => {
+          
+
+          var player = getCurrentPlayer(playerId);
+          var currentScore = parseInt(player.questionScore ? player.questionScore : data.status.question.questionScore);
+
+          if(answer.count == maxNumberOfAnswers) {
+            if(!player.isCorrect)
+            {
+              player.score += currentScore; // TODO: Remove this score calculation. It should be done at a later stage instead. 
+            }
+            player.isCorrect = true;
+          } 
+          else
+          {
+            if(player.isCorrect)
+            {
+              player.score -= currentScore; // TODO: Remove this score calculation. It should be done at a later stage instead. 
+            }
+            player.isCorrect = false;
+          }
+        });
+      });
+    }
     io.emit('UpdatePlayers', {status: data.status, players: data.players });
   });
 
@@ -630,7 +715,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('NewGame', function() {
-    if(!verifyQM(socket.handshake.session.team, "AwardPointsToTeam")) { return; }
+    if(!verifyQM(socket.handshake.session.team, "NewGame")) { return; }
     resetPlayers(true);
 
     // Sort player array according to score.

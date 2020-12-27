@@ -144,7 +144,7 @@
                   <div class="input-group input-group-lg mb-3">
                     <input v-model="player.pendingAnswer" @keyup.enter="buzz()" type="text" class="form-control" placeholder="Svar" aria-label="Lagnamn" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" v-on:click="buzz()" type="button">Svara</button>
+                      <button class="btn btn-outline-secondary" v-on:click="buzz()" :disabled="!player.pendingAnswer" type="button">Svara</button>
                     </div>
                   </div>
                   <div>
