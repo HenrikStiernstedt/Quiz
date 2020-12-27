@@ -57,17 +57,18 @@ var vm = new Vue({
     },
     quizMaster :
     {
-      pendingQuestion : {
-        questionNumber: 0,
-        questionType : "BUZZ_RUSH",
-        questionText: "",
-        correctAnswer: "",
-        questionScore: 2,
-        questionClues : [{
+      "pendingQuestion" : {
+        "questionNumber": 0,
+        "questionType" : "BUZZ_RUSH",
+        "questionText": "",
+        "correctAnswer": "",
+        "questionScore": 2,
+        "questionClues" : [{
           "clueScore" : 0,
           "clueText" : ""
         }]
-      }
+      },
+      "savegame": "game"
     },
     environment :
     {
@@ -128,6 +129,16 @@ var vm = new Vue({
         console.log("Ny omgång!");
         socket.emit('NewGame');
         popAudioElement.play();
+      }
+    },
+    saveGame: function() {
+      socket.emit("Save", vm.quizMaster.savegame);
+      console.log("Game saved with name " + vm.quizMaster.savegame + " at " + new Date().toLocaleDateString('se-SV', {hour: '2-digit', minute: '2-digit'}));
+    },
+    loadGame: function() {
+      if(confirm("Är du säker på att du vill ladda in sparat spel?"))
+      {
+        socket.emit("Load", vm.quizMaster.savegame);
       }
     },
     buzz: function () {

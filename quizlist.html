@@ -278,6 +278,17 @@
               <button type="button" class="btn btn-primary mb-2" v-on:click="newGame()">Ny omgång</button>
               <button type="button" class="btn btn-primary mb-2" v-on:click="purge()">Rensa inaktiva</button>
             </div>
+            
+            <div class="input-group mb-3">
+              <div class="input-group-prepend">
+                <span class="input-group-text" id="savename">Save game name</span>
+              </div>
+              <input v-model="quizMaster.savegame" type="text" class="form-control" aria-label="Default" aria-describedby="savename">
+            </div>
+            <div class="btn-group-prepend" role="group" aria-label="Game-buttons">
+              <button type="button" class="btn btn-primary mb-2" v-on:click="saveGame()">Spara</button>
+              <button type="button" class="btn btn-primary mb-2" v-on:click="loadGame()">Ladda</button>
+            </div>
 
 
           </div>

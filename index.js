@@ -365,6 +365,36 @@ io.on('connection', function(socket){
 
   });
 
+  socket.on('Save', function(filename) {
+    if(!verifyQM(socket.handshake.session.team, "Save")) { return; }
+    if(!filename) {
+      filename = 'data';
+    }
+    let dataToSave = JSON.stringify(data);
+    try {
+      fs.writeFileSync('saves/'+filename+'.json', dataToSave);
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+  socket.on('Load', function(filename)
+  {
+    if(!verifyQM(socket.handshake.session.team, "Load")) { return; }
+    if(!filename) {
+      filename = 'data';
+    }
+    try {
+      let dataToLoad = fs.readFileSync('saves/'+filename+'.json', null);
+      data = JSON.parse(dataToLoad);
+      io.emit('UpdatePlayers', {status: data.status, players: data.players } );
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
+
+
 /******************************************************************************
  * Socket.io code for GAME EVENTS
  ******************************************************************************/
