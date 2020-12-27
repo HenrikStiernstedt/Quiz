@@ -72,15 +72,15 @@ some of the freedom the Quizmaster has today that really is not needed.
 
 ### Quiz
   - [x] Standard quiz mode where every correct answer gives a point.
+  - [ ] Other scoring mechanism with autoscoring where closest number gives points.
+  - [ ] Other scoring mechanism with autoscoring where closeness to the correct answer gives graduately lower/higher score. 
 
 ### More game modes
   - [ ] Majority fails. Everyone types in a hopefully unique item from a list of items.
   Ie. A car beginning with A. Everyone who have typed in a unique car model gets 2 points.
   Failing to enter a car model gives no points. Having the same answer as anyone else gives
   1 point.
-
-
-
+  
 # How to run as QuizMaster
 Tanken är att frågenummer skall räkans upp automatiskt om man bara lämnar det blankt. Sen måste man välja en frågetyp. Den är inte vad från början då det blir lite skumt innan amn tryckt på "Ny fråga" en gång efter omstart. Sen får man fylla i poäng så att den är något vettigt, t.ex. 10. Fältet "Fråga" är helt frivilligt, men det skrivs då ut på frågekortet. "Svar" används inte alls än. 
  
