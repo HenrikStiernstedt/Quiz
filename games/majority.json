@@ -1,0 +1,79 @@
+[{
+    "questionNumber": 1,
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Vilken månad är den bästa på året?",
+    "correctAnswer": "",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Bästa nyårsmaten?",
+    "correctAnswer": "",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Bästa nyårslåten?",
+    "correctAnswer": "",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Bästa nyårsmaten?",
+    "correctAnswer": "",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Var kommer tomten från?",
+    "correctAnswer": "",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Vanligaste nyårslöftet?",
+    "correctAnswer": "",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Bästa julfilmen?",
+    "correctAnswer": "",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]
+

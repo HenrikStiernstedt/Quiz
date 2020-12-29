@@ -415,7 +415,7 @@ io.on('connection', function(socket){
       filename = 'question';
     }
     try {
-      let dataToLoad = fs.readFileSync('saves/'+filename+'.json', null);
+      let dataToLoad = fs.readFileSync('games/'+filename+'.json', null);
       data.questionList = JSON.parse(dataToLoad);
       console.log("Loaded questions");
       console.log(data.questionList);

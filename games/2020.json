@@ -1,0 +1,34 @@
+[{
+    "questionNumber": 1,
+    "questionType" : "QUIZ",
+    "questionText": "Vilka vann årets upplaga av svenska melodifestivalen?",
+    "correctAnswer": "The Mamas",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": 2,
+    "questionType" : "QUIZ",
+    "questionText": "Vilken film vann årets film på Oscarsgalan i februari?",
+    "correctAnswer": "Parasit",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": 3,
+    "questionType" : "QUIZ",
+    "questionText": "USA gruffade med Iran i början av 2020. Iran råkade då skjuta ned ett passagerarplan. Vilken nationalitet hade flygplanet?",
+    "correctAnswer": "Ukraina",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]
