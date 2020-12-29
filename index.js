@@ -614,7 +614,7 @@ io.on('connection', function(socket){
 
       data.players.forEach(player => {
 
-        var currentScore = player.questionScore ? player.questionScore : data.status.question.questionScore;
+        var currentScore = parseInt(player.questionScore ? player.questionScore : data.status.question.questionScore);
 
         if(player.answer && player.answer.toLowerCase() == correctAnswer.toLowerCase()) {
           if(!player.isCorrect)
