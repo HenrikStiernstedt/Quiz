@@ -47,7 +47,7 @@ td:first-child, th:first-child {
 }
 
 .you {
-  background-color: lightgreen;
+  background-color: #90ee9047;
 }
 
 .quizMasterInfo {
@@ -62,18 +62,24 @@ td:first-child, th:first-child {
 
 .card {
   margin-bottom: 10px;
+  box-shadow: inset 0 0 2000px rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(10px);;
 }
 
 .playerTable .card {
   border-width: 0px;
 }
 
+/*
 .playerTable tr {
   background-color: white;
 }
+*/
 
-.answerArea {
-  background-color: lightblue
+body {
+  background: url(../images/background.jpg) repeat fixed; 
 }
 
 .slideContainer {
