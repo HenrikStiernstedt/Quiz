@@ -121,6 +121,10 @@ var vm = new Vue({
       console.log(vm.quizMaster.pendingQuestion);
       socket.emit('UpdateQuestion', 'UPDATE', vm.quizMaster.pendingQuestion);
     },
+    lowerQuestionScore: function() {
+      console.log("Uppdaterar frågan. Sänker poängen");
+      vm.quizMaster.pendingQuestion.questionScore -= 1;
+    },
     completeQuestion: function () {
       console.log("Avslutar frågan!");
       console.log(vm.quizMaster.pendingQuestion);

@@ -263,7 +263,11 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="asdf">Poäng</span>
                 </div>
-                <input v-model="quizMaster.pendingQuestion.questionScore" type="text" class="form-control" aria-label="Default" aria-describedby="asdf">
+                <input v-model="quizMaster.pendingQuestion.questionScore" type="text" class="form-control" aria-label="Default" aria-describedby="Poäng">
+                <div class="input-group-append">
+                  <button type="button" class="btn btn-primary" v-on:click="lowerQuestionScore()">-1p</button> <!-- :disabled="quizMaster.QuestionListNumber >= quizMaster.questionList.length" -->
+                  <button type="button" class="btn btn-primary" v-on:click="updateQuestion()">UF</button>
+                </div>    
               </div>
               <div class="input-group mb-1">
                 <div class="input-group-prepend">
