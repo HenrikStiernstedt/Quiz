@@ -154,14 +154,14 @@
 
                 </span>
                 <span v-else-if="status.isBuzzActive">
-                  <div class="input-group input-group-lg mb-3">
+                  <div class="input-group input-group-lg">
                     <input v-model="player.pendingAnswer" @keyup.enter="buzz()" type="text" class="form-control" placeholder="Svar" aria-label="Lagnamn" aria-describedby="basic-addon2">
                     <div class="input-group-append">
                       <button class="btn btn-primary" v-on:click="buzz()" :disabled="!player.pendingAnswer" type="button">Svara</button>
                     </div>
                   </div>
                   <div>
-                    <span v-if="player.submittedAnswer">Du har svarat: {{player.submittedAnswer}}</span>
+                    <small v-if="player.submittedAnswer">Du har svarat: {{player.submittedAnswer}}</small>
                   </div>
                 </span>
               </div>
