@@ -69,6 +69,8 @@ var vm = new Vue({
         }]
       },
       "savegame": "game",
+      "loadQuestions": "2020",
+      "QuestionListNumber": 0,
       "questionList": [{
         "questionNumber": 0,
         "questionType" : "BUZZ_RUSH",
@@ -128,12 +130,29 @@ var vm = new Vue({
       console.log("Autocorrecting with answer: " + vm.quizMaster.pendingQuestion.correctAnswer);
       socket.emit("AutoCorrect", vm.quizMaster.pendingQuestion.correctAnswer);
     },
+    loadNextQuestion: function() {
+      if(vm.quizMaster.QuestionListNumber < vm.quizMaster.questionList.length)
+      {
+        console.log("Hämtar nästa fråga: " + vm.quizMaster.QuestionListNumber);
+        vm.quizMaster.pendingQuestion = vm.quizMaster.questionList[vm.quizMaster.QuestionListNumber];
+        vm.quizMaster.QuestionListNumber++;
+      }
+      else
+      {
+        console.log("Slut på frågor att hämta.");
+      }
+    },
     newQuestion: function () {
       console.log("Ny fråga!");
       console.log(vm.quizMaster.pendingQuestion);
       socket.emit('UpdateQuestion', 'NEW', vm.quizMaster.pendingQuestion);
       popAudioElement.play();
     },
+    loadQuestions: function() {
+      console.log("Ladda ny Quiz!");
+      socket.emit("LoadQuestions", vm.quizMaster.loadQuestions);
+    },
+
     newGame: function() {
       if(confirm("Är du säker?"))
       {
@@ -275,6 +294,7 @@ function initQuizlist() {
   socket.on('ReturnLoadQuestions', function(questionList) {
     console.log("Nya frågor inlästa!");
     console.log(questionList);
+    vm.quizMaster.QuestionListNumber = 0;
     vm.quizMaster.questionList = questionList;
   });
 

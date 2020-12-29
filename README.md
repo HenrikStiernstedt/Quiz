@@ -58,7 +58,7 @@ quiz. But the quiz master controls all scoring.
 * More automatication for question types. Maybe with some kind of template to follow, or just skip 
 some of the freedom the Quizmaster has today that really is not needed. 
 
-* Preconfigured questions. Today it's mostly an answering sheet and protocol, not good at displaying questions, even though it's possible. PRIORITY!
+* [x] Preconfigured questions.
 
 * Better flow when displaying the correct answer and more satisfying animations when you get points. Sounds! Stars!
 

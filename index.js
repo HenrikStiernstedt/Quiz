@@ -407,7 +407,7 @@ io.on('connection', function(socket){
   /*
    * Load server side with questions from a file and return the full list to the QM.
    */
-  /*
+  
   socket.on('LoadQuestions', function(filename)
   {
     if(!verifyQM(socket.handshake.session.team, "LoadQuestions")) { return; }
@@ -428,7 +428,7 @@ io.on('connection', function(socket){
       console.error(error);
     }
   });
-  */
+  
 
 
 /******************************************************************************
@@ -517,6 +517,12 @@ io.on('connection', function(socket){
     console.log(action);
     console.log(question);
     if(!verifyQM(socket.handshake.session.team, "UpdateQuestion")) {
+      return;
+    }
+
+    if(question == null)
+    {
+      console.log("Missing question in call to UpdateQuestion");
       return;
     }
 
