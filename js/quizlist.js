@@ -68,7 +68,18 @@ var vm = new Vue({
           "clueText" : ""
         }]
       },
-      "savegame": "game"
+      "savegame": "game",
+      "questionList": [{
+        "questionNumber": 0,
+        "questionType" : "BUZZ_RUSH",
+        "questionText": "",
+        "correctAnswer": "",
+        "questionScore": 2,
+        "questionClues" : [{
+          "clueScore" : 0,
+          "clueText" : ""
+        }]
+      }]
     },
     environment :
     {
@@ -235,6 +246,13 @@ function loadSounds() {
 
 function initQuizlist() {
 
+  /*
+   //DEBUG-method that will come n a future version of socket.io
+  socket.onAny((eventName, ...args) => {
+    console.log("CALL: " + eventName);
+  });
+  */
+
   socket.on('chat message', function(msgJson){
     //$('#messages').append($('<li>').text(msg));
 
@@ -252,6 +270,12 @@ function initQuizlist() {
     console.log("Incomming updated question");
     console.log(question);
     vm.status.question = question;
+  });
+
+  socket.on('ReturnLoadQuestions', function(questionList) {
+    console.log("Nya frågor inlästa!");
+    console.log(questionList);
+    vm.quizMaster.questionList = questionList;
   });
 
   socket.on('ResetBuzz', function(status) {

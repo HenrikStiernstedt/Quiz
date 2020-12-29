@@ -96,7 +96,18 @@ var data = {
     "questionScore": 0,
     "clueScore": 0
   }],
-  quizMasterPassword : '4552'
+  quizMasterPassword : '4552',
+  "questionList": [{
+    questionNumber: 0,
+    questionType : "BUZZ_RUSH",
+    questionText: "Vem där?",
+    correctAnswer: "",
+    questionScore: 10,
+    questionClues : [{
+      "clueScore" : 10,
+      "clueText" : ""
+    }]
+  }]
 }
 
 data.players.pop();
@@ -393,6 +404,31 @@ io.on('connection', function(socket){
     }
   });
 
+  /*
+   * Load server side with questions from a file and return the full list to the QM.
+   */
+  /*
+  socket.on('LoadQuestions', function(filename)
+  {
+    if(!verifyQM(socket.handshake.session.team, "LoadQuestions")) { return; }
+    if(!filename) {
+      filename = 'question';
+    }
+    try {
+      let dataToLoad = fs.readFileSync('saves/'+filename+'.json', null);
+      data.questionList = JSON.parse(dataToLoad);
+      console.log("Loaded questions");
+      console.log(data.questionList);
+//      var player = getCurrentPlayer(socket.handshake.session.team);
+//      io.to(player.socketId).emit("ReturnLoadQuestions", data.questionList);
+      
+      io.sockets.connected[socket.id].emit("ReturnLoadQuestions", data.questionList);
+
+    } catch (error) {
+      console.error(error);
+    }
+  });
+  */
 
 
 /******************************************************************************

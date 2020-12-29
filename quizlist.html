@@ -136,7 +136,7 @@
                 <span v-if="status.question.questionType == 'BUZZ_RUSH'">
                   <div v-if="status.winningTeam == player.id" v-on:click="buzz()" class="alert alert-success" role="alert">Du har buzzat!</div>
                   <div v-else-if="status.winningTeam" v-on:click="buzz()" class="alert alert-warning" role="alert">{{status.winningTeamName}} har buzzat.</div>
-                  <div v-else-if="getCurrentPlayer(players, player.id).HasBuzzed" v-on:click="buzz()" type="button" class="btn btn-danger btn-lg btn-block">Du har redan buzzat!</div>
+                  <div v-else-if="getCurrentPlayer(players, player.id)?.HasBuzzed" v-on:click="buzz()" type="button" class="btn btn-danger btn-lg btn-block">Du har redan buzzat!</div>
                   <div v-else-if="status.isBuzzActive" v-on:click="buzz()" type="button" class="btn btn-primary btn-lg btn-block">Buzz!</div>
 
                 </span>
@@ -227,68 +227,75 @@
         <div class="col-sm-6 hs-height">
 
           <!-- Kontroller för QuizMaster -->
-          <div v-if="player.isQuizMaster" class="quizMasterInfo col-sm-12">
+          <div v-if="player.isQuizMaster" class="card quizMasterInfo">
 
-            Du är QuizMaster
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="asdf">Frågenummer</span>
+          
+            <div class="card-header">
+              Du är QuizMaster
+            </div>
+            <div class="card-body">
+              
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="asdf">Frågenummer</span>
+                </div>
+                <input v-model="quizMaster.pendingQuestion.questionNumber" type="text" class="form-control" aria-label="Default" aria-describedby="asdf">
               </div>
-              <input v-model="quizMaster.pendingQuestion.questionNumber" type="text" class="form-control" aria-label="Default" aria-describedby="asdf">
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Frågetyp</span>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Frågetyp</span>
+                </div>
+                <select class="form-control" type="select" v-model="quizMaster.pendingQuestion.questionType" >
+                  <option value="RED_THREAD">Röda tråden</option>
+                  <option value="QUIZ">Quiz</option>
+                  <option value="MAJOR_VICTORY">Majoriteten bestämmer</option>
+                  <option value="BUZZ_RUSH">Handen på Buzzern</option>
+                </select>
               </div>
-              <select class="form-control" type="select" v-model="quizMaster.pendingQuestion.questionType" >
-                <option value="RED_THREAD">Röda tråden</option>
-                <option value="QUIZ">Quiz</option>
-                <option value="MAJOR_VICTORY">Majoriteten bestämmer</option>
-                <option value="BUZZ_RUSH">Handen på Buzzern</option>
-              </select>
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="inputGroup-sizing-default">Fråga</span>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Fråga</span>
+                </div>
+                <textarea v-model="quizMaster.pendingQuestion.questionText" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <!--<input v-model="quizMaster.pendingQuestion.questionText" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">-->
               </div>
-              <textarea v-model="quizMaster.pendingQuestion.questionText" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-              <!--<input v-model="quizMaster.pendingQuestion.questionText" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default">-->
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="asdf">Poäng</span>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="asdf">Poäng</span>
+                </div>
+                <input v-model="quizMaster.pendingQuestion.questionScore" type="text" class="form-control" aria-label="Default" aria-describedby="asdf">
               </div>
-              <input v-model="quizMaster.pendingQuestion.questionScore" type="text" class="form-control" aria-label="Default" aria-describedby="asdf">
-            </div>
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="asdf">Svar</span>
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="asdf">Svar</span>
+                </div>
+                <input v-model="quizMaster.pendingQuestion.correctAnswer" type="text" class="form-control" aria-label="Default" aria-describedby="asdf">
               </div>
-              <input v-model="quizMaster.pendingQuestion.correctAnswer" type="text" class="form-control" aria-label="Default" aria-describedby="asdf">
-            </div>
-            <div class="btn-group" role="group" aria-label="Question-buttons">
-              <button type="button" class="btn btn-primary mb-2" v-on:click="updateQuestion()">Uppdatera fråga</button>
-              <button type="button" class="btn btn-primary mb-2" v-on:click="completeQuestion()" :disabled="!status.isBuzzActive">Avsluta fråga</button>
-              <button type="button" class="btn btn-primary mb-2" v-on:click="autoCorrect()" :disabled="status.isBuzzActive">Rätta</button>
-            </div>
-            <div class="btn-group" role="group" aria-label="New-Question">
-              <button type="button" class="btn btn-primary mb-2" v-on:click="newQuestion()">Ny fråga</button>
-            </div>
-            <div class="btn-group-prepend" role="group" aria-label="Game-buttons">
-              <button type="button" class="btn btn-primary mb-2" v-on:click="newGame()">Ny omgång</button>
-              <button type="button" class="btn btn-primary mb-2" v-on:click="purge()">Rensa inaktiva</button>
+              <div class="btn-group" role="group" aria-label="Question-buttons">
+                <button type="button" class="btn btn-primary mb-2" v-on:click="updateQuestion()">Uppdatera fråga</button>
+                <button type="button" class="btn btn-primary mb-2" v-on:click="completeQuestion()" :disabled="!status.isBuzzActive">Avsluta fråga</button>
+                <button type="button" class="btn btn-primary mb-2" v-on:click="autoCorrect()" :disabled="status.isBuzzActive">Rätta</button>
+              </div>
+              <div class="btn-group" role="group" aria-label="New-Question">
+                <button type="button" class="btn btn-primary mb-2" v-on:click="newQuestion()">Ny fråga</button>
+              </div>
+              <div class="btn-group-prepend" role="group" aria-label="Game-buttons">
+                <button type="button" class="btn btn-primary mb-2" v-on:click="newGame()">Ny omgång</button>
+                <button type="button" class="btn btn-primary mb-2" v-on:click="purge()">Rensa inaktiva</button>
+              </div>
+              
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <span class="input-group-text" id="savename">Save game name</span>
+                </div>
+                <input v-model="quizMaster.savegame" type="text" class="form-control" aria-label="Default" aria-describedby="savename">
+              </div>
+              <div class="btn-group-prepend" role="group" aria-label="Game-buttons">
+                <button type="button" class="btn btn-primary mb-2" v-on:click="saveGame()">Spara</button>
+                <button type="button" class="btn btn-primary mb-2" v-on:click="loadGame()">Ladda</button>
+              </div>
             </div>
             
-            <div class="input-group mb-3">
-              <div class="input-group-prepend">
-                <span class="input-group-text" id="savename">Save game name</span>
-              </div>
-              <input v-model="quizMaster.savegame" type="text" class="form-control" aria-label="Default" aria-describedby="savename">
-            </div>
-            <div class="btn-group-prepend" role="group" aria-label="Game-buttons">
-              <button type="button" class="btn btn-primary mb-2" v-on:click="saveGame()">Spara</button>
-              <button type="button" class="btn btn-primary mb-2" v-on:click="loadGame()">Ladda</button>
-            </div>
 
 
           </div>

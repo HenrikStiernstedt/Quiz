@@ -35,10 +35,12 @@ quiz. But the quiz master controls all scoring.
 * [ ] Hide the QuizMaster-password field as it is not important for the majority of players.
 
 * "I'm ready"-notification for players to signal that we're ready to move on to the next question.
+  - [x] Smileys exists now and it can be used for this.
 
-* "I'm confident"-taunt emotion indicator as well as "I have no clue"-indicator. Just for fun, or maybe with some penalty if a confident player guesses wrong. Maybe a counter for most taunts in a game? - Partly implemented.
+* "I'm confident"-taunt emotion indicator as well as "I have no clue"-indicator. Just for fun, or maybe with some penalty if a confident player guesses wrong. Maybe a counter for most taunts in a game? 
+  - [x] Partly implemented, with no impact on the game.
 
-* Multiple answers for combo questions.
+* Multiple answers for combo questions. PRIORITY!
 
 * Help sections for the rules for all game modes.
 
@@ -56,14 +58,15 @@ quiz. But the quiz master controls all scoring.
 * More automatication for question types. Maybe with some kind of template to follow, or just skip 
 some of the freedom the Quizmaster has today that really is not needed. 
 
-* Preconfigured questions. Today it's mostly an answering sheet and protocol, not good at displaying questions, even though it's possible.
+* Preconfigured questions. Today it's mostly an answering sheet and protocol, not good at displaying questions, even though it's possible. PRIORITY!
 
 * Better flow when displaying the correct answer and more satisfying animations when you get points. Sounds! Stars!
 
-* Postpone the adding of correct stores to the total score. Give all points at the same time and then reorder the player list. 
+* Postpone the adding of correct stores to the total score. Give all points at the same time and then reorder the player list. PRIORITY!
 
-* [ x Save/load functions. 
-  -  [ ] With "restore session" function if the server crashes. 
+* [ ] Save/load functions. 
+  - [x] Save/load within existing game.
+  - [ ] "Restore session" function if the server crashes, and reconnect existing users to their old users.
 
 ## Game modes
 ### Buzz
