@@ -51,6 +51,19 @@
           <transition name="slide">
             <div class="card slideContainer"  v-bind:key="status.question.questionNumber">
 
+              <span v-if="status.question.questionType == 'WELCOME'">
+                <img class="card-img-top" src="images/welcome2020.jpg" alt="Gott nytt år">
+                <div class="card-body">
+                  
+                  
+                  <h5 class="card-title">Stina & Henriks nyårsquiz!</h5>
+                  <p class="card-text">
+                    
+                  </p>
+
+                </div>
+              </span>
+
               <span v-if="status.question.questionType == 'MAJOR_VICTORY'">
                 <img class="card-img-top" src="images/majorityrules3.png" alt="Majoriteten bestämmer">
                 <div class="card-body">
@@ -131,7 +144,7 @@
         <!-- Answer area -->
         <div id="player" class="col-sm-6" style="min-height:110px;">
           <transition name="fade" mode="out-in">
-            <div class="card answerArea"  v-bind:key="status.question.questionType"> <!-- Only update on new question type. -->
+            <div v-if="status.question.questionType != 'WELCOME'" class="card answerArea"  v-bind:key="status.question.questionType"> <!-- Only update on new question type. -->
               <div class="card-body">
                 <span v-if="status.question.questionType == 'BUZZ_RUSH'">
                   <div v-if="status.winningTeam == player.id" v-on:click="buzz()" class="alert alert-success" role="alert">Du har buzzat!</div>
@@ -250,6 +263,7 @@
                   <option value="QUIZ">Quiz</option>
                   <option value="MAJOR_VICTORY">Majoriteten bestämmer</option>
                   <option value="BUZZ_RUSH">Handen på Buzzern</option>
+                  <option value="WELCOME">Välkomstskärm</option>
                 </select>
               </div>
               <div class="input-group mb-1">
