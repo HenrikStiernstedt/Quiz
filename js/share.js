@@ -18,6 +18,11 @@
         }
     };
 
+    exports.cleanString = function(input) 
+    {
+      return input.replace(/[^0-9a-z]/gi, '').toLowerCase();
+    };
+
     exports.maxConfidence = 2;
     exports.minConfidence = -3;
 

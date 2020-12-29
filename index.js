@@ -616,7 +616,7 @@ io.on('connection', function(socket){
 
         var currentScore = parseInt(player.questionScore ? player.questionScore : data.status.question.questionScore);
 
-        if(player.answer && player.answer.toLowerCase() == correctAnswer.toLowerCase()) {
+        if(player.answer && share.cleanString(player.answer) == share.cleanString(correctAnswer)) {
           if(!player.isCorrect)
           {
             player.score += currentScore; // TODO: Remove this score calculation. It should be done at a later stage instead. 
@@ -652,14 +652,14 @@ io.on('connection', function(socket){
         }
         else
         {
-          var currentAnswer = getCurrentObject(answers, answer.answer.toLowerCase());
 
           console.log("CurrentAnswer = " + currentAnswer );
+          var currentAnswer = getCurrentObject(answers, share.cleanString(answer.answer));  
 
           if(!currentAnswer && currentAnswer == undefined)
           {
             answers.push({
-              "id": answer.answer.toLowerCase(),
+              "id": share.cleanString(answer.answer),
               "count": 1,
               "playerIds": [ answer.id ]
             });
