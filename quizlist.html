@@ -59,7 +59,7 @@
                   
                   <h5 class="card-title">Stina & Henriks nyårsquiz!</h5>
                   <p class="card-text">
-                    <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                    <strong>{{ status.question.questionText }}</span></strong>
                     <br/>
                     <span>&nbsp;</span>
                   </p>
@@ -73,7 +73,7 @@
                   <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                   <h5 class="card-title">Fråga {{status.question.questionNumber}}: Majoriteten bestämmer</h5>
                   <p class="card-text">
-                    <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                    <strong><span style="white-space: normal;">{{ status.question.questionText.replace(/&nbsp;/g, ' ') }}</span></strong>
                     <span v-if="status.question.questionScore != '0'"><br/>Värd
                       <transition name="bounce" mode="out-in">
                         <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
@@ -91,7 +91,7 @@
                   <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                   <h5 class="card-title">Fråga {{status.question.questionNumber}}: Quiz</h5>
                   <p class="card-text">
-                    <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                    <strong><span style="white-space: normal;">{{ status.question.questionText.replace(/&nbsp;/g, ' ') }}</span></strong>
                     <span v-if="status.question.questionScore != '0'"><br/>Värd
                       <transition name="bounce" mode="out-in">
                         <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
@@ -109,7 +109,7 @@
                   <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                   <h5 class="card-title">Fråga {{status.question.questionNumber}}: Röda tråden</h5>
                   <p class="card-text">
-                    <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                    <strong><span style="white-space: normal;">{{ status.question.questionText.replace(/&nbsp;/g, ' ') }}</span></strong>
                     <span v-if="status.question.questionScore != '0'"><br/>Värd
                       <transition name="bounce" mode="out-in">
                         <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
@@ -127,7 +127,7 @@
                   <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                   <h5 class="card-title">Fråga {{status.question.questionNumber}}: Handen på buzzern!</h5>
                   <p class="card-text">
-                    <strong><span style="white-space: pre-line;">{{ status.question.questionText }}</span></strong>
+                    <strong><span style="white-space: normal;">{{ status.question.questionText.replace(/&nbsp;/g, ' ') }}</span></strong>
                     <span v-if="status.question.questionScore != '0'"><br/>Värd
                       <transition name="bounce" mode="out-in">
                         <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
