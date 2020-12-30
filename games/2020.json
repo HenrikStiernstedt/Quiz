@@ -1,8 +1,8 @@
 [{
     "questionNumber": 1,
     "questionType" : "QUIZ",
-    "questionText": "Vilka vann årets upplaga av svenska melodifestivalen?",
-    "correctAnswer": "The Mamas",
+    "questionText": "Vilken nationalitet hade flygplanet?",
+    "correctAnswer": "Ukraina",
     "questionScore": 2,
     "questionClues" : [{
       "clueScore" : 0,
@@ -10,9 +10,20 @@
     }]
   },
   {
-    "questionNumber": 2,
+    "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionText": "Vilken film vann årets film på Oscarsgalan i februari?",
+    "questionText": "Vem blev årets manliga idrottare på idrottsgalan 2020?",
+    "correctAnswer": "",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : "Daniel Ståhl"
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Vilken film vann pris för bästa film på Oscarsgalan?",
     "correctAnswer": "Parasit",
     "questionScore": 2,
     "questionClues" : [{
@@ -21,10 +32,131 @@
     }]
   },
   {
-    "questionNumber": 3,
+    "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionText": "USA gruffade med Iran i början av 2020. Iran råkade då skjuta ned ett passagerarplan. Vilken nationalitet hade flygplanet?",
-    "correctAnswer": "Ukraina",
+    "questionText": "Vilka vann årets upplaga av svenska melodifestivalen?",
+    "correctAnswer": "The Mamas",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Vem utsågs till årets bäst klädda kvinna?",
+    "correctAnswer": "Hedda Stiernstedt",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Vilken är sjukdomen?",
+    "correctAnswer": "Polio",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Som första land i världen meddelade Skottland i slutet av november att man ska börja erbjuda vad gratis?",
+    "correctAnswer": "Mensskydd",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Vad hette mannen?",
+    "correctAnswer": "George Floyd",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Vem mördade egentligen Olof Palme?",
+    "correctAnswer": "Skandiamannen",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Vad heter Katy Perry och Legolas första gemensamma blomma, jag menar barn?",
+    "correctAnswer": "Daisy",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Vad heter den nya Bond-filmen?",
+    "correctAnswer": "No time to die",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Under hösten släpptes en ny hypad streamingtjänst i Sverige. Vilken?",
+    "correctAnswer": "Disney+",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många nobelpris delas ut varje år?",
+    "correctAnswer": "6",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Vem vann åretsbragdguld?",
+    "correctAnswer": "Armand Duplantis",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Var arrangeras Sommar-OS 2020, nästa år?",
+    "correctAnswer": "Tokyo",
     "questionScore": 2,
     "questionClues" : [{
       "clueScore" : 0,

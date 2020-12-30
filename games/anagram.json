@@ -1,0 +1,230 @@
+[{
+    "questionNumber": 1,
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Bokbytaren",
+    "correctAnswer": "Kobe Bryant",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },{
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Jetens yror",
+    "correctAnswer": "Terry Jones",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },{
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Gudalik sork",
+    "correctAnswer": "Kirk Douglas",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Olle lagman",
+    "correctAnswer": "Ola Magnell",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },{
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Brough teflon",
+    "correctAnswer": "Olof Thunberg",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Braka inomhus",
+    "correctAnswer": "Hosni Mubarak",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Snowy vax mod",
+    "correctAnswer": "Max von Sydow",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Ekorrens gny",
+    "correctAnswer": "Kenny Rogers",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Sandig lama",
+    "correctAnswer": "Adam Alsing",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Herr Dillcitat",
+    "correctAnswer": "Little Richard",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Hornet ni knep",
+    "correctAnswer": "Henrik Pontén",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Lo i hamn",
+    "correctAnswer": "Ian Holm",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Oron i ceremonin ",
+    "correctAnswer": "Ennio Morricone",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Nio halvvilda ideal",
+    "correctAnswer": "Olivia de Havilland",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Combined hacksaw",
+    "correctAnswer": "Chadwick Boseman",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "BRIS hungrar budget",
+    "correctAnswer": "Ruth Bader Ginsburg",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "De hade inavel",
+    "correctAnswer": "Eddie Van Halen",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Annoy screen",
+    "correctAnswer": "Sean Connery",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Vent or swell",
+    "correctAnswer": "Sven Wollter",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Niagara doomed",
+    "correctAnswer": "Diego Maradona",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "Jarl och nere",
+    "correctAnswer": "John le Carre",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]
+
