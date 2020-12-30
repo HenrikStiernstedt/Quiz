@@ -237,6 +237,18 @@ function getChatHistory()
   });
 }
 
+function handleChatHistory(history)
+{
+  for(var i = history.length-1; i>=0; i--) {
+    var value = history[i];
+    $('#ChatBox').append($('<div class="list-group-item">').text(
+      new Date(value.date).toLocaleTimeString('sv-SE') + ' ' +
+      value.name + ': ' +
+      value.text
+    ));
+  }
+}
+
 function getThisPlayer() {
   return vm.players.filter( obj => obj.team == vm.player.id)[0];
 }
