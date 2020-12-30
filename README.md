@@ -32,6 +32,8 @@ quiz. But the quiz master controls all scoring.
 ## Player GUI
 * [ ] Add modal for name prompt if no name has been entered for the session.
 
+* [ ] Store a players old name in a cookie for next time.
+
 * [ ] Hide the QuizMaster-password field as it is not important for the majority of players.
 
 * "I'm ready"-notification for players to signal that we're ready to move on to the next question.
@@ -68,6 +70,10 @@ some of the freedom the Quizmaster has today that really is not needed.
   - [x] Save/load within existing game.
   - [ ] "Restore session" function if the server crashes, and reconnect existing users to their old users.
 
+## Scoreboard only mode
+* [ ] A way to only show questions and score board.
+* [ ] A way to not be part of the score board, but still recieve game updates.
+
 ## Game modes
 ### Buzz
 * [ ] Add answering list in order to let players queue up answers.
@@ -82,10 +88,14 @@ some of the freedom the Quizmaster has today that really is not needed.
   - [ ] Other scoring mechanism with autoscoring where closeness to the correct answer gives graduately lower/higher score. 
 
 ### More game modes
-  - [ ] Majority fails. Everyone types in a hopefully unique item from a list of items.
+  - [ ] Majority fails/minority rules. Everyone types in a hopefully unique item from a list of items.
   Ie. A car beginning with A. Everyone who have typed in a unique car model gets 2 points.
   Failing to enter a car model gives no points. Having the same answer as anyone else gives
   1 point.
+
+## Technical
+* [ ] Use Bootstrap-vue?
+* [ ] Make use of vue components
   
 # How to run as QuizMaster
 Tanken är att frågenummer skall räkans upp automatiskt om man bara lämnar det blankt. Sen måste man välja en frågetyp. Den är inte vad från början då det blir lite skumt innan amn tryckt på "Ny fråga" en gång efter omstart. Sen får man fylla i poäng så att den är något vettigt, t.ex. 10. Fältet "Fråga" är helt frivilligt, men det skrivs då ut på frågekortet. "Svar" används inte alls än. 

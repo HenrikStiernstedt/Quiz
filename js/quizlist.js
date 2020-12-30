@@ -363,9 +363,7 @@ function initQuizlist() {
     // Update this player
     var p = getThisPlayer();
     vm.player.confidenceLevel = p?.confidenceLevel || 0;
-
-
-
+    
   });
 
   $('form').submit(function(){
