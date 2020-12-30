@@ -60,9 +60,9 @@ some of the freedom the Quizmaster has today that really is not needed.
 
 * [x] Preconfigured questions.
 
-* Better flow when displaying the correct answer and more satisfying animations when you get points. Sounds! Stars!
+* [ ] Better flow when displaying the correct answer and more satisfying animations when you get points. Sounds! Stars!
 
-* Postpone the adding of correct stores to the total score. Give all points at the same time and then reorder the player list. PRIORITY!
+* [ ] Postpone the adding of correct stores to the total score. Give all points at the same time and then reorder the player list. PRIORITY!
 
 * [ ] Save/load functions. 
   - [x] Save/load within existing game.
