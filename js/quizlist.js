@@ -96,6 +96,7 @@ var vm = new Vue({
     updateName : function() {
       console.log("New name sent");
       socket.emit('SetName', vm.player.teamName);
+      $('#playerSettingsModal').modal('hide');
     },
 
     SetConfidenceLevel : function(confidenceLevel) {
