@@ -42,15 +42,20 @@ quiz. But the quiz master controls all scoring.
 * "I'm confident"-taunt emotion indicator as well as "I have no clue"-indicator. Just for fun, or maybe with some penalty if a confident player guesses wrong. Maybe a counter for most taunts in a game? 
   - [x] Partly implemented, with no impact on the game.
 
-* Multiple answers for combo questions. PRIORITY!
+* [ ] Multiple answers for combo questions. PRIORITY!
 
-* Help sections for the rules for all game modes.
+* [ ] Help sections for the rules for all game modes.
+
+* [ ] Countdown timers for answering.
+
+* [ ] Sounds
 
 ## QuizMaster GUI
 * Automatic score calculations.
   - [x] Based on QuizMaster's answer.
   - [x] Based on majority rules answer 
   - [ ] (with possible override?).
+  - [ ] Multiple correct answers.
 
 * New public score board and question display.
   This one is supposed to be streamed online or just let everyone have surf to the page
@@ -69,6 +74,11 @@ some of the freedom the Quizmaster has today that really is not needed.
 * [ ] Save/load functions. 
   - [x] Save/load within existing game.
   - [ ] "Restore session" function if the server crashes, and reconnect existing users to their old users.
+
+* [ ] Comments field to pending question.
+
+* [ ] Displayment of the correct answer.
+
 
 ## Scoreboard only mode
 * [ ] A way to only show questions and score board.
