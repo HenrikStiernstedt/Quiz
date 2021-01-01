@@ -1,7 +1,7 @@
 [{
     "questionNumber": 1,
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Bokbytaren",
+    "questionText": "BOKBYTAREN",
     "correctAnswer": "Kobe Bryant",
     "questionScore": 2,
     "questionClues" : [{
@@ -11,7 +11,7 @@
   },{
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Jetens yror",
+    "questionText": "JETENS YROR",
     "correctAnswer": "Terry Jones",
     "questionScore": 2,
     "questionClues" : [{
@@ -21,7 +21,7 @@
   },{
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Gudalik sork",
+    "questionText": "GUDALIK SORK",
     "correctAnswer": "Kirk Douglas",
     "questionScore": 2,
     "questionClues" : [{
@@ -32,7 +32,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Olle lagman",
+    "questionText": "OLLE LAGMAN",
     "correctAnswer": "Ola Magnell",
     "questionScore": 2,
     "questionClues" : [{
@@ -42,7 +42,7 @@
   },{
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Brough teflon",
+    "questionText": "BROUGH TEFLON",
     "correctAnswer": "Olof Thunberg",
     "questionScore": 2,
     "questionClues" : [{
@@ -53,7 +53,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Braka inomhus",
+    "questionText": "BRAKA INOMHUS",
     "correctAnswer": "Hosni Mubarak",
     "questionScore": 2,
     "questionClues" : [{
@@ -64,7 +64,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Snowy vax mod",
+    "questionText": "SNOWY VAX MOD",
     "correctAnswer": "Max von Sydow",
     "questionScore": 2,
     "questionClues" : [{
@@ -75,7 +75,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Ekorrens gny",
+    "questionText": "EKORRENS GNY",
     "correctAnswer": "Kenny Rogers",
     "questionScore": 2,
     "questionClues" : [{
@@ -86,7 +86,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Sandig lama",
+    "questionText": "SANDIG LAMA",
     "correctAnswer": "Adam Alsing",
     "questionScore": 2,
     "questionClues" : [{
@@ -97,7 +97,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Herr Dillcitat",
+    "questionText": "HERR DILLCITAT",
     "correctAnswer": "Little Richard",
     "questionScore": 2,
     "questionClues" : [{
@@ -108,7 +108,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Hornet ni knep",
+    "questionText": "HORNET NI KNEP",
     "correctAnswer": "Henrik Pontén",
     "questionScore": 2,
     "questionClues" : [{
@@ -119,7 +119,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Lo i hamn",
+    "questionText": "LO I HAMN",
     "correctAnswer": "Ian Holm",
     "questionScore": 2,
     "questionClues" : [{
@@ -130,7 +130,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Oron i ceremonin ",
+    "questionText": "ORON I CEREMONIN",
     "correctAnswer": "Ennio Morricone",
     "questionScore": 2,
     "questionClues" : [{
@@ -141,7 +141,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Nio halvvilda ideal",
+    "questionText": "NIO HALVVILDA IDEAL",
     "correctAnswer": "Olivia de Havilland",
     "questionScore": 2,
     "questionClues" : [{
@@ -152,7 +152,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Combined hacksaw",
+    "questionText": "COMBINED HACKSAW",
     "correctAnswer": "Chadwick Boseman",
     "questionScore": 2,
     "questionClues" : [{
@@ -163,7 +163,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "BRIS hungrar budget",
+    "questionText": "BRIS HUNGRAR BUDGET",
     "correctAnswer": "Ruth Bader Ginsburg",
     "questionScore": 2,
     "questionClues" : [{
@@ -174,7 +174,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "De hade inavel",
+    "questionText": "DE HADE INAVEL",
     "correctAnswer": "Eddie Van Halen",
     "questionScore": 2,
     "questionClues" : [{
@@ -185,7 +185,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Annoy screen",
+    "questionText": "ANNOY SCREEN",
     "correctAnswer": "Sean Connery",
     "questionScore": 2,
     "questionClues" : [{
@@ -196,7 +196,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Vent or swell",
+    "questionText": "VENT OR SWELL",
     "correctAnswer": "Sven Wollter",
     "questionScore": 2,
     "questionClues" : [{
@@ -207,7 +207,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Niagara doomed",
+    "questionText": "NIAGARA DOOMED",
     "correctAnswer": "Diego Maradona",
     "questionScore": 2,
     "questionClues" : [{
@@ -218,7 +218,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Jarl och nere",
+    "questionText": "JARL OCH NERE",
     "correctAnswer": "John le Carre",
     "questionScore": 2,
     "questionClues" : [{
