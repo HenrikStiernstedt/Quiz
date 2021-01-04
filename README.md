@@ -57,12 +57,12 @@ quiz. But the quiz master controls all scoring.
   - [ ] (with possible override?).
   - [ ] Multiple correct answers.
 
-* New public score board and question display.
+* [ ] New public score board and question display.
   This one is supposed to be streamed online or just let everyone have surf to the page
   directly. To be used in tandem with the phone. So far you can always use an
   unused client as the scoreboard.
 
-* More automatication for question types. Maybe with some kind of template to follow, or just skip 
+* [ ] More automatication for question types. Maybe with some kind of template to follow, or just skip 
 some of the freedom the Quizmaster has today that really is not needed. 
 
 * [x] Preconfigured questions.
@@ -106,6 +106,8 @@ some of the freedom the Quizmaster has today that really is not needed.
 ## Technical
 * [ ] Use Bootstrap-vue?
 * [ ] Make use of vue components
+* [ ] Use vuex for state?
+* [ ] Upgrade to newer versions of socket.io.
   
 # How to run as QuizMaster
 Tanken är att frågenummer skall räkans upp automatiskt om man bara lämnar det blankt. Sen måste man välja en frågetyp. Den är inte vad från början då det blir lite skumt innan amn tryckt på "Ny fråga" en gång efter omstart. Sen får man fylla i poäng så att den är något vettigt, t.ex. 10. Fältet "Fråga" är helt frivilligt, men det skrivs då ut på frågekortet. "Svar" används inte alls än. 
