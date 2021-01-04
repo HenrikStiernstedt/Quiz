@@ -2,7 +2,7 @@
 var
   express = require('express'),
   app = express(),
-  server  = require("http").createServer(app),
+  server = require("http").createServer(app),
   io = require("socket.io")(server, {
     pingInterval: 10000,
     pingTimeout: 5000,
@@ -15,10 +15,6 @@ var
   }),
   sharedsession = require("express-socket.io-session");
 
-  var share = require('./js/share.js');
-
-const fs = require('fs');
-
 // Attach session
 app.use(session);
 
@@ -27,10 +23,11 @@ io.use(sharedsession(session, {
     autoSave:true
 }));
 
-server.listen(3000, function(){
-  console.log('listening on *:3000');
-});
-var request = require('request');
+
+
+
+var share = require('./js/share.js');
+const fs = require('fs');
 
 app.use('/favicon.ico', express.static('images/favicon.png'));
 
@@ -218,6 +215,7 @@ io.on('connection', function(socket){
               "NumberOfWins": 0
             };
       data.players.push(player);
+      io.emit('UpdatePlayers', {status: data.status, players: data.players });
     }
   } else {
     // New player
@@ -314,7 +312,7 @@ io.on('connection', function(socket){
   });
 
   socket.onAny((eventName, ...args) => {
-    console.log("DEBUG: %s", eventName);
+    console.log("DEBUG: event: %s team: %s SessionId: %s cookie: %s", eventName, socket.handshake.session.team, socket.handshake.session.id, socket.handshake.session.cookie);
   });
 
   socket.on('StartPing', function() {
@@ -812,6 +810,10 @@ io.on('connection', function(socket){
   });
 
 
+});
+
+server.listen(3000, function(){
+  console.log('listening on *:3000');
 });
 
 function resetPlayers(endTheGame) {
