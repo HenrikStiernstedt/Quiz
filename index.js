@@ -6,10 +6,10 @@ var
   io = require("socket.io")(server, {
     pingInterval: 10000,
     pingTimeout: 5000,
-    cookie: true
+    cookie: true,
   }),
   session = require("express-session")({
-    secret: "my-secret123",
+    secret: "my-secret123-dskjdus787hkwkks",
     resave: true,
     saveUninitialized: true
   }),
@@ -247,7 +247,8 @@ io.on('connection', function(socket){
     io.emit('UpdatePlayers', {status: data.status, players: data.players });
   }
 
-  io.sockets.connected[socket.id].emit('Welcome',
+  
+  io.of("/").sockets.get(socket.id).emit('Welcome',
     {
         id: player.id,
         teamName: player.teamName,
@@ -312,23 +313,29 @@ io.on('connection', function(socket){
     }
   });
 
+  socket.onAny((eventName, ...args) => {
+    console.log("DEBUG: %s", eventName);
+  });
+
   socket.on('StartPing', function() {
     console.log('Ping Request from QM.')
 
-    var allConnectedClients = Object.keys(io.sockets.connected);
+    //var allConnectedClients = Object.keys(io.sockets.connected);
     //var clients_in_the_room = io.sockets.adapter.rooms[roomId];
     //console.log(allConnectedClients);
     //console.log(Object.keys(io.sockets.connected));
-    for (var clientId in allConnectedClients ) {
-      var client = io.sockets.connected[allConnectedClients[clientId]];
+    for (const [key, s] of io.of("/").sockets) {
+      //var client = io.sockets.connected[allConnectedClients[clientId]];
       //console.log(client);
       //var client_socket = io.sockets.connected[clientId];//Do whatever you want with this
-      console.log('client: %s', client.id); //Seeing is believing
+      console.log('client: #%s: %s', key, s.id); //Seeing is believing
       //console.log(client_socket); //Seeing is believing
     }
 
+    console.table(io.of("/").sockets);
+
     console.log('List all players:');
-    console.log ('Team #  Id                   Ping TeamName');
+    console.log ('Team #  Id                   Ping TeamName                       IP');
     io.emit('Ping', new Date().getTime());
 
     let dataToSave = JSON.stringify(data);
@@ -338,7 +345,7 @@ io.on('connection', function(socket){
   socket.on('PingResponse', function(pingResponse) {
     console.log(
       socket.handshake.session.team.toString().padStart(6, " ") + "  " + socket.id + " " +
-      (new Date().getTime() - pingResponse.pingTime).toString().padStart(4, " ") + " " + pingResponse.teamName
+      (new Date().getTime() - pingResponse.pingTime).toString().padStart(4, " ") + " " + pingResponse.teamName.padStart(30, " ") + " " + socket.request.connection.remoteAddress
     );
     //players.get(socket.handshake.session.team).teamName = pingResponse.teamName;
     //socket.handshake.session.teamName = pingResponse.teamName;
@@ -357,7 +364,7 @@ io.on('connection', function(socket){
       player.teamName = 'QuizMaster';
       socket.handshake.session.teamName = player.teamName;
 
-      io.sockets.connected[socket.id].emit('Welcome',
+      io.of("/").sockets.get(socket.id).emit('Welcome',
         {
             id: player.id,
             teamName: player.teamName,
@@ -422,7 +429,7 @@ io.on('connection', function(socket){
 //      var player = getCurrentPlayer(socket.handshake.session.team);
 //      io.to(player.socketId).emit("ReturnLoadQuestions", data.questionList);
       
-      io.sockets.connected[socket.id].emit("ReturnLoadQuestions", data.questionList);
+      io.of("/").sockets.get(socket.id).emit("ReturnLoadQuestions", data.questionList);
 
     } catch (error) {
       console.error(error);
@@ -802,17 +809,6 @@ io.on('connection', function(socket){
     });
 
     io.emit('UpdatePlayers', { status: data.status, players: data.players, action: 'clear' });
-  });
-
-  // Unused for now.
-  socket.on('ListPlayers', function() {
-    io.emit('UpdatePlayers', {status: data.status, players: data.players });
-    var allConnectedClients = Object.keys(io.sockets.connected);
-    //var clients_in_the_room = io.sockets.adapter.rooms[roomId];
-    for (var clientId in allConnectedClients ) {
-      console.log('client: %s', clientId); //Seeing is believing
-      var client_socket = io.sockets.connected[clientId];//Do whatever you want with this
-    }
   });
 
 

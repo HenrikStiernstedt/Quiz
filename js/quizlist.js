@@ -282,12 +282,12 @@ function loadSounds() {
 
 function initQuizlist() {
 
-  /*
+  
    //DEBUG-method that will come n a future version of socket.io
   socket.onAny((eventName, ...args) => {
-    console.log("CALL: " + eventName);
+    console.log("DEBUGG: " + eventName);
   });
-  */
+  
 
   socket.on('chat message', function(msgJson){
     //$('#messages').append($('<li>').text(msg));

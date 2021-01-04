@@ -1,14 +1,15 @@
 {
   "name": "socket-quiz-and-map",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "my first socket.io app",
+  "repository": "git+https://github.com/HenrikStiernstedt/Quiz.git",
   "dependencies": {
     "express": "^4.17.1",
-    "express-session": "^1.17.0",
+    "express-session": "^1.17.1",
     "express-socket.io-session": "^1.3.5",
     "gm": "^1.23.0",
     "nocache": "^2.1.0",
     "request": "2.88.2",
-    "socket.io": "2.1.1"
+    "socket.io": "3.0.4"
   }
 }
