@@ -108,6 +108,9 @@ some of the freedom the Quizmaster has today that really is not needed.
 * [ ] Make use of vue components
 * [ ] Use vuex for state?
 * [ ] Upgrade to newer versions of socket.io.
+* [ ] Use an admin middleware and separate namespace for quizmasters.
+* [ ] Use different namespaces to allow separate concurrent games.
+* [ ] MAke sure the session-middelware actually works as intended.
   
 # How to run as QuizMaster
 Tanken är att frågenummer skall räkans upp automatiskt om man bara lämnar det blankt. Sen måste man välja en frågetyp. Den är inte vad från början då det blir lite skumt innan amn tryckt på "Ny fråga" en gång efter omstart. Sen får man fylla i poäng så att den är något vettigt, t.ex. 10. Fältet "Fråga" är helt frivilligt, men det skrivs då ut på frågekortet. "Svar" används inte alls än. 
