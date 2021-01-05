@@ -1,28 +1,56 @@
 
 var
   express = require('express'),
+  session = require("express-session"),
   app = express(),
+
   server = require("http").createServer(app),
   io = require("socket.io")(server, {
     pingInterval: 10000,
     pingTimeout: 5000,
     cookie: true,
-  }),
-  session = require("express-session")({
-    secret: "my-secret123-dskjdus787hkwkks",
-    resave: true,
-    saveUninitialized: true
-  }),
-  sharedsession = require("express-socket.io-session");
+  });
 
+  //FileStore = require('session-file-store')(session);
+ // sharedsession = require("express-socket.io-session");
+
+// var fileStoreOptions = {};
+
+const sessionMiddleware = session(
+  { 
+//    store: new FileStore(fileStoreOptions), 
+    secret: 'keyboard cat', 
+    cookie: { maxAge: null },
+    saveUninitialized: true,
+    resave: true, 
+  }
+);
+
+
+/*
 // Attach session
-app.use(session);
+app.use(session({
+  store: new FileStore(fileStoreOptions),
+  secret: 'MyVerySecretSecret1',
+  resave: true,
+  saveUninitialized: true
+}));
+*/
 
+app.use(sessionMiddleware);
+
+io.use((socket, next) => {
+  sessionMiddleware(socket.request, {}, next);
+  // sessionMiddleware(socket.request, socket.request.res, next); will not work with websocket-only
+  // connections, as 'socket.request.res' will be undefined in that case
+});
+
+/*
 // Share session with io sockets
 io.use(sharedsession(session, {
     autoSave:true
 }));
-
+*/
 
 
 
@@ -188,30 +216,30 @@ function upsert(array, item) { // (1)
  ******************************************************************************/
 
 io.on('connection', function(socket){
-  console.log(new Date().toLocaleTimeString() + ' ' + socket.id + ' connected. Team: ' + socket.handshake.session.team);
-  if (socket.handshake.session.team) {
-    console.log('Returning user ' + socket.handshake.session.team);
-    //var player = data.players.filter( obj => obj.team === socket.handshake.session.team)[0];
-    var player = getCurrentPlayer(socket.handshake.session.team);
+  console.log(new Date().toLocaleTimeString() + ' ' + socket.request.sessionID + ' connected. Team: ' + socket.request.session.team + ' Team name: ' + socket.request.session.teamName);
+  if (socket.request.session.team) {
+    console.log('Returning user ' + socket.request.session.team);
+    //var player = data.players.filter( obj => obj.team === socket.request.session.team)[0];
+    var player = getCurrentPlayer(socket.request.session.team);
     if(player != undefined)
     {
       player.active = true;
       player.socketId = socket.id;
-      player.teamName = socket.handshake.session.teamName != null ? socket.handshake.session.teamName : "Team " + socket.handshake.session.team;
+      player.teamName = socket.request.session.teamName ? socket.request.session.teamName : "Team " + socket.request.session.team;
 //      player.score = 0;
-      socket.handshake.session.save();
+      socket.request.session.save();
       io.emit('UpdatePlayers', {status: data.status, players: data.players });
     }
     else {
       // We have a session, but no player entry. A state caused by purge.
-      console.log("Error restoring session. No entry in Players-object for team "+socket.handshake.session.team);
+      console.log("Error restoring session. No entry in Players-object for team "+socket.request.session.team);
       player =  {
-              "id" : socket.handshake.session.team,
-              "team" : socket.handshake.session.team,
+              "id" : socket.request.session.team,
+              "team" : socket.request.session.team,
               "score" : 0,
               "active" : true,
               "socketId" : socket.id,
-              "teamName" : "Team " + socket.handshake.session.teamName != null ? socket.handshake.session.teamName : "Team " + socket.handshake.session.team,
+              "teamName" : "Team " + socket.request.session.teamName != null ? socket.request.session.teamName : "Team " + socket.request.session.team,
               "NumberOfWins": 0
             };
       data.players.push(player);
@@ -219,17 +247,21 @@ io.on('connection', function(socket){
     }
   } else {
     // New player
-    socket.handshake.session.team = nextTeamNumber++;
-    socket.handshake.session.save();
-    console.log("New user " + socket.handshake.session.team);
+    console.log("New user " + nextTeamNumber);
+    socket.request.session.team = nextTeamNumber++;
+    socket.request.session.teamName = "Team " + socket.request.session.team;
+    socket.request.session.save();
+
+    console.log('New session variables team: %s and teamname: %s', socket.request.session.team, socket.request.session.teamName)
+    
     var emote = share.getEmoteFromConfidenceLevel(0);
     player =  {
-            "id" : socket.handshake.session.team,
-            "team" : socket.handshake.session.team,
+            "id" : socket.request.session.team,
+            "team" : socket.request.session.team,
             "score" : 0,
             "active" : true,
             "socketId" : socket.id,
-            "teamName" : "Team " + socket.handshake.session.team,
+            "teamName" : "Team " + socket.request.session.team,
             "HasBuzzd": false,
             "buzzOrder": null,
             "isCorrect": null,
@@ -253,7 +285,7 @@ io.on('connection', function(socket){
         answer: "",
         pendingAnswer: "",
         isQuizMaster: (player.id == data.status.quizMasterId ? true : false),
-        answer: null, // TODO: Hur återställer vi "answer" vid reconnect? //getCurrentObject(data.answers, socket.handshake.session.team) ? getCurrentObject(data.answers, socket.handshake.session.team).answer : null,
+        answer: null, // TODO: Hur återställer vi "answer" vid reconnect? //getCurrentObject(data.answers, socket.request.session.team) ? getCurrentObject(data.answers, socket.request.session.team).answer : null,
         confidenceLevel: player.confidenceLevel
     }
   );
@@ -266,7 +298,7 @@ io.on('connection', function(socket){
 
   socket.on('Purge', function()
   {
-    if(!verifyQM(socket.handshake.session.team, "Purge")) {
+    if(!verifyQM(socket.request.session.team, "Purge")) {
       return;
     }
     data.players = data.players.filter( obj => obj.active);
@@ -284,26 +316,26 @@ io.on('connection', function(socket){
       return;
     }
     */
-    var player = getCurrentPlayer(socket.handshake.session.team);
+    var player = getCurrentPlayer(socket.request.session.team);
     player.teamName = name;
-    //players.get(socket.handshake.session.team).teamName = name;
-    socket.handshake.session.teamName = name;
-    socket.handshake.session.save();
+    //players.get(socket.request.session.team).teamName = name;
+    socket.request.session.teamName = name;
+    socket.request.session.save();
     io.emit('UpdatePlayers', {status: data.status, players: data.players});
   });
 
   socket.on('SetConfidenceLevel', function(confidenceLevel)
   {
-    var player = getCurrentPlayer(socket.handshake.session.team);
+    var player = getCurrentPlayer(socket.request.session.team);
     player.confidenceLevel = confidenceLevel;
     player.emote = share.getEmoteFromConfidenceLevel(confidenceLevel);
     io.emit('UpdatePlayers', {status: data.status, players: data.players});
   });
 
   socket.on('disconnect', function(){
-    console.log(new Date().toLocaleTimeString() + ' ' + socket.id + ' disconnected');
-//    players.get(socket.handshake.session.team).active = false;
-    var player = getCurrentPlayer(socket.handshake.session.team);
+    console.log(new Date().toLocaleTimeString() + ' ' + socket.request.sessionID + ' disconnected. Team ' + socket.request.session.team);
+//    players.get(socket.request.session.team).active = false;
+    var player = getCurrentPlayer(socket.request.session.team);
     if(player)
     {
       player.active = false;
@@ -312,7 +344,7 @@ io.on('connection', function(socket){
   });
 
   socket.onAny((eventName, ...args) => {
-    console.log("DEBUG: event: %s team: %s SessionId: %s cookie: %s", eventName, socket.handshake.session.team, socket.handshake.session.id, socket.handshake.session.cookie);
+    console.log("DEBUG: event: %s team: %s SessionId: %s cookie: %s", eventName, socket.request.session.team, socket.request.session.id, socket.request.session.cookie);
   });
 
   socket.on('StartPing', function() {
@@ -326,7 +358,7 @@ io.on('connection', function(socket){
       //var client = io.sockets.connected[allConnectedClients[clientId]];
       //console.log(client);
       //var client_socket = io.sockets.connected[clientId];//Do whatever you want with this
-      console.log('client: #%s: %s', key, s.id); //Seeing is believing
+      console.log('client: #%s: %s %s', key, s.id, s.request.sessionId); //Seeing is believing
       //console.log(client_socket); //Seeing is believing
     }
 
@@ -342,25 +374,26 @@ io.on('connection', function(socket){
 
   socket.on('PingResponse', function(pingResponse) {
     console.log(
-      socket.handshake.session.team.toString().padStart(6, " ") + "  " + socket.id + " " +
+      socket.request.session.team.toString().padStart(6, " ") + "  " + socket.id + " " +
       (new Date().getTime() - pingResponse.pingTime).toString().padStart(4, " ") + " " + pingResponse.teamName.padStart(30, " ") + " " + socket.request.connection.remoteAddress
     );
-    //players.get(socket.handshake.session.team).teamName = pingResponse.teamName;
-    //socket.handshake.session.teamName = pingResponse.teamName;
-    var player = getCurrentPlayer(socket.handshake.session.team);
+    //players.get(socket.request.session.team).teamName = pingResponse.teamName;
+    //socket.request.session.teamName = pingResponse.teamName;
+    var player = getCurrentPlayer(socket.request.session.team);
     player.teamName = pingResponse.teamName;
     io.emit('UpdatePlayers', {status: data.status, players: data.players });
   });
 
   // Quizmaster functions below.
   socket.on('MakeMeQuizMaster', function(password) {
-    var player = getCurrentPlayer(socket.handshake.session.team);
+    var player = getCurrentPlayer(socket.request.session.team);
     console.log(`Player ${player.teamName} wants to be QuizMaster`);
     if(password == data.quizMasterPassword)
     {
-      data.status.quizMasterId = socket.handshake.session.team;
+      data.status.quizMasterId = socket.request.session.team;
       player.teamName = 'QuizMaster';
-      socket.handshake.session.teamName = player.teamName;
+      socket.request.session.teamName = player.teamName;
+      socket.request.session.save();
 
       io.of("/").sockets.get(socket.id).emit('Welcome',
         {
@@ -382,7 +415,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('Save', function(filename) {
-    if(!verifyQM(socket.handshake.session.team, "Save")) { return; }
+    if(!verifyQM(socket.request.session.team, "Save")) { return; }
     if(!filename) {
       filename = 'data';
     }
@@ -396,7 +429,7 @@ io.on('connection', function(socket){
 
   socket.on('Load', function(filename)
   {
-    if(!verifyQM(socket.handshake.session.team, "Load")) { return; }
+    if(!verifyQM(socket.request.session.team, "Load")) { return; }
     if(!filename) {
       filename = 'data';
     }
@@ -415,7 +448,7 @@ io.on('connection', function(socket){
   
   socket.on('LoadQuestions', function(filename)
   {
-    if(!verifyQM(socket.handshake.session.team, "LoadQuestions")) { return; }
+    if(!verifyQM(socket.request.session.team, "LoadQuestions")) { return; }
     if(!filename) {
       filename = 'question';
     }
@@ -424,7 +457,7 @@ io.on('connection', function(socket){
       data.questionList = JSON.parse(dataToLoad);
       console.log("Loaded questions");
       console.log(data.questionList);
-//      var player = getCurrentPlayer(socket.handshake.session.team);
+//      var player = getCurrentPlayer(socket.request.session.team);
 //      io.to(player.socketId).emit("ReturnLoadQuestions", data.questionList);
       
       io.of("/").sockets.get(socket.id).emit("ReturnLoadQuestions", data.questionList);
@@ -441,19 +474,19 @@ io.on('connection', function(socket){
  ******************************************************************************/
 
   socket.on('Buzz', function(answer, fn){
-    var player = getCurrentPlayer(socket.handshake.session.team);
+    var player = getCurrentPlayer(socket.request.session.team);
     teamName = player.teamName;
 
     if(data.status.question.questionType == 'RED_THREAD' || data.status.question.questionType == 'MAJOR_VICTORY' || data.status.question.questionType == 'QUIZ')
     {
       addOrReplace(data.answers, {
-        "id" : socket.handshake.session.team,
+        "id" : socket.request.session.team,
         "answer": answer,
         "questionScore": data.status.question.questionScore,
         "clueScore": null
       });
 
-      var player = getCurrentPlayer(socket.handshake.session.team);
+      var player = getCurrentPlayer(socket.request.session.team);
       player.questionScore = data.status.question.questionScore;
 
       io.emit('UpdatePlayers', {status: data.status, players: data.players } );
@@ -465,14 +498,14 @@ io.on('connection', function(socket){
     else if(data.status.question.questionType == 'BUZZ_RUSH')
     {
 
-      if(data.status.buzzList.includes(socket.handshake.session.team))
+      if(data.status.buzzList.includes(socket.request.session.team))
       {
         console.log('Extra buzz from ' + teamName);
         fn('Extra buzz from ' + teamName);
         return;
       }
       else {
-        data.status.buzzList.push(socket.handshake.session.team);
+        data.status.buzzList.push(socket.request.session.team);
       }
 
       if(data.status.isBuzzed)
@@ -492,12 +525,12 @@ io.on('connection', function(socket){
         data.status.isBuzzed = true;
         data.status.isBuzzActive = false;
         data.status.winningTeamName = teamName;
-        data.status.winningTeam = socket.handshake.session.team;
+        data.status.winningTeam = socket.request.session.team;
         data.status.winningId = socket.id;
         player.HasBuzzed = true;
 
         addOrReplace(data.answers, {
-          "id" : socket.handshake.session.team,
+          "id" : socket.request.session.team,
           "answer": null,
           "questionScore": data.status.question.questionScore,
           "clueScore": null
@@ -521,7 +554,7 @@ io.on('connection', function(socket){
   socket.on('UpdateQuestion', function(action, question) {
     console.log(action);
     console.log(question);
-    if(!verifyQM(socket.handshake.session.team, "UpdateQuestion")) {
+    if(!verifyQM(socket.request.session.team, "UpdateQuestion")) {
       return;
     }
 
@@ -585,7 +618,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('CompleteQuestion', function(playerList) {
-    if(!verifyQM(socket.handshake.session.team, "CompleteQuestion")) { return; }
+    if(!verifyQM(socket.request.session.team, "CompleteQuestion")) { return; }
 
     console.log("Avslutar frågan.");
     data.status.isBuzzActive = false;
@@ -609,7 +642,7 @@ io.on('connection', function(socket){
   });
 
   socket.on("AutoCorrect", function(correctAnswer)  {
-    if(!verifyQM(socket.handshake.session.team, "AutoCorrect")) { return; }
+    if(!verifyQM(socket.request.session.team, "AutoCorrect")) { return; }
     // Autocorrect only works on public answers at the moment. User "Avsluta fråga" först.
 
     if(data.status.question.questionType == "RED_THREAD" || data.status.question.questionType == "QUIZ")
@@ -734,7 +767,7 @@ io.on('connection', function(socket){
   // If scoreValue > 0, count as a win.
   // If scoreValue <= 0, cont as a fail and proceede to next player in queue.
   socket.on('AwardPoints', function(scoreValue) {
-    if(!verifyQM(socket.handshake.session.team, "AwardPoints")) {
+    if(!verifyQM(socket.request.session.team, "AwardPoints")) {
       return;
     }
 
@@ -757,7 +790,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('AwardPointsToTeam', function(score, teamId, isCorectAnswer) {
-    if(!verifyQM(socket.handshake.session.team, "AwardPointsToTeam")) { return; }
+    if(!verifyQM(socket.request.session.team, "AwardPointsToTeam")) { return; }
 
     var player = getCurrentPlayer(teamId);
 
@@ -792,7 +825,7 @@ io.on('connection', function(socket){
   });
 
   socket.on('NewGame', function() {
-    if(!verifyQM(socket.handshake.session.team, "NewGame")) { return; }
+    if(!verifyQM(socket.request.session.team, "NewGame")) { return; }
     resetPlayers(true);
 
     // Sort player array according to score.
