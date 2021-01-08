@@ -57,7 +57,7 @@
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
     "questionText": "1839 benådas stortjuven Lasse-Maja av sveriges konung Jean-Baptiste Bernadotte. Men vad kallades Jean-Baptiste i Sveriges dåvarande västra unionshalva Norge?",
-    "correctAnswer": "",
+    "correctAnswer": "Karl III Johan",
     "questionScore": 2,
     "questionClues" : [{
       "clueScore" : 0,
@@ -78,7 +78,7 @@
   {
     "questionNumber": "",
     "questionType" : "BUZZ_RUSH",
-    "questionText": "Irak avfyrade 39 scud-missiler mot Israel under Gulf-kriget 1991. Scud-missilen är Sovjetisk design, men vad hette Nazi-Tysklands, och sedmera Amerikas mest kända raketforskare, känd för både V-2-raketen och Saturnus-V raketen som användes under Apolloprogrammet?",
+    "questionText": "Irak avfyrade 39 scud-missiler mot Israel under Gulf-kriget 1991. Scud-missilen är Sovjetisk, men vad hette Nazi-Tysklands, och sedmera Amerikas mest kända raketforskare, känd för både V-2-raketen och Saturnus-V raketen som användes under Apolloprogrammet?",
     "correctAnswer": "Wernher von Braun",
     "questionScore": 2,
     "questionClues" : [{
