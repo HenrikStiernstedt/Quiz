@@ -1,19 +1,9 @@
 [
   {
-    "questionNumber": "",
-    "questionType" : "BUZZ_RUSH",
+    "questionNumber": 1,
+    "questionType" : "QUIZ",
     "questionText": "\"De 39 stegen\" från 1935 är en film av vem då?",
     "correctAnswer": "Hitchcook",
-    "questionScore": 2,
-    "questionClues" : [{
-      "clueScore" : 0,
-      "clueText" : ""
-    }]
-  },{
-    "questionNumber": 1,
-    "questionType" : "BUZZ_RUSH",
-    "questionText": "Grundämne 39 är Yttrium. Yttrium är döpt efter byn Ytterby i Uppland. Hur många grundämnen är uppkallade efter att de upptäckts i Ytterby?",
-    "correctAnswer": "4",
     "questionScore": 2,
     "questionClues" : [{
       "clueScore" : 0,
@@ -22,7 +12,7 @@
   },
   {
     "questionNumber": "",
-    "questionType" : "BUZZ_RUSH",
+    "questionType" : "QUIZ",
     "questionText": "+39 är landskoden för att ringa till Italien. Hur många invånare har Italien? (Avrundat till jämna 10-tals miljoner.)",
     "correctAnswer": "60",
     "questionScore": 2,
@@ -33,7 +23,7 @@
   },
   {
     "questionNumber": "",
-    "questionType" : "BUZZ_RUSH",
+    "questionType" : "QUIZ",
     "questionText": "39 avsnitt visades av den Amerikanska tv-serien Survivor. Programformatet visades först i Sverige under namnet \"Expedition Robinson\". Martin Melin vann första säsongen, men vem var programledare?",
     "correctAnswer": "Harald Treutiger",
     "questionScore": 2,
@@ -44,7 +34,40 @@
   },
   {
     "questionNumber": "",
-    "questionType" : "BUZZ_RUSH",
+    "questionType" : "QUIZ",
+    "questionText": "Sfäriska koordinater har jag svurit åt många gånger. Longituder hit och latituder dit. Om du beger dig 39° W 39° N, i vilket hav hamnar du då?",
+    "correctAnswer": "Atlanten",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "JAS 39 Gripen är idag det mest kända svensktillverkade flygplan vi har. JAS står för Jakt attack spaning. Vad kallades föregångaren JA 37?",
+    "correctAnswer": "Viggen",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Grundämne 39 är Yttrium. Yttrium är döpt efter byn Ytterby i Uppland. Hur många grundämnen är uppkallade efter att de upptäckts i Ytterby?",
+    "correctAnswer": "4",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
     "questionText": "1939 startade andra världskriget i Europa. I vilken stad inleddes de första striderna?",
     "correctAnswer": "Gdansk",
     "questionScore": 2,
@@ -55,7 +78,7 @@
   },
   {
     "questionNumber": "",
-    "questionType" : "BUZZ_RUSH",
+    "questionType" : "QUIZ",
     "questionText": "1839 benådas stortjuven Lasse-Maja av sveriges konung Jean-Baptiste Bernadotte. Men vad kallades Jean-Baptiste i Sveriges dåvarande västra unionshalva Norge?",
     "correctAnswer": "Karl III Johan",
     "questionScore": 2,
@@ -66,7 +89,7 @@
   },
   {
     "questionNumber": "",
-    "questionType" : "BUZZ_RUSH",
+    "questionType" : "QUIZ",
     "questionText": "Pir 39 är San Fransiscos tredje största turistattraktion, främst på grund av att ett visst djur alltid håller till här. Vilket djur?",
     "correctAnswer": "Sjölejon",
     "questionScore": 2,
@@ -77,9 +100,20 @@
   },
   {
     "questionNumber": "",
-    "questionType" : "BUZZ_RUSH",
+    "questionType" : "QUIZ",
     "questionText": "Irak avfyrade 39 scud-missiler mot Israel under Gulf-kriget 1991. Scud-missilen är Sovjetisk, men vad hette Nazi-Tysklands, och sedmera Amerikas mest kända raketforskare, känd för både V-2-raketen och Saturnus-V raketen som användes under Apolloprogrammet?",
     "correctAnswer": "Wernher von Braun",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Jag jobbade min första dag på Multisoft i augusti 2009. Vad kostade då en stor stark på Efes?",
+    "correctAnswer": "39",
     "questionScore": 2,
     "questionClues" : [{
       "clueScore" : 0,
