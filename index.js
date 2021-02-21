@@ -68,6 +68,7 @@ var data = {
   status: {
     "isBuzzed" : false,
     "isBuzzActive" : false,
+    "questionTime": 30,
     "winningTeamName" : null,
     "winningTeam" : null,
     "buzzList" : [],
@@ -78,10 +79,11 @@ var data = {
       questionText: "Vem där?",
       correctAnswer: "",
       questionScore: 10,
+      questionTime: 30,
       questionClues : [{
         "clueScore" : 10,
         "clueText" : ""
-      }]
+      }]      
     },
     pendingAnswers: [{
       "id" : 0,
@@ -439,6 +441,12 @@ io.on('connection', function(socket){
     var player = getCurrentPlayer(socket.handshake.session.team);
     teamName = player.teamName;
 
+    if(!data.status.isBuzzActive)
+    {
+      console.log("Answer from team " + player.teamName + " out of question time.");
+      return;
+    }
+
     if(data.status.question.questionType == 'RED_THREAD' || data.status.question.questionType == 'MAJOR_VICTORY' || data.status.question.questionType == 'QUIZ')
     {
       addOrReplace(data.answers, {
@@ -454,7 +462,14 @@ io.on('connection', function(socket){
       io.emit('UpdatePlayers', {status: data.status, players: data.players } );
 
       console.log(data.status);
-      fn(answer);
+      
+      if (typeof fn === 'function')
+      {
+        fn(answer);
+      }
+      else{
+        console.log("No callback function in buzz. Hacker?");
+      }
       return;
     }
     else if(data.status.question.questionType == 'BUZZ_RUSH')
@@ -559,10 +574,17 @@ io.on('connection', function(socket){
     }
     else
     {
-      data.status.isBuzzActive = true; // Stäng av buzzern om det inte är aktuellt längre.
+      data.status.isBuzzActive = true;
     }
 
     data.status.question = question;
+
+    data.status.questionTime = question.questionTime;
+    if(data.status.questionTime && data.status.questionTime != 0)
+    {
+      // Start the countdown again
+      data.status.questionTime = question.questionTime;
+    }
     //io.emit('QuestionUpdated', data.status.question);
 
     // Sort player array according to score.
@@ -579,27 +601,21 @@ io.on('connection', function(socket){
 
   });
 
+  // If we have our own start countdwn function, this will be it.
+  socket.on("StartCountdown", function(noOfSeconds)
+  {
+    data.status.questionTime = noOfSeconds;
+    io.emit('UpdatePlayers', {status: data.status, players: data.players });
+
+    io.emit("Countdown", { "state": "started", "noOfSeconds": noOfSeconds });
+    //setTimeout(updateCountdown, 1000, noOfSeconds);
+  });
+
+
   socket.on('CompleteQuestion', function(playerList) {
     if(!verifyQM(socket.handshake.session.team, "CompleteQuestion")) { return; }
 
-    console.log("Avslutar frågan.");
-    data.status.isBuzzActive = false;
-
-    data.players.forEach(player => {
-      // TODO: Aslo check if the answer was correct.
-      if(data.answers != null)
-      {
-        var answer = getCurrentObject(data.answers, player.team);
-        if(answer == null || answer == undefined) {
-          return;
-        }
-        player.answer = answer.answer;
-      }
-      //player.score += answer.questionScore;
-      //player.questionScore = 0;
-    });
-
-    io.emit('UpdatePlayers', {status: data.status, players: data.players });
+    completeQuestion();
 
   });
 
@@ -820,6 +836,7 @@ io.on('connection', function(socket){
 
 function resetPlayers(endTheGame) {
   data.status.isBuzzed = false;
+  data.status.questionTime = "";
   data.status.isBuzzActive = true;
   data.status.winningTeamName = null;
   data.status.winningTeam = null;
@@ -853,4 +870,61 @@ function resetPlayers(endTheGame) {
 
 }
 
+// Infinit loop to keep track of countdowns.
+setInterval(updateCountdown, 1000);
 
+
+function startCountdown(noOfSeconds) {
+  data.status.questionTime = noOfSeconds;
+}
+
+function updateCountdown() {
+  if(!data.status.isBuzzActive)
+  {
+    // If the countdown isn't active anymore for wahtever reason, do nothing.   
+    return;
+  }
+
+  if(data.status.questionTime === "")
+  {
+    return;
+  }
+
+  if(data.status.questionTime <= 0)
+  {
+    console.log("Countdown stoped");
+    io.emit("Countdown", { "state": "ended", "noOfSeconds": 0 });
+    completeQuestion();
+  }
+  else
+  {
+    console.log("Countdown to " + data.status.questionTime);
+
+    io.emit("Countdown", { "state": "countdown", "noOfSeconds": data.status.questionTime });
+    --data.status.questionTime;
+    io.emit('UpdatePlayers', {status: data.status, players: data.players });
+  }
+}
+
+function completeQuestion() {
+  console.log("Avslutar frågan.");
+  data.status.isBuzzActive = false;
+
+  data.players.forEach(player => {
+    // TODO: Aslo check if the answer was correct.
+    if(data.answers != null)
+    {
+      var answer = getCurrentObject(data.answers, player.team);
+      if(answer == null || answer == undefined) {
+        return;
+      }
+      player.answer = answer.answer;
+    }
+    //player.score += answer.questionScore;
+    //player.questionScore = 0;
+  });
+
+  data.status.question.questionTimeActive = false;
+
+  io.emit('UpdatePlayers', {status: data.status, players: data.players });
+}

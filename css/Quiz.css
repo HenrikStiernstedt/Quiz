@@ -111,6 +111,24 @@ body {
   border-radius: .575em 0 0 .575em;
 }
 
+.QuestionCountdownOverlay {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  height: 1.75em;
+  min-width: 2.75em;
+  -webkit-box-align: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  top: 25px;
+  right: 0px;
+  color: white;
+  background-color: rgb(238, 214, 0);
+  border-radius: .575em 0 0 .575em;
+}
+
+
 .MaxWidth {
   width: 100%;
 }

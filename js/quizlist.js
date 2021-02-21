@@ -22,6 +22,7 @@ var vm = new Vue({
     status: {
       "isBuzzed" : false,
       "isBuzzActive" : false,
+      "questionTime": 30,
       "winningTeamName" : null,
       "winningTeam" : null,
       "buzzList" : [0],
@@ -32,6 +33,7 @@ var vm = new Vue({
         questionText: "",
         correctAnswer: "",
         questionScore: 0,
+        questionTime: 30,
         questionClues : [{
           "clueScore" : 0,
           "clueText" : ""
@@ -63,6 +65,7 @@ var vm = new Vue({
         "questionText": "",
         "correctAnswer": "",
         "questionScore": 2,
+        "questionTime": 30,
         "questionClues" : [{
           "clueScore" : 0,
           "clueText" : ""
@@ -77,6 +80,7 @@ var vm = new Vue({
         "questionText": "",
         "correctAnswer": "",
         "questionScore": 2,
+        "questionTime": "",
         "questionClues" : [{
           "clueScore" : 0,
           "clueText" : ""
@@ -107,6 +111,7 @@ var vm = new Vue({
 
     MakeMeQuizMaster : function() {
       socket.emit('MakeMeQuizMaster', vm.player.quizMasterPassword);
+      $('#QMSettingsModal').modal('hide');
     },
     purge : function() {
       if(confirm("Är du säker?"))
@@ -350,8 +355,8 @@ function initQuizlist() {
 
   socket.on('UpdatePlayers', function(statusHolder)
   {
-    console.log("Players:");
-    console.log(statusHolder.players);
+    console.log("status:");
+    console.log(statusHolder.status);
 
     vm.players = statusHolder.players;
     vm.status = statusHolder.status;
