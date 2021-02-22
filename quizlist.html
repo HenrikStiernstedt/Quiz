@@ -33,6 +33,10 @@
   <!-- socket.io -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
+  <!-- FlipClock -->
+  <link rel="stylesheet" href="css/CountDown.css">
+  <script src="js/CountDown.js"></script>
+
   <!-- My own stuff -->
   <link href="css/Quiz.css" rel="stylesheet">
   <!--<script src="js/Quiz.js"></script>-->
@@ -177,6 +181,24 @@
               </div>
             </div>
           </transition>
+
+          <div class="clock" style="margin:2em;"></div>
+
+          <script type="text/javascript">
+            var clock;
+
+            $(document).ready(function() {
+
+              // Instantiate a counter
+              clock = new FlipClock($('.clock'), 60, {
+                clockFace: 'Counter',
+                autoStart: true,
+                countdown: false
+              });
+              
+            });
+          </script>
+
         </div>
         <!-- End of Answer area -->
 
