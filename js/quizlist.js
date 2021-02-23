@@ -355,8 +355,8 @@ function initQuizlist() {
 
   socket.on('UpdatePlayers', function(statusHolder)
   {
-    console.log("status:");
-    console.log(statusHolder.status);
+  //  console.log("status:");
+  //  console.log(statusHolder.status);
 
     vm.players = statusHolder.players;
     vm.status = statusHolder.status;
@@ -364,6 +364,10 @@ function initQuizlist() {
     if(statusHolder.action == 'clear')
     {
       vm.player.submittedAnswer = "";
+    }
+    if(statusHolder.action == "ShowCorrectAnswer")
+    {
+      $('.flip-card-inner').toggleClass('flipped');
     }
 
     // Update this player
