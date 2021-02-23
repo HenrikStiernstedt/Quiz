@@ -729,7 +729,9 @@ io.on('connection', function(socket){
         });
       });
     }
-    io.emit('UpdatePlayers', {status: data.status, players: data.players });
+    
+    data.status.question.correctAnswer = correctAnswer;
+    io.emit('UpdatePlayers', {status: data.status, players: data.players, action: "ShowCorrectAnswer"  });
   });
 
   socket.on('ResetBuzz', function() {
@@ -924,7 +926,7 @@ function completeQuestion() {
     //player.questionScore = 0;
   });
 
-  data.status.question.questionTimeActive = false;
+  data.status.questionTimeActive = false;
 
   io.emit('UpdatePlayers', {status: data.status, players: data.players });
 }
