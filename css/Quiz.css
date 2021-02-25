@@ -149,7 +149,7 @@ body {
 .flip-card {
   background-color: transparent;
   /*width: 300px;*/
-  height: 800px;
+  height: 300px;
   perspective: 4000px;
 }
 
@@ -268,6 +268,44 @@ body {
 }
 .slide-leave {
    z-index: 5000;
+}
+
+.slide-to-back-enter-active {
+  animation: slide-to-back-in 1s;
+}
+.slide-to-back-leave-active {
+  animation: slide-to-back-out 1s;
+}
+
+@keyframes slide-to-back-in {
+  0% {
+    transform: scale(0.9);
+    z-index: 0;
+  }
+  100% {
+    transform: scale(1);
+    z-index: 5000;
+  }
+}
+
+@keyframes slide-to-back-out {
+  0% {
+    z-index: 5000;
+  }
+  50% {
+    transform: translate(-102%);
+    z-index: 5000;
+  }
+  70% {
+    transcorm: scale(0.9);
+    z-index: 0;
+    opacity: 1;
+  }
+  100% {
+    transform: translate(0%);
+    z-index: 5000;
+    opacity: 0;
+  }
 }
 
 /* Enter and leave animations can use different */

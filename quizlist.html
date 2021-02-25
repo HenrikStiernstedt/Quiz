@@ -48,12 +48,12 @@
 
   <div id="app">
     <!-- Main content-->
-    <div class="container-fluid" style="height: 100%; padding-top: 10px;">
-      <div class="row clearfix hs-height">
+    <div class="container" style="height: 100%; padding-top: 10px;">
+      <div class="row CardAndPlayer">
 
         <!-- Frågekort -->
-        <div class="questionInfo col-lg-8 ">
-          <transition name="slide">
+        <div class="questionInfo col-md-6">
+          <transition name="slide-to-back">
             <div class="flip-card slideContainer glass"  v-bind:key="status.question.questionNumber">
 
               <div class="flip-card-inner">
@@ -172,7 +172,7 @@
           </transition>
         </div>
         <!-- Answer area -->
-        <div id="player" class="col-lg-4" style="min-height:110px;">
+        <div id="player" class="player col-md-6" style="min-height:110px;">
           <transition name="fade" mode="out-in">
             <div v-if="status.question.questionType != 'WELCOME'" class="card glass answerArea"  v-bind:key="status.question.questionType"> <!-- Only update on new question type. -->
               <div class="card-body">
@@ -203,10 +203,11 @@
         </div>
         <!-- End of Answer area -->
 
-        
+      </div>
+      <div class="row Leaderboard">
 
         <!-- Kontroller för score board -->
-        <div class="playerTable col-lg-8">
+        <div class="playerTable col-xs-12">
           <div class="card glass">
             <div class="card-body" style="padding:0px;">
               <table class="MaxWidth">
@@ -271,8 +272,10 @@
           </div>
         </div>
 
+      </div>
+      <div class="row administration">
         <!-- Kontroller för QuizMaster och administration -->
-        <div class="col-lg-4 hs-height">
+        <div class="administration col-xs-12">
 
           <!-- Kontroller för QuizMaster -->
           <div v-if="player.isQuizMaster" class="card glass quizMasterInfo">
