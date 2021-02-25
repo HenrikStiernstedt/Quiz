@@ -207,7 +207,7 @@
       <div class="row Leaderboard">
 
         <!-- Kontroller för score board -->
-        <div class="playerTable col-xs-12">
+        <div class="playerTable col-xs-12" style="width:100%">
           <div class="card glass">
             <div class="card-body" style="padding:0px;">
               <table class="MaxWidth">
@@ -275,7 +275,7 @@
       </div>
       <div class="row administration">
         <!-- Kontroller för QuizMaster och administration -->
-        <div class="administration col-xs-12">
+        <div class="administration col-xs-12" style="width:100%">
 
           <!-- Kontroller för QuizMaster -->
           <div v-if="player.isQuizMaster" class="card glass quizMasterInfo">
@@ -391,17 +391,17 @@
           <div class="card glass">
             <div class="card-body">
               <!-- Emotion buttons -->
-              <div class="btn-group row" role="group" aria-label="Emotion-buttons">
+              <div class="btn-group" role="group" aria-label="Emotion-buttons">
                 <button type="button" class="btn btn-outline-secondary mb-2" v-on:click="SetConfidenceLevel(player.confidenceLevel+1)" :disabled="player.confidenceLevel >= environment.maxConfidence" ><span class="fas fa-arrow-circle-up"></span></button>
                 <button type="button" class="btn btn-outline-secondary mb-2" v-on:click="SetConfidenceLevel(player.confidenceLevel-1)" :disabled="player.confidenceLevel <= environment.minConfidence"><span class="fas fa-arrow-circle-down"></span></button>
               </div>
               <!-- Button trigger modal -->
               <!--<div class="btn-group" role="group" aria-label="Settings-buttons">-->
-                <div class="row">
-                  <button type="button" class="btn btn-outline-secondary mr-1" data-toggle="modal" data-target="#playerSettingsModal">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-outline-secondary mb-2" data-toggle="modal" data-target="#playerSettingsModal">
                     <i class="fas fa-user-tag"></i> Byt namn
                   </button>
-                  <button type="button" class="btn btn-outline-secondary" data-toggle="modal" data-target="#QMSettingsModal">
+                  <button type="button" class="btn btn-outline-secondary mb-2" data-toggle="modal" data-target="#QMSettingsModal">
                     <i class="fas fa-user-shield"></i> QuizMaster
                   </button>
                 </div>
