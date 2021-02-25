@@ -54,10 +54,10 @@
         <!-- Frågekort -->
         <div class="questionInfo col-lg-8 ">
           <transition name="slide">
-            <div class="flip-card slideContainer"  v-bind:key="status.question.questionNumber">
+            <div class="flip-card slideContainer glass"  v-bind:key="status.question.questionNumber">
 
               <div class="flip-card-inner">
-                <div class="flip-card-front">
+                <div class="flip-card-front glass">
                   <span v-if="status.question.questionType == 'WELCOME'">
                     <img class="card-img-top" src="images/39.jpg" alt="Gott nytt år">
                     <div class="card-body">
@@ -150,7 +150,7 @@
                   </span>
                 </div> <!--end of front-->
                 <!-- facit -->
-                <div class="flip-card-back">
+                <div class="flip-card-back glass">
                   <img class="card-img-top" src="images/correct.jpg" alt="Facit">
                     <div class="card-body">
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -174,7 +174,7 @@
         <!-- Answer area -->
         <div id="player" class="col-lg-4" style="min-height:110px;">
           <transition name="fade" mode="out-in">
-            <div v-if="status.question.questionType != 'WELCOME'" class="card answerArea"  v-bind:key="status.question.questionType"> <!-- Only update on new question type. -->
+            <div v-if="status.question.questionType != 'WELCOME'" class="card glass answerArea"  v-bind:key="status.question.questionType"> <!-- Only update on new question type. -->
               <div class="card-body">
                 <span v-if="status.question.questionType == 'BUZZ_RUSH'">
                   <div v-if="status.winningTeam == player.id" v-on:click="buzz()" class="alert alert-success" role="alert">Du har buzzat!</div>
@@ -207,7 +207,7 @@
 
         <!-- Kontroller för score board -->
         <div class="playerTable col-lg-8">
-          <div class="card">
+          <div class="card glass">
             <div class="card-body" style="padding:0px;">
               <table class="MaxWidth">
                 <thead>
@@ -275,7 +275,7 @@
         <div class="col-lg-4 hs-height">
 
           <!-- Kontroller för QuizMaster -->
-          <div v-if="player.isQuizMaster" class="card quizMasterInfo">
+          <div v-if="player.isQuizMaster" class="card glass quizMasterInfo">
 
           
             <div class="card-header">
@@ -385,7 +385,7 @@
           </div>
           
           <!-- Administration-->
-          <div class="card">
+          <div class="card glass">
             <div class="card-body">
               <!-- Emotion buttons -->
               <div class="btn-group row" role="group" aria-label="Emotion-buttons">
