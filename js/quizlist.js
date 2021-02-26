@@ -224,7 +224,7 @@ function getStatusUpdate()
     success: function(serverStatus) {
       vm.status = (serverStatus.status);
       vm.players = (serverStatus.players);
-
+      textFit($('#questionText'));
       // Trying to get team name restored after a reload.
       //vm.player.teamName = status.nameRequired.name;
     }
@@ -311,6 +311,7 @@ function initQuizlist() {
     console.log("Incomming updated question");
     console.log(question);
     vm.status.question = question;
+    textFit($('#questionText'));
   });
 
   socket.on('ReturnLoadQuestions', function(questionList) {
@@ -373,7 +374,7 @@ function initQuizlist() {
     // Update this player
     var p = getThisPlayer();
     vm.player.confidenceLevel = p?.confidenceLevel || 0;
-    
+    textFit($('#questionText'), {multiLine: true});
   });
 
   $('form').submit(function(){

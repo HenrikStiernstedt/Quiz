@@ -37,6 +37,8 @@
   <link rel="stylesheet" href="css/CountDown.css">
   <script src="js/CountDown.js"></script>
 
+  <script src="js/textFit.min.js"></script>
+
   <!-- My own stuff -->
   <link href="css/Quiz.css" rel="stylesheet">
   <!--<script src="js/Quiz.js"></script>-->
@@ -99,7 +101,7 @@
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                       <h5 class="card-title">Fråga {{status.question.questionNumber}}: Quiz</h5>
                       <p class="card-text">
-                        <strong><span style="white-space: normal;">{{ status.question.questionText.replace(/&nbsp;/g, ' ') }}</span></strong>
+                        <div id="questionText" style="white-space: normal; height:50px; width: 500px">{{ status.question.questionText.replace(/&nbsp;/g, ' ') }}</div>
                         <span v-if="status.question.questionScore != '0'"><br/>Värd
                           <transition name="bounce" mode="out-in">
                             <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
