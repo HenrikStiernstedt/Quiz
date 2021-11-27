@@ -54,10 +54,10 @@
         <!-- Frågekort -->
         <div class="questionInfo col-md-6">
           <transition name="slide-to-back">
-            <div class="flip-card slideContainer glass"  v-bind:key="status.question.questionNumber">
+            <div class="flip-card slideContainer "  v-bind:key="status.question.questionNumber">
 
               <div class="flip-card-inner">
-                <div class="flip-card-front glass">
+                <div class="flip-card-front ">
                   <span v-if="status.question.questionType == 'WELCOME'">
                     <img class="card-img-top" src="images/39.jpg" alt="Gott nytt år" />
                     <div class="card-body">
@@ -74,7 +74,7 @@
                   </span>
 
                   <span v-if="status.question.questionType == 'MAJOR_VICTORY'">
-                    <img class="card-img-top" src="images/majority-rules.png" alt="Majoriteten bestämmer">
+                    <img class="card-img-top" src="images/jul2.jpg" alt="Majoriteten bestämmer">
                     <div class="card-body">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -151,7 +151,7 @@
                 </div> <!--end of front-->
                 <!-- facit -->
                 <div class="flip-card-back glass">
-                  <img class="card-img-top" src="images/correct.jpg" alt="Facit">
+                  <img class="card-img-top" src="images/jul.jpg" alt="Facit">
                     <div class="card-body">
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                       
