@@ -186,26 +186,34 @@
                 <span v-else-if="status.isBuzzActive">
                   <!-- Om det inte är just buzz -->
                   <div class="input-group input-group-lg">
-                    <span v-if="status.question.answerType == 'text' || !status.question.answerType" ><!-- Default om utelmnat blir fritext. -->
+                    <template v-if="status.question.answerType == 'text' || !status.question.answerType" ><!-- Default om utelmnat blir fritext. -->
                       <input v-model="player.pendingAnswer" @keyup.enter="buzz()" type="text" class="form-control" placeholder="Svar" aria-label="Lagnamn" aria-describedby="basic-addon2">
                       <div class="input-group-append">
-                        <button class="btn btn-primary" v-on:click="buzz()" :disabled="!player.pendingAnswer" type="button">Svara med text</button>
+                        <button class="btn btn-primary" v-on:click="buzz()" :disabled="!player.pendingAnswer" type="button">Svara</button>
                       </div>
-                    </span>
-                    <span v-else-if="status.question.answerType == 'ABCD'" >
+                    </template>
+                    <template v-else-if="status.question.answerType == 'ABCD'" >
                       <div class="input-group-append">
                         <button class="btn btn-primary" v-on:click="buzz($event,'A');" :disabled="player.submittedAnswer=='A'" type="button">A</button>
                         <button class="btn btn-primary" v-on:click="buzz($event, 'B')" :disabled="player.submittedAnswer=='B'" type="button">B</button>
                         <button class="btn btn-primary" v-on:click="buzz($event, 'C')" :disabled="player.submittedAnswer=='C'" type="button">C</button>
                         <button class="btn btn-primary" v-on:click="buzz($event, 'D')" :disabled="player.submittedAnswer=='D'" type="button">D</button>
                       </div>
-                    </span>
-                    <span v-else>
+                    </template>
+                    <template v-else>
+                      <div >
+                        <div v-for="ans in status.question.answerType.split(';')" v-bind:key="ans" v-bind:id="ans" role="group" class="button-group mb-1">
+                          <button v-if="ans" class="btn btn-primary btn-block" v-on:click="buzz($event,ans);" :disabled="player.submittedAnswer==ans" type="button">{{ans}}</button>
+                        </div>
+                      </div>
+                      <!--
+
                       <input v-model="player.pendingAnswer" @keyup.enter="buzz()" type="text" class="form-control" placeholder="Svar" aria-label="Lagnamn" aria-describedby="basic-addon2">
                       <div class="input-group-append">
                         <button class="btn btn-primary" v-on:click="buzz()" :disabled="!player.pendingAnswer" type="button">Svara utan text</button>
                       </div>
-                    </span>
+                      -->
+                    </template>
                   </div>
                   <div>
                     <small v-if="status.questionTime">Återstående tid: {{status.questionTime}}</small>
@@ -213,6 +221,13 @@
                   <div>
                     <small v-if="player.submittedAnswer">Du har svarat: {{player.submittedAnswer}}</small>
                   </div>
+                </span>
+                <span v-else>
+                  <div>
+                    <small v-if="player.submittedAnswer">Du har svarat: {{player.submittedAnswer}}</small>
+                    <small v-else>Du har inte svarat</small>
+                  </div>
+
                 </span>
               </div>
             </div>

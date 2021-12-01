@@ -46,7 +46,9 @@ quiz. But the quiz master controls all scoring.
 
 * [ ] Help sections for the rules for all game modes.
 
-* [ ] Countdown timers for answering.
+* [x] Countdown timers for answering.
+
+* [x] Multiple choice questions, with gui.
 
 * [ ] Sounds
 
@@ -67,6 +69,8 @@ some of the freedom the Quizmaster has today that really is not needed.
 
 * [x] Preconfigured questions.
 
+* [x] Multiple choice questions, with gui.
+
 * [ ] Better flow when displaying the correct answer and more satisfying animations when you get points. Sounds! Stars!
 
 * [ ] Postpone the adding of correct stores to the total score. Give all points at the same time and then reorder the player list. PRIORITY!
@@ -77,7 +81,7 @@ some of the freedom the Quizmaster has today that really is not needed.
 
 * [ ] Comments field to pending question.
 
-* [ ] Displayment of the correct answer.
+* [x] Displayment of the correct answer.
 
 
 ## Scoreboard only mode

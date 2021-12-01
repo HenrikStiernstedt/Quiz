@@ -621,7 +621,7 @@ io.on('connection', function(socket){
 
   socket.on("AutoCorrect", function(correctAnswer)  {
     if(!verifyQM(socket.handshake.session.team, "AutoCorrect")) { return; }
-    // Autocorrect only works on public answers at the moment. User "Avsluta fråga" först.
+    // Autocorrect only works on public answers at the moment. Use "Avsluta fråga" först.
 
     if(data.status.question.questionType == "RED_THREAD" || data.status.question.questionType == "QUIZ")
     {
@@ -632,7 +632,7 @@ io.on('connection', function(socket){
 
         var currentScore = parseInt(player.questionScore ? player.questionScore : data.status.question.questionScore);
 
-        if(player.answer && share.cleanString(player.answer) == share.cleanString(correctAnswer)) {
+        if(player.answer && share.cleanString(player.answer) === share.cleanString(correctAnswer)) {
           if(!player.isCorrect)
           {
             player.score += currentScore; // TODO: Remove this score calculation. It should be done at a later stage instead. 
