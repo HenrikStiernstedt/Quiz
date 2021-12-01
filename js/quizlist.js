@@ -32,6 +32,7 @@ var vm = new Vue({
         questionType : "BUZZ_RUSH",
         questionText: "",
         correctAnswer: "",
+        answerType: "text",
         questionScore: 0,
         questionTime: 30,
         questionClues : [{
@@ -64,6 +65,7 @@ var vm = new Vue({
         "questionType" : "BUZZ_RUSH",
         "questionText": "",
         "correctAnswer": "",
+        "answerType": "text",
         "questionScore": 2,
         "questionTime": 30,
         "questionClues" : [{
@@ -79,6 +81,7 @@ var vm = new Vue({
         "questionType" : "BUZZ_RUSH",
         "questionText": "",
         "correctAnswer": "",
+        "answerType": "text",
         "questionScore": 2,
         "questionTime": "",
         "questionClues" : [{
@@ -181,7 +184,11 @@ var vm = new Vue({
         socket.emit("Load", vm.quizMaster.savegame);
       }
     },
-    buzz: function () {
+    buzz: function (event, myAnswer) {
+      if(myAnswer)
+      {
+        vm.player.pendingAnswer = myAnswer;
+      }
       if(vm.status.question.questionType != "BUZZ_RUSH" && !vm.player.pendingAnswer)
       {
         return;
