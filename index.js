@@ -887,7 +887,7 @@ function updateCountdown() {
     return;
   }
 
-  if(data.status.questionTime === "")
+  if(data.status.questionTime === "" || data.status.questionTime == NaN || data.status.questionTime == undefined)
   {
     return;
   }
