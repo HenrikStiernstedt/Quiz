@@ -354,10 +354,10 @@
                 <input v-model="quizMaster.pendingQuestion.questionTime" type="number" class="form-control" aria-label="Default" aria-describedby="Tid">
                 <div class="input-group-prepend">
                   <span class="input-group-text" id="asdf">Återstående tid</span>
-                  <button type="button" class="btn btn-primary" @click="quizMaster.pendingQuestion.questionTime = ''">Ingen</button>
-                  <button type="button" class="btn btn-primary" @click="quizMaster.pendingQuestion.questionTime = 30">30 s</button>
-                  <button type="button" class="btn btn-primary" @click="quizMaster.pendingQuestion.questionTime = 10">10 s</button>
-                  <button type="button" class="btn btn-primary" @click="quizMaster.pendingQuestion.questionTime = status.questionTime">&lt;</button>
+                  <button type="button" class="btn btn-primary" @click="setPendingQuestionTime($event,'');">Ingen</button>
+                  <button type="button" class="btn btn-primary" @click="setPendingQuestionTime($event,30);">30 s</button>
+                  <button type="button" class="btn btn-primary" @click="setPendingQuestionTime($event,10);">10 s</button>
+                  <button type="button" class="btn btn-primary" @click="setPendingQuestionTime($event,status.questionTime);">&lt;</button>
                 </div>
                 <input v-model="status.questionTime" type="number" class="form-control" aria-label="Default" aria-describedby="Tid">
                 <div class="input-group-append">
@@ -367,13 +367,18 @@
               </div>
               <div class="input-group mb-1">
                 <div class="input-group-prepend">
-                  <span class="input-group-text" id="asdf">Svar</span>
+                  <span class="input-group-text" id="answer">Svar</span>
                 </div>
-                <input v-model="quizMaster.pendingQuestion.correctAnswer" type="text" class="form-control" aria-label="Default" aria-describedby="asdf">
-                <div class="input-group-prepend">
-                  <span class="input-group-text" id="answerType">Svarstyp</span>
+                <input v-model="quizMaster.pendingQuestion.correctAnswer" type="text" class="form-control" aria-label="Default" aria-describedby="answer">
+                <button class="btn btn-outline dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >Svarstyp</button>
+                <div class="dropdown-menu">
+                  <a class="dropdown-item"  @Click="setPendingAnswerType($event,'text');">Text</a>
+                  <a class="dropdown-item"  @Click="setPendingAnswerType($event,'ABCD');">A B C D</a>
+                  <a class="dropdown-item"  @Click="setPendingAnswerType($event,'0-100')">0-100</a>
+                  <div role="separator" class="dropdown-divider"></div>
+                  <a class="dropdown-item"  @Click="setPendingAnswerType($event,'');">Semikolonseparerade svarsalternativ</a>
                 </div>
-                <input v-model="quizMaster.pendingQuestion.answerType" type="text" class="form-control" aria-label="Default" aria-describedby="answerType">
+                <input v-model="quizMaster.pendingQuestion.answerType" type="text" id="answerTypeInput" class="form-control" aria-label="Default" aria-describedby="answerType">
               </div>
               <div class="btn-group mb-1" role="group" aria-label="Question-buttons">
                 <button type="button" class="btn btn-primary" v-on:click="updateQuestion()">Uppdatera fråga</button>

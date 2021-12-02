@@ -58,7 +58,7 @@ var vm = new Vue({
       "quizMasterPassword": "",
       "confidenceLevel": 0
     },
-    quizMaster :
+    quizMaster:
     {
       "pendingQuestion" : {
         "questionNumber": 0,
@@ -147,7 +147,7 @@ var vm = new Vue({
       if(vm.quizMaster.QuestionListNumber < vm.quizMaster.questionList.length)
       {
         console.log("Hämtar nästa fråga: " + vm.quizMaster.QuestionListNumber);
-        vm.quizMaster.pendingQuestion = vm.quizMaster.questionList[vm.quizMaster.QuestionListNumber];
+        Vue.set(vm.quizMaster, "pendingQuestion", vm.quizMaster.questionList[vm.quizMaster.QuestionListNumber]);
         vm.quizMaster.QuestionListNumber++;
       }
       else
@@ -210,6 +210,12 @@ var vm = new Vue({
     },
     getCurrentPlayer: function(array, id) {
       return array.filter( obj => obj.team == id)[0];
+    },
+    setPendingAnswerType: function (event, answerType) {
+      Vue.set(vm.quizMaster.pendingQuestion, "answerType", answerType);
+    },
+    setPendingQuestionTime: function ( event, questionTime) {
+      Vue.set(vm.quizMaster.pendingQuestion, "questionTime", questionTime);
     }
   }
 });
