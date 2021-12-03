@@ -143,6 +143,17 @@ var vm = new Vue({
       console.log("Autocorrecting with answer: " + vm.quizMaster.pendingQuestion.correctAnswer);
       socket.emit("AutoCorrect", vm.quizMaster.pendingQuestion.correctAnswer);
     },
+    loadLastQuestion: function() {
+      if(vm.quizMaster.QuestionListNumber > 1)
+      {
+        console.log("Hämtar förra fråga: " + --vm.quizMaster.QuestionListNumber);
+        vm.quizMaster.pendingQuestion = vm.quizMaster.questionList[vm.quizMaster.QuestionListNumber-1];
+      }
+      else
+      {
+        console.log("Slut på frågor att hämta.");
+      }
+    },
     loadNextQuestion: function() {
       if(vm.quizMaster.QuestionListNumber < vm.quizMaster.questionList.length)
       {
@@ -161,6 +172,31 @@ var vm = new Vue({
       socket.emit('UpdateQuestion', 'NEW', vm.quizMaster.pendingQuestion);
       popAudioElement.play();
     },
+    createNewQuestion: function() {
+      console.log("Skapa ny fråga");
+      if(confirm("Vill du skapa en ny sång?"))
+      {
+        vm.quizMaster.pendingQuestion =           
+        {
+          questionNumber: "",
+          questionType : vm.quizMaster.pendingQuestion.questionType,
+          questionText: "",
+          correctAnswer: "",
+          answerType: vm.quizMaster.pendingQuestion.answerType,
+          questionScore: vm.quizMaster.pendingQuestion.questionScore,
+          questionTime: vm.quizMaster.pendingQuestion.questionTime,
+          questionClues : [{
+            "clueScore" : 0,
+            "clueText" : ""
+          }]
+        };
+        vm.quizMaster.questionList.push(
+          vm.quizMaster.pendingQuestion
+        );
+        vm.quizMaster.QuestionListNumber = vm.quizMaster.questionList.length;
+      }
+    },
+
     loadQuestions: function() {
       console.log("Ladda ny Quiz!");
       socket.emit("LoadQuestions", vm.quizMaster.loadQuestions);
