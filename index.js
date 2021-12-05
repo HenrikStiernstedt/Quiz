@@ -623,8 +623,53 @@ io.on('connection', function(socket){
     if(!verifyQM(socket.handshake.session.team, "AutoCorrect")) { return; }
     // Autocorrect only works on public answers at the moment. Use "Avsluta fråga" först.
 
-    if(data.status.question.questionType == "RED_THREAD" || data.status.question.questionType == "QUIZ")
+    if (data.status.question.answerType === "0-100")
     {
+      // In 0-100, you get points based on how far from the answer you guessed.
+      // Exact answer gives a bonus of 10.
+      // No answer will be treated as the answer 0 and scored accordingly. 
+      // This answerType is not compatible with all question types.
+
+      data.players.forEach(player => {
+
+        var currentScore = data.status.question.questionScore;
+        var answerInt = parseInt(player.answer, 10);
+        if(isNaN(answerInt) || answerInt < 0) {
+          answerInt = 0;
+        }
+        if(answerInt > 100) { 
+          answerInt = 100; 
+        }
+
+        var answerDiff = Math.abs(parseInt(correctAnswer) - answerInt);
+        if (answerDiff == 0)
+        {
+          answerDiff -= 10;
+          
+        }
+
+        player.questionScore = answerDiff;
+        
+        if(!player.isCorrect)
+        {
+          player.score += answerDiff;
+          player.isCorrect = true;
+        }
+        else{
+          player.score -= answerDiff;
+          player.isCorrect = false;
+        }
+        
+
+      });      
+
+
+
+    }
+    else if(data.status.question.questionType == "RED_THREAD" || data.status.question.questionType == "QUIZ")
+    {
+      // This is the standard where you get points if you answered correctly. 
+      // In case of RED_THREAD, you get the number of points of your last used clue.
       console.log("AutoCorrecting with answer: " + correctAnswer);
       if(correctAnswer == null) {return; }
 

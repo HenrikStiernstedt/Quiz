@@ -1,0 +1,25 @@
+[{
+    "questionNumber": 1,
+    "questionType" : "QUIZ",
+    "questionText": "Hur många är de nordiska länderna?",
+    "correctAnswer": 5,
+    "questionScore": 100,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många procent fett är det i grädde?",
+    "correctAnswer": 40,
+    "questionScore": 100,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]
