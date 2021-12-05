@@ -20,7 +20,7 @@
 
     exports.cleanString = function(input) 
     {
-      return input.replace(/[^0-9a-z]/gi, '').toLowerCase();
+      return input.replace(/[^0-9A-Za-zåäöÅÄÖ]/gi, '').toLowerCase();
     };
 
     exports.maxConfidence = 2;
