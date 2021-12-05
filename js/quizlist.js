@@ -454,5 +454,16 @@ function initQuizlist() {
   getChatHistory();
   loadSounds();
 
+  $(function () {
+    // Set focus on modals first field, when shown
+    $('body').on('shown.bs.modal', '#playerSettingsModal', function () {
+      $('input:visible:enabled:first', this).focus();
+    });
+
+    $('body').on('shown.bs.modal', '#QMSettingsModal', function () {
+      $('input:visible:enabled:first', this).focus();
+    });
+
+  });
 
 }
