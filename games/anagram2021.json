@@ -1,0 +1,153 @@
+[{
+    "questionNumber": 1,
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "HIP PRINCIPLE",
+    "correctAnswer": "Prince Philip",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },{
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "CHILL COALMINES",
+    "correctAnswer": "Michael Collins",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },{
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "LUGN SMÖRIG ALBERT",
+    "correctAnswer": "Gunilla Bergström",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "IRENA",
+    "correctAnswer": "Einár",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },{
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "KARLS LIVS",
+    "correctAnswer": "Lars Vilks",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "WOOLLEN CLIP",
+    "correctAnswer": "Colin Powell",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "MORDFALLENS UDD",
+    "correctAnswer": "Donald Rumsfeld",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "CARINS HÖGRA ZONS",
+    "correctAnswer": "Göran Zachrisson",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "RICH CULT-MISQUOTER",
+    "correctAnswer": "Curt-Eric Holmquist",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "STORHETENS SNUVA",
+    "correctAnswer": "Svante Thuresson",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "LANSEN ROR",
+    "correctAnswer": "Lars Norén",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "RIV ANSGARS MIDJA",
+    "correctAnswer": "Sigvard Marjasin",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "DONUTS MUTED",
+    "correctAnswer": "Desmond Tutu",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "BUZZ_RUSH",
+    "questionText": "MYNTENS MOTDRAG",
+    "correctAnswer": "Tommy Engstrand",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]
+
