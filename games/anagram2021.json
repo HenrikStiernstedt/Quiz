@@ -1,4 +1,14 @@
 [{
+  "questionNumber": "X",
+  "questionType" : "WELCOME",
+  "questionText": "Anagram 2021",
+  "correctAnswer": "",
+  "questionScore": 2,
+  "questionClues" : [{
+    "clueScore" : 0,
+    "clueText" : ""
+  }]
+},{
     "questionNumber": 1,
     "questionType" : "BUZZ_RUSH",
     "questionText": "HIP PRINCIPLE",
