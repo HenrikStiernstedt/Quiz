@@ -10,6 +10,14 @@ form button { width: 9%; background: rgb(130, 224, 255); border: none; padding: 
 html, body {
     height: 100%;
     touch-action: manipulation; /* Stop double tapping to zoom in ios. */
+
+
+    /* Stop selecting of text on double click. */
+    user-select: none;
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    
 }
 
 .container-fluid { height: 100%; }
