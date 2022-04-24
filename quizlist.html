@@ -173,6 +173,7 @@
         </div>
         <!-- Answer area -->
         <div id="player" class="player col-md-6" style="min-height:110px;">
+          <button-counter></button-counter>
           <transition name="fade" mode="out-in">
             <div v-if="status.question.questionType != 'WELCOME'" class="card glass answerArea"  v-bind:key="status.question.questionType"> <!-- Only update on new question type. -->
               <div class="card-body">
