@@ -174,7 +174,7 @@ var vm = new Vue({
     },
     createNewQuestion: function() {
       console.log("Skapa ny fråga");
-      if(confirm("Vill du skapa en ny sång?"))
+      if(confirm("Vill du skapa en ny fråga?"))
       {
         vm.quizMaster.pendingQuestion =           
         {
