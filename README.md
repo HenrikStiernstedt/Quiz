@@ -52,6 +52,11 @@ quiz. But the quiz master controls all scoring.
 
 * [ ] Sounds
 
+### Fancy animations
+* [ ] Better flow when displaying the correct answer and more satisfying animations when you get points. Sounds! Stars!
+* [ ] Animation when revealing players answers. A delay between when the answer period closes and answers are shown, maybe one letter at a time? 
+* [ ] Postpone the adding of correct stores to the total score. Give all points at the same time and then reorder the player list. PRIORITY!
+
 ## QuizMaster GUI
 * Automatic score calculations.
   - [x] Based on QuizMaster's answer.
@@ -62,7 +67,7 @@ quiz. But the quiz master controls all scoring.
 * [ ] New public score board and question display.
   This one is supposed to be streamed online or just let everyone have surf to the page
   directly. To be used in tandem with the phone. So far you can always use an
-  unused client as the scoreboard.
+  unused client as the scoreboard. Also, see cahpter "Scoreboard only mode" furhter down.
 
 * [ ] More automatication for question types. Maybe with some kind of template to follow, or just skip 
 some of the freedom the Quizmaster has today that really is not needed. 
@@ -71,17 +76,18 @@ some of the freedom the Quizmaster has today that really is not needed.
 
 * [x] Multiple choice questions, with gui.
 
-* [ ] Better flow when displaying the correct answer and more satisfying animations when you get points. Sounds! Stars!
-
-* [ ] Postpone the adding of correct stores to the total score. Give all points at the same time and then reorder the player list. PRIORITY!
-
-* [ ] Save/load functions. 
+### Save/load functions. 
   - [x] Save/load within existing game.
+  - [ ] Upload/save questions from local computer.
   - [ ] "Restore session" function if the server crashes, and reconnect existing users to their old users.
 
 * [ ] Comments field to pending question.
 
 * [x] Displayment of the correct answer.
+
+* [ ] Custom images for questions and answers, stored with the questions.
+  - [ ] Preferable also with support to reuse the images.
+  - [ ] Preferable also with support to write some text over the image to make them a bit more unique.
 
 
 ## Scoreboard only mode
@@ -99,7 +105,8 @@ some of the freedom the Quizmaster has today that really is not needed.
 ### Quiz
   - [x] Standard quiz mode where every correct answer gives a point.
   - [ ] Other scoring mechanism with autoscoring where closest number gives points.
-  - [ ] Other scoring mechanism with autoscoring where closeness to the correct answer gives graduately lower/higher score. 
+  - [x] Other scoring mechanism with autoscoring where closeness to the correct answer gives graduately lower/higher score. 
+    - Answer type "0-100" has this feature implemented.
 
 ### More game modes
   - [ ] Majority fails/minority rules. Everyone types in a hopefully unique item from a list of items.
