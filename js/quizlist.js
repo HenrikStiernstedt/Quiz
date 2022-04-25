@@ -24,8 +24,11 @@ var vm = new Vue({
       "isBuzzActive" : false,
       "questionTime": 30,
       "winningTeamName" : null,
-      "winningTeam" : null,
+      "winningTeam" : null, 
       "buzzList" : [0],
+      "gameSettings": {
+        "reversedScoring": false
+      },
       quizMasterId: 0,
       question : {
         questionNumber: 0,
@@ -76,6 +79,9 @@ var vm = new Vue({
       "savegame": "game",
       "loadQuestions": "2020",
       "QuestionListNumber": 0,
+      "pendingGameSettings": {
+        "reversedScoring": false
+      },
       "questionList": [{
         "questionNumber": 0,
         "questionType" : "BUZZ_RUSH",
@@ -196,6 +202,21 @@ var vm = new Vue({
         vm.quizMaster.QuestionListNumber = vm.quizMaster.questionList.length;
       }
     },
+
+    toggleReversedScoring: function (event, reversedScoring) {
+      console.log("Uppdatera game settings! Sätt reversedScoring till " + reversedScoring);
+      socket.emit('UpdateGameSettings', { "reversedScoring": reversedScoring });
+    },
+
+    /*
+    updateGameSettings: function() {
+      console.log("Uppdatera game settings!");
+      if(confirm("Vill du uppdatera game settings?"))
+      {
+        socket.emit('UpdateGameSettings', { "reversedScoring": true });
+      }
+    },
+    */
 
     loadQuestions: function() {
       console.log("Ladda ny Quiz!");

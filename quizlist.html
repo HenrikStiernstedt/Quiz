@@ -277,7 +277,7 @@
                       <transition name="qbounce" mode="out-in">
                         
                         <!--<i :key="p.emote" v-if="player.id == p.team" :class="p.emote" class="far fa-2x" data-toggle="tooltip" title="Detta är du"></i>-->
-                        <i :key="1" v-if="p.isCorrect" class="far fa-grin-stars fa-2x shaking"></i>
+                        <i :key="1" v-if="p.isCorrect && status.question.answerType != '0-100'" class="far fa-grin-stars fa-2x shaking"></i>
                         <i :key="2" v-else-if="status.winningTeam !== p.team && p.HasBuzzed" class="far fa-sad-cry fa-2x headShake"></i>
                         <i :key="p.emote" v-else-if="p.active" :class="p.emote" class="far fa-2x"></i>
                         <i :key="p.emote" title="Disconnected" v-else class="far fa-dizzy fa-2x"></i>
@@ -289,7 +289,20 @@
                     </td>
                     <td>
 
-
+                      <!-- TEST att ha olika visningar beroende på svarstyp, men det blev inget bra. -->
+                      <!-- 
+                      <transition name="bounce">
+                        <span v-if="status.question.answerType == '0-100'">
+                          <span v-if="p.questionScore > 0 && p.isCorrect" class="badge badge-pill badge-success questionScore">{{p.questionScore}}</span>
+                          <span v-else-if="p.questionScore > 0" class="badge badge-pill badge-secondary questionScore">*</span>  
+                        </span>
+                        <span v-else>
+                          <span v-if="p.questionScore > 0 && p.isCorrect" class="badge badge-pill badge-success questionScore">{{p.questionScore}}</span>
+                          <span v-else-if="p.questionScore > 0" class="badge badge-pill badge-secondary questionScore">{{p.questionScore}}</span>
+                        </span>
+                      </transition>
+                      <span v-if="p.answer">{{ p.answer }}</span>
+                    -->
                       <transition name="bounce">
                         <span v-if="p.questionScore > 0 && p.isCorrect" class="badge badge-pill badge-success questionScore">{{p.questionScore}}</span>
                         <span v-else-if="p.questionScore > 0" class="badge badge-pill badge-secondary questionScore">{{p.questionScore}}</span>
@@ -407,6 +420,15 @@
               </div>
               <div class="btn-group mb-1">
                 <button type="button" class="btn btn-primary" v-on:click="newQuestion()">Visa fråga</button>
+              </div>
+
+              <!-- updateGameSettings -->
+
+              <div class="input-group mb-1" role="group" aria-label="New-Question">
+                <div class="input-group">
+                  <a v-if="status.gameSettings.reversedScoring" type="button" class="btn btn-primary mb-2" @Click="toggleReversedScoring($event, false)">Omvänd ordning</a>
+                  <a v-if="!status.gameSettings.reversedScoring" type="button" class="btn btn-primary mb-2"  @Click="toggleReversedScoring($event, true)">Rättvänd ordning</a>
+                </div>
               </div>
 
 

@@ -72,6 +72,9 @@ var data = {
     "winningTeamName" : null,
     "winningTeam" : null,
     "buzzList" : [],
+    "gameSettings": {
+      "reversedScoring": false
+    },
     quizMasterId: 0,
     question : { // TODO: Defaultfrågan är hårdkodad tills vidare.
       questionNumber: 0,
@@ -430,7 +433,21 @@ io.on('connection', function(socket){
       console.error(error);
     }
   });
-  
+
+  /*
+   * Update general game settings, not specific to any individual question. 
+   */
+  socket.on('UpdateGameSettings', function(gameSettings)
+  {
+    if(!verifyQM(socket.handshake.session.team, "LoadQuestions")) { return; }
+    console.log("Update gamesettings:");
+    console.log(gameSettings);
+    
+    data.status.gameSettings = gameSettings;
+
+    io.emit('UpdatePlayers', {status: data.status, players: data.players } );
+
+  });
 
 
 /******************************************************************************
@@ -587,16 +604,32 @@ io.on('connection', function(socket){
     }
     //io.emit('QuestionUpdated', data.status.question);
 
-    // Sort player array according to score.
-    data.players.sort(function (a, b) {
-      if (a.score > b.score) {
-          return -1;
-      }
-      if (b.score > a.score) {
-          return 1;
-      }
-      return 0;
-  });
+    if(data.status.gameSettings.reversedScoring)
+    {
+      // Sort player array according to reversed score, lower is better
+      data.players.sort(function (a, b) {
+        if (a.score > b.score) {
+            return 1;
+        }
+        if (b.score > a.score) {
+            return -1;
+        }
+        return 0;
+      });  
+    }
+    else
+    {
+      // Sort player array according to score.
+      data.players.sort(function (a, b) {
+        if (a.score > b.score) {
+            return -1;
+        }
+        if (b.score > a.score) {
+            return 1;
+        }
+        return 0;
+      });
+    }
     io.emit('UpdatePlayers', {status: data.status, players: data.players, action: clientAction });
 
   });
@@ -853,7 +886,7 @@ io.on('connection', function(socket){
     if(!verifyQM(socket.handshake.session.team, "NewGame")) { return; }
     resetPlayers(true);
 
-    // Sort player array according to score.
+    // Sort player array according to number of wins.
     data.players.sort(function (a, b) {
       if (a.NumberOfWins > b.NumberOfWins) {
           return -1;
@@ -896,7 +929,14 @@ function resetPlayers(endTheGame) {
   var winningScore;
   if(endTheGame)
   {
-    winningScore = Math.max.apply(Math, data.players.map(function(o) { return o.score; }))
+    if(data.status.gameSettings.reversedScoring)
+    {
+      winningScore = Math.min.apply(Math, data.players.map(function(o) { return o.score; }))
+    }
+    else
+    {
+      winningScore = Math.max.apply(Math, data.players.map(function(o) { return o.score; }))
+    }
   }
 
 
