@@ -121,10 +121,6 @@ app.get('/', function(req, res){
   res.sendFile(__dirname + '/quizlist.html');
 });
 
-app.get('/quizmaster', function(req, res){
-  res.sendFile(__dirname + '/quizmaster.html');
-});
-
 // Ovanstående prylar känns onödigt nu när den här tar in alla filer.
 app.use(express.static(__dirname + '/', {
     maxage: 0
