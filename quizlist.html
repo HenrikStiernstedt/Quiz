@@ -29,8 +29,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
 
   <!-- My own stuff -->
-  <link href="css/Quiz.css" rel="stylesheet">
-  <script src="js/share.js"></script>
+  <link href="/css/Quiz.css" rel="stylesheet">
+  <script src="/js/share.js"></script>
 </head>
 <body>
 
@@ -47,7 +47,7 @@
               <div class="flip-card-inner">
                 <div class="flip-card-front ">
                   <span v-if="status.question.questionType == 'WELCOME'">
-                    <img class="card-img-top" src="images/39.jpg" alt="Gott nytt år" />
+                    <img class="card-img-top" src="/images/39.jpg" alt="Gott nytt år" />
                     <div class="card-body">
                       <div class="QuestionCountdownOverlay">10</div>
                       
@@ -62,7 +62,7 @@
                   </span>
 
                   <span v-if="status.question.questionType == 'MAJOR_VICTORY'">
-                    <img class="card-img-top" src="images/jul2.jpg" alt="Majoriteten bestämmer">
+                    <img class="card-img-top" src="/images/jul2.jpg" alt="Majoriteten bestämmer">
                     <div class="card-body">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -81,7 +81,7 @@
                   </span>
 
                   <span v-if="status.question.questionType == 'QUIZ'">
-                    <img class="card-img-top" src="images/quiz.jpg" alt="Quiz">
+                    <img class="card-img-top" src="/images/quiz.jpg" alt="Quiz">
                     <div class="card-body">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -100,7 +100,7 @@
                   </span>
 
                   <span v-if="status.question.questionType == 'RED_THREAD'">
-                    <img class="card-img-top" src="images/Pasparet3.jpg" alt="Röda tråden">
+                    <img class="card-img-top" src="/images/Pasparet3.jpg" alt="Röda tråden">
                     <div class="card-body">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -119,7 +119,7 @@
                   </span>
 
                   <span v-if="status.question.questionType == 'BUZZ_RUSH'">
-                    <img class="card-img-top" src="images/buzzers3.png" alt="Buzzers">
+                    <img class="card-img-top" src="/images/buzzers3.png" alt="Buzzers">
                     <div class="card-body">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -139,7 +139,7 @@
                 </div> <!--end of front-->
                 <!-- facit -->
                 <div class="flip-card-back glass">
-                  <img class="card-img-top" src="images/jul.jpg" alt="Facit">
+                  <img class="card-img-top" src="/images/jul.jpg" alt="Facit">
                     <div class="card-body">
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                       
@@ -552,7 +552,7 @@
 
   </div>
   <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
-  <script src="js/Quizlist.js"></script>
+  <script src="/js/Quizlist.js"></script>
 
   <script>
     initQuizlist();

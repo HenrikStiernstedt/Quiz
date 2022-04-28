@@ -117,8 +117,17 @@ var data = {
 
 data.players.pop();
 
-app.get('/', function(req, res){
+var rooms = [];
+
+app.get('/room/:room', function(req, res){
+  //upsert(rooms, req.params.room);
+  rooms.push(req.params.room);
+  console.log(rooms);
   res.sendFile(__dirname + '/quizlist.html');
+});
+
+app.get('/', function(req, res){
+  res.sendFile(__dirname + '/index.html');
 });
 
 app.get('/quizmaster', function(req, res){
@@ -131,7 +140,7 @@ app.use(express.static(__dirname + '/', {
 }));
 
 // Specialare för AJAX och annat som inte behöver pushas ut.
-app.get('/status', function(req, res){
+app.get('/room/:room/status', function(req, res){
   res.json(
     {
       question : data.status.question,
@@ -145,7 +154,20 @@ app.get('/status', function(req, res){
   );
 });
 
-app.get('/chatHistory', function(req, res){
+// Ny endpoint för en ny generell välkomstsida med framtida rumsväljare. Kommer att kräva en helt ny sida (index.html) och sessionshantering.
+app.get('/gameList', function(req, res){
+  res.json(
+    {
+      rooms: rooms,
+      nameRequired: {
+        id: req.session.team,
+        name: req.session.teamName
+      }
+    }
+  );
+});
+
+app.get('/room/:room/chatHistory', function(req, res){
   res.json(chatHistory);
 });
 

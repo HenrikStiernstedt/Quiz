@@ -289,7 +289,7 @@ function getStatusUpdate()
   var status = null;
   status = $.ajax({
     dataType: "json",
-    url: '/status',
+    url: 'status',
     data: null,
     success: function(serverStatus) {
       vm.status = (serverStatus.status);
@@ -305,7 +305,7 @@ function getChatHistory()
 {
   $.ajax({
     dataType: "json",
-    url: '/chatHistory',
+    url: 'chatHistory',
     data: null,
     success: function(history) {
       handleChatHistory(history)
@@ -345,11 +345,11 @@ var buzzAudioElement = document.createElement('audio');
 var popAudioElement = document.createElement('audio');
 
 function loadSounds() {
-  buzzAudioElement.setAttribute('src', 'buzzer.mp3');
+  buzzAudioElement.setAttribute('src', '/buzzer.mp3');
   $('.play').click(function() {
     buzzAudioElement.play();
   });
-  popAudioElement.setAttribute('src', 'pop.mp4');
+  popAudioElement.setAttribute('src', '/pop.mp4');
   $('.play').click(function() {
     popAudioElement.play();
   });
