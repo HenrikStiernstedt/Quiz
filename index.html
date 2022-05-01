@@ -87,6 +87,48 @@
 
       </div>
 
+      <!-- List of games -->
+      <div class="row GameList">
+        <div class="player col-sm-12">
+          <div class="card glass">
+            <div class="card-body" style="padding:0px;">
+              <table class="MaxWidth">
+                <thead>
+                  <tr>
+                    <th style="width:25px;">#</th>
+                    <th style="width:200px;">Namn</th>
+                    <th style="width:69px;">Status</th>
+                    <th style="width:69px;">Knappar</th>
+                  </tr>
+                </thead>
+                <tbody name="flip-list">
+                  <tr v-for="g in games"  v-bind:key="g.room">
+                    <td>
+                    </td>
+                    <td>
+                      {{g.room}}
+                    </td>
+                    <td>
+                      <transition name="qbounce" mode="out-in">
+                        <i :key="0" title="Offline" v-if="!g.active" class="far fa-dizzy fa-2x"></i>
+                        <i :key="1" v-else-if="g.active" class="far fa-grin fa-2x"></i>
+
+                      </transition>
+                    </td>
+                    <td>
+                      <button>Join</button>
+                    </td>
+                    
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+
+
       <div class="row administration">
         <!-- Kontroller för QuizMaster och administration -->
         <div class="administration col-xs-12" style="width:100%">
@@ -95,11 +137,7 @@
           <!-- Administration-->
           <div class="card glass">
             <div class="card-body">
-              <!-- Emotion buttons -->
-              <div class="btn-group" role="group" aria-label="Emotion-buttons">
-                <button type="button" class="btn btn-outline-secondary mb-2" v-on:click="SetConfidenceLevel(player.confidenceLevel+1)" :disabled="player.confidenceLevel >= environment.maxConfidence" ><span class="fas fa-arrow-circle-up"></span></button>
-                <button type="button" class="btn btn-outline-secondary mb-2" v-on:click="SetConfidenceLevel(player.confidenceLevel-1)" :disabled="player.confidenceLevel <= environment.minConfidence"><span class="fas fa-arrow-circle-down"></span></button>
-              </div>
+              
               <!-- Button trigger modal -->
               <!--<div class="btn-group" role="group" aria-label="Settings-buttons">-->
                 <div class="btn-group">
@@ -179,10 +217,10 @@
 
   </div>
   <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
-  <script src="/js/Quizlist.js"></script>
+  <script src="/js/gameList.js"></script>
 
   <script>
-    //initQuizlist();
+    initGameList();
 
     $(function () {
       $('[data-toggle="tooltip"]').tooltip()

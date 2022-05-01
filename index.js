@@ -27,6 +27,8 @@ io.use(sharedsession(session, {
     autoSave:true
 }));
 
+var gameList = require('./js/gameListBackend.js');
+
 server.listen(3000, function(){
   console.log('listening on *:3000');
 });
@@ -117,12 +119,13 @@ var data = {
 
 data.players.pop();
 
-var rooms = [];
+//var rooms = [];
 
 app.get('/room/:room', function(req, res){
   //upsert(rooms, req.params.room);
-  rooms.push(req.params.room);
-  console.log(rooms);
+  //rooms.push(req.params.room);
+  
+  console.log(gameList.data.games);
   res.sendFile(__dirname + '/quizlist.html');
 });
 
@@ -154,11 +157,12 @@ app.get('/room/:room/status', function(req, res){
   );
 });
 
+// AJAX-endpoint för spellistan.
 // Ny endpoint för en ny generell välkomstsida med framtida rumsväljare. Kommer att kräva en helt ny sida (index.html) och sessionshantering.
-app.get('/gameList', function(req, res){
+app.get('/game-list', function(req, res){
   res.json(
     {
-      rooms: rooms,
+      gameList: gameList.data,
       nameRequired: {
         id: req.session.team,
         name: req.session.teamName
@@ -931,6 +935,14 @@ io.on('connection', function(socket){
       console.log('client: %s', clientId); //Seeing is believing
       var client_socket = io.sockets.connected[clientId];//Do whatever you want with this
     }
+  });
+
+  /*
+  * Skapa nytt spel och pusha till listan.
+  */
+  socket.on('AddGame', function(game){
+    gameList.data.games.push({"room": game, "active": true })
+    io.emit('UpdateGameList', {"games": gameList.data.games });
   });
 
 
