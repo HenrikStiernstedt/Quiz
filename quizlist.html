@@ -88,7 +88,7 @@
                       <h5 class="card-title">Fråga {{status.question.questionNumber}}: Quiz</h5>
                       <p class="card-text">
                         <strong><span style="white-space: normal;">{{ status.question.questionText.replace(/&nbsp;/g, ' ') }}</span></strong>
-                        <span v-if="status.question.questionScore != '0'"><br/>Värd
+                        <span v-if="status.question.questionScore != '0' && status.question.answerType != '0-100'"><br/>Värd
                           <transition name="bounce" mode="out-in">
                             <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
                           </transition>
