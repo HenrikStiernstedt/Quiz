@@ -329,7 +329,7 @@ function getThisPlayer() {
   return vm.players.filter( obj => obj.team == vm.player.id)[0];
 }
 
-var socket = io();
+
 
 function givePoints(score, team, isCorrectAnswer)
 {
@@ -363,6 +363,10 @@ function initQuizlist() {
     console.log("CALL: " + eventName);
   });
   */
+  var id = window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1);
+  console.log("Entering game " + id);
+
+  var socket = io('/'+id);
 
   socket.on('chat message', function(msgJson){
     //$('#messages').append($('<li>').text(msg));
