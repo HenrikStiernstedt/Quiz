@@ -130,3 +130,11 @@ Det jag oftast gör fel på är att trycka "Ny fråga" innan jag ställt in alla
 Till sist har du "pil upp" och "pil ned" som ger respektive tar poäng av en spelare rakt av om man behöver korrigera något.
 
 Om man trycker på "Ny omgång" får de med högst poäng en guldpeng och i övrigt nollställs allas poäng. 
+
+
+Önskemål
+=================
+
+* Timer startar när X antal har svarat
+* Stäng frågan när alla svarat.
+* 
