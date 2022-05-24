@@ -1,0 +1,50 @@
+[{
+    "questionNumber": 1,
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Vem är världens mest kända person?",
+    "correctAnswer": "",
+    "questionScore": 2,
+		"questionTime": 30,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Vilken månad är den bästa på året?",
+    "correctAnswer": "",
+    "questionScore": 2,
+		"questionTime": 30,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Vilket är Multisofts bästa Affärsområde?",
+    "correctAnswer": "",
+    "questionScore": 2,
+		"questionTime": 30,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Vilket är det bästa AW-drickat?",
+    "correctAnswer": "",
+    "questionScore": 2,
+		"questionTime": 30,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }  
+]
+

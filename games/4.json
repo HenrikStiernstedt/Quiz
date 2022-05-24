@@ -1,0 +1,92 @@
+[{
+    "questionNumber": 1,
+    "questionType" : "QUIZ",
+    "questionText": "Hur många år var stadsepidemiolog Anders Tegnell när coronaviruset började spridas i Sverige 2020",
+    "correctAnswer": 63,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Med hur många poäng över artisten Dotter vann The Mamas finalen i Melodifestivalen 2020?",
+    "correctAnswer": 1,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många färger finns i Skottlands flagga?",
+    "correctAnswer": 2,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Vilket år på 1800-talet tog Thomas A. Edison patent på sin första fungerande glödlampa?",
+    "correctAnswer": 79,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många km lång är den längsta sträckan som damerna åker i VM i längskidor?",
+    "correctAnswer": 30,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många miljoner invånare hade Ukraina 2021?",
+    "correctAnswer": 43,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många år var Magnus Carlsen när jan för första gången slog ex-världsmästaren Karpov i en schackturnering?",
+    "correctAnswer": 13,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]

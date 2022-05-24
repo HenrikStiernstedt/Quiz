@@ -1,7 +1,7 @@
 [{
     "questionNumber": 1,
     "questionType" : "MAJOR_VICTORY",
-    "questionText": "Vem är världens mest kända person?",
+    "questionText": "Vilken är världens bästa jullåt?",
     "correctAnswer": "",
     "questionScore": 2,
     "questionClues" : [{
@@ -12,7 +12,7 @@
   {
     "questionNumber": 1,
     "questionType" : "MAJOR_VICTORY",
-    "questionText": "Vilken månad är den bästa på året?",
+    "questionText": "Vad är bäst på julbordet?",
     "correctAnswer": "",
     "questionScore": 2,
     "questionClues" : [{
@@ -23,7 +23,7 @@
   {
     "questionNumber": "",
     "questionType" : "MAJOR_VICTORY",
-    "questionText": "Vilken är den bästa nyårsmaten?",
+    "questionText": "Vilken är den bästa julsnapsen?",
     "correctAnswer": "",
     "questionScore": 2,
     "questionClues" : [{
@@ -34,7 +34,7 @@
   {
     "questionNumber": "",
     "questionType" : "MAJOR_VICTORY",
-    "questionText": "Vilket är det bästa AW-drickat?",
+    "questionText": "Var bor tomten?",
     "correctAnswer": "",
     "questionScore": 2,
     "questionClues" : [{
@@ -45,51 +45,7 @@
   {
     "questionNumber": "",
     "questionType" : "MAJOR_VICTORY",
-    "questionText": "Vilket är det bästa resmålet för en smekmånad?",
-    "correctAnswer": "",
-    "questionScore": 2,
-    "questionClues" : [{
-      "clueScore" : 0,
-      "clueText" : ""
-    }]
-  },
-  {
-    "questionNumber": "",
-    "questionType" : "MAJOR_VICTORY",
-    "questionText": "Vilken är den bästa nyårslåten?",
-    "correctAnswer": "",
-    "questionScore": 2,
-    "questionClues" : [{
-      "clueScore" : 0,
-      "clueText" : ""
-    }]
-  },
-  {
-    "questionNumber": "",
-    "questionType" : "MAJOR_VICTORY",
-    "questionText": "Vilken är den roligaste vintersporten att titta på?",
-    "correctAnswer": "",
-    "questionScore": 2,
-    "questionClues" : [{
-      "clueScore" : 0,
-      "clueText" : ""
-    }]
-  },
-  {
-    "questionNumber": "",
-    "questionType" : "MAJOR_VICTORY",
-    "questionText": "Var kommer tomten ifrån?",
-    "correctAnswer": "",
-    "questionScore": 2,
-    "questionClues" : [{
-      "clueScore" : 0,
-      "clueText" : ""
-    }]
-  },
-  {
-    "questionNumber": "",
-    "questionType" : "MAJOR_VICTORY",
-    "questionText": "Vilket är det vanligaste nyårslöftet?",
+    "questionText": "Finns tomten?",
     "correctAnswer": "",
     "questionScore": 2,
     "questionClues" : [{
@@ -111,7 +67,7 @@
   {
     "questionNumber": "",
     "questionType" : "MAJOR_VICTORY",
-    "questionText": "Vad var bäst med år 2020?",
+    "questionText": "Vilkan är den bästa julkalendern?",
     "correctAnswer": "",
     "questionScore": 2,
     "questionClues" : [{
@@ -122,15 +78,24 @@
   {
     "questionNumber": "",
     "questionType" : "MAJOR_VICTORY",
-    "questionText": "Vad var sämst med år 2020?",
+    "questionText": "Vilket är det vanligaste nyårslöftet?",
     "correctAnswer": "",
     "questionScore": 2,
     "questionClues" : [{
       "clueScore" : 0,
       "clueText" : ""
     }]
-  }
-
-  
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Vad har varit bäst med år 2021?",
+    "correctAnswer": "",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }  
 ]
 

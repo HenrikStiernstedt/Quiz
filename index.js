@@ -77,6 +77,9 @@ var data = {
     "winningTeamName" : null,
     "winningTeam" : null,
     "buzzList" : [],
+    "gameSettings": {
+      "reversedScoring": false
+    },
     quizMasterId: 0,
     question : { // TODO: Defaultfrågan är hårdkodad tills vidare.
       questionNumber: 0,
@@ -121,10 +124,6 @@ data.players.pop();
 
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/quizlist.html');
-});
-
-app.get('/quizmaster', function(req, res){
-  res.sendFile(__dirname + '/quizmaster.html');
 });
 
 // Ovanstående prylar känns onödigt nu när den här tar in alla filer.
@@ -435,7 +434,21 @@ io.on('connection', function(socket){
       console.error(error);
     }
   });
-  
+
+  /*
+   * Update general game settings, not specific to any individual question. 
+   */
+  socket.on('UpdateGameSettings', function(gameSettings)
+  {
+    if(!verifyQM(socket.handshake.session.team, "LoadQuestions")) { return; }
+    console.log("Update gamesettings:");
+    console.log(gameSettings);
+    
+    data.status.gameSettings = gameSettings;
+
+    io.emit('UpdatePlayers', {status: data.status, players: data.players } );
+
+  });
 
 
 /******************************************************************************
@@ -592,16 +605,32 @@ io.on('connection', function(socket){
     }
     //io.emit('QuestionUpdated', data.status.question);
 
-    // Sort player array according to score.
-    data.players.sort(function (a, b) {
-      if (a.score > b.score) {
-          return -1;
-      }
-      if (b.score > a.score) {
-          return 1;
-      }
-      return 0;
-  });
+    if(data.status.gameSettings.reversedScoring)
+    {
+      // Sort player array according to reversed score, lower is better
+      data.players.sort(function (a, b) {
+        if (a.score > b.score) {
+            return 1;
+        }
+        if (b.score > a.score) {
+            return -1;
+        }
+        return 0;
+      });  
+    }
+    else
+    {
+      // Sort player array according to score.
+      data.players.sort(function (a, b) {
+        if (a.score > b.score) {
+            return -1;
+        }
+        if (b.score > a.score) {
+            return 1;
+        }
+        return 0;
+      });
+    }
     io.emit('UpdatePlayers', {status: data.status, players: data.players, action: clientAction });
 
   });
@@ -626,10 +655,55 @@ io.on('connection', function(socket){
 
   socket.on("AutoCorrect", function(correctAnswer)  {
     if(!verifyQM(socket.handshake.session.team, "AutoCorrect")) { return; }
-    // Autocorrect only works on public answers at the moment. User "Avsluta fråga" först.
+    // Autocorrect only works on public answers at the moment. Use "Avsluta fråga" först.
 
-    if(data.status.question.questionType == "RED_THREAD" || data.status.question.questionType == "QUIZ")
+    if (data.status.question.answerType === "0-100")
     {
+      // In 0-100, you get points based on how far from the answer you guessed.
+      // Exact answer gives a bonus of 10.
+      // No answer will be treated as the answer 0 and scored accordingly. 
+      // This answerType is not compatible with all question types.
+
+      data.players.forEach(player => {
+
+        var currentScore = data.status.question.questionScore;
+        var answerInt = parseInt(player.answer, 10);
+        if(isNaN(answerInt) || answerInt < 0) {
+          answerInt = 0;
+        }
+        if(answerInt > 100) { 
+          answerInt = 100; 
+        }
+
+        var answerDiff = Math.abs(parseInt(correctAnswer) - answerInt);
+        if (answerDiff == 0)
+        {
+          answerDiff -= 10;
+          
+        }
+
+        player.questionScore = answerDiff;
+        
+        if(!player.isCorrect)
+        {
+          player.score += answerDiff;
+          player.isCorrect = true;
+        }
+        else{
+          player.score -= answerDiff;
+          player.isCorrect = false;
+        }
+        
+
+      });      
+
+
+
+    }
+    else if(data.status.question.questionType == "RED_THREAD" || data.status.question.questionType == "QUIZ")
+    {
+      // This is the standard where you get points if you answered correctly. 
+      // In case of RED_THREAD, you get the number of points of your last used clue.
       console.log("AutoCorrecting with answer: " + correctAnswer);
       if(correctAnswer == null) {return; }
 
@@ -637,7 +711,7 @@ io.on('connection', function(socket){
 
         var currentScore = parseInt(player.questionScore ? player.questionScore : data.status.question.questionScore);
 
-        if(player.answer && share.cleanString(player.answer) == share.cleanString(correctAnswer)) {
+        if(player.answer && share.cleanString(player.answer) === share.cleanString(correctAnswer)) {
           if(!player.isCorrect)
           {
             player.score += currentScore; // TODO: Remove this score calculation. It should be done at a later stage instead. 
@@ -813,7 +887,7 @@ io.on('connection', function(socket){
     if(!verifyQM(socket.handshake.session.team, "NewGame")) { return; }
     resetPlayers(true);
 
-    // Sort player array according to score.
+    // Sort player array according to number of wins.
     data.players.sort(function (a, b) {
       if (a.NumberOfWins > b.NumberOfWins) {
           return -1;
@@ -856,7 +930,14 @@ function resetPlayers(endTheGame) {
   var winningScore;
   if(endTheGame)
   {
-    winningScore = Math.max.apply(Math, data.players.map(function(o) { return o.score; }))
+    if(data.status.gameSettings.reversedScoring)
+    {
+      winningScore = Math.min.apply(Math, data.players.map(function(o) { return o.score; }))
+    }
+    else
+    {
+      winningScore = Math.max.apply(Math, data.players.map(function(o) { return o.score; }))
+    }
   }
 
 
@@ -892,7 +973,7 @@ function updateCountdown() {
     return;
   }
 
-  if(data.status.questionTime === "")
+  if(data.status.questionTime === "" || data.status.questionTime == NaN || data.status.questionTime == undefined)
   {
     return;
   }

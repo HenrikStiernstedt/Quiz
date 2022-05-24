@@ -24,14 +24,18 @@ var vm = new Vue({
       "isBuzzActive" : false,
       "questionTime": 30,
       "winningTeamName" : null,
-      "winningTeam" : null,
+      "winningTeam" : null, 
       "buzzList" : [0],
+      "gameSettings": {
+        "reversedScoring": false
+      },
       quizMasterId: 0,
       question : {
         questionNumber: 0,
         questionType : "BUZZ_RUSH",
         questionText: "",
         correctAnswer: "",
+        answerType: "text",
         questionScore: 0,
         questionTime: 30,
         questionClues : [{
@@ -57,13 +61,14 @@ var vm = new Vue({
       "quizMasterPassword": "",
       "confidenceLevel": 0
     },
-    quizMaster :
+    quizMaster:
     {
       "pendingQuestion" : {
         "questionNumber": 0,
         "questionType" : "BUZZ_RUSH",
         "questionText": "",
         "correctAnswer": "",
+        "answerType": "text",
         "questionScore": 2,
         "questionTime": 30,
         "questionClues" : [{
@@ -74,11 +79,15 @@ var vm = new Vue({
       "savegame": "game",
       "loadQuestions": "anagram2021",
       "QuestionListNumber": 0,
+      "pendingGameSettings": {
+        "reversedScoring": false
+      },
       "questionList": [{
         "questionNumber": 0,
         "questionType" : "BUZZ_RUSH",
         "questionText": "",
         "correctAnswer": "",
+        "answerType": "text",
         "questionScore": 2,
         "questionTime": "",
         "questionClues" : [{
@@ -140,11 +149,22 @@ var vm = new Vue({
       console.log("Autocorrecting with answer: " + vm.quizMaster.pendingQuestion.correctAnswer);
       socket.emit("AutoCorrect", vm.quizMaster.pendingQuestion.correctAnswer);
     },
+    loadLastQuestion: function() {
+      if(vm.quizMaster.QuestionListNumber > 1)
+      {
+        console.log("Hämtar förra fråga: " + --vm.quizMaster.QuestionListNumber);
+        vm.quizMaster.pendingQuestion = vm.quizMaster.questionList[vm.quizMaster.QuestionListNumber-1];
+      }
+      else
+      {
+        console.log("Slut på frågor att hämta.");
+      }
+    },
     loadNextQuestion: function() {
       if(vm.quizMaster.QuestionListNumber < vm.quizMaster.questionList.length)
       {
         console.log("Hämtar nästa fråga: " + vm.quizMaster.QuestionListNumber);
-        vm.quizMaster.pendingQuestion = vm.quizMaster.questionList[vm.quizMaster.QuestionListNumber];
+        Vue.set(vm.quizMaster, "pendingQuestion", vm.quizMaster.questionList[vm.quizMaster.QuestionListNumber]);
         vm.quizMaster.QuestionListNumber++;
       }
       else
@@ -158,6 +178,46 @@ var vm = new Vue({
       socket.emit('UpdateQuestion', 'NEW', vm.quizMaster.pendingQuestion);
       popAudioElement.play();
     },
+    createNewQuestion: function() {
+      console.log("Skapa ny fråga");
+      if(confirm("Vill du skapa en ny fråga?"))
+      {
+        vm.quizMaster.pendingQuestion =           
+        {
+          questionNumber: "",
+          questionType : vm.quizMaster.pendingQuestion.questionType,
+          questionText: "",
+          correctAnswer: "",
+          answerType: vm.quizMaster.pendingQuestion.answerType,
+          questionScore: vm.quizMaster.pendingQuestion.questionScore,
+          questionTime: vm.quizMaster.pendingQuestion.questionTime,
+          questionClues : [{
+            "clueScore" : 0,
+            "clueText" : ""
+          }]
+        };
+        vm.quizMaster.questionList.push(
+          vm.quizMaster.pendingQuestion
+        );
+        vm.quizMaster.QuestionListNumber = vm.quizMaster.questionList.length;
+      }
+    },
+
+    toggleReversedScoring: function (event, reversedScoring) {
+      console.log("Uppdatera game settings! Sätt reversedScoring till " + reversedScoring);
+      socket.emit('UpdateGameSettings', { "reversedScoring": reversedScoring });
+    },
+
+    /*
+    updateGameSettings: function() {
+      console.log("Uppdatera game settings!");
+      if(confirm("Vill du uppdatera game settings?"))
+      {
+        socket.emit('UpdateGameSettings', { "reversedScoring": true });
+      }
+    },
+    */
+
     loadQuestions: function() {
       console.log("Ladda ny Quiz!");
       socket.emit("LoadQuestions", vm.quizMaster.loadQuestions);
@@ -181,7 +241,11 @@ var vm = new Vue({
         socket.emit("Load", vm.quizMaster.savegame);
       }
     },
-    buzz: function () {
+    buzz: function (event, myAnswer) {
+      if(myAnswer)
+      {
+        vm.player.pendingAnswer = myAnswer;
+      }
       if(vm.status.question.questionType != "BUZZ_RUSH" && !vm.player.pendingAnswer)
       {
         return;
@@ -203,6 +267,12 @@ var vm = new Vue({
     },
     getCurrentPlayer: function(array, id) {
       return array.filter( obj => obj.team == id)[0];
+    },
+    setPendingAnswerType: function (event, answerType) {
+      Vue.set(vm.quizMaster.pendingQuestion, "answerType", answerType);
+    },
+    setPendingQuestionTime: function ( event, questionTime) {
+      Vue.set(vm.quizMaster.pendingQuestion, "questionTime", questionTime);
     }
   }
 });
@@ -355,8 +425,8 @@ function initQuizlist() {
 
   socket.on('UpdatePlayers', function(statusHolder)
   {
-    console.log("status:");
-    console.log(statusHolder.status);
+  //  console.log("status:");
+  //  console.log(statusHolder.status);
 
     vm.players = statusHolder.players;
     vm.status = statusHolder.status;
@@ -364,6 +434,10 @@ function initQuizlist() {
     if(statusHolder.action == 'clear')
     {
       vm.player.submittedAnswer = "";
+    }
+    if(statusHolder.action == "ShowCorrectAnswer")
+    {
+      $('.flip-card-inner').toggleClass('flipped');
     }
 
     // Update this player
@@ -401,5 +475,16 @@ function initQuizlist() {
   getChatHistory();
   loadSounds();
 
+  $(function () {
+    // Set focus on modals first field, when shown
+    $('body').on('shown.bs.modal', '#playerSettingsModal', function () {
+      $('input:visible:enabled:first', this).focus();
+    });
+
+    $('body').on('shown.bs.modal', '#QMSettingsModal', function () {
+      $('input:visible:enabled:first', this).focus();
+    });
+
+  });
 
 }
