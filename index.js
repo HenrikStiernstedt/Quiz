@@ -60,6 +60,7 @@ games.push(new Game.game('ABCD', io, '4552'));
 
 var game = games[0];
 
+gameList.data.games.push(game); // TODO: Red ut röran av game och gamelist.
 
 console.log(game);
 
