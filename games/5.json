@@ -1,0 +1,92 @@
+[{
+    "questionNumber": 1,
+    "questionType" : "QUIZ",
+    "questionText": "Hur många tår har en kamel totalt",
+    "correctAnswer": 8,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många gånger hade Zlatan vunnit \"Guldbollen\" 2021?",
+    "correctAnswer": 12,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många dagar varje år är det möjligt att uppleva midnatssol på Kebenekaise?",
+    "correctAnswer": 48,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många cemtimeter över en meter är höjden på hindren som högst när OS i hästhopning avgörs?",
+    "correctAnswer": 60,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många högskolepoäng motsvarar en termins heltidsstudier?",
+    "correctAnswer": 30,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många gånger har en deltagare från något annat land än Finsland segrat i herrklasssen i bastu-VM? (2021)?",
+    "correctAnswer": 0,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många tusen röda rosor vill \"jag\" skänka dig i Thore Skogmans visa?",
+    "correctAnswer": 10,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]

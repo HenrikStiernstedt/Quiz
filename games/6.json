@@ -1,0 +1,72 @@
+[
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "Hur många dagar överlevde patienten som var den första i världen att få en hjärttransplation?",
+      "correctAnswer": "18",
+      "answerType": "0-100",
+      "questionScore": "100",
+      "questionClues": ""
+    },
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "Hur många procent vatten och öppen myr består sveriges yta av?",
+      "correctAnswer": "9",
+      "answerType": "0-100",
+      "questionScore": "100",
+      "questionClues": ""
+    },
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "Hur många km/h är maxhastigheten på en folkracebana? ",
+      "correctAnswer": "80",
+      "answerType": "0-100",
+      "questionScore": "100",
+      "questionClues": ""
+    },
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "Vilken siffra hade Henrik Lundqvist på ryggen när han vann SM-guld med Frölunda 04/05?",
+      "correctAnswer": "35",
+      "answerType": "0-100",
+      "questionScore": "100",
+      "questionClues": ""
+    },
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "Enligt internationella hajattacksregistret infräffade 49 dödliga hajattacker 1990-1996. Hur många var dödliga? ",
+      "correctAnswer": "6",
+      "answerType": "0-100",
+      "questionScore": "100",
+      "questionClues": ""
+    },
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "Hur många tusen människor gjorde 2020 värnplikt i Sverige?",
+      "correctAnswer": "5",
+      "answerType": "0-100",
+      "questionScore": "100",
+      "questionClues": ""
+    },
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "I februari 2020 byggdes världens största snögubbe i Österrike. Hu rmånga meter hög var den?",
+      "correctAnswer": "38",
+      "answerType": "0-100",
+      "questionScore": "100",
+      "questionClues": ""
+    }
+  ]

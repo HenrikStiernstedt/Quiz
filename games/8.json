@@ -1,0 +1,65 @@
+[
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "På Anna-dagen sakll julölet vara färdigbryggt, enligt gammal folksed. Vilket datum i devember är det?",
+      "correctAnswer": "9",
+      "answerType": "0-100",
+      "questionScore": "100"
+    },
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "Vilket år på 2000-talet var Erik Haag och Lotta Lundgren julvärdar?",
+      "correctAnswer": "17",
+      "answerType": "0-100",
+      "questionScore": "100"
+    },
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "Hur många grevskap finns det på ön Irland (inklusive Nordirland)?",
+      "correctAnswer": "32",
+      "answerType": "0-100",
+      "questionScore": "100"
+    },
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "Hur många älvar finner genom Arvidsjaurs kommun?",
+      "correctAnswer": "4",
+      "answerType": "0-100",
+      "questionScore": "100"
+    },
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "Vilket nummer har det omtalade Final Fantasy-spel från 1997 som 2020 fick en remake?",
+      "correctAnswer": "7",
+      "answerType": "0-100",
+      "questionScore": "100"
+    },
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "Hur många rusen såg Gyllene Tider på Ullevi 7 augusti 2004?",
+      "correctAnswer": "59",
+      "answerType": "0-100",
+      "questionScore": "100"
+    },
+    {
+      "questionNumber": "",
+      "questionType": "QUIZ",
+      "questionTime": "30",
+      "questionText": "Hur många centimeter bred är den vanligaste svenska tegelstenen?",
+      "correctAnswer": "11",
+      "answerType": "0-100",
+      "questionScore": "100"
+    }
+  ]
