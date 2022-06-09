@@ -77,7 +77,7 @@ var vm = new Vue({
         }]
       },
       "savegame": "game",
-      "loadQuestions": "2020",
+      "loadQuestions": "anagram2021",
       "QuestionListNumber": 0,
       "pendingGameSettings": {
         "reversedScoring": false

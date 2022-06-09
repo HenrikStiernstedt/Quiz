@@ -1,0 +1,92 @@
+[{
+    "questionNumber": 1,
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Hur gammal är man när man är medelålders?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Vad är det mest typiska pensionärsresmålet?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Vad är det mest typiska \"tant\"/\"gubb\"-godiset?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "En sport som lämpar sig på äldre dar?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Ett tydligt tecken på en ålderskris?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "En vanlig ålderskrämpa?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Kan man ha ett 40-årsquiz utan att nämna Zlatan?",
+    "answerType": "Ja;Nej;Tydligen inte!",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "MAJOR_VICTORY",
+    "questionText": "Vad är 40?",
+    "answerType": "En ålder;Ingen ålder!",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }  
+]
+
