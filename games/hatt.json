@@ -1,0 +1,25 @@
+[{
+    "questionNumber": 1,
+    "questionType" : "QUIZ",
+    "questionText": "Sam Colt är känd i \"Vilda västern\" som skaparen av revolvern. Men vem är känd för att ha skapat den typiska Cowboyhatten?",
+    "correctAnswer": "John B. Stetson",
+    "questionScore": 1,
+    "answerType": "Oliver Winchester;John B. Stetson;William Bowler;Feodora D. Roosevelt",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Sherlock Holmes bär en hatt av typen \"Deerstalker\", eller kort och gott en \"Sherlock holmes\"-hatt, om man frågar Buttricks eller Partyhallen. Många är skådisarna som har spelat Sherlok Holmes på film, men vem hade denna ära i Hollywood-filmen från 2009?",
+    "correctAnswer": "Robert Downey Jr",
+    "answerType": "Robert Downey Jr;Chris Evans;Benedict Cumberbatch;Stan Lee",
+    "questionScore": 2,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]
