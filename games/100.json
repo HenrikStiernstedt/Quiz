@@ -3,7 +3,7 @@
     "questionType" : "QUIZ",
     "questionText": "Hur många länder är medlemmar i EU?",
     "correctAnswer": 27,
-    "questionScore": 100,
+    "questionScore": 100 ,
     "answerType": "0-100",
     "questionClues" : [{
       "clueScore" : 0,
