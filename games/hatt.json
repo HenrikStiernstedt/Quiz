@@ -1,10 +1,26 @@
 [{
+    "questionNumber": "X",
+    "questionType" : "WELCOME",
+    "questionText": "Pegasus hatt-quiz börjar strax! ",
+    "questionImage": "hatt/hats.jpg",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "hatt/hats.jpg",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
     "questionNumber": 1,
     "questionType" : "QUIZ",
+    "questionTime": "30",
     "questionText": "Sam Colt är känd i \"Vilda västern\" som skaparen av revolvern. Men vem är känd för att ha skapat den typiska Cowboyhatten?",
     "correctAnswer": "John B. Stetson",
     "questionScore": 1,
     "answerType": "Oliver Winchester;John B. Stetson;William Bowler;Feodora D. Roosevelt",
+    "questionImage": "hatt/1. colt.jpg",
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
     "questionClues" : [{
       "clueScore" : 0,
       "clueText" : ""
@@ -13,10 +29,14 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionText": "Sherlock Holmes bär en hatt av typen \"Deerstalker\", eller kort och gott en \"Sherlock holmes\"-hatt, om man frågar Buttricks eller Partyhallen. Många är skådisarna som har spelat Sherlok Holmes på film, men vem hade denna ära i Hollywood-filmen från 2009?",
+    "questionTime": "30",
+    "questionText": "Sherlock Holmes bär en hatt av typen \"Deerstalker\", eller kort och gott en \"Sherlock holmes\"-hatt, om man frågar Buttricks eller Partyhallen. Många är skådisarna som har spelat Sherlok Holmes på film, men vem hade denna ära i Hollywood-filmen från 2009, här på bild utan sin hatt?",
     "correctAnswer": "Robert Downey Jr",
     "answerType": "Robert Downey Jr;Chris Evans;Benedict Cumberbatch;Stan Lee",
-    "questionScore": 2,
+    "questionImage": "hatt/2. sherlock2.jpg",
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
     "questionClues" : [{
       "clueScore" : 0,
       "clueText" : ""
@@ -25,10 +45,15 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
+    "questionTime": "30",
     "questionText": "\"Röd solhatt\" är namnet på denna blomma vars extrakt ofta förekommer i naturläkemedel. Vad är det för åkomma som växten anses bota?",
     "correctAnswer": "Förkylning",
     "answerType": "Impotens;Medicinsk solbränna;Förkylning;Covid-19",
-    "questionScore": 2,
+    "questionImage": "hatt/3. Solhatt.jpg",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
     "questionClues" : [{
       "clueScore" : 0,
       "clueText" : ""
@@ -37,10 +62,14 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
+    "questionTime": "30",
     "questionText": "Hattmakaren i Alice i Underlandet är kanske världens mest kända hattmakare. Men hur förklaras de absudra och sagolika händelserna i boken?",
     "correctAnswer": "Det var bara en dröm…",
     "answerType": "Alice hamnar i ett parallellt universum;Alice hamnar i en parallell dimension;Alice får psykadelisk flugsvamp i sitt te;Det var bara en dröm…",
-    "questionScore": 2,
+    "questionImage": "hatt/4. Hatter.png",
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
     "questionClues" : [{
       "clueScore" : 0,
       "clueText" : ""
@@ -49,10 +78,14 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionText": "Sherlock Holmes bär en hatt av typen \"Deerstalker\", eller kort och gott en \"Sherlock holmes\"-hatt, om man frågar Buttricks eller Partyhallen. Många är skådisarna som har spelat Sherlok Holmes på film, men vem hade denna ära i Hollywood-filmen från 2009?",
-    "correctAnswer": "Robert Downey Jr",
-    "answerType": "Robert Downey Jr;Chris Evans;Benedict Cumberbatch;Stan Lee",
-    "questionScore": 2,
+    "questionTime": "30",
+    "questionText": "En dröm för många fotbollsspelare är att göra ett hattrick! Definitionen för vad egentligen krävs för ett äkta hattrick går isär, så frågan blir istället vilken fotbollsspelare som har gjort flest hatttrick, enligt Guinness Rekordbok?",
+    "correctAnswer": "Pelé",
+    "answerType": "Christiano Ronaldo;Pelé;Lionel Messi;Zlatan Ibrahimović",
+    "questionImage": "hatt/5. hattrick.jpg",
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
     "questionClues" : [{
       "clueScore" : 0,
       "clueText" : ""
@@ -61,10 +94,15 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionText": "Sherlock Holmes bär en hatt av typen \"Deerstalker\", eller kort och gott en \"Sherlock holmes\"-hatt, om man frågar Buttricks eller Partyhallen. Många är skådisarna som har spelat Sherlok Holmes på film, men vem hade denna ära i Hollywood-filmen från 2009?",
-    "correctAnswer": "Robert Downey Jr",
-    "answerType": "Robert Downey Jr;Chris Evans;Benedict Cumberbatch;Stan Lee",
-    "questionScore": 2,
+    "questionTime": "30",
+    "questionText": "\"Hattarna\" och \"Mössorna\" var Sveriges första partier under \"Frihetstiden\" i Sveriges historia. Under vilket århundrade varade \"frihetstiden\"?",
+    "correctAnswer": "1700-talet",
+    "answerType": "1400-talet;1500-talet;1600-talet;1700-talet",
+    "questionImage": "hatt/6. hattomoss.jpg",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
     "questionClues" : [{
       "clueScore" : 0,
       "clueText" : ""
@@ -73,10 +111,14 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionText": "Sherlock Holmes bär en hatt av typen \"Deerstalker\", eller kort och gott en \"Sherlock holmes\"-hatt, om man frågar Buttricks eller Partyhallen. Många är skådisarna som har spelat Sherlok Holmes på film, men vem hade denna ära i Hollywood-filmen från 2009?",
-    "correctAnswer": "Robert Downey Jr",
-    "answerType": "Robert Downey Jr;Chris Evans;Benedict Cumberbatch;Stan Lee",
-    "questionScore": 2,
+    "questionTime": "60",
+    "questionText": "\"Hatt\" och \"Katt\" kan vara det första rim man lär sig på dagis. Det är antagligen värre med grammatikkunskaperna. Vilket av följande påståenden stämmer för \"adverb\"?",
+    "correctAnswer": "Adverb beskriver hur adjektiv ser ut.",
+    "answerType": "Adverb beskriver hur substantiv ser ut.;Adverb beskriver hur adjektiv ser ut.;Adverb beskriver vad någon gör.;Adverb beskriver substantivs position.",
+    "questionImage": "hatt/7. hattkatt.jpg",
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
     "questionClues" : [{
       "clueScore" : 0,
       "clueText" : ""
@@ -85,10 +127,14 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionText": "Sherlock Holmes bär en hatt av typen \"Deerstalker\", eller kort och gott en \"Sherlock holmes\"-hatt, om man frågar Buttricks eller Partyhallen. Många är skådisarna som har spelat Sherlok Holmes på film, men vem hade denna ära i Hollywood-filmen från 2009?",
-    "correctAnswer": "Robert Downey Jr",
-    "answerType": "Robert Downey Jr;Chris Evans;Benedict Cumberbatch;Stan Lee",
-    "questionScore": 2,
+    "questionTime": "30",
+    "questionText": "Netflix-serien \"Peaky Blinders\" kretsar kring gänget med samma namn i 1920-talets England. Gängmedlemmarna bär alla ikonsika \"flat caps\", även kända som \"gubbkeps\", med insydda rakblad. Vem är skådisen på bilden som spelar gängledaren Tommy Shelby?",
+    "correctAnswer": "Cillian Murphy",
+    "answerType": "Cillian Murphy;Tom Hardy;Robin Bengtsson;Jesper Rönndahl",
+    "questionImage": "hatt/8. peaky.jpg",
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
     "questionClues" : [{
       "clueScore" : 0,
       "clueText" : ""
