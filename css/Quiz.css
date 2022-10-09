@@ -109,6 +109,31 @@ body {
   border-radius: .575em 0 0 .575em;
 }
 
+.QuestionNumberOverlay {
+  display: flex;
+  align-items: left;
+  position: absolute;
+  height: 1.75em;
+  min-width: 4.75em;
+  -webkit-box-align: center;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  top: 0px;
+  left: 0px;
+  color: white;
+  background-color: rgb(225, 0, 255);
+  border-radius: 0 0 .575em 0;
+}
+
+.quiz-image
+{
+  height: 164px;
+  /*height: 200px;*/
+  width: 100%;
+  object-fit: contain;
+}
+
 .MaxWidth {
   width: 100%;
 }
