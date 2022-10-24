@@ -101,7 +101,7 @@
 
                   <span v-if="status.question.questionType == 'RED_THREAD'">
                     <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
-                    <img v-else class="card-img-top quiz-image" src="images/Pasparet3.jpg" alt="Röda tråden">
+                    <img v-else class="card-img-top quiz-image" src="images/Pasparet3.jpg" style="object-fit: cover" alt="Röda tråden">
                     <div class="card-body">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -121,7 +121,7 @@
 
                   <span v-if="status.question.questionType == 'BUZZ_RUSH'">
                     <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
-                    <img v-else class="card-img-top quiz-image" src="images/buzzers3.png" alt="Buzzers">
+                    <img v-else class="card-img-top quiz-image" src="images/buzzers.png" style="object-fit: cover" alt="Buzzers">
                     <div class="card-body">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -142,7 +142,7 @@
                 <!-- facit -->
                 <div class="flip-card-back glass">
                   <img v-if="status.question.answerImage" class="card-img-top quiz-image" v-bind:src='"images/"+status.question.answerImage' v-bind:style="status.question.answerImageStyle">
-                    <img v-else class="card-img-top quiz-image" src="images/100.jpg" alt="Facit">
+                    <img v-else class="card-img-top quiz-image" src="images/100.jpg" style="object-fit: cover" alt="Facit">
                     <div class="card-body">
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                       
