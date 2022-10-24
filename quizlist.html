@@ -48,25 +48,25 @@
                 <div class="flip-card-front ">
                   <span v-if="status.question.questionType == 'WELCOME'">
                     <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
-                    <img v-else class="card-img-top quiz-image" src="images/39.jpg" alt="Gott nytt år" />
+                    <img v-else class="card-img-top quiz-image" src="images/quiz.jpg" style="object-fit: cover" alt="Lycka till" />
                     <div class="card-body">
                       <!--<div class="QuestionCountdownOverlay">10</div>-->
                       
                       <h5 class="card-title">{{ status.question.questionText }}</h5>
-                      <!--
+                      
                       <p class="card-text">
-                        <strong><span style="white-space: normal;">{{ status.question.questionText }}</span></strong>
+                        <strong><span style="white-space: normal;">Quizen börjar snart...</span></strong>
                         <br/>
                         <span>&nbsp;</span>
                       </p>
-                      -->
+                      
 
                     </div>
                   </span>
 
                   <span v-if="status.question.questionType == 'MAJOR_VICTORY'">
                     <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
-                    <img v-else class="card-img-top quiz-image"  src="images/40.png" alt="Majoriteten bestämmer">
+                    <img v-else class="card-img-top quiz-image"  src="images/majority-rules.png" alt="Majoriteten bestämmer">
                     <div class="card-body">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -86,7 +86,7 @@
 
                   <span v-if="status.question.questionType == 'QUIZ'">
                     <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
-                    <img v-else class="card-img-top quiz-image" src="images/quiz.jpg" alt="Quiz">
+                    <img v-else class="card-img-top quiz-image" src="images/quiz.jpg" style="object-fit: cover" alt="Quiz">
                     <div class="card-body question-text">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
