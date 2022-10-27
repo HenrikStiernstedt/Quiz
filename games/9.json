@@ -3,7 +3,7 @@
       "questionNumber": "",
       "questionType": "QUIZ",
       "questionTime": "30",
-      "questionText": "Hur många stjärnor har en kapter i armén på sin axelklaff?",
+      "questionText": "Hur många stjärnor har en kapten i armén på sin axelklaff?",
       "correctAnswer": "3",
       "answerType": "0-100",
       "questionScore": "100"
@@ -15,7 +15,9 @@
       "questionText": "Hur stor är vinkeln på visarna om klockan visar tre på en analog klocka?",
       "correctAnswer": "90",
       "answerType": "0-100",
-      "questionScore": "100"
+      "questionScore": "100",
+      "questionImage": "100/math.jpg",
+      "questionImageStyle": {"object-fit": "contain"}
     },
     {
       "questionNumber": "",
@@ -48,10 +50,12 @@
       "questionNumber": "",
       "questionType": "QUIZ",
       "questionTime": "30",
-      "questionText": "Hur många poäng kan man som max på i hundsporten rallylydnad?",
+      "questionText": "Hur många poäng kan man som max få i hundsporten rallylydnad?",
       "correctAnswer": "100",
       "answerType": "0-100",
-      "questionScore": "100"
+      "questionScore": "100",
+      "questionImage": "100/dog.jpg",
+      "questionImageStyle": {"object-fit": "cover"}
     },
     {
       "questionNumber": "",
