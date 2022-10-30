@@ -30,6 +30,7 @@ io.use(sharedsession(session, {
 var gameList = require('./js/gameListBackend.js');
 
 //require('js/game.js');
+//console.log(gameList);
 
 
 server.listen(3000, function(){
@@ -60,9 +61,10 @@ games.push(new Game.game('ABCD', io, '4552'));
 
 var game = games[0];
 
-gameList.data.games.push(game); // TODO: Red ut röran av game och gamelist.
+//gameList.data.games.push(game); // TODO: Red ut röran av game och gamelist.
+gameList.data.games.push({"name": game.data.id});
 
-console.log(game);
+//console.log(game);
 
 //game.data.players.pop();
 

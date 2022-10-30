@@ -5,7 +5,11 @@ var data =
         "header" : "Välkommen",
         "message": null,
     },
-    "games": [],
+    "games": [
+        {
+            "id": "EFGH"
+        }
+    ],
  };
  //var io;
 
