@@ -19,5 +19,10 @@
   "engines": {
     "node": "12.x"
   },
-  "author": "Henrik Stiernstedt"
+  "author": "Henrik Stiernstedt",
+  "runs":
+  {
+    "using": "node16",
+    "main": "index.js"
+  }
 }
