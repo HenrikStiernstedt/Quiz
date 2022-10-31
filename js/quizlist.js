@@ -222,6 +222,15 @@ var vm = new Vue({
       console.log("Ladda ny Quiz!");
       socket.emit("LoadQuestions", vm.quizMaster.loadQuestions);
     },
+    
+    saveQuestions: function() {
+      console.log("Spara/uppdatera frågor!");
+      console.log(vm.quizMaster.questionList);
+      if(confirm("Är du säker på att du vill spara över filen "+vm.quizMaster.loadQuestions+"?"))
+      {
+        socket.emit("SaveQuestions", { questionList: vm.quizMaster.questionList, filename: vm.quizMaster.loadQuestions});
+      }
+    },
 
     newGame: function() {
       if(confirm("Är du säker?"))
