@@ -84,11 +84,11 @@ var data = {
     quizMasterId: 0,
     question : { // TODO: Defaultfrågan är hårdkodad tills vidare.
       questionNumber: 0,
-      questionType : "BUZZ_RUSH",
-      questionText: "Vem där?",
+      questionType : "WELCOME",
+      questionText: "",
       correctAnswer: "",
       questionScore: 10,
-      questionTime: 30,
+      //questionTime: "",
       questionClues : [{
         "clueScore" : 10,
         "clueText" : ""
