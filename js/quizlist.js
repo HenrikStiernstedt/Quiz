@@ -32,12 +32,11 @@ var vm = new Vue({
       quizMasterId: 0,
       question : {
         questionNumber: 0,
-        questionType : "BUZZ_RUSH",
+        questionType : "WELCOME",
         questionText: "",
         correctAnswer: "",
         answerType: "text",
         questionScore: 0,
-        questionTime: 30,
         questionClues : [{
           "clueScore" : 0,
           "clueText" : ""
@@ -65,12 +64,11 @@ var vm = new Vue({
     {
       "pendingQuestion" : {
         "questionNumber": 0,
-        "questionType" : "BUZZ_RUSH",
+        "questionType" : "WELCOME",
         "questionText": "",
         "correctAnswer": "",
         "answerType": "text",
         "questionScore": 2,
-        "questionTime": 30,
         "questionClues" : [{
           "clueScore" : 0,
           "clueText" : ""
