@@ -25,8 +25,20 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionText": "Hur många anställda är vi på Multisoft (enligt 'Medarbetare'-menyvalet i KOLL)?",
+    "questionText": "Hur många anställda är vi på Multisoft (enligt 'Medarbetare'-menyvalet i KOLL), 3:e november 2022?",
     "correctAnswer": 93,
+    "questionScore": 100,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många anställda var vi på Multisoft (enligt 'Medarbetare'-menyvalet i KOLL), 5:e maj 2022 klockan 20:36?",
+    "correctAnswer": 98,
     "questionScore": 100,
     "answerType": "0-100",
     "questionClues" : [{
