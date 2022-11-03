@@ -436,6 +436,24 @@ io.on('connection', function(socket){
     }
   });
 
+  socket.on('SaveQuestions', ({questionList, filename}) => {
+    if(!verifyQM(socket.handshake.session.team, "SaveQuestions")) { return; }
+    if(!filename) {
+      filename = 'question';
+    }
+    let dataToSave = JSON.stringify(questionList, null, '\t');
+    
+    try {
+      fs.writeFileSync('games/'+filename+'.json', dataToSave);
+
+      data.questionList = questionList;
+      io.sockets.connected[socket.id].emit("ReturnLoadQuestions", data.questionList);
+
+    } catch (error) {
+      console.error(error);
+    }
+  });
+
   /*
    * Update general game settings, not specific to any individual question. 
    */
