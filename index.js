@@ -965,9 +965,8 @@ function resetPlayers(endTheGame) {
     player.isCorrect = null,
     player.answer = null,
     player.HasBuzzed = false,
-    player.confidenceLevel = 0,
     //player.emote = 0),
-    player.emote = share.getEmoteFromConfidenceLevel(endTheGame && player.score == winningScore ? 100 : 0),
+    player.emote = share.getEmoteFromConfidenceLevel(endTheGame && player.score == winningScore ? 100 : player.confidenceLevel),
     player.confidenceLevel = 0;
     player.questionScore = 0,
     player.NumberOfWins += (endTheGame && player.score == winningScore ? 1 : 0), // Om vi avslutar spelet får winnaren en pinne i totalen.
