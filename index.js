@@ -250,11 +250,11 @@ io.on('connection', function(socket){
           };
     data.players.push(player);
 
-    //io.sockets.connected[socket.id].emit('Ping',  new Date().getTime());
+    //io.of("/").sockets.get(socket.id).emit('Ping',  new Date().getTime());
     io.emit('UpdatePlayers', {status: data.status, players: data.players });
   }
 
-  io.sockets.connected[socket.id].emit('Welcome',
+  io.of("/").sockets.get(socket.id).emit('Welcome',
     {
         id: player.id,
         teamName: player.teamName,
@@ -364,7 +364,7 @@ io.on('connection', function(socket){
       player.teamName = 'QuizMaster';
       socket.handshake.session.teamName = player.teamName;
 
-      io.sockets.connected[socket.id].emit('Welcome',
+      io.of("/").sockets.get(socket.id).emit('Welcome',
         {
             id: player.id,
             teamName: player.teamName,
@@ -429,7 +429,7 @@ io.on('connection', function(socket){
 //      var player = getCurrentPlayer(socket.handshake.session.team);
 //      io.to(player.socketId).emit("ReturnLoadQuestions", data.questionList);
       
-      io.sockets.connected[socket.id].emit("ReturnLoadQuestions", data.questionList);
+      io.of("/").sockets.get(socket.id).emit("ReturnLoadQuestions", data.questionList);
 
     } catch (error) {
       console.error(error);
@@ -447,7 +447,7 @@ io.on('connection', function(socket){
       fs.writeFileSync('games/'+filename+'.json', dataToSave);
 
       data.questionList = questionList;
-      io.sockets.connected[socket.id].emit("ReturnLoadQuestions", data.questionList);
+      io.of("/").sockets.get(socket.id).emit("ReturnLoadQuestions", data.questionList);
 
     } catch (error) {
       console.error(error);
