@@ -107,7 +107,7 @@ var data = {
     "questionScore": 0,
     "clueScore": 0
   }],
-  quizMasterPassword : '4552',
+  quizMasterPassword : '7979',
   "questionList": [{
     questionNumber: 0,
     questionType : "BUZZ_RUSH",
