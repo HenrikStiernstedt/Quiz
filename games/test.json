@@ -1,0 +1,17 @@
+[
+	{
+		"questionNumber": 0,
+		"questionType": "BUZZ_RUSH",
+		"questionText": "",
+		"correctAnswer": "",
+		"answerType": "text",
+		"questionScore": 2,
+		"questionTime": "",
+		"questionClues": [
+			{
+				"clueScore": 0,
+				"clueText": ""
+			}
+		]
+	}
+]
