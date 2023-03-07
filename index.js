@@ -1,4 +1,6 @@
 
+
+
 var
   express = require('express'),
   app = express(),
@@ -8,11 +10,11 @@ var
     pingTimeout: 5000,
     cookie: true
   }),
-  session = require("express-session")({
-    secret: "my-secret123",
-    resave: true,
+  sessionMiddleware = require("express-session")({
+    secret: "my-secret123-and-a-bit-more",
+    resave: false,
     saveUninitialized: true
-  }),
+  });
   sharedsession = require("express-socket.io-session");
 
   var share = require('./js/share.js');
@@ -20,12 +22,20 @@ var
 const fs = require('fs');
 
 // Attach session
-app.use(session);
+app.use(sessionMiddleware);
+
+const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
+
+io.use(wrap(sessionMiddleware));
 
 // Share session with io sockets
+/*
 io.use(sharedsession(session, {
     autoSave:true
 }));
+*/
+
+//io.engine.use(session);
 
 var gameList = require('./js/gameListBackend.js');
 
@@ -75,7 +85,8 @@ var data = game.data;
 app.get('/room/:room', function(req, res){
   //upsert(rooms, req.params.room);
   //rooms.push(req.params.room);
-  
+  console.log("room: " + req.params.room);
+
   console.log(gameList.data.games);
   res.sendFile(__dirname + '/quizlist.html');
 });
@@ -95,6 +106,10 @@ app.use(express.static(__dirname + '/', {
 
 // Specialare för AJAX och annat som inte behöver pushas ut.
 app.get('/room/:room/status', function(req, res){
+  console.log("room: " + req.params.room);
+  console.log(games);
+  room = req.params.room;
+  console.log(getCurrentObject(games, room));
   res.json(
     {
       question : getCurrentObject(games, room).data.status.question,
@@ -107,6 +122,27 @@ app.get('/room/:room/status', function(req, res){
     }
   );
 });
+
+// Specialare för AJAX och annat som inte behöver pushas ut.
+app.get('/room/:room/create', function(req, res){
+  console.log("room: " + req.params.room);
+  console.log(games);
+  room = req.params.room;
+  //console.log(getCurrentObject(games, room));
+  games.push(new Game.game(room, io, '4552'));
+  res.json(
+    {
+      question : getCurrentObject(games, room).data.status.question,
+      status: getCurrentObject(games, room).data.status,
+      players: getCurrentObject(games, room).data.players,
+      nameRequired: {
+        id: req.session.team,
+        name: req.session.teamName
+      }
+    }
+  );
+});
+
 
 // AJAX-endpoint för spellistan.
 // Ny endpoint för en ny generell välkomstsida med framtida rumsväljare. Kommer att kräva en helt ny sida (index.html) och sessionshantering.

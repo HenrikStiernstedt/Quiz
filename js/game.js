@@ -1,6 +1,9 @@
 
 var id;
 var nsp;
+var nextTeamNumber = 0;
+
+var share = require('./share.js');
 
 var data = {
     players: [{
@@ -73,7 +76,7 @@ var data = {
     "data": data
 } 
 
-module.exports.game = function(id, io, quizMasterPassword) {
+module.exports.game = function(id, io_base, quizMasterPassword) {
     this.data = data;
     data.players.pop();
     data.quizMasterPassword = quizMasterPassword;
@@ -81,14 +84,14 @@ module.exports.game = function(id, io, quizMasterPassword) {
     this.id = id;
     console.log("Skapar game-objekt med id: " + id);
 
-    this.nsp = io.of('/'+id);
+    io = io_base.of('/'+id);
 
-    this.nsp.on('connection', socket => {
+    io.on('connection', socket => {
         console.log('someone connected');
 
-        console.log(new Date().toLocaleTimeString() + ' ' + socket.id + ' connected. Team: ' + socket.handshake.session.team);
-  if (socket.handshake.session.team) {
-    console.log('Returning user ' + socket.handshake.session.team);
+        console.log(new Date().toLocaleTimeString() + ' ' + socket.id + ' connected. Team: ' + socket.handshake /*.session.team*/);
+  if (socket.handshake.headers.session.team) {
+    console.log('Returning user ' + socket.handshake.headers.session.team);
     //var player = data.players.filter( obj => obj.team === socket.handshake.session.team)[0];
     var player = getCurrentPlayer(socket.handshake.session.team);
     if(player != undefined)
@@ -142,7 +145,7 @@ module.exports.game = function(id, io, quizMasterPassword) {
     io.emit('UpdatePlayers', {status: data.status, players: data.players });
   }
 
-  io.sockets.connected[socket.id].emit('Welcome',
+  io.sockets.get(socket.id).emit('Welcome',
     {
         id: player.id,
         teamName: player.teamName,

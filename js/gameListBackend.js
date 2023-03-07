@@ -7,7 +7,7 @@ var data =
     },
     "games": [
         {
-            "id": "EFGH"
+            "id": "ABCD"
         }
     ],
  };
