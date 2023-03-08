@@ -1,9 +1,10 @@
 
 var id;
-var nsp;
+var io;
 var nextTeamNumber = 0;
 
 var share = require('./share.js');
+const fs = require('fs');
 
 var data = {
     players: [{
@@ -76,60 +77,65 @@ var data = {
     "data": data
 } 
 
-module.exports.game = function(id, io_base, quizMasterPassword) {
-    this.data = data;
-    data.players.pop();
-    data.quizMasterPassword = quizMasterPassword;
+module.exports.game = function(id, io_master, quizMasterPassword) {
+  this.data = data;
+  data.players.pop();
+  data.quizMasterPassword = quizMasterPassword;
 
-    this.id = id;
-    console.log("Skapar game-objekt med id: " + id);
+  this.id = id;
+  console.log("Skapar game-objekt med id: " + id);
 
-    io = io_base.of('/'+id);
+  //io = io_base.of('/'+id);
 
-    io.on('connection', socket => {
-        console.log('someone connected');
+  io = io_master.of('/'+id);
 
-        console.log(new Date().toLocaleTimeString() + ' ' + socket.id + ' connected. Team: ' + socket.handshake /*.session.team*/);
-  if (socket.handshake.headers.session.team) {
-    console.log('Returning user ' + socket.handshake.headers.session.team);
-    //var player = data.players.filter( obj => obj.team === socket.handshake.session.team)[0];
-    var player = getCurrentPlayer(socket.handshake.session.team);
+   
+  io.on('connection', socket => {
+    console.log('someone connected');
+    socket.join('/'+id);
+
+
+    console.log(new Date().toLocaleTimeString() + ' ' + socket.id + ' connected. Team: ' + socket.request.session.team);
+  if (socket.request.session.team) {
+    console.log('Returning user ' + socket.request.session.team);
+    //var player = data.players.filter( obj => obj.team === socket.request.session.team)[0];
+    var player = getCurrentPlayer(socket.request.session.team);
     if(player != undefined)
     {
       player.active = true;
       player.socketId = socket.id;
-      player.teamName = socket.handshake.session.teamName != null ? socket.handshake.session.teamName : "Team " + socket.handshake.session.team;
+      player.teamName = socket.request.session.teamName != null ? socket.request.session.teamName : "Team " + socket.request.session.team;
 //      player.score = 0;
-      socket.handshake.session.save();
+      socket.request.session.save();
       io.emit('UpdatePlayers', {status: data.status, players: data.players });
     }
     else {
       // We have a session, but no player entry. A state caused by purge.
-      console.log("Error restoring session. No entry in Players-object for team "+socket.handshake.session.team);
+      console.log("Error restoring session. No entry in Players-object for team "+socket.request.session.team);
       player =  {
-              "id" : socket.handshake.session.team,
-              "team" : socket.handshake.session.team,
+              "id" : socket.request.session.team,
+              "team" : socket.request.session.team,
               "score" : 0,
               "active" : true,
               "socketId" : socket.id,
-              "teamName" : "Team " + socket.handshake.session.teamName != null ? socket.handshake.session.teamName : "Team " + socket.handshake.session.team,
+              "teamName" : "Team " + socket.request.session.teamName != null ? socket.request.session.teamName : "Team " + socket.request.session.team,
               "NumberOfWins": 0
             };
       data.players.push(player);
     }
   } else {
     // New player
-    socket.handshake.session.team = nextTeamNumber++;
-    socket.handshake.session.save();
-    console.log("New user " + socket.handshake.session.team);
+    socket.request.session.team = nextTeamNumber++;
+    socket.request.session.save();
+    console.log("New user " + socket.request.session.team);
     var emote = share.getEmoteFromConfidenceLevel(0);
     player =  {
-            "id" : socket.handshake.session.team,
-            "team" : socket.handshake.session.team,
+            "id" : socket.request.session.team,
+            "team" : socket.request.session.team,
             "score" : 0,
             "active" : true,
             "socketId" : socket.id,
-            "teamName" : "Team " + socket.handshake.session.team,
+            "teamName" : "Team " + socket.request.session.team,
             "HasBuzzd": false,
             "buzzOrder": null,
             "isCorrect": null,
@@ -152,7 +158,7 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
         answer: "",
         pendingAnswer: "",
         isQuizMaster: (player.id == data.status.quizMasterId ? true : false),
-        answer: null, // TODO: Hur återställer vi "answer" vid reconnect? //getCurrentObject(data.answers, socket.handshake.session.team) ? getCurrentObject(data.answers, socket.handshake.session.team).answer : null,
+        answer: null, // TODO: Hur återställer vi "answer" vid reconnect? //getCurrentObject(data.answers, socket.request.session.team) ? getCurrentObject(data.answers, socket.request.session.team).answer : null,
         confidenceLevel: player.confidenceLevel
     }
   );
@@ -165,7 +171,7 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
 
   socket.on('Purge', function()
   {
-    if(!verifyQM(socket.handshake.session.team, "Purge")) {
+    if(!verifyQM(socket.request.session.team, "Purge")) {
       return;
     }
     data.players = data.players.filter( obj => obj.active);
@@ -183,17 +189,17 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
       return;
     }
     */
-    var player = getCurrentPlayer(socket.handshake.session.team);
+    var player = getCurrentPlayer(socket.request.session.team);
     player.teamName = name;
-    //players.get(socket.handshake.session.team).teamName = name;
-    socket.handshake.session.teamName = name;
-    socket.handshake.session.save();
+    //players.get(socket.request.session.team).teamName = name;
+    socket.request.session.teamName = name;
+    socket.request.session.save();
     io.emit('UpdatePlayers', {status: data.status, players: data.players});
   });
 
   socket.on('SetConfidenceLevel', function(confidenceLevel)
   {
-    var player = getCurrentPlayer(socket.handshake.session.team);
+    var player = getCurrentPlayer(socket.request.session.team);
     player.confidenceLevel = confidenceLevel;
     player.emote = share.getEmoteFromConfidenceLevel(confidenceLevel);
     io.emit('UpdatePlayers', {status: data.status, players: data.players});
@@ -201,8 +207,8 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
 
   socket.on('disconnect', function(){
     console.log(new Date().toLocaleTimeString() + ' ' + socket.id + ' disconnected');
-//    players.get(socket.handshake.session.team).active = false;
-    var player = getCurrentPlayer(socket.handshake.session.team);
+//    players.get(socket.request.session.team).active = false;
+    var player = getCurrentPlayer(socket.request.session.team);
     if(player)
     {
       player.active = false;
@@ -235,27 +241,27 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
 
   socket.on('PingResponse', function(pingResponse) {
     console.log(
-      socket.handshake.session.team.toString().padStart(6, " ") + "  " + socket.id + " " +
+      socket.request.session.team.toString().padStart(6, " ") + "  " + socket.id + " " +
       (new Date().getTime() - pingResponse.pingTime).toString().padStart(4, " ") + " " + pingResponse.teamName
     );
-    //players.get(socket.handshake.session.team).teamName = pingResponse.teamName;
-    //socket.handshake.session.teamName = pingResponse.teamName;
-    var player = getCurrentPlayer(socket.handshake.session.team);
+    //players.get(socket.request.session.team).teamName = pingResponse.teamName;
+    //socket.request.session.teamName = pingResponse.teamName;
+    var player = getCurrentPlayer(socket.request.session.team);
     player.teamName = pingResponse.teamName;
     io.emit('UpdatePlayers', {status: data.status, players: data.players });
   });
 
   // Quizmaster functions below.
   socket.on('MakeMeQuizMaster', function(password) {
-    var player = getCurrentPlayer(socket.handshake.session.team);
+    var player = getCurrentPlayer(socket.request.session.team);
     console.log(`Player ${player.teamName} wants to be QuizMaster`);
     if(password == data.quizMasterPassword)
     {
-      data.status.quizMasterId = socket.handshake.session.team;
+      data.status.quizMasterId = socket.request.session.team;
       player.teamName = 'QuizMaster';
-      socket.handshake.session.teamName = player.teamName;
+      socket.request.session.teamName = player.teamName;
 
-      io.sockets.connected[socket.id].emit('Welcome',
+      io.emit('Welcome', // TODO: Skickaar nu til alla, inte bara current user.
         {
             id: player.id,
             teamName: player.teamName,
@@ -275,7 +281,7 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
   });
 
   socket.on('Save', function(filename) {
-    if(!verifyQM(socket.handshake.session.team, "Save")) { return; }
+    if(!verifyQM(socket.request.session.team, "Save")) { return; }
     if(!filename) {
       filename = 'data';
     }
@@ -289,7 +295,7 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
 
   socket.on('Load', function(filename)
   {
-    if(!verifyQM(socket.handshake.session.team, "Load")) { return; }
+    if(!verifyQM(socket.request.session.team, "Load")) { return; }
     if(!filename) {
       filename = 'data';
     }
@@ -308,7 +314,7 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
   
   socket.on('LoadQuestions', function(filename)
   {
-    if(!verifyQM(socket.handshake.session.team, "LoadQuestions")) { return; }
+    if(!verifyQM(socket.request.session.team, "LoadQuestions")) { return; }
     if(!filename) {
       filename = 'question';
     }
@@ -317,10 +323,10 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
       data.questionList = JSON.parse(dataToLoad);
       console.log("Loaded questions");
       console.log(data.questionList);
-//      var player = getCurrentPlayer(socket.handshake.session.team);
-//      io.to(player.socketId).emit("ReturnLoadQuestions", data.questionList);
+      var player = getCurrentPlayer(socket.request.session.team);
+      io.to(player.socketId).emit("ReturnLoadQuestions", data.questionList);
       
-      io.sockets.connected[socket.id].emit("ReturnLoadQuestions", data.questionList);
+//      socket.broadcast.to(socket.id).emit("ReturnLoadQuestions", data.questionList);
 
     } catch (error) {
       console.error(error);
@@ -332,7 +338,7 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
    */
   socket.on('UpdateGameSettings', function(gameSettings)
   {
-    if(!verifyQM(socket.handshake.session.team, "LoadQuestions")) { return; }
+    if(!verifyQM(socket.request.session.team, "LoadQuestions")) { return; }
     console.log("Update gamesettings:");
     console.log(gameSettings);
     
@@ -348,7 +354,7 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
  ******************************************************************************/
 
   socket.on('Buzz', function(answer, fn){
-    var player = getCurrentPlayer(socket.handshake.session.team);
+    var player = getCurrentPlayer(socket.request.session.team);
     teamName = player.teamName;
 
     if(!data.status.isBuzzActive)
@@ -360,13 +366,13 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
     if(data.status.question.questionType == 'RED_THREAD' || data.status.question.questionType == 'MAJOR_VICTORY' || data.status.question.questionType == 'QUIZ')
     {
       addOrReplace(data.answers, {
-        "id" : socket.handshake.session.team,
+        "id" : socket.request.session.team,
         "answer": answer,
         "questionScore": data.status.question.questionScore,
         "clueScore": null
       });
 
-      var player = getCurrentPlayer(socket.handshake.session.team);
+      var player = getCurrentPlayer(socket.request.session.team);
       player.questionScore = data.status.question.questionScore;
 
       io.emit('UpdatePlayers', {status: data.status, players: data.players } );
@@ -385,14 +391,14 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
     else if(data.status.question.questionType == 'BUZZ_RUSH')
     {
 
-      if(data.status.buzzList.includes(socket.handshake.session.team))
+      if(data.status.buzzList.includes(socket.request.session.team))
       {
         console.log('Extra buzz from ' + teamName);
         fn('Extra buzz from ' + teamName);
         return;
       }
       else {
-        data.status.buzzList.push(socket.handshake.session.team);
+        data.status.buzzList.push(socket.request.session.team);
       }
 
       if(data.status.isBuzzed)
@@ -412,12 +418,12 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
         data.status.isBuzzed = true;
         data.status.isBuzzActive = false;
         data.status.winningTeamName = teamName;
-        data.status.winningTeam = socket.handshake.session.team;
+        data.status.winningTeam = socket.request.session.team;
         data.status.winningId = socket.id;
         player.HasBuzzed = true;
 
         addOrReplace(data.answers, {
-          "id" : socket.handshake.session.team,
+          "id" : socket.request.session.team,
           "answer": null,
           "questionScore": data.status.question.questionScore,
           "clueScore": null
@@ -441,7 +447,7 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
   socket.on('UpdateQuestion', function(action, question) {
     console.log(action);
     console.log(question);
-    if(!verifyQM(socket.handshake.session.team, "UpdateQuestion")) {
+    if(!verifyQM(socket.request.session.team, "UpdateQuestion")) {
       return;
     }
 
@@ -539,14 +545,14 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
 
 
   socket.on('CompleteQuestion', function(playerList) {
-    if(!verifyQM(socket.handshake.session.team, "CompleteQuestion")) { return; }
+    if(!verifyQM(socket.request.session.team, "CompleteQuestion")) { return; }
 
     completeQuestion();
 
   });
 
   socket.on("AutoCorrect", function(correctAnswer)  {
-    if(!verifyQM(socket.handshake.session.team, "AutoCorrect")) { return; }
+    if(!verifyQM(socket.request.session.team, "AutoCorrect")) { return; }
     // Autocorrect only works on public answers at the moment. Use "Avsluta fråga" först.
 
     if (data.status.question.answerType === "0-100")
@@ -718,7 +724,7 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
   // If scoreValue > 0, count as a win.
   // If scoreValue <= 0, cont as a fail and proceede to next player in queue.
   socket.on('AwardPoints', function(scoreValue) {
-    if(!verifyQM(socket.handshake.session.team, "AwardPoints")) {
+    if(!verifyQM(socket.request.session.team, "AwardPoints")) {
       return;
     }
 
@@ -741,7 +747,7 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
   });
 
   socket.on('AwardPointsToTeam', function(score, teamId, isCorectAnswer) {
-    if(!verifyQM(socket.handshake.session.team, "AwardPointsToTeam")) { return; }
+    if(!verifyQM(socket.request.session.team, "AwardPointsToTeam")) { return; }
 
     var player = getCurrentPlayer(teamId);
 
@@ -776,7 +782,7 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
   });
 
   socket.on('NewGame', function() {
-    if(!verifyQM(socket.handshake.session.team, "NewGame")) { return; }
+    if(!verifyQM(socket.request.session.team, "NewGame")) { return; }
     resetPlayers(true);
 
     // Sort player array according to number of wins.
@@ -821,3 +827,148 @@ module.exports.game = function(id, io_base, quizMasterPassword) {
     return this;
 }
 //module.exports.game = game;
+
+/********************************************************************************************
+ * Helper functions
+ ********************************************************************************************/
+function getCurrentPlayer(teamId)
+{
+   return data.players.filter( obj => obj.team == teamId)[0];
+}
+
+function verifyQM(teamId, action) {
+  if(data.status.quizMasterId == teamId) {
+    return true;
+  }
+  console.log("WARN: Unauthorized attempt to " + action + " from " + teamId);
+  return false;
+
+}
+
+function getCurrentObject(array, id) {
+  return array.filter( obj => obj.id == id)[0];
+}
+
+function addOrReplace(array, obj) {
+  var index = -1;
+  array.filter((el, pos) => {
+    if( el.id == obj.id )
+      delete array[index = pos];
+    return true;
+  });
+
+  // put in place, or append to list
+  if( index == -1 )
+    array.push(obj);
+  else
+    array[index] = obj;
+}
+
+function upsert(array, item) { // (1)
+  const i = array.findIndex(_item => _item.id == item.id);
+  if (i > -1) array[i] = item; // (2)
+  else array.push(item);
+}
+
+
+function resetPlayers(endTheGame) {
+  data.status.isBuzzed = false;
+  data.status.questionTime = "";
+  data.status.isBuzzActive = true;
+  data.status.winningTeamName = null;
+  data.status.winningTeam = null;
+  data.status.buzzList = [];
+
+  // Clear any previously entered answers.
+  data.status.pendingAnswers = [{}];
+  data.answers = [{}];
+
+  var winningScore;
+  if(endTheGame)
+  {
+    if(data.status.gameSettings.reversedScoring)
+    {
+      winningScore = Math.min.apply(Math, data.players.map(function(o) { return o.score; }))
+    }
+    else
+    {
+      winningScore = Math.max.apply(Math, data.players.map(function(o) { return o.score; }))
+    }
+  }
+
+
+  data.players.forEach(player => {
+    player.buzzOrde = 0,
+    player.isCorrect = null,
+    player.answer = null,
+    player.HasBuzzed = false,
+    player.confidenceLevel = 0,
+    //player.emote = 0),
+    player.emote = share.getEmoteFromConfidenceLevel(endTheGame && player.score == winningScore ? 100 : 0),
+    player.confidenceLevel = 0;
+    player.questionScore = 0,
+    player.NumberOfWins += (endTheGame && player.score == winningScore ? 1 : 0), // Om vi avslutar spelet får winnaren en pinne i totalen.
+    player.score = (endTheGame ? 0 : player.score) // Om vi avslutar spelet, nolla allas poäng.
+
+  });
+
+}
+
+// Infinit loop to keep track of countdowns.
+setInterval(updateCountdown, 1000);
+
+
+function startCountdown(noOfSeconds) {
+  data.status.questionTime = noOfSeconds;
+}
+
+function updateCountdown() {
+  if(!data.status.isBuzzActive)
+  {
+    // If the countdown isn't active anymore for wahtever reason, do nothing.   
+    return;
+  }
+
+  if(data.status.questionTime === "" || data.status.questionTime == NaN || data.status.questionTime == undefined)
+  {
+    return;
+  }
+
+  if(data.status.questionTime <= 0)
+  {
+    console.log("Countdown stoped");
+    io.emit("Countdown", { "state": "ended", "noOfSeconds": 0 });
+    completeQuestion();
+  }
+  else
+  {
+    console.log("Countdown to " + data.status.questionTime);
+
+    io.emit("Countdown", { "state": "countdown", "noOfSeconds": data.status.questionTime });
+    --data.status.questionTime;
+    io.emit('UpdatePlayers', {status: data.status, players: data.players });
+  }
+}
+
+function completeQuestion() {
+  console.log("Avslutar frågan.");
+  data.status.isBuzzActive = false;
+
+  data.players.forEach(player => {
+    // TODO: Aslo check if the answer was correct.
+    if(data.answers != null)
+    {
+      var answer = getCurrentObject(data.answers, player.team);
+      if(answer == null || answer == undefined) {
+        return;
+      }
+      player.answer = answer.answer;
+    }
+    //player.score += answer.questionScore;
+    //player.questionScore = 0;
+  });
+
+  data.status.questionTimeActive = false;
+
+  io.emit('UpdatePlayers', {status: data.status, players: data.players });
+}

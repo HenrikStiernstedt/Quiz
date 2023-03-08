@@ -366,7 +366,7 @@ function initQuizlist() {
   var id = window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1);
   console.log("Entering game " + id);
 
-  var socket = io('/'+id);
+  socket = io('/'+id);
 
   socket.on('chat message', function(msgJson){
     //$('#messages').append($('<li>').text(msg));

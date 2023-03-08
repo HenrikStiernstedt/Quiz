@@ -11,7 +11,7 @@ var
     cookie: true
   }),
   sessionMiddleware = require("express-session")({
-    secret: "my-secret123-and-a-bit-more",
+    secret: "my-secret123",
     resave: false,
     saveUninitialized: true
   });
@@ -23,11 +23,10 @@ const fs = require('fs');
 
 // Attach session
 app.use(sessionMiddleware);
-
+/*
 const wrap = middleware => (socket, next) => middleware(socket.request, {}, next);
-
 io.use(wrap(sessionMiddleware));
-
+*/
 // Share session with io sockets
 /*
 io.use(sharedsession(session, {
@@ -35,7 +34,7 @@ io.use(sharedsession(session, {
 }));
 */
 
-//io.engine.use(session);
+io.engine.use(sessionMiddleware);
 
 var gameList = require('./js/gameListBackend.js');
 
@@ -213,105 +212,3 @@ io.on('connection', function(socket){
 
 
 });
-
-function resetPlayers(endTheGame) {
-  data.status.isBuzzed = false;
-  data.status.questionTime = "";
-  data.status.isBuzzActive = true;
-  data.status.winningTeamName = null;
-  data.status.winningTeam = null;
-  data.status.buzzList = [];
-
-  // Clear any previously entered answers.
-  data.status.pendingAnswers = [{}];
-  data.answers = [{}];
-
-  var winningScore;
-  if(endTheGame)
-  {
-    if(data.status.gameSettings.reversedScoring)
-    {
-      winningScore = Math.min.apply(Math, data.players.map(function(o) { return o.score; }))
-    }
-    else
-    {
-      winningScore = Math.max.apply(Math, data.players.map(function(o) { return o.score; }))
-    }
-  }
-
-
-  data.players.forEach(player => {
-    player.buzzOrde = 0,
-    player.isCorrect = null,
-    player.answer = null,
-    player.HasBuzzed = false,
-    player.confidenceLevel = 0,
-    //player.emote = 0),
-    player.emote = share.getEmoteFromConfidenceLevel(endTheGame && player.score == winningScore ? 100 : 0),
-    player.confidenceLevel = 0;
-    player.questionScore = 0,
-    player.NumberOfWins += (endTheGame && player.score == winningScore ? 1 : 0), // Om vi avslutar spelet får winnaren en pinne i totalen.
-    player.score = (endTheGame ? 0 : player.score) // Om vi avslutar spelet, nolla allas poäng.
-
-  });
-
-}
-
-// Infinit loop to keep track of countdowns.
-setInterval(updateCountdown, 1000);
-
-
-function startCountdown(noOfSeconds) {
-  data.status.questionTime = noOfSeconds;
-}
-
-function updateCountdown() {
-  if(!data.status.isBuzzActive)
-  {
-    // If the countdown isn't active anymore for wahtever reason, do nothing.   
-    return;
-  }
-
-  if(data.status.questionTime === "" || data.status.questionTime == NaN || data.status.questionTime == undefined)
-  {
-    return;
-  }
-
-  if(data.status.questionTime <= 0)
-  {
-    console.log("Countdown stoped");
-    io.emit("Countdown", { "state": "ended", "noOfSeconds": 0 });
-    completeQuestion();
-  }
-  else
-  {
-    console.log("Countdown to " + data.status.questionTime);
-
-    io.emit("Countdown", { "state": "countdown", "noOfSeconds": data.status.questionTime });
-    --data.status.questionTime;
-    io.emit('UpdatePlayers', {status: data.status, players: data.players });
-  }
-}
-
-function completeQuestion() {
-  console.log("Avslutar frågan.");
-  data.status.isBuzzActive = false;
-
-  data.players.forEach(player => {
-    // TODO: Aslo check if the answer was correct.
-    if(data.answers != null)
-    {
-      var answer = getCurrentObject(data.answers, player.team);
-      if(answer == null || answer == undefined) {
-        return;
-      }
-      player.answer = answer.answer;
-    }
-    //player.score += answer.questionScore;
-    //player.questionScore = 0;
-  });
-
-  data.status.questionTimeActive = false;
-
-  io.emit('UpdatePlayers', {status: data.status, players: data.players });
-}
