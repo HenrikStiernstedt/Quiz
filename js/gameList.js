@@ -26,6 +26,10 @@ var vm = new Vue({
         createGame: function (game) {
             console.log("Uppdaterar Skapar spel '"+game+"'");
             socket.emit('AddGame', game);
+        },
+        gotoRoom: function (gameId) {
+            console.log(gameId);
+            location.href='room/'+gameId;
         }
     },
 });
