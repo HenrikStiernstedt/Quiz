@@ -118,7 +118,7 @@ app.get('/room/:room', function(req, res){
 });
 
 app.get('/', function(req, res){
-  res.sendFile(__dirname + '/index.html');
+  res.sendFile(__dirname + '/gamelist.html');
 });
 
 // Ovanstående prylar känns onödigt nu när den här tar in alla filer.
