@@ -121,9 +121,12 @@
                         <i :key="1" v-else-if="g.active" class="far fa-grin fa-2x"></i>
 
                       </transition>
+                      <p>
+                        {{g.game.players.length}} st.
+                      </p>
                     </td>
                     <td>
-                      <button>Join</button>
+                      <button>Join {{g.id}}</button>
                     </td>
                     
                   </tr>

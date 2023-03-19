@@ -7,7 +7,14 @@ var vm = new Vue({
             "header" : "Välkommen",
             "message": null,
         },
-        "games": [],
+        "games": [{
+            "id": "Spelnamn",
+            "game": {
+                // The complete game object goes here.
+                "players": [{"name": "test"}],
+                "id": "Spelnamn"
+            }
+        }],
         "player": {
             "id" : 0,
             "team" : 0,
@@ -29,6 +36,7 @@ var socket = io();
 
 function initGameList()
 {
+    console.log("Init gamelist!");
     getStatusUpdate();
 
     socket.on('UpdateGameList', function(games){

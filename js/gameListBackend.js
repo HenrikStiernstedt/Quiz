@@ -1,4 +1,10 @@
 
+/*
+ * This calss holds one aray with all current games. It is instansiated once for a server, serving multiple games. 
+ * It does not have any vue stuff. 
+ */
+
+
 var data = 
 {
     "status": {
@@ -6,9 +12,7 @@ var data =
         "message": null,
     },
     "games": [
-        {
-            "id": "ABCD"
-        }
+        
     ],
  };
  //var io;
