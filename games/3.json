@@ -1,0 +1,92 @@
+[{
+    "questionNumber": 1,
+    "questionType" : "QUIZ",
+    "questionText": "På vilken plats kommer Floridy bland USA:s till ytan största delstater?",
+    "correctAnswer": 22,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många miljoner kronor garanteras en ensam vinnare av 13 rätt på Stryktipset?",
+    "correctAnswer": 10,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många meter högt är Elizabeth Tower, där klockan Big Ben hänger?",
+    "correctAnswer": 96,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Covid-19 är sjukdomen som detta virus orsakar, men vilken siffra finns i själva virusets namn?",
+    "correctAnswer": 2,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många år var Whitney Huston när hon dog?",
+    "correctAnswer": 48,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många kvinnor i Sverige hade Dilba som förnamn 31 december 2020?",
+    "correctAnswer": 39,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många rulltrappor finns i Härjedalens kommun?",
+    "correctAnswer": 1,
+    "questionScore": 100,
+		"questionTime": 30,
+    "answerType": "0-100",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]

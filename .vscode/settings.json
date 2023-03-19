@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/89ad29ae-8617-4985-bda1-5995ae5f6390/AppServices/subscriptions/89ad29ae-8617-4985-bda1-5995ae5f6390/resourceGroups/quiz-rg/providers/Microsoft.Web/sites/quiz-this",
+    "appService.deploySubpath": "."
+}

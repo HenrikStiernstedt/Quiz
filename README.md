@@ -85,14 +85,15 @@ some of the freedom the Quizmaster has today that really is not needed.
 
 * [x] Displayment of the correct answer.
 
-* [ ] Custom images for questions and answers, stored with the questions.
-  - [ ] Preferable also with support to reuse the images.
+* [x] Custom images for questions and answers, stored with the questions.
+  - [x] Preferable also with support to reuse the images.
   - [ ] Preferable also with support to write some text over the image to make them a bit more unique.
 
 
 ## Scoreboard only mode
 * [ ] A way to only show questions and score board.
 * [ ] A way to not be part of the score board, but still recieve game updates.
+* [ ] A requirement to "join" a game. If not joined, you're not in and only see updates and scores. Games can be locked when they have started.
 
 ## Game modes
 ### Buzz
@@ -130,3 +131,11 @@ Det jag oftast gör fel på är att trycka "Ny fråga" innan jag ställt in alla
 Till sist har du "pil upp" och "pil ned" som ger respektive tar poäng av en spelare rakt av om man behöver korrigera något.
 
 Om man trycker på "Ny omgång" får de med högst poäng en guldpeng och i övrigt nollställs allas poäng. 
+
+
+Önskemål
+=================
+
+* Timer startar när X antal har svarat
+* Stäng frågan när alla svarat.
+* 

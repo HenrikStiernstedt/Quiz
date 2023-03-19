@@ -32,12 +32,11 @@ var vm = new Vue({
       quizMasterId: 0,
       question : {
         questionNumber: 0,
-        questionType : "BUZZ_RUSH",
+        questionType : "WELCOME",
         questionText: "",
         correctAnswer: "",
         answerType: "text",
         questionScore: 0,
-        questionTime: 30,
         questionClues : [{
           "clueScore" : 0,
           "clueText" : ""
@@ -65,19 +64,18 @@ var vm = new Vue({
     {
       "pendingQuestion" : {
         "questionNumber": 0,
-        "questionType" : "BUZZ_RUSH",
+        "questionType" : "WELCOME",
         "questionText": "",
         "correctAnswer": "",
         "answerType": "text",
         "questionScore": 2,
-        "questionTime": 30,
         "questionClues" : [{
           "clueScore" : 0,
           "clueText" : ""
         }]
       },
       "savegame": "game",
-      "loadQuestions": "2020",
+      "loadQuestions": "hatt",
       "QuestionListNumber": 0,
       "pendingGameSettings": {
         "reversedScoring": false
@@ -221,6 +219,15 @@ var vm = new Vue({
     loadQuestions: function() {
       console.log("Ladda ny Quiz!");
       socket.emit("LoadQuestions", vm.quizMaster.loadQuestions);
+    },
+    
+    saveQuestions: function() {
+      console.log("Spara/uppdatera frågor!");
+      console.log(vm.quizMaster.questionList);
+      if(confirm("Är du säker på att du vill spara över filen "+vm.quizMaster.loadQuestions+"?"))
+      {
+        socket.emit("SaveQuestions", { questionList: vm.quizMaster.questionList, filename: vm.quizMaster.loadQuestions});
+      }
     },
 
     newGame: function() {

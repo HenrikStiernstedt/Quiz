@@ -10,5 +10,17 @@
     "nocache": "^2.1.0",
     "request": "2.88.2",
     "socket.io": "4.6.1"
+  },
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "engines": {
+    "node": "12.x"
+  },
+  "author": "Henrik Stiernstedt",
+  "runs": {
+    "using": "node16",
+    "main": "index.js"
   }
 }
