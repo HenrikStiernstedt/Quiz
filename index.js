@@ -21,6 +21,8 @@ var
 
 const fs = require('fs');
 
+app.disable('x-powered-by');
+
 // Attach session
 app.use(sessionMiddleware);
 /*
@@ -33,6 +35,20 @@ io.use(sharedsession(session, {
     autoSave:true
 }));
 */
+
+/*
+ * Add trailing spaces if missing.
+ */
+app.use((req, res, next) => {
+  if (req.path.slice(-1) === '/' && req.path.length > 1) {
+    const query = req.url.slice(req.path.length)
+    const safepath = req.path.slice(0, -1).replace(/\/+/g, '/')
+    res.redirect(301, safepath + query)
+  } else {
+    next()
+  }
+})
+
 
 io.engine.use(sessionMiddleware);
 
@@ -77,13 +93,18 @@ games.push(new Game.game('ABCD', io, '4552'));
 var game = games[0];
 
 //gameList.data.games.push(game); // TODO: Red ut röran av game och gamelist.
-gameList.data.games.push({"name": game.data.id});
+gameList.data.games.push(
+  {
+      "id": game.id, 
+      "game": game.data,
+  }
+);
 
 //console.log(game);
 
 //game.data.players.pop();
 
-var data = game.data;
+//var data = game.data;
 
 //var rooms = [];
 
@@ -130,7 +151,15 @@ app.get('/room/:room/create', function(req, res){
   console.log(games);
   room = req.params.room;
   //console.log(getCurrentObject(games, room));
-  games.push(new Game.game(room, io, '4552'));
+  var newGame = new Game.game(room, io, '4552');
+  games.push(newGame);
+  gameList.data.games.push(
+    {
+        "id": newGame.id, 
+        "game": newGame.data,
+    }
+  );
+
   res.json(
     {
       question : getCurrentObject(games, room).data.status.question,
@@ -166,19 +195,7 @@ app.get('/room/:room/chatHistory', function(req, res){
 /********************************************************************************************
  * Helper functions
  ********************************************************************************************/
-function getCurrentPlayer(teamId)
-{
-   return data.players.filter( obj => obj.team == teamId)[0];
-}
 
-function verifyQM(teamId, action) {
-  if(data.status.quizMasterId == teamId) {
-    return true;
-  }
-  console.log("WARN: Unauthorized attempt to " + action + " from " + teamId);
-  return false;
-
-}
 
 function getCurrentObject(array, id) {
   return array.filter( obj => obj.id == id)[0];

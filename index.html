@@ -26,7 +26,7 @@
   <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
 
   <!-- socket.io -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.3.0/socket.io.js"></script>
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
 
   <!-- My own stuff -->
   <link href="/css/Quiz.css" rel="stylesheet">
@@ -47,13 +47,13 @@
               <div class="flip-card-inner">
                 <div class="flip-card-front ">
 
-                    <img class="card-img-top" src="/images/39.jpg" alt="Gott nytt år" />
+                    <img class="card-img-top" src="/images/quiz.jpg" alt="Gott nytt år" />
                     <div class="card-body">
-                      <div class="QuestionCountdownOverlay">10</div>
+                      <!--<div class="QuestionCountdownOverlay"></div>-->
                       
-                      <h5 class="card-title">Henkes ny- och 39-årsquiz!</h5>
+                      <h5 class="card-title">Quiz Time!</h5>
                       <p class="card-text">
-                        <strong><span style="white-space: normal;">Välj ett namn!</span></strong>
+                        <strong><span style="white-space: normal;">Välj ett spel nedan, eller skapa ditt eget!</span></strong>
                         <br/>
                         <span>&nbsp;</span>
                       </p>
@@ -65,17 +65,24 @@
             </div>
           </transition>
         </div>
-        <!-- Answer area -->
+        <!-- Create quiz area -->
         <div id="player" class="player col-md-6" style="min-height:110px;">
           <transition name="fade" mode="out-in">
             <div>
+              
               <div class="card-body">
+
+                <h5 class="card-title">Skapa ett eget spel</h5>
                 
                   <div class="input-group input-group-lg">
+                    <input type="text" class="form-control" placeholder="Spelnamn" aria-label="Spelnamn" aria-describedby="basic-addon2">
+                  </div>
+                  <div class="input-group input-group-lg">
                     
-                    <input type="text" class="form-control" placeholder="Lagnamn" aria-label="Lagnamn" aria-describedby="basic-addon2">
+                    
+                    <input type="text" class="form-control" placeholder="Lösenord" aria-label="Lösenord" aria-describedby="basic-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-primary"type="button">Lagnamn</button>
+                      <button class="btn btn-primary"type="button">Skapa</button>
                     </div>
                   </div>
 
@@ -83,7 +90,7 @@
             </div>
           </transition>
         </div>
-        <!-- End of Answer area -->
+        <!-- End of Create quiz area -->
 
       </div>
 
@@ -106,7 +113,7 @@
                     <td>
                     </td>
                     <td>
-                      {{g.room}}
+                      {{g.id}}
                     </td>
                     <td>
                       <transition name="qbounce" mode="out-in">

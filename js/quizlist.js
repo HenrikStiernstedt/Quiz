@@ -296,7 +296,8 @@ function getStatusUpdate()
   var status = null;
   status = $.ajax({
     dataType: "json",
-    url: 'status',
+    url: id+'/status',
+    cache: false,
     data: null,
     success: function(serverStatus) {
       vm.status = (serverStatus.status);
@@ -362,6 +363,8 @@ function loadSounds() {
   });
 }
 
+var id = window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1);
+
 function initQuizlist() {
 
   /*
@@ -370,7 +373,7 @@ function initQuizlist() {
     console.log("CALL: " + eventName);
   });
   */
-  var id = window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1);
+
   console.log("Entering game " + id);
 
   socket = io('/'+id);

@@ -152,7 +152,7 @@ module.exports.game = function(id, io_master, quizMasterPassword) {
     io.emit('UpdatePlayers', {status: data.status, players: data.players });
   }
 
-  io.sockets.get(socket.id).emit('Welcome',
+  io.to(socket.id).emit('Welcome',
     {
         id: player.id,
         teamName: player.teamName,
