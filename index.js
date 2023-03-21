@@ -160,6 +160,8 @@ app.get('/room/:room/create', function(req, res){
     }
   );
 
+  io.of("game-list").emit("UpdateGameList", gameList.data.games);
+
   res.json(
     {
       question : getCurrentObject(games, room).data.status.question,
@@ -175,7 +177,6 @@ app.get('/room/:room/create', function(req, res){
 
 
 // AJAX-endpoint för spellistan.
-// Ny endpoint för en ny generell välkomstsida med framtida rumsväljare. Kommer att kräva en helt ny sida (index.html) och sessionshantering.
 app.get('/game-list', function(req, res){
   res.json(
     {
