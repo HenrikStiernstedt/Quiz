@@ -34,8 +34,8 @@ var vm = new Vue({
     },
 });
 
-//var socket = io('/game-list');
-var socket = io();
+var socket = io('/game-list');
+//var socket = io();
 
 
 function initGameList()
@@ -45,8 +45,8 @@ function initGameList()
 
     socket.on('UpdateGameList', function(games){
         console.log("UpdateGameList: ");
-        console.log(games.games);
-        vm.games = games.games;
+        console.log(games);
+        vm.games = games;
     });
 
 }
