@@ -37,7 +37,7 @@ io.use(sharedsession(session, {
 */
 
 /*
- * Add trailing spaces if missing.
+ * Remove trailing spaces if present.
  */
 app.use((req, res, next) => {
   if (req.path.slice(-1) === '/' && req.path.length > 1) {
