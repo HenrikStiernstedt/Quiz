@@ -86,9 +86,9 @@ var chatHistory =
 
 
 var games = []; 
-var Game = require('./js/game.js'); 
+var Game = require('./js/QuizGame.js'); 
 
-games.push(new Game.game('ABCD', io, '4552'));
+games.push(new Game('ABCD', io, '4552'));
 
 var game = games[0];
 
@@ -151,7 +151,7 @@ app.get('/room/:room/create', function(req, res){
   console.log(games);
   room = req.params.room;
   //console.log(getCurrentObject(games, room));
-  var newGame = new Game.game(room, io, '4552');
+  var newGame = new Game(room, io, '4552');
   games.push(newGame);
   gameList.data.games.push(
     {
