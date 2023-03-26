@@ -280,6 +280,18 @@ var vm = new Vue({
     },
     setPendingQuestionTime: function ( event, questionTime) {
       Vue.set(vm.quizMaster.pendingQuestion, "questionTime", questionTime);
+    },
+    ToggleDebugArea: function(event) {
+      console.log("Toggle Debug Area")
+      var element = $('#DebugArea');
+      if(element.is(':visible'))
+      {
+        element.hide(200);
+      }
+      else
+      {
+        element.show(200);
+      }
     }
   }
 });
