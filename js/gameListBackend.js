@@ -34,7 +34,7 @@ var data =
 
     socket.on('new chat message', function(msgJson){
         msgJson.date = new Date();
-        io.emit('chat message', msgJson);
+        io.to('/game-list').emit('chat message', msgJson);
         //chatHistory.push(msgJson);
     });
 

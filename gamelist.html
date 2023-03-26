@@ -66,30 +66,7 @@
           </transition>
         </div>
         <!-- Create quiz area -->
-        <div id="player" class="player col-md-6" style="min-height:110px;">
-          <transition name="fade" mode="out-in">
-            <div>
-              
-              <div class="card-body">
 
-                <h5 class="card-title">Skapa ett eget spel</h5>
-                
-                  <div class="input-group input-group-lg">
-                    <input type="text" class="form-control" placeholder="Spelnamn" aria-label="Spelnamn" aria-describedby="basic-addon2">
-                  </div>
-                  <div class="input-group input-group-lg">
-                    
-                    
-                    <input type="text" class="form-control" placeholder="Lösenord" aria-label="Lösenord" aria-describedby="basic-addon2">
-                    <div class="input-group-append">
-                      <button class="btn btn-primary"type="button">Skapa</button>
-                    </div>
-                  </div>
-
-              </div>
-            </div>
-          </transition>
-        </div>
         <!-- End of Create quiz area -->
 
       </div>
@@ -154,8 +131,8 @@
                   <button type="button" class="btn btn-outline-secondary mb-2" data-toggle="modal" data-target="#playerSettingsModal">
                     <i class="fas fa-user-tag"></i> Byt namn
                   </button>
-                  <button type="button" class="btn btn-outline-secondary mb-2" data-toggle="modal" data-target="#QMSettingsModal">
-                    <i class="fas fa-user-shield"></i> QuizMaster
+                  <button type="button" class="btn btn-outline-secondary mb-2" data-toggle="modal" data-target="#CreateGameModal">
+                    <i class="fas fa-chess"></i> Skapa spel
                   </button>
                 </div>
               <!--</div>-->
@@ -200,11 +177,11 @@
     </div>
 
      <!-- QuizMaster Modal -->
-     <div class="modal fade" id="QMSettingsModal" tabindex="-1" role="dialog" aria-labelledby="QMSettingsModalLabel" aria-hidden="true">
+     <div class="modal fade" id="CreateGameModal" tabindex="-1" role="dialog" aria-labelledby="CreateGameModalLabel" aria-hidden="true">
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="QMSettingsModalLabel">Ange lösenord för Quiz Master</h5>
+            <h5 class="modal-title" id="CreateGameModalLabel">Skapa spel</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
@@ -212,9 +189,10 @@
           <div class="modal-body">
             <!-- Make me QuizMaster buttons -->
             <div v-if="!player.isQuizMaster" class="input-group input-group-sm mb-3">
-              <input v-model="player.quizMasterPassword" @keyup.enter="MakeMeQuizMaster()" type="password" class="form-control" placeholder="" aria-label="QM" aria-describedby="basic-addon2" autocomplete="off">
+              <input v-model="player.gameName" class="form-control" placeholder="Namn på spelet" aria-label="Game Name" aria-describedby="basic-addon2" autocomplete="off">
+              <input v-model="player.quizMasterPassword" @keyup.enter="createGame()" class="form-control" placeholder="Quiz-master-lösenord" aria-label="QM" aria-describedby="basic-addon2" autocomplete="off">
               <div class="input-group-append">
-                <button class="btn btn-primary" v-on:click="MakeMeQuizMaster()" type="button" data-dismiss="modal">QM pwd</button>
+                <button class="btn btn-primary" v-on:click="createGame()" type="button" data-dismiss="modal">Skapa spel</button>
               </div>
             </div>
           </div>

@@ -88,7 +88,7 @@ var chatHistory =
 var games = []; 
 var Game = require('./js/QuizGame.js'); 
 
-games.push(new Game('ABCD', io, '4552'));
+games.push(new Game('abcd', io, '4552'));
 
 var game = games[0];
 
@@ -131,7 +131,7 @@ app.get('/room/:room/status', function(req, res){
   console.log("room: " + req.params.room);
   console.log(games);
   room = req.params.room;
-  var game = getCurrentObject(games, room);
+  var game = getCurrentObject(gameList.data.games, room);
   console.log(game);
   if(!game)
   {
@@ -160,12 +160,25 @@ app.get('/room/:room/status', function(req, res){
 });
 
 // Specialare för AJAX och annat som inte behöver pushas ut.
-app.get('/room/:room/create', function(req, res){
+app.get('/room/:room/create/:pwd', function(req, res){
   console.log("room: " + req.params.room);
   console.log(games);
-  room = req.params.room;
+  var room = req.params.room;
+  var pwd = req.params.pwd;
+
+  room = room.replace(/[^a-zA-Z0-9]/g, '').toLowerCase();
+
+  if(getCurrentObject(gameList.data.games, room) != null)
+  {
+    res.statusCode = 400;
+    res.json({
+      "message": `Det finns redan att rum med detta namn (${room}). Välj ett annat.`,
+      "code" :  "NameTaken"
+    });
+    return;
+  }
   //console.log(getCurrentObject(games, room));
-  var newGame = new Game(room, io, '4552');
+  var newGame = new Game(room, io, pwd);
   games.push(newGame);
   gameList.data.games.push(
     {
@@ -176,17 +189,10 @@ app.get('/room/:room/create', function(req, res){
 
   io.of("game-list").emit("UpdateGameList", gameList.data.games);
 
-  res.json(
-    {
-      question : getCurrentObject(games, room).data.status.question,
-      status: getCurrentObject(games, room).data.status,
-      players: getCurrentObject(games, room).data.players,
-      nameRequired: {
-        id: req.session.team,
-        name: req.session.teamName
-      }
-    }
-  );
+  res.json({
+    "message": `Ditt spel har skapats med namn (${room}).`,
+    "code": "Success"
+  });
 });
 
 
@@ -240,9 +246,7 @@ function upsert(array, item) { // (1)
 /******************************************************************************
  * Socket.io code for ADMINISTRATIVE EVENTS
  ******************************************************************************/
-
+/*
 io.on('connection', function(socket){
-  
-
-
 });
+*/

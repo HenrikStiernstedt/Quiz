@@ -18,14 +18,27 @@ var vm = new Vue({
         "player": {
             "id" : 0,
             "team" : 0,
-            "teamName": ""
+            "teamName": "",
+            "gameName": null,
+            "quizMasterPassword": null
         }
     },
     methods:
     {
-        createGame: function (game) {
-            console.log("Uppdaterar Skapar spel '"+game+"'");
-            socket.emit('AddGame', game);
+        createGame: function () {
+            console.log(`Skapar spel med namn ${vm.player.gameName}.`);
+            //console.log("Skapar spel '"+game+"'");
+            //socket.emit('AddGame', game);
+            $.get({
+
+            url: `/room/${vm.player.gameName}/create/${vm.player.quizMasterPassword}`,  
+            
+            }).done(function(data, status) {
+                alert("Anropet lyckades: " + data.message);
+            }).fail(function(data, status) {
+                alert("Anropen misslyckades: " + data.responseJSON.message);
+            });
+
         },
         gotoRoom: function (gameId) {
             console.log(gameId);
@@ -34,14 +47,15 @@ var vm = new Vue({
     },
 });
 
-var socket = io('/game-list');
-//var socket = io();
 
 
 function initGameList()
 {
     console.log("Init gamelist!");
     getStatusUpdate();
+
+    var socket = io('/game-list');
+    //var socket = io();
 
     socket.on('UpdateGameList', function(games){
         console.log("UpdateGameList: ");
