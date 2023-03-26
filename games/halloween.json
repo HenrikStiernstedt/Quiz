@@ -1,0 +1,213 @@
+[{
+    "questionNumber": "X",
+    "questionType" : "WELCOME",
+    "questionText": "Halloween-quiz börjar strax! ",
+    "questionImage": "halloween/halloween-quiz.jpg",
+    "answerImage": "halloween/halloween-quiz2.jpg",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": 1,
+    "questionType" : "QUIZ",
+    "questionTime": "40",
+    "questionText": "Är pumpa en frukt eller en grönsak?",
+    "correctAnswer": "Frukt",
+    "questionScore": 1,
+    "answerType": "Frukt;Grönsak",
+    "questionImage": "halloween/pumpkin1.jpg",
+    "answerImage": "halloween/fruits.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "I vilket land har Halloween sitt ursprung?",
+    "correctAnswer": "Irland",
+    "answerType": "Indien;Tyskland;Irland;Mexiko",
+    "questionImage": "halloween/trick-or-treat.jpg",
+    "answerImage": "halloween/ireland.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Vem skrev novellen om Frankenstein?",
+    "correctAnswer": "Mary Shelley",
+    "answerType": "Mary Shelley;Stephen King;Virginia Woolf;J.K. Rowling",
+    "questionImage": "halloween/frankenstein.jpg",
+    "answerImage": "halloween/mary-shelley.jpg",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Pumpor kan anta en mängd färger, t.ex. orange, vit och grön. Vilka av dessa färger kan pumpor även naturligt vara?",
+    "correctAnswer": "Blå",
+    "answerType": "Grå;Regnbågsfärgad;Blå;Lila",
+    "questionImage": "halloween/pumpkin2.jpg",
+    "answerImage": "halloween/pumpkin-blue.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Vad är samhainofobi? Rädslan för ...",
+    "correctAnswer": "Halloween",
+    "answerType": "Halloween;Höjder;Fredag den 13:e;Clowner",
+    "questionImage": "halloween/fear.jpg",
+    "answerImage": "halloween/halloween.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Namnge bandet som sjöng \"Pet Sematary\" som ursprungligen tillhörde kultklassikerfilmen från 1989 med samma titel.",
+    "correctAnswer": "The Ramones",
+    "answerType": "Iron Maiden;The Who;The Ramones;AC/DC",
+    "questionImage": "halloween/pet-sematary.jpg",
+    "answerImage": "halloween/the-ramones.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Nu när vi ändå är på ämnet musik, vilken grupp sjöng berömt om zombier?",
+    "correctAnswer": "The Cranberries",
+    "answerType": "Pearl Jam;Nirvana;Black Sabbath;The Cranberries",
+    "questionImage": "halloween/zombies.jpg",
+    "answerImage": "halloween/the-cranberries.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Hur många filmer finns det i \"Halloween\"-filmserien?",
+    "correctAnswer": "13",
+    "answerType": "5;7;11;13",
+    "questionImage": "halloween/michael-myers2.jpg",
+    "answerImage": "halloween/halloween-films.jpg",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Vi vet ju alla att the bad guy i Halloween heter Michael Myers, men vilken skådespelare är masken som han bär baserad på?",
+    "correctAnswer": "William Shatner",
+    "answerType": "John Travolta;Sean Connery;William Shatner;Christopher Reeve",
+    "questionImage": "halloween/michael-myers.jpg",
+    "answerImage": "halloween/william-shatner.jpg",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Vad är INTE sant om alla spindlar?",
+    "correctAnswer": "De har 8 ögon",
+    "answerType": "De producerar silke;De har 8 ögon;De har 8 ben;De har blått blod",
+    "questionImage": "halloween/lucas-the-spider.jpg",
+    "answerImage": "halloween/spider-eyes.jpg",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Vad är den psykiatriska termen för en besatthet av att dricka blod?",
+    "correctAnswer": "Klinisk vampirism",
+    "answerType": "Von Willebrands sjukdom;Klinisk vampirism;Hemofili;Talassemi",
+    "questionImage": "halloween/drink-blood.jpg",
+    "answerImage": "halloween/twilight.jpg",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Innan Ghostbusters blev Ghostbusters övervägde filmstudion ett antal andra titlar på denna ikoniska filmserie. Vilket av dessa namn övervägde studion INTE?",
+    "correctAnswer": "Ghostdestroyers",
+    "answerType": "Ghostbreakers;Ghoststoppers;Ghostdestroyers;Ghostsmashers",
+    "questionImage": "halloween/ghostbusters.jpg",
+    "answerImage": "halloween/ghostbusters2.jpg",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Vi har alla ett läskigt skelett inuti oss, och välkänt är att den mänskliga kroppen har 206 ben som del av sitt skelett. Hur många av dessa ben utgörs händerna av?",
+    "correctAnswer": "54",
+    "answerType": "12;24;36;54",
+    "questionImage": "halloween/skeleton.jpg",
+    "answerImage": "halloween/skeleton2.jpg",
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]
