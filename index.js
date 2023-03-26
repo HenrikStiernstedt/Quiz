@@ -131,18 +131,32 @@ app.get('/room/:room/status', function(req, res){
   console.log("room: " + req.params.room);
   console.log(games);
   room = req.params.room;
-  console.log(getCurrentObject(games, room));
-  res.json(
-    {
-      question : getCurrentObject(games, room).data.status.question,
-      status: getCurrentObject(games, room).data.status,
-      players: getCurrentObject(games, room).data.players,
-      nameRequired: {
-        id: req.session.team,
-        name: req.session.teamName
+  var game = getCurrentObject(games, room);
+  console.log(game);
+  if(!game)
+  {
+    res.statusCode = 404;
+    res.json(
+      {
+        message: "Game "+ room + " not found.",
+        ErrorCode: "NoRoom"
       }
-    }
-  );
+    );
+  }
+  else
+  {
+    res.json(
+      {
+        question : getCurrentObject(games, room).data.status.question,
+        status: getCurrentObject(games, room).data.status,
+        players: getCurrentObject(games, room).data.players,
+        nameRequired: {
+          id: req.session.team,
+          name: req.session.teamName
+        }
+      }
+    );
+  }
 });
 
 // Specialare för AJAX och annat som inte behöver pushas ut.
