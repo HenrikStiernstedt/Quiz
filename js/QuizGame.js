@@ -201,7 +201,7 @@ class Game {
       chatHistory.push(msgJson);
     });
 
-    socket.on('Purge', function () {
+    socket.on('Purge', () => {
       if (!this.verifyQM(socket.request.session.team, "Purge")) {
         return;
       }
