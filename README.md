@@ -119,7 +119,12 @@ some of the freedom the Quizmaster has today that really is not needed.
 * [ ] Use Bootstrap-vue?
 * [ ] Make use of vue components
 * [ ] Use vuex for state?
-* [ ] Upgrade to newer versions of socket.io.
+* [x] Upgrade to newer versions of socket.io.
+* [x] Support for multiple game rooms.
+  - [x] Initial version available.
+  - [ ] Fix bugs. 
+  - [ ] Add a way to delete rooms and update the game list.
+
   
 # How to run as QuizMaster
 Tanken är att frågenummer skall räkans upp automatiskt om man bara lämnar det blankt. Sen måste man välja en frågetyp. Den är inte vad från början då det blir lite skumt innan amn tryckt på "Ny fråga" en gång efter omstart. Sen får man fylla i poäng så att den är något vettigt, t.ex. 10. Fältet "Fråga" är helt frivilligt, men det skrivs då ut på frågekortet. "Svar" används inte alls än. 

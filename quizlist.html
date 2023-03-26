@@ -17,7 +17,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" crossorigin="anonymous">
   <link rel="stylesheet" href="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.css">
 
   <!-- Vue -->
@@ -26,11 +26,11 @@
   <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>-->
 
   <!-- socket.io -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.3/socket.io.js"></script>
+  <script src="https://cdn.socket.io/4.6.1/socket.io.min.js"></script>
 
   <!-- My own stuff -->
-  <link href="css/Quiz.css" rel="stylesheet">
-  <script src="js/share.js"></script>
+  <link href="/css/Quiz.css" rel="stylesheet">
+  <script src="/js/share.js"></script>
 </head>
 <body>
 
@@ -47,15 +47,15 @@
               <div class="flip-card-inner">
                 <div class="flip-card-front ">
                   <span v-if="status.question.questionType == 'WELCOME'">
-                    <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
-                    <img v-else class="card-img-top quiz-image" src="images/quiz.jpg" style="object-fit: cover" alt="Lycka till" />
+                    <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"/images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
+                    <img v-else class="card-img-top quiz-image" src="/images/quiz.jpg" style="object-fit: cover" alt="Lycka till" />
                     <div class="card-body">
                       <!--<div class="QuestionCountdownOverlay">10</div>-->
                       
                       <h5 class="card-title">{{ status.question.questionText }}</h5>
                       
                       <p class="card-text">
-                        <strong><span style="white-space: normal;">Quizen börjar snart...</span></strong>
+                        <strong><span style="white-space: normal;"></span></strong>
                         <br/>
                         <span>&nbsp;</span>
                       </p>
@@ -65,8 +65,8 @@
                   </span>
 
                   <span v-if="status.question.questionType == 'MAJOR_VICTORY'">
-                    <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
-                    <img v-else class="card-img-top quiz-image"  src="images/majority-rules.png" alt="Majoriteten bestämmer">
+                    <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"/images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
+                    <img v-else class="card-img-top quiz-image"  src="/images/majority-rules.png" alt="Majoriteten bestämmer">
                     <div class="card-body">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -85,8 +85,8 @@
                   </span>
 
                   <span v-if="status.question.questionType == 'QUIZ'">
-                    <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
-                    <img v-else class="card-img-top quiz-image" src="images/quiz.jpg" style="object-fit: cover" alt="Quiz">
+                    <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"/images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
+                    <img v-else class="card-img-top quiz-image" src="/images/quiz.jpg" style="object-fit: cover" alt="Quiz">
                     <div class="card-body question-text">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -100,8 +100,8 @@
                   </span>
 
                   <span v-if="status.question.questionType == 'RED_THREAD'">
-                    <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
-                    <img v-else class="card-img-top quiz-image" src="images/Pasparet3.jpg" style="object-fit: cover" alt="Röda tråden">
+                    <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"/images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
+                    <img v-else class="card-img-top quiz-image" src="/images/Pasparet3.jpg" style="object-fit: cover" alt="Röda tråden">
                     <div class="card-body">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -120,8 +120,8 @@
                   </span>
 
                   <span v-if="status.question.questionType == 'BUZZ_RUSH'">
-                    <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
-                    <img v-else class="card-img-top quiz-image" src="images/buzzers.png" style="object-fit: cover" alt="Buzzers">
+                    <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"/images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
+                    <img v-else class="card-img-top quiz-image" src="/images/buzzers.png" style="object-fit: cover" alt="Buzzers">
                     <div class="card-body">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
@@ -141,8 +141,8 @@
                 </div> <!--end of front-->
                 <!-- facit -->
                 <div class="flip-card-back glass">
-                  <img v-if="status.question.answerImage" class="card-img-top quiz-image" v-bind:src='"images/"+status.question.answerImage' v-bind:style="status.question.answerImageStyle">
-                    <img v-else class="card-img-top quiz-image" src="images/100.jpg" style="object-fit: cover" alt="Facit">
+                  <img v-if="status.question.answerImage" class="card-img-top quiz-image" v-bind:src='"/images/"+status.question.answerImage' v-bind:style="status.question.answerImageStyle">
+                    <img v-else class="card-img-top quiz-image" src="/images/100.jpg" style="object-fit: cover" alt="Facit">
                     <div class="card-body">
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                       
@@ -463,7 +463,20 @@
                     <i class="fas fa-user-shield"></i> QuizMaster
                   </button>
                 </div>
+                <div class="btn-group">
+                  <button type="button" class="btn btn-outline-secondary mb-2"  v-on:click="ToggleDebugArea()">
+                    <i class="fa-solid fa-bug"></i> Debug
+                  </button>
+                </div>
+              
               <!--</div>-->
+              
+              <div id="DebugArea" style="display: none">
+                <!-- Dedbug: -->
+                Status:
+                <pre>{{JSON.stringify(status, undefined, 2)}} </pre>
+
+              </div>
             </div>
            
           </div>
@@ -553,7 +566,7 @@
 
   </div>
   <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>
-  <script src="js/quizlist.js"></script>
+  <script src="/js/quizlist.js"></script>
 
   <script>
     initQuizlist();

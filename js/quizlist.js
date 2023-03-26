@@ -33,9 +33,10 @@ var vm = new Vue({
       question : {
         questionNumber: 0,
         questionType : "WELCOME",
-        questionText: "",
+        questionText: "Det pågår tyvärr ingen quiz i detta rum.",
         correctAnswer: "",
         answerType: "text",
+        questionImage: "majority-rules.png",
         questionScore: 0,
         questionClues : [{
           "clueScore" : 0,
@@ -132,7 +133,8 @@ var vm = new Vue({
     updateQuestion: function () {
       console.log("Uppdaterar frågan!");
       console.log(vm.quizMaster.pendingQuestion);
-      socket.emit('UpdateQuestion', 'UPDATE', vm.quizMaster.pendingQuestion);
+      // Send all properties except "correctAnswer".
+      socket.emit('UpdateQuestion', 'UPDATE', (({ correctAnswer, ...o }) => o)(vm.quizMaster.pendingQuestion));
     },
     lowerQuestionScore: function() {
       console.log("Uppdaterar frågan. Sänker poängen");
@@ -173,7 +175,8 @@ var vm = new Vue({
     newQuestion: function () {
       console.log("Ny fråga!");
       console.log(vm.quizMaster.pendingQuestion);
-      socket.emit('UpdateQuestion', 'NEW', vm.quizMaster.pendingQuestion);
+      // Send all properties except "correctAnswer".
+      socket.emit('UpdateQuestion', 'NEW', (({ correctAnswer, ...o }) => o)(vm.quizMaster.pendingQuestion));
       popAudioElement.play();
     },
     createNewQuestion: function() {
@@ -280,6 +283,18 @@ var vm = new Vue({
     },
     setPendingQuestionTime: function ( event, questionTime) {
       Vue.set(vm.quizMaster.pendingQuestion, "questionTime", questionTime);
+    },
+    ToggleDebugArea: function(event) {
+      console.log("Toggle Debug Area")
+      var element = $('#DebugArea');
+      if(element.is(':visible'))
+      {
+        element.hide(200);
+      }
+      else
+      {
+        element.show(200);
+      }
     }
   }
 });
@@ -296,7 +311,8 @@ function getStatusUpdate()
   var status = null;
   status = $.ajax({
     dataType: "json",
-    url: '/status',
+    url: id+'/status',
+    cache: false,
     data: null,
     success: function(serverStatus) {
       vm.status = (serverStatus.status);
@@ -312,7 +328,7 @@ function getChatHistory()
 {
   $.ajax({
     dataType: "json",
-    url: '/chatHistory',
+    url: 'chatHistory',
     data: null,
     success: function(history) {
       handleChatHistory(history)
@@ -336,7 +352,7 @@ function getThisPlayer() {
   return vm.players.filter( obj => obj.team == vm.player.id)[0];
 }
 
-var socket = io();
+
 
 function givePoints(score, team, isCorrectAnswer)
 {
@@ -352,15 +368,17 @@ var buzzAudioElement = document.createElement('audio');
 var popAudioElement = document.createElement('audio');
 
 function loadSounds() {
-  buzzAudioElement.setAttribute('src', 'buzzer.mp3');
+  buzzAudioElement.setAttribute('src', '/buzzer.mp3');
   $('.play').click(function() {
     buzzAudioElement.play();
   });
-  popAudioElement.setAttribute('src', 'pop.mp4');
+  popAudioElement.setAttribute('src', '/pop.mp4');
   $('.play').click(function() {
     popAudioElement.play();
   });
 }
+
+var id = window.location.pathname.substring(window.location.pathname.lastIndexOf("/") + 1);
 
 function initQuizlist() {
 
@@ -370,6 +388,10 @@ function initQuizlist() {
     console.log("CALL: " + eventName);
   });
   */
+
+  console.log("Entering game " + id);
+
+  socket = io('/'+id);
 
   socket.on('chat message', function(msgJson){
     //$('#messages').append($('<li>').text(msg));
