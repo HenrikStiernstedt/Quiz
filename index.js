@@ -88,7 +88,7 @@ var chatHistory =
 var games = []; 
 var Game = require('./js/QuizGame.js'); 
 
-games.push(new Game('abcd', io, '4552'));
+games.push(new Game('quiz', io, '4552'));
 
 var game = games[0];
 

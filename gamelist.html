@@ -94,12 +94,15 @@
                     </td>
                     <td>
                       <transition name="qbounce" mode="out-in">
+                        <i class="far fa-grin fa-2x"></i>
+                        <!--
                         <i :key="0" title="Offline" v-if="!g.active" class="far fa-dizzy fa-2x"></i>
                         <i :key="1" v-else-if="g.active" class="far fa-grin fa-2x"></i>
+                        -->
 
                       </transition>
                       <p>
-                        {{g.game.players.length}} st.
+                        {{g.game.players.length}} spelare
                       </p>
                     </td>
                     <td>
@@ -128,9 +131,11 @@
               <!-- Button trigger modal -->
               <!--<div class="btn-group" role="group" aria-label="Settings-buttons">-->
                 <div class="btn-group">
+                <!--
                   <button type="button" class="btn btn-outline-secondary mb-2" data-toggle="modal" data-target="#playerSettingsModal">
                     <i class="fas fa-user-tag"></i> Byt namn
                   </button>
+                -->
                   <button type="button" class="btn btn-outline-secondary mb-2" data-toggle="modal" data-target="#CreateGameModal">
                     <i class="fas fa-chess"></i> Skapa spel
                   </button>
