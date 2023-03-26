@@ -132,7 +132,8 @@ var vm = new Vue({
     updateQuestion: function () {
       console.log("Uppdaterar frågan!");
       console.log(vm.quizMaster.pendingQuestion);
-      socket.emit('UpdateQuestion', 'UPDATE', vm.quizMaster.pendingQuestion);
+      // Send all properties except "correctAnswer".
+      socket.emit('UpdateQuestion', 'UPDATE', (({ correctAnswer, ...o }) => o)(vm.quizMaster.pendingQuestion));
     },
     lowerQuestionScore: function() {
       console.log("Uppdaterar frågan. Sänker poängen");
@@ -173,7 +174,8 @@ var vm = new Vue({
     newQuestion: function () {
       console.log("Ny fråga!");
       console.log(vm.quizMaster.pendingQuestion);
-      socket.emit('UpdateQuestion', 'NEW', vm.quizMaster.pendingQuestion);
+      // Send all properties except "correctAnswer".
+      socket.emit('UpdateQuestion', 'NEW', (({ correctAnswer, ...o }) => o)(vm.quizMaster.pendingQuestion));
       popAudioElement.play();
     },
     createNewQuestion: function() {

@@ -511,6 +511,7 @@ module.exports.game = function(id, io_master, quizMasterPassword) {
       data.status.isBuzzActive = true;
     }
 
+    question.correctAnswer = ""; // Hide the correct answer for all players, just in case.
     data.status.question = question;
 
     data.status.questionTime = question.questionTime;
