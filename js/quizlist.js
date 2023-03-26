@@ -33,9 +33,10 @@ var vm = new Vue({
       question : {
         questionNumber: 0,
         questionType : "WELCOME",
-        questionText: "",
+        questionText: "Det pågår tyvärr ingen quiz i detta rum.",
         correctAnswer: "",
         answerType: "text",
+        questionImage: "majority-rules.png",
         questionScore: 0,
         questionClues : [{
           "clueScore" : 0,
