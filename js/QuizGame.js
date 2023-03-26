@@ -807,7 +807,7 @@ class Game {
 
     socket.on('NewGame', () => {
       if (!this.verifyQM(socket.request.session.team, "NewGame")) { return; }
-      resetPlayers(true);
+      this.resetPlayers(true);
 
       // Sort player array according to number of wins.
       this.data.players.sort(function (a, b) {
