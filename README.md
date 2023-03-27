@@ -143,4 +143,9 @@ Om man trycker på "Ny omgång" får de med högst poäng en guldpeng och i övr
 
 * Timer startar när X antal har svarat
 * Stäng frågan när alla svarat.
-* 
+* Byt bakgrundsfärg till något enfärgat. 
+
+Aktuella buggar
+====================
+* Poängen försvann på slutet efter att jag rättat om.
+* Karro loggdes ut minst en gång.
