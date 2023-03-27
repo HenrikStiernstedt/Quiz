@@ -43,6 +43,7 @@ class Game {
         "score": 0,
         "active": false,
         "socketId": "",
+        "sessionId": null,
         "teamName": null,
         "buzzOrder": 0,
         "HasBuzzd": false,
@@ -105,7 +106,7 @@ class Game {
 
     this.data.players.pop();
     this.data.quizMasterPassword = quizMasterPassword;
-    this.nextTeamNumber = 0;
+    this.nextTeamNumber = 1;
 
     this.id = id;
     console.log("Skapar game-objekt med id: " + id);
@@ -128,7 +129,7 @@ class Game {
 
 
 
-      console.log(new Date().toLocaleTimeString() + ' ' + socket.id + ' connected. Team: ' + socket.request.session.team);
+      console.log(new Date().toLocaleTimeString() + ' ' + socket.id + ' connected. Team: ' + socket.request.session.team + ' connect.cid: ' + socket.request.session.id);
       if (socket.request.session.team) {
         console.log('Returning user ' + socket.request.session.team);
         var player = this.getCurrentPlayer(socket.request.session.team);
@@ -257,7 +258,7 @@ class Game {
     socket.on('disconnect', () => {
       console.log(new Date().toLocaleTimeString() + ' ' + socket.id + ' disconnected');
       
-      console.log(this.data.players);
+      //console.log(this.data.players);
       
       // players.get(socket.request.session.team).active = false;
       var player = this.getCurrentPlayer(socket.request.session.team);
@@ -267,10 +268,10 @@ class Game {
       }
     });
 
-    socket.on('StartPing', function () {
+    socket.on('StartPing', () => {
       console.log('Ping Request from QM.')
 
-      var allConnectedClients = Object.keys(io.sockets.connected);
+      var allConnectedClients = Object.keys(this.io.sockets.connected);
       //var clients_in_the_room = this.io.sockets.adapter.rooms[roomId];
       //console.log(allConnectedClients);
       //console.log(Object.keys(io.sockets.connected));

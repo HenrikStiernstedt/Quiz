@@ -113,7 +113,6 @@ app.get('/room/:room', function(req, res){
   //rooms.push(req.params.room);
   console.log("room: " + req.params.room);
 
-  console.log(gameList.data.games);
   res.sendFile(__dirname + '/quizlist.html');
 });
 
