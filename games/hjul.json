@@ -1,0 +1,148 @@
+[{
+    "questionNumber": "X",
+    "questionType" : "WELCOME",
+    "questionText": "Pegasus hjul-quiz börjar strax! ",
+    "questionImage": "hjul/spinner.gif",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "hjul/wall.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": 1,
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Hjulet är en av de klassiska tidiga uppfinningarna i människans historia. Vad anses det första hjulet ha använts till?",
+    "correctAnswer": "Drejskiva",
+    "questionScore": 1,
+    "answerType": "Drejskiva;Vagnshjul;Svängdörr;Vattenhjul",
+    "questionImage": "hjul/stoneage.jpg",
+    "answerImage": "hjul/wall.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Lyckohjulet hette ett tv-program på 90-talet. Vad heter den amerikanska förlagan som säkert fortfarande rullar på.",
+    "correctAnswer": "Wheel of fortune",
+    "answerType": "Wheel of fortune;Spin to win;Lucky wheel;Wheel you win tonight?",
+    "questionImage": "hjul/tv.jpg",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "hjul/wall.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "\"Röd solhatt\" är namnet på denna blomma vars extrakt ofta förekommer i naturläkemedel. Vad är det för åkomma som växten anses bota?",
+    "correctAnswer": "Förkylning",
+    "answerType": "Impotens;Medicinsk solbränna;Förkylning;Covid-19",
+    "questionImage": "hatt/3. Solhatt.jpg",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Hattmakaren i Alice i Underlandet är kanske världens mest kända hattmakare. Men hur förklaras de absudra och sagolika händelserna i boken?",
+    "correctAnswer": "Det var bara en dröm…",
+    "answerType": "Alice hamnar i ett parallellt universum;Alice hamnar i en parallell dimension;Alice får psykadelisk flugsvamp i sitt te;Det var bara en dröm…",
+    "questionImage": "hatt/4. Hatter.png",
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "En dröm för många fotbollsspelare är att göra ett hattrick! Definitionen för vad egentligen krävs för ett äkta hattrick går isär, så frågan blir istället vilken fotbollsspelare som har gjort flest hatttrick, enligt Guinness Rekordbok?",
+    "correctAnswer": "Pelé",
+    "answerType": "Christiano Ronaldo;Pelé;Lionel Messi;Zlatan Ibrahimović",
+    "questionImage": "hatt/5. hattrick.jpg",
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "\"Hattarna\" och \"Mössorna\" var Sveriges första partier under \"Frihetstiden\" i Sveriges historia. Under vilket århundrade varade \"frihetstiden\"?",
+    "correctAnswer": "1700-talet",
+    "answerType": "1400-talet;1500-talet;1600-talet;1700-talet",
+    "questionImage": "hatt/6. hattomoss.jpg",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "\"Hatt\" och \"Katt\" kan vara det första rim man lär sig på dagis. Det är antagligen värre med grammatikkunskaperna. Vilket av följande påståenden stämmer för \"adverb\"?",
+    "correctAnswer": "Adverb beskriver hur adjektiv ser ut.",
+    "answerType": "Adverb beskriver hur substantiv ser ut.;Adverb beskriver hur adjektiv ser ut.;Adverb beskriver vad någon gör.;Adverb beskriver substantivs position.",
+    "questionImage": "hatt/7. hattkatt.jpg",
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "60",
+    "questionText": "Netflix-serien \"Peaky Blinders\" kretsar kring gänget med samma namn i 1920-talets England. Gängmedlemmarna bär alla ikonsika \"flat caps\", även kända som \"gubbkeps\", med insydda rakblad. Vem är skådisen på bilden som spelar gängledaren Tommy Shelby?",
+    "correctAnswer": "Cillian Murphy",
+    "answerType": "Cillian Murphy;Tom Hardy;Robin Bengtsson;Jesper Rönndahl",
+    "questionImage": "hatt/8. peaky.jpg",
+    "answerImage": "hatt/hats.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]
+
+
+
