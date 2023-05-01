@@ -100,6 +100,15 @@ gameList.data.games.push(
   }
 );
 
+games.push(new Game('hjul', io, '4552'));
+
+gameList.data.games.push(
+  {
+    "id": games[1].id,
+    "game": games[1].data
+  }
+);
+
 //console.log(game);
 
 //game.data.players.pop();
