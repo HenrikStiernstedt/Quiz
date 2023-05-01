@@ -82,7 +82,7 @@
     "questionNumber": "",
     "questionType" : "QUIZ",
     "questionTime": "60",
-    "questionText": "Idag drivs istället motordrivna fartyg oftast av en propeller. Vilken svensk uppfann* propellern? Han är även känd för att ha konstruerat USS Monitor åt Nordstaterna under amerikanska inbärdeskriget.",
+    "questionText": "Idag drivs istället motordrivna fartyg oftast av en propeller. Vilken svensk uppfann* propellern? Han är även känd för att ha konstruerat USS Monitor åt Nordstaterna under det amerikanska inbördeskriget.",
     "correctAnswer": "John Eriksson",
     "answerType": "John Eriksson;Christopher Polhem;Håkan Lans;Alfred Nobel",
     "questionImage": "hjul/propeller.gif",
