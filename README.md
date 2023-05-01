@@ -56,6 +56,7 @@ quiz. But the quiz master controls all scoring.
 * [ ] Better flow when displaying the correct answer and more satisfying animations when you get points. Sounds! Stars!
 * [ ] Animation when revealing players answers. A delay between when the answer period closes and answers are shown, maybe one letter at a time? 
 * [ ] Postpone the adding of correct stores to the total score. Give all points at the same time and then reorder the player list. PRIORITY!
+* [ ] Confetti and a nice presentation of the winners after a game is completed. 
 
 ## QuizMaster GUI
 * Automatic score calculations.
@@ -63,6 +64,7 @@ quiz. But the quiz master controls all scoring.
   - [x] Based on majority rules answer 
   - [ ] (with possible override?).
   - [ ] Multiple correct answers.
+  - [ ] Option to delay showing the answer area and starting the timer until teh question is read.
 
 * [ ] New public score board and question display.
   This one is supposed to be streamed online or just let everyone have surf to the page
