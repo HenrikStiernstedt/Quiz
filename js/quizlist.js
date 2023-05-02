@@ -175,9 +175,17 @@ var vm = new Vue({
     newQuestion: function () {
       console.log("Ny fråga!");
       console.log(vm.quizMaster.pendingQuestion);
-      // Send all properties except "correctAnswer".
-      socket.emit('UpdateQuestion', 'NEW', (({ correctAnswer, ...o }) => o)(vm.quizMaster.pendingQuestion));
+      // Send all properties except "correctAnswer" and do not start any timer.
+      // Preferably, we should not even set the isBuzzActive of the status either.
+      socket.emit('UpdateQuestion', 'NEW', (({ correctAnswer, answerType, questionTime, ...o }) => o)(vm.quizMaster.pendingQuestion));
       popAudioElement.play();
+    },
+
+    showAnswerOptions: function() {
+      console.log("Nya svarsalternativ!");
+      console.log(vm.quizMaster.pendingQuestion);
+       // Send all properties except "correctAnswer".
+       socket.emit('UpdateQuestion', 'UPDATE', (({ correctAnswer, ...o }) => o)(vm.quizMaster.pendingQuestion));
     },
     createNewQuestion: function() {
       console.log("Skapa ny fråga");

@@ -160,7 +160,7 @@
         <!-- Answer area -->
         <div id="player" class="player col-md-6" style="min-height:110px;">
           <transition name="fade" mode="out-in">
-            <div v-if="status.question.questionType != 'WELCOME'" class="card glass answerArea"  v-bind:key="status.question.questionType"> <!-- Only update on new question type. -->
+            <div v-if="status.question.questionType != 'WELCOME' && status.question.answerType" class="card glass answerArea"  v-bind:key="status.question.questionType"> <!-- Only update on new question type. -->
               <div class="card-body">
                 <span v-if="status.question.questionType == 'BUZZ_RUSH'">
                   <div v-if="status.winningTeam == player.id" v-on:click="buzz()" class="alert alert-success" role="alert">Du har buzzat!</div>
@@ -172,7 +172,7 @@
                 <span v-else-if="status.isBuzzActive">
                   <!-- Om det inte är just buzz -->
                   <div class="input-group input-group-lg">
-                    <template v-if="status.question.answerType == 'text' || !status.question.answerType" ><!-- Default om utelmnat blir fritext. -->
+                    <template v-if="status.question.answerType == 'text'" >
                       <input v-model="player.pendingAnswer" @keyup.enter="buzz()" type="text" class="form-control" placeholder="Svar" aria-label="Lagnamn" aria-describedby="basic-addon2">
                       <div class="input-group-append">
                         <button class="btn btn-primary" v-on:click="buzz()" :disabled="!player.pendingAnswer" type="button">Svara</button>
@@ -191,6 +191,13 @@
                         <input v-model="player.pendingAnswer" @keyup.enter="buzz()" type="number" min="0" max="100" class="form-control" placeholder="Svar" aria-label="Svar" aria-describedby="basic-addon2">
                         <div class="input-group-append">
                           <button class="btn btn-primary" v-on:click="buzz()" :disabled="!player.pendingAnswer" type="button">Svara</button>
+                        </div>   
+                      </div>
+                    </template>
+                    <template v-else-if="!status.question.answerType">
+                      <!-- extra check to hide answer area if no answerType is set. -->
+                      <div class="input-group-append">
+                        <div class="input-group-append">
                         </div>   
                       </div>
                     </template>
@@ -400,6 +407,7 @@
               </div>
               <div class="btn-group mb-1">
                 <button type="button" class="btn btn-primary" v-on:click="newQuestion()">Visa fråga</button>
+                <button type="button" class="btn btn-primary" v-on:click="showAnswerOptions()">Visa svarsalternativ</button>
               </div>
 
               <!-- updateGameSettings -->
