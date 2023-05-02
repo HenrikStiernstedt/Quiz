@@ -14,7 +14,7 @@
   {
     "questionNumber": 1,
     "questionType" : "QUIZ",
-    "questionTime": "60",
+    "questionTime": "30",
     "questionText": "Hjulet är en av de klassiska tidiga uppfinningarna i människans historia. Vad anses det första hjulet ha använts till?",
     "correctAnswer": "Drejskiva",
     "questionScore": 1,
@@ -30,7 +30,7 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionTime": "60",
+    "questionTime": "30",
     "questionText": "Lyckohjulet hette ett tv-program på 90-talet. Vad heter den amerikanska förlagan som säkert fortfarande rullar på.",
     "correctAnswer": "Wheel of fortune",
     "answerType": "Wheel of fortune;Spin to win;Lucky wheel;Wheel you win tonight?",
@@ -47,7 +47,7 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionTime": "60",
+    "questionTime": "30",
     "questionText": "Robert Jordan har skrivit den kanske näst mest lästa fantasy-bokserien genom tiderna, efter Sagan om ringen. Vad heter den i original?",
     "correctAnswer": "Wheel of time",
     "answerType": "Circle of life;Wheel of time;Häxor i hjulverkstaden;The Wizards wheel",
@@ -64,7 +64,7 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionTime": "60",
+    "questionTime": "30",
     "questionText": "\"Big wheels keep on turning, Proud Mary keep on burning\"… Men vad är Proud Mary i Creedence 70-talsklassiker egentligen?",
     "correctAnswer": "Hjulångare",
     "answerType": "Ånglok;Ångbil;Hjulångare;Ångvält",
@@ -81,7 +81,7 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionTime": "60",
+    "questionTime": "30",
     "questionText": "Idag drivs istället motordrivna fartyg oftast av en propeller. Vilken svensk uppfann* propellern? Han är även känd för att ha konstruerat USS Monitor åt Nordstaterna under det amerikanska inbördeskriget.",
     "correctAnswer": "John Eriksson",
     "answerType": "John Eriksson;Christopher Polhem;Håkan Lans;Alfred Nobel",
@@ -98,7 +98,7 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionTime": "60",
+    "questionTime": "30",
     "questionText": "För att få fart på ett svänghjul måste man ge det en knuff, eller en klapp. En hjulklapp! Vilken var \"årets julklapp\" år 2022?",
     "correctAnswer": "Det hemstickade plagget",
     "answerType": "Boken;Bakmaskinen;Det hemstickade plagget;Det elektroniska husdjuret",
@@ -115,7 +115,7 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionTime": "60",
+    "questionTime": "30",
     "questionText": "Multisofts tunnelbanekampanjer är två veckor långa. SLs nya tunnelbanetåg C30 är 70 meter långa, vilket gör att två sådana tåg bildar ett fullt tunnelbanetåg i Stockholms tunnelbanesystem. Hur många hjulpar har ett sådant komplett tåg?",
     "correctAnswer": "64",
     "answerType": "32;64;128;256",
@@ -132,7 +132,7 @@
   {
     "questionNumber": "",
     "questionType" : "QUIZ",
-    "questionTime": "60",
+    "questionTime": "30",
     "questionText": "",
     "correctAnswer": "",
     "answerType": "",
