@@ -133,10 +133,44 @@
     "questionNumber": "",
     "questionType" : "QUIZ",
     "questionTime": "30",
-    "questionText": "",
-    "correctAnswer": "",
-    "answerType": "",
-    "questionImage": "hjul/spinner.gif",
+    "questionText": "År 2010 slog enhjulingscyklisten Sam Wakeling världsrekordet för längst sträcka åkt med en enhjuling inom loppet av 24h. Hur långt åkte han?",
+    "correctAnswer": "450 km",
+    "answerType": "4,5 km;45 km;450 km;4 500 km",
+    "questionImage": "hjul/enhjuling.jpg",
+    "questionImageStyle": {"background": "#1a6fa8"},
+    "answerImage": "hjul/wall.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "30",
+    "questionText": "Världens största pariserhjul ligger inte helt oväntat i Dubai. Men var byggdes världens första pariserhjul?",
+    "correctAnswer": "USA",
+    "answerType": "Tyskland;Frankrike;USA;Kina",
+    "questionImage": "hjul/pariserhjul.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "hjul/wall.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionTime": "30",
+    "questionText": "\"Hjulen på Bussen\" är en låt som bara blir bättre och bättre ju mer man hör den, sa ingen förälder någonsin. Vilken av följande artister har gett ut sin egen version av denna låt?",
+    "correctAnswer": "Pernilla Wahlgren",
+    "answerType": "Pernilla Wahlgren;Zara Larsson;Cornelis Vreeswijk;Magnus Uggla",
+    "questionImage": "hjul/buss.jpg",
     "questionImageStyle": {"object-fit": "cover"},
     "answerImage": "hjul/wall.png",
     "answerImageStyle": {"object-fit": "cover"},
