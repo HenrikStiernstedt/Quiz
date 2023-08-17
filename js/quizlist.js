@@ -76,7 +76,7 @@ var vm = new Vue({
         }]
       },
       "savegame": "game",
-      "loadQuestions": "hatt",
+      "loadQuestions": "Henke100",
       "QuestionListNumber": 0,
       "pendingGameSettings": {
         "reversedScoring": false

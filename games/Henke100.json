@@ -1,0 +1,240 @@
+[
+  {
+    "questionNumber": "X",
+    "questionType" : "WELCOME",
+    "questionText": "Quizzet börjar snart",
+    "correctAnswer": 24,
+    "questionScore": 100 ,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q15.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a1.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "1",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många år har Henrik arbetat på Multisoft?",
+    "correctAnswer": 14,
+    "questionScore": 100 ,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q1.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a1.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "2",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många tusentals timmar har Henrik tidsrapporterat på Multisoft? (Avrunda nedåt)",
+    "correctAnswer": 24,
+    "questionScore": 100 ,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q2.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a2.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "3",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många miljoner kronor har Henrik fakturerat?",
+    "correctAnswer": 25,
+    "questionScore": 100 ,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q3.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a3.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },  
+  {
+    "questionNumber": "4",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många kundprojekt har Henrik rapporterat tid på?",
+    "correctAnswer": 66,
+    "questionScore": 100 ,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q5.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a5.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }, 
+  {
+    "questionNumber": "5",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många projekt i KOLL har Henrik rapporterat mer än 40 timmar på?",
+    "correctAnswer": 24,
+    "questionScore": 100 ,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q6.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a6.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },  
+  {
+    "questionNumber": "6",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många procent av Henriks nedlagda tid på Multisoft har lagts på de två kunderna Inflight och Länsförsäkringar?",
+    "correctAnswer": 69,
+    "questionScore": 100 ,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q7.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a7.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },  
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många procent av alla supportärenden till Softadmin är skapade av Henrik?",
+    "correctAnswer": 4,
+    "questionScore": 100 ,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q9.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a9.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "På hur många ställen gick Henriks högra fot av vid Multisoftaktiviteten 'Segway' år 2014?",
+    "correctAnswer": 3,
+    "questionScore": 100 ,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q8.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a8.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många procent av världens mjölkproduktion kommer från kor? (2014)",
+    "correctAnswer": 83,
+    "questionScore": 100,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q10.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a10.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många anställda var vi på Multisoft (enligt 'Medarbetare'-menyvalet i KOLL), 5:e maj 2022 klockan 20:36?",
+    "correctAnswer": 93,
+    "questionScore": 100,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q11.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a11.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många FTE:er (\"Full Time Employees\", Heltidsanställda, ej medräknat föräldrarlediga och tjänstlediga) är vi på Multisoft i augusti 2023, avrundat nedåt?",
+    "correctAnswer": 100,
+    "questionScore": 100,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q12.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a12.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Hur många hundra AI-genererade bilder har Henrik behövt ta fram för att få klart detta quiz?",
+    "correctAnswer": 5,
+    "questionScore": 100,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q13.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a13.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "WELCOME",
+    "questionText": "Quizzet är nu slut. Tack för er medverkan!",
+    "correctAnswer": 24,
+    "questionScore": 100 ,
+    "answerType": "0-100",
+    "questionImage": "Henke100/q15.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "Henke100/a1.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionTime": "30",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]
