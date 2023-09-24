@@ -425,6 +425,14 @@ class Game {
 
 
     socket.on('CreateQuestionsWithAI', async (question) => {
+
+      let key = process.env.OPENAI_API_KEY;
+      if(key == null)
+      {
+        console.error("No API key found in process.env.OPENAI_API_KEY");
+        this.io.to(player.socketId).emit("ReturnCreateQuestionsWihtAI", {"success": false, "message": "No API key found in process.env.OPENAI_API_KEY" });
+        return;
+      }
       try {
         const openai = new OpenAI({
         apiKey: process.env.OPENAI_API_KEY
