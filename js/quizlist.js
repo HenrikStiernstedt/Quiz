@@ -93,7 +93,8 @@ var vm = new Vue({
           "clueScore" : 0,
           "clueText" : ""
         }]
-      }]
+      }],
+      "pendingAiQuestion": null
     },
     environment :
     {
@@ -179,6 +180,11 @@ var vm = new Vue({
       // Preferably, we should not even set the isBuzzActive of the status either.
       socket.emit('UpdateQuestion', 'NEW', (({ correctAnswer, answerType, questionTime, ...o }) => o)(vm.quizMaster.pendingQuestion));
       popAudioElement.play();
+    },
+
+    generateQuestionsWithAi: function() {
+      console.log("Generating new questions with AI.");
+      socket.emit('CreateQuestionsWithAI', vm.quizMaster.pendingAiQuestion);
     },
 
     showAnswerOptions: function() {
@@ -506,6 +512,11 @@ function initQuizlist() {
 
     newChatRow.insertAfter($('#ChatHeader'));
     newChatRow.show('slow');
+  });
+
+  socket.on('ReturnCreateQuestionsWihtAI', function(data){
+
+      console.log(data);
   });
 
   getStatusUpdate();

@@ -427,6 +427,9 @@
                   <input v-model="quizMaster.loadQuestions" type="text" class="form-control" aria-label="Default" aria-describedby="loadQuestions">
                   <div class="input-group-append">
                     <button type="button" class="btn btn-primary" v-on:click="loadQuestions()">Läs in nya frågekort</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#GenerateQuestionsWithAi">
+                      <i class="fa-solid fa-wand-magic-sparkles"></i> Generera frågor med AI
+                    </button>
                     <button type="button" class="btn btn-primary" v-on:click="saveQuestions()"><i class="far fa-save"></i></button>
                   </div>
                 </div>
@@ -572,6 +575,33 @@
         </div>
       </div>
     </div>
+
+    <!-- Generate questions with AI Modal -->
+    <div class="modal fade" id="GenerateQuestionsWithAi" tabindex="-1" role="dialog" aria-labelledby="Generate questions" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="GenerateQuestionsWithAiModalId">Skapa frågor med AI</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="input-group input-group mb-3">
+              <input id="aiQuestionForm" v-model="quizMaster.pendingAiQuestion" type="text" class="form-control" placeholder="Frågetema" maxlength="300" aria-label="Frågetema" aria-describedby="basic-addon2" autocomplete="off">
+              <div class="input-group-append">
+                <button type="button" class="btn btn-primary" v-on:click="generateQuestionsWithAi()">Fråga en AI</button>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <!--<button type="button" class="btn btn-primary">Save changes</button>-->
+          </div>
+        </div>
+      </div>
+    </div>
+    
 
   </div>
   <script src="https://unpkg.com/bootstrap-table@1.16.0/dist/bootstrap-table.min.js"></script>

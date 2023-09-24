@@ -17,6 +17,16 @@
 const share = require('./share.js');
 const fs = require('fs');
 
+
+
+/****************************************
+ * OpenAI integration to create new questions. 
+ */
+//import OpenAI from "openai";
+const OpenAI = require('openai');
+
+
+
 class Game {
   /*
   id;
@@ -413,6 +423,60 @@ class Game {
 
     });
 
+
+    socket.on('CreateQuestionsWithAI', async (question) => {
+      try {
+        const openai = new OpenAI({
+        apiKey: process.env.OPENAI_API_KEY
+      });
+      
+      console.log("Fråga: " + question);
+
+        const chatCompletion = await openai.chat.completions.create({
+            messages: [{ role: "user", content: 
+              `Create 8 multiple choice questions with the topic marked in tripple quotation marks. 
+              Keep each questions shorter  than 200 characters.
+              Give the response as a json arary with the folloing format:
+
+              [{
+                questionNumber: 1,
+                questionType: "QUIZ",
+                questionText: "<the question text goes here>",
+                correctAnswer: "<the correct answer goes here>",
+                answerType: "<first answer>;<second answer>;<third answer>;<fourth answer>",
+                questionScore: 1
+              }]
+
+              Make sure to escape "-characters and that the JSON can be parsed. 
+              Randomize the order of the answers. 
+              """" `+ question + `""".`
+              
+            }], 
+            model: "gpt-3.5-turbo",
+        });
+        console.log(chatCompletion);
+        console.log(chatCompletion.choices);
+
+        this.data.questionList = JSON.parse(chatCompletion.choices[0].message.content);
+        
+        for(var i = 0; i < this.data.questionList.length; i++) { 
+          this.data.questionList[i].questionScore = 1;
+          this.data.questionList[i].questionTime = "30";
+
+        }
+
+        console.log(this.data.questionList);
+        var player = this.getCurrentPlayer(socket.request.session.team);
+        this.io.to(player.socketId).emit("ReturnLoadQuestions", this.data.questionList);
+        this.io.to(player.socketId).emit("ReturnCreateQuestionsWihtAI", {"success": true, "message" : chatCompletion });
+
+      } 
+      catch(exception)
+      {
+        console.error(exception);
+        this.io.to(player.socketId).emit("ReturnCreateQuestionsWihtAI", {"success": false, "message": exception });
+      }
+    });
 
     /******************************************************************************
     * socket.io code for GAME EVENTS

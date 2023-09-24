@@ -9,6 +9,8 @@ npm install socket.io
 npm install request
 npm install gm
 
+To start teh server, run `node index.js`
+
 The server will now listen to port 3000.
 
 Visit localhost:3000/ to get to the player view
