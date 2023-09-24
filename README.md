@@ -9,7 +9,7 @@ npm install socket.io
 npm install request
 npm install gm
 
-To start teh server, run `node index.js`
+To start the server, run `node index.js`
 
 The server will now listen to port 3000.
 
@@ -17,6 +17,8 @@ Visit localhost:3000/ to get to the player view
 Enter the QuizMaster password to enter as Quiz Master to control the game.
 The QuizMaster does not see anything the other player sees, so he can join the
 quiz. But the quiz master controls all scoring.
+
+To use the OpenAI integration, enter your API key in the environement varable "OPENAI_API_KEY". 
 
 # Game modes
 * "Röda tråden"-style. Start on 5 points and get clues all the way down to 1 point.
