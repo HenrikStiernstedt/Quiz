@@ -588,13 +588,52 @@
           </div>
           <div class="modal-body">
             <div class="input-group input-group mb-3">
-              <input id="aiQuestionForm" v-model="quizMaster.pendingAiQuestion" type="text" class="form-control" placeholder="Frågetema" maxlength="300" aria-label="Frågetema" aria-describedby="basic-addon2" autocomplete="off">
-              <div class="input-group-append">
-                <button type="button" class="btn btn-primary" v-on:click="generateQuestionsWithAi()">Fråga en AI</button>
+              <div class="form-row">
+                <div class="col">
+                  <input id="aiQuestionForm" v-model="quizMaster.pendingAiQuestion.QuestionText" type="text" class="form-control" placeholder="Frågetema" maxlength="300" aria-label="Frågetema" aria-describedby="basic-addon2" autocomplete="off">
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+
+                  <label for="Difficulty">Svårighetsgrad</label>
+                  <select class="form-control" v-model="quizMaster.pendingAiQuestion.Difficulty" id="Difficulty">
+                    <!--<option v-for="l in share.allowedLanguages"></option>-->
+                    <option value="easy">Lätta</option>
+                    <option value="medium">Mellan</option>
+                    <option value="hard" selected>Svåra</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="Language">Språk</label>
+                  <select class="form-control" v-model="quizMaster.pendingAiQuestion.Language" id="Language">
+                    <!--<option v-for="l in share.allowedLanguages"></option>-->
+                    <option value="Swedish" selected>Svenska</option>
+                    <option value="English">Engelska</option>
+                  </select>
+                </div>
+                <div class="col">
+                  <label for="Model">Modell</label>
+                  <select class="form-control" v-model="quizMaster.pendingAiQuestion.Model" id="Model">
+                    <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+                    <option value="gpt-4" selected>gpt-4</option>
+                  </select>
+                </div>
+              </div>
+              <div class="form-row">
+                <div class="col">
+                  <label for="NumberOfQuestions">Antal frågor</label>
+                  <input class="form-control form-control-sm" id="NumberOfQuestions" type="text" v-model="quizMaster.pendingAiQuestion.NumberOfQuestions">
+                </div>
+                <div class="col">
+                  <label for="NumberOfAnswers">Antal svar</label>
+                  <input class="form-control form-control-sm" id="NumberOfAnswers" type="text" v-model="quizMaster.pendingAiQuestion.NumberOfAnswers">
+                </div>
               </div>
             </div>
           </div>
           <div class="modal-footer">
+            <button type="button" class="btn btn-primary" v-on:click="generateQuestionsWithAi()">Fråga en AI</button>
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             <!--<button type="button" class="btn btn-primary">Save changes</button>-->
           </div>

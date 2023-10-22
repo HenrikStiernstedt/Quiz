@@ -26,4 +26,8 @@
     exports.maxConfidence = 2;
     exports.minConfidence = -3;
 
+    exports.allowedModels = ["gpt-3.5-turbo", "gpt-4"];
+    exports.allowedLanguages = ["Swedish", "English"];
+    exports.allowedDifficulties = ["easy", "medium", "hard"];
+
   }(typeof exports === 'undefined' ? this.share = {} : exports));

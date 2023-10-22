@@ -434,33 +434,59 @@ class Game {
         return;
       }
       try {
-        const openai = new OpenAI({
-        apiKey: process.env.OPENAI_API_KEY
-      });
-      
-      console.log("Fråga: " + question);
+          const openai = new OpenAI({
+          apiKey: process.env.OPENAI_API_KEY
+        });
+        
+        console.log("Fråga: " + question.NumberOfQuestions);
+        console.log(question);
+        //const allowedDifficulties = ["easy", "medium", "hard"];
+        if(!share.allowedDifficulties.includes(question.Difficulty))
+        {
+          question.Difficulty = "medium";
+        }
+        if(question.NumberOfQuestions < 1 || question.NumberOfQuestions > 100)
+        {
+          question.NumberOfQuestions = 8;
+        }
+        if(question.NumberOfAnswers < 2 || question.NumberOfAnswers > 10)
+        {
+          question.NumberOfQuestions = 4;
+        }
+        //const allowedLanguages = ["Swedish", "English"];
+        if(!share.allowedLanguages.includes(question.Language))
+        {
+          question.Language = "English";
+        }
+        //const allowedModels = ["gpt-3.5-turbo", "gpt-4"];
+        if(!share.allowedModels.includes(question.Model))
+        {
+          question.Model = "gpt-3.5-turbo";
+        }
+
 
         const chatCompletion = await openai.chat.completions.create({
-            messages: [{ role: "user", content: 
-              `Create 8 multiple choice questions with the topic marked in tripple quotation marks. 
-              Keep each questions shorter  than 200 characters.
-              Give the response as a json arary with the folloing format:
+          messages: [{ role: "user", content: 
+            `Create ${question.NumberOfQuestions} ${question.Difficulty} multiple choice questions in ${question.Language} with the topic marked in tripple quotation marks. 
+            Give ${question.NumberOfAnswers} answers to each question of which exactly one should be correct.
+            Keep each questions shorter than 200 characters.
+            Give the response as a json arary with the folloing format:
 
-              [{
-                questionNumber: 1,
-                questionType: "QUIZ",
-                questionText: "<the question text goes here>",
-                correctAnswer: "<the correct answer goes here>",
-                answerType: "<first answer>;<second answer>;<third answer>;<fourth answer>",
-                questionScore: 1
-              }]
+            [{
+              questionNumber: 1,
+              questionType: "QUIZ",
+              questionText: "<the question text goes here>",
+              correctAnswer: "<the correct answer goes here>",
+              answerType: "<first answer>;<second answer>;<third answer>;<fourth answer>",
+              questionScore: 1
+            }]
 
-              Make sure to escape "-characters and that the JSON can be parsed. 
-              Randomize the order of the answers. 
-              """" `+ question + `""".`
-              
-            }], 
-            model: "gpt-3.5-turbo",
+            Make sure to escape "-characters and that the JSON can be parsed. 
+            Randomize the order of the answers so that the first answer isn't always the correct one.
+            """" `+ question.QuestionText + `""".`
+            
+          }], 
+          model: question.Model,
         });
         console.log(chatCompletion);
         console.log(chatCompletion.choices);

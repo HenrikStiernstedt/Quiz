@@ -94,7 +94,14 @@ var vm = new Vue({
           "clueText" : ""
         }]
       }],
-      "pendingAiQuestion": null
+      "pendingAiQuestion": {
+        "QuestionText": null,
+        "Language": "Swedish",
+        "Difficulty": "hard",
+        "NumberOfQuestions": 8,
+        "NumberOfAnswers": 4,
+        "Model": "gpt-4"
+      }
     },
     environment :
     {
