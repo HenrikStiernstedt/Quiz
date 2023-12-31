@@ -1,0 +1,155 @@
+[{
+    "questionNumber": "X",
+    "questionType" : "WELCOME",
+    "questionText": "Välkommen till Henkes 2023-årsquiz!",
+    "correctAnswer": "",
+    "questionScore": "",
+    "questionImage": "2023/welcome2023.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "1",
+    "questionType" : "QUIZ",
+    "questionText": "Tyskland stängde sitt sista aktiva kärnkraftverk. Vilken av följande är en skiva av bandet \"Kraftwerk\"",
+    "correctAnswer": "Autobahn",
+	"answerType": "Mutter;Autobahn;Forever Young;Music for the Masses",
+  "questionImage": "2023/q4.png",
+  "questionImageStyle": {"object-fit": "cover"},
+  "answerImage": "2023/a1.png",
+  "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+	{
+	"questionNumber": "2",
+	"questionType" : "QUIZ",
+	"questionText": "Det har varit Dam-VM i fotboll i Australien och Nya Zeeland. Hur gick det för Sverige?",
+	"correctAnswer": "Brons",
+	"answerType": "Guld;Silver;Brons;Sistaplats",
+  "questionImage": "2023/q1.png",
+  "questionImageStyle": {"object-fit": "cover"},
+  "answerImage": "2023/a1.png",
+  "answerImageStyle": {"object-fit": "cover"},
+	"questionScore": 1,
+	"questionClues" : [{
+	  "clueScore" : 0,
+	  "clueText" : ""
+	}]
+	},
+	{
+	"questionNumber": "3",
+	"questionType" : "QUIZ",
+	"questionText": "Elon Musk köpte Twitter och döpte om den till X. Hur såg nu egentligen Twitter-loggan utprecis innan?",
+	"correctAnswer": "B",
+	"answerType": "ABCD",
+  "questionImage": "2023/twitter-b.png",
+  "questionImageStyle": {"object-fit": "cover"},
+  "answerImage": "2023/twitter-a.png",
+  "answerImageStyle": {"object-fit": "cover"},
+	"questionScore": 1,
+	"questionClues" : [{
+	  "clueScore" : 0,
+	  "clueText" : ""
+	}]
+	},
+	{
+	"questionNumber": "4",
+	"questionType" : "QUIZ",
+	"questionText": "Vilket land vann Eurovision Song Contest 2023?",
+	"correctAnswer": "Sverige",
+	"answerType": "Ukraina;Moldavien;Finland;Sverige",
+  "questionImage": "2023/q2.png",
+  "questionImageStyle": {"object-fit": "cover"},
+  "answerImage": "2023/a1.png",
+  "answerImageStyle": {"object-fit": "cover"},
+	"questionScore": 1,
+	"questionClues" : [{
+	  "clueScore" : 0,
+	  "clueText" : ""
+	}]
+	},
+	{
+	"questionNumber": "5",
+	"questionType" : "QUIZ",
+	"questionText": "Paris annordnar OS nästa år, men vad tampas staden med att få bukt på tills dess?",
+	"correctAnswer": "Vägglöss",
+	"answerType": "Vägglöss;Kackerlackor;Mördarkvalser;Matlagande möss",	
+  "questionImage": "2023/q3.png",
+  "questionImageStyle": {"object-fit": "cover"},
+  "answerImage": "2023/a1.png",
+  "answerImageStyle": {"object-fit": "cover"},
+	"questionScore": 1,
+	"questionClues" : [{
+	  "clueScore" : 0,
+	  "clueText" : ""
+	}]
+	},
+	  {
+    "questionNumber": "6",
+    "questionType" : "QUIZ",
+    "questionText": "Kina valde om Xi Jinping att leda landet ytterligare en femårsperiod. Sen när har Xi regerat Kina?",
+    "correctAnswer": "2013",
+	"answerType": "1997;2003;2008;2013",
+  "questionImage": "2023/q4.png",
+  "questionImageStyle": {"object-fit": "cover"},
+  "answerImage": "2023/a1.png",
+  "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+    {
+    "questionNumber": "7",
+    "questionType" : "QUIZ",
+    "questionText": "Kungen firade 50 år på tronen, men vem var Sveriges monark innan Karl XVI Gustaf?",
+    "correctAnswer": "Gustaf VI Adolf",
+    "answerType": "Gustaf VI Adolf;Karl XV;Prins Bertil;Oscar II",
+    "questionImage": "2023/q1.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "2023/a1.png",
+    "answerImageStyle": {"object-fit": "cover"},
+	"questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+    {
+    "questionNumber": "8",
+    "questionType" : "QUIZ",
+    "questionText": "Afrikansk svinpest upptäcktes i Sverige och ett stort område spärrades av. Kring vilken stad?",
+    "correctAnswer": "Fagersta",
+    "answerType": "Grislaved;Svinsta;Bollnäs;Fagersta",
+    "questionImage": "2023/q2.png",
+    "questionImageStyle": {"object-fit": "cover"},
+    "answerImage": "2023/a1.png",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "X",
+    "questionType" : "WELCOME",
+    "questionText": "Gott nytt år 2024!",
+    "correctAnswer": "",
+    "questionScore": "",
+    "questionImage": "2023/2024.jpg",
+    "questionImageStyle": {"object-fit": "cover"},
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]
