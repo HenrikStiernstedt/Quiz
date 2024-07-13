@@ -10,7 +10,7 @@
     "nocache": "^2.1.0",
     "openai": "^4.10.0",
     "request": "2.88.2",
-    "socket.io": "4.6.1"
+    "socket.io": "^4.7.5"
   },
   "main": "index.js",
   "scripts": {
