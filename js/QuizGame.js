@@ -737,10 +737,74 @@ class Game {
 
 
         });
-
-
-
       }
+      else if (this.data.status.question.answerType === "50") {
+        // In 50 percentile, you get points based on if you bet the majority is in the 50th percentile or not. 
+        // You also place yourself in the 50th percentile or not when you answer, so that we can get a result.
+        // It's not really a competetive game mode, more of a "get to know your friends" type of game.
+
+        var maxNumberOfAnswers = 0;
+        var positiveAnswers = 0;
+        var negativeAnswers = 0;
+
+        console.log(this.data.answers);
+
+        this.data.answers.forEach(answer => {
+          if(answer.answer && answer.answer.length > 1)
+          {
+            maxNumberOfAnswers++;
+            if(answer.answer[0] === 'Y')
+            {
+              positiveAnswers++;
+            } else {
+              negativeAnswers++;
+            }
+          }
+        });
+
+        var winningAnswer;
+        if(positiveAnswers === negativeAnswers)
+        {
+          winningAnswer = 'EQUAL';
+        }
+        else if(positiveAnswers > negativeAnswers)
+        {
+          winningAnswer = 'POSITIVE';
+        }
+        else {
+          winningAnswer = 'NEGATIVE';
+        }
+
+        correctAnswer = winningAnswer + ' ' + Math.round((positiveAnswers / maxNumberOfAnswers) * 100) + '%';
+
+        console.log("Winning side is: ", winningAnswer);
+        this.data.players.forEach(player => {
+
+          var currentScore = this.data.status.question.questionScore;
+          var answer = player.answer;
+          if(answer && answer.length > 1) {
+            console.log('Answer:', answer[1]);
+            if(answer[1] === '+' && winningAnswer === 'POSITIVE')
+            {
+              console.log(console.log('Player:', player.team, ' gets points for POSITIVE ', answer));
+              player.isCorrect = true;
+              player.score += player.questionScore;
+            } else if(answer[1] === '-' && winningAnswer === 'NEGATIVE') {
+              console.log(console.log('Player:', player.team, ' gets points for NEGATIVE ', answer));
+              player.score += player.questionScore;
+              player.isCorrect = true;
+            } else if(winningAnswer === 'EQUAL') {
+              console.log(console.log('Player:', player.team, ' gets points for EQUAL ', answer));
+              player.score += player.questionScore;
+              player.isCorrect = true;
+            }
+            else {
+              player.isCorrect = false;
+            }
+          }
+        });
+      }
+
       else if (this.data.status.question.questionType == "RED_THREAD" || this.data.status.question.questionType == "QUIZ") {
         // This is the standard where you get points if you answered correctly. 
         // In case of RED_THREAD, you get the number of points of your last used clue.
@@ -835,9 +899,9 @@ class Game {
           });
         });
       }
-
+      
       this.data.status.question.correctAnswer = correctAnswer;
-     this.io.emit('UpdatePlayers', { status: this.data.status, players: this.data.players, action: "ShowCorrectAnswer" });
+      this.io.emit('UpdatePlayers', { status: this.data.status, players: this.data.players, action: "ShowCorrectAnswer" });
     });
 
     socket.on('ResetBuzz', function () {

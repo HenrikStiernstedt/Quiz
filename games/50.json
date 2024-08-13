@@ -1,0 +1,172 @@
+[{
+    "questionNumber": 1,
+    "questionType" : "QUIZ",
+    "questionText": "Flossar du oftare än genomsnittet?",
+    "correctAnswer": "",
+    "questionScore": 1 ,
+    "questionTime": "30",
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Kör du bättre bil än genomsnittet?",
+    "questionScore": 1,
+    "questionTime": "30",
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Äter du nyttigare?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "questionTime": "30",
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Lägger du dig tidigare?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "questionTime": "30",
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Städar du oftare?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Ser du mer på TV?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Har du mer skärmtid?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Använder du mer AI?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Dricker du mer kaffe?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Läser du fler böcker?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Fattade du upplägget för denna quiz fortare än genomsnittet?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Har du mer batteri i din telefon än genomsnittet?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Fråga 13: Är du mer vidskeplig än genomsnittet?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  },
+  {
+    "questionNumber": "",
+    "questionType" : "QUIZ",
+    "questionText": "Har du mer batteri i din telefon just nu än genomsnittet?",
+    "correctAnswer": "",
+    "questionScore": 1,
+    "answerType": "50",
+    "questionClues" : [{
+      "clueScore" : 0,
+      "clueText" : ""
+    }]
+  }
+]
