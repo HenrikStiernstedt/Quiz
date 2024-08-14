@@ -147,24 +147,9 @@ body {
   overflow: hidden;
 }
 
-.answer-grid-50 {
-  display: grid;
-  grid-template-columns: auto 1fr 1fr;
-  gap: 10px;
-  align-items: center;
-}
 
-.heading-50 {
-  font-weight: bold;
-  text-align: center;
-}
-
-.input-group-50 {
-  text-align: center;
-}
-
-.input-group-50 button {
-  width: 100px;;
+.label-50 {
+  width: 200px;
 }
 
 /*

@@ -296,6 +296,20 @@ var vm = new Vue({
       }
       */
     },
+    buzz50: function() {
+      /* Special buzz-handling for 50-percentile, as it has to combine two answers into one first.
+       */
+      const me50 = document.querySelector('input[name="Me-50"]:checked')?.id;
+      const them50 = document.querySelector('input[name="Them-50"]:checked')?.id;
+      const combinedSelection = me50 + them50;
+
+      if(combinedSelection.length === 2){
+        this.buzz(null, combinedSelection);
+        return undefined;
+      } else {
+        return undefined;
+      }
+    },
     getCurrentPlayer: function(array, id) {
       return array.filter( obj => obj.team == id)[0];
     },

@@ -196,52 +196,35 @@
                     </template>
                     <template v-else-if="status.question.answerType == '50'">
 
-                      <div class="answer-grid-50">
-                        <!-- Headings Row -->
-                        <div></div>
-                        <div class="heading-50">Majoritet &gt; 50</div>
-                        <div class="heading-50">Majoritet &lt; 50</div>
-                        
-                        
-                        <!-- "Ja" Row -->
-                        <div class="heading-50">Ja</div>
-                        <div class="input-group-50">
-                          <button class="btn btn-primary" 
-                                  v-on:click="buzz($event, 'Y+')" 
-                                  :disabled="player.submittedAnswer=='Y+'" 
-                                  type="button">
-                            Ja (&gt;50)
-                          </button>
+                        <!-- First Set of Radio Buttons: Ja or Nej -->
+                    <div class="" >
+                      <div class="btn-group btn-group-toggle mb-1" data-toggle="buttons"  >
+                        <div class="input-group-prepend">
+                          <span class="input-group-text label-50" id="basic-addon1">Hur svarar du?</span>
                         </div>
-                        <div class="input-group-50">
-                          <button class="btn btn-primary" 
-                                  v-on:click="buzz($event, 'Y-')" 
-                                  :disabled="player.submittedAnswer=='Y-'" 
-                                  type="button">
-                            Ja (&lt;50)
-                          </button>
-                        </div>
-                        
-                        <!-- "Nej" Row -->
-                        <div class="heading-50">Nej</div>
-                        <div class="input-group-50">
-                          <button class="btn btn-primary" 
-                                  v-on:click="buzz($event, 'N+')" 
-                                  :disabled="player.submittedAnswer=='N+'" 
-                                  type="button">
-                            Nej (&gt;50)
-                          </button>
-                        </div>
-                        <div class="input-group-50">
-                          <button class="btn btn-primary" 
-                                  v-on:click="buzz($event, 'N-')" 
-                                  :disabled="player.submittedAnswer=='N-'" 
-                                  type="button">
-                            Nej (&lt;50)
-                          </button>
-                        </div>
+                        <label class="btn btn-primary">
+                          <input type="radio" name="Me-50" id="Y"> Ja
+                        </label>
+                        <label class="btn btn-primary">
+                          <input type="radio" name="Me-50" id="N"> Nej
+                        </label>
                       </div>
-
+                      <div class="btn-group btn-group-toggle mb-1" data-toggle="buttons">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text label-50" id="Them-50-label">Hur svarar de andra?</span>
+                        </div>
+                        <label class="btn btn-primary">
+                          <input type="radio" name="Them-50" id="+"> Ja
+                        </label>
+                        <label class="btn btn-primary" >
+                          <input type="radio" name="Them-50" id="-"> Nej
+                        </label>
+                      </div>
+                      <div class="button-group mr-2">
+                        <button class="btn btn-primary" v-on:click="buzz50();" >Svara</button>
+                      </div>
+                    </div>
+                    
                     </template>
                     <template v-else-if="!status.question.answerType">
                       <!-- extra check to hide answer area if no answerType is set. -->

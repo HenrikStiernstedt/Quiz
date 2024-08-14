@@ -775,7 +775,7 @@ class Game {
           winningAnswer = 'NEGATIVE';
         }
 
-        correctAnswer = winningAnswer + ' ' + Math.round((positiveAnswers / maxNumberOfAnswers) * 100) + '%';
+        correctAnswer = winningAnswer + ' ' + Math.round((maxNumberOfAnswers === 0 ? 0.5 : (positiveAnswers / maxNumberOfAnswers)) * 100) + '%';
 
         console.log("Winning side is: ", winningAnswer);
         this.data.players.forEach(player => {
