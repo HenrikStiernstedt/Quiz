@@ -1,0 +1,211 @@
+[
+	{
+		"questionNumber": "X",
+		"questionType": "WELCOME",
+		"questionText": "Välkommen till Henkes 2024-årsquiz!",
+		"correctAnswer": "",
+		"questionScore": "",
+		"questionImage": "2024/welcome2024.png",
+		"questionImageStyle": {
+			"object-fit": "cover"
+		},
+		"questionClues": [
+			{
+				"clueScore": 0,
+				"clueText": ""
+			}
+		]
+	},
+
+	{
+		"questionNumber": "1",
+		"questionType": "QUIZ",
+		"questionText": "Danmarks drottning Margrethe abdikerade 14 januari 2024. Vem är nu Danmarks regent?",
+		"correctAnswer": "Kung Fredrik X",
+		"answerType": "Drottning Mette-Marit I;Kung Haakon II;Kung Fredrik X;Kung Christian II",
+		"questionImage": "2024/q1.png",
+		"questionImageStyle": {
+			"object-fit": "cover"
+		},
+		"answerImage": "2024/a1.png",
+		"answerImageStyle": {
+			"object-fit": "cover"
+		},
+		"questionScore": 1,
+		"questionClues": [
+			{
+				"clueScore": 0,
+				"clueText": ""
+			}
+		]
+	},
+	{
+		"questionNumber": "2",
+		"questionType": "QUIZ",
+		"questionText": "Lisebergs nya vattenland brinner upp 12:e februari strax före sitt planerade öppning 2024. Vad hette vattenlandet?",
+		"correctAnswer": "Oceania",
+		"answerType": "Oceania;Kattegattia;Atlantia;Göteblött",
+		"questionImage": "2024/q1.png",
+		"questionImageStyle": {
+			"object-fit": "cover"
+		},
+		"answerImage": "2024/a1.png",
+		"answerImageStyle": {
+			"object-fit": "cover"
+		},
+		"questionScore": 1,
+		"questionClues": [
+			{
+				"clueScore": 0,
+				"clueText": ""
+			}
+		]
+	},
+	{
+		"questionNumber": "3",
+		"questionType": "QUIZ",
+		"questionText": "Sverige blir medlem i NATO den 7:e mars 2024. Men hur många av EU:s medlemsländer har kärnvapen?",
+		"correctAnswer": "1",
+		"answerType": "0;1;2;3",
+		"questionImage": "2024/q2.png",
+		"questionImageStyle": {
+			"object-fit": "cover"
+		},
+		"answerImage": "2024/a1.png",
+		"answerImageStyle": {
+			"object-fit": "cover"
+		},
+		"questionScore": 1,
+		"questionClues": [
+			{
+				"clueScore": 0,
+				"clueText": ""
+			}
+		]
+	},
+	{
+		"questionNumber": "4",
+		"questionType": "QUIZ",
+		"questionText": "Eurovision Song Contest genomfördes i Sverige 11:e maj. Vilket land vann?",
+		"correctAnswer": "Schweitz",
+		"answerType": "Sverige;Nederländerna;Österike;Schweitz",
+		"questionImage": "2024/q3.png",
+		"questionImageStyle": {
+			"object-fit": "cover"
+		},
+		"answerImage": "2024/a1.png",
+		"answerImageStyle": {
+			"object-fit": "cover"
+		},
+		"questionScore": 1,
+		"questionClues": [
+			{
+				"clueScore": 0,
+				"clueText": ""
+			}
+		]
+	},
+	{
+		"questionNumber": "5",
+		"questionType": "QUIZ",
+		"questionText": "Fotbolls-EM spelades i Tyskland i juni. Hur gick det för Sverigens herrar?",
+		"correctAnswer": "De kvalade inte in",
+		"answerType": "Guld;Silver;Brons;De kvalade inte in",
+		"questionImage": "2024/q4.png",
+		"questionImageStyle": {
+			"object-fit": "cover"
+		},
+		"answerImage": "2024/a1.png",
+		"answerImageStyle": {
+			"object-fit": "cover"
+		},
+		"questionScore": 1,
+		"questionClues": [
+			{
+				"clueScore": 0,
+				"clueText": ""
+			}
+		]
+	},
+	{
+		"questionNumber": "6",
+		"questionType": "QUIZ",
+		"questionText": "I år vad det dags för sommar-OS igen. I vilken stad?",
+		"correctAnswer": "Paris",
+		"answerType": "Paris;London;Rom;Kapstaden",
+		"questionImage": "2024/q1.png",
+		"questionImageStyle": {
+			"object-fit": "cover"
+		},
+		"answerImage": "2024/a1.png",
+		"answerImageStyle": {
+			"object-fit": "cover"
+		},
+		"questionScore": 1,
+		"questionClues": [
+			{
+				"clueScore": 0,
+				"clueText": ""
+			}
+		]
+	},
+	{
+		"questionNumber": "7",
+		"questionType": "QUIZ",
+		"questionText": "I augusti förklarar WHO ett internationellt hälsonödläge för smittan Mpox. Under vilket namn kände vi tidigare denna som?",
+		"correctAnswer": "Apkoppor",
+		"answerType": "Svinkoppor;Smittkoppor;Kattkoppor;Apkoppor",
+		"questionImage": "2024/q1.png",
+		"questionImageStyle": {
+			"object-fit": "cover"
+		},
+		"answerImage": "2024/a1.png",
+		"answerImageStyle": {
+			"object-fit": "cover"
+		},
+		"questionScore": 1,
+		"questionClues": [
+			{
+				"clueScore": 0,
+				"clueText": ""
+			}
+		]
+	},
+	{
+		"questionNumber": "8",
+		"questionType": "QUIZ",
+		"questionText": "Assad-regimen i Syren föll i december efter 50 år vid makten. Men vem är egentligen Bashar al-Assad?",
+		"correctAnswer": "2",
+		"answerType": "1;2;3;4",
+		"questionImage": "2024/alAssad.png",
+		"questionImageStyle": {
+		},
+		"answerImage": "2024/alAssad-f.png",
+		"answerImageStyle": {
+		},
+		"questionScore": 1,
+		"questionClues": [
+			{
+				"clueScore": 0,
+				"clueText": ""
+			}
+		]
+	},
+	{
+		"questionNumber": "X",
+		"questionType": "WELCOME",
+		"questionText": "Gott nytt år 2025!",
+		"correctAnswer": "",
+		"questionScore": "",
+		"questionImage": "2024/welcome2024.png",
+		"questionImageStyle": {
+			"object-fit": "cover"
+		},
+		"questionClues": [
+			{
+				"clueScore": 0,
+				"clueText": ""
+			}
+		]
+	}
+]
