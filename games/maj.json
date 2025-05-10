@@ -1,0 +1,80 @@
+[
+  {
+    "questionNumber": 1,
+    "questionType": "QUIZ",
+    "questionTime": "30",
+    "questionText": "MAJor är en militär grad. Vilken av följande är över major i rang??",
+    "correctAnswer": "Överstelöjtnant",
+    "answerType": "Kapten;Överstelöjtnant;Fänrik;Menig",
+    "questionImage": "maj.jpg",
+    "answerImage": "maj.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues": [{"clueScore": 0, "clueText": ""}]
+  },
+  {
+    "questionNumber": 2,
+    "questionType": "QUIZ",
+    "questionTime": "60",
+    "questionText": "Varifrån kommer MAJs ursprungligen?",
+    "correctAnswer": "Amerika",
+    "answerType": "Amerika;Afrika;Indien;ICA",
+    "questionImage": "maj.jpg",
+    "answerImage": "hmaj.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues": [{"clueScore": 0, "clueText": ""}]
+  },
+  {
+    "questionNumber": 3,
+    "questionType": "QUIZ",
+    "questionTime": "60",
+    "questionText": "Vad har gett upphov till namnet på månaden MAJ?",
+    "correctAnswer": "Quarter Horse",
+    "answerType": "Jupiter;Zevs;Oden;Hatchiko",
+    "questionImage": "maj.jpg",
+    "answerImage": "maj.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues": [{"clueScore": 0, "clueText": ""}]
+  },
+  {
+    "questionNumber": 4,
+    "questionType": "QUIZ",
+    "questionTime": "60",
+    "questionText": "När har Valborg namsdag?",
+    "correctAnswer": "1:a maj",
+    "answerType": "29:e april; 30:e april;31:a april;1:a maj",
+    "questionImage": "maj.jpg",
+    "answerImage": "maj.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues": [{"clueScore": 0, "clueText": ""}]
+  },
+  {
+    "questionNumber": 5,
+    "questionType": "QUIZ",
+    "questionTime": "60",
+    "questionText": "Vad är huvudingrediensen i MAJonnäs?",
+    "correctAnswer": "olja",
+    "answerType": "ägg;olja;dijonsenap;majs",
+    "questionImage": "maj.jpg",
+    "answerImage": "maj.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues": [{"clueScore": 0, "clueText": ""}]
+  },
+  {
+    "questionNumber": 6,
+    "questionType": "QUIZ",
+    "questionTime": "60",
+    "questionText": "17:e maj firar Norge nationaldag. I en demokrati är det MAJoriteten som bestämmer. Vad heter norges riksdag?",
+    "correctAnswer": "Stortinger",
+    "answerType": "Stortinger;Alltinget;Folketinger;Ingentinget",
+    "questionImage": "maj.jpg",
+    "answerImage": "maj.jpg",
+    "answerImageStyle": {"object-fit": "cover"},
+    "questionScore": 1,
+    "questionClues": [{"clueScore": 0, "clueText": ""}]
+  }
+]
