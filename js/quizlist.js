@@ -76,7 +76,7 @@ var vm = new Vue({
         }]
       },
       "savegame": "game",
-      "loadQuestions": "2023",
+      "loadQuestions": "anagram2025A",
       "QuestionListNumber": 0,
       "pendingGameSettings": {
         "reversedScoring": false
@@ -142,7 +142,23 @@ var vm = new Vue({
       console.log("Uppdaterar frågan!");
       console.log(vm.quizMaster.pendingQuestion);
       // Send all properties except "correctAnswer".
-      socket.emit('UpdateQuestion', 'UPDATE', (({ correctAnswer, ...o }) => o)(vm.quizMaster.pendingQuestion));
+      // socket.emit('UpdateQuestion', 'UPDATE', (({ correctAnswer, questionClues, ...o }) => o)(vm.quizMaster.pendingQuestion));
+      socket.emit(
+        'UpdateQuestion',
+        'UPDATE',
+        (({ correctAnswer, questionClues, questionText, ...o }) => ({
+          ...o,
+          questionText: questionText + (
+            Array.isArray(questionClues)
+              ? questionClues
+                  .filter(c => c?.clueScore >= vm.quizMaster.pendingQuestion.questionScore)
+                  .map(c => '<br/>\n' + c?.clueText)
+                  .filter(Boolean)
+                  .join('')
+              : ''
+          )
+        }))(vm.quizMaster.pendingQuestion)
+      );
     },
     lowerQuestionScore: function() {
       console.log("Uppdaterar frågan. Sänker poängen");
@@ -185,7 +201,18 @@ var vm = new Vue({
       console.log(vm.quizMaster.pendingQuestion);
       // Send all properties except "correctAnswer" and do not start any timer.
       // Preferably, we should not even set the isBuzzActive of the status either.
-      socket.emit('UpdateQuestion', 'NEW', (({ correctAnswer, answerType, questionTime, ...o }) => o)(vm.quizMaster.pendingQuestion));
+      socket.emit('UpdateQuestion', 'NEW', (({ correctAnswer, answerType, questionTime, questionClues, ...o }) => o)(vm.quizMaster.pendingQuestion));
+      /*
+      socket.emit(
+        'UpdateQuestion',
+        'NEW',
+        (({ correctAnswer, questionScore, questionClues, ...o }) => ({
+          ...o,
+          questionScore,
+          questionClues: questionClues.filter(c => c.clueScore >= questionScore)
+        }))(vm.quizMaster.pendingQuestion)
+      );
+      */
       popAudioElement.play();
     },
 
@@ -198,7 +225,23 @@ var vm = new Vue({
       console.log("Nya svarsalternativ!");
       console.log(vm.quizMaster.pendingQuestion);
        // Send all properties except "correctAnswer".
-       socket.emit('UpdateQuestion', 'UPDATE', (({ correctAnswer, ...o }) => o)(vm.quizMaster.pendingQuestion));
+       //socket.emit('UpdateQuestion', 'UPDATE', (({ correctAnswer, ...o }) => o)(vm.quizMaster.pendingQuestion));
+      socket.emit(
+        'UpdateQuestion',
+        'UPDATE',
+        (({ correctAnswer, questionClues, questionText, ...o }) => ({
+          ...o,
+questionText: questionText + (
+            Array.isArray(questionClues)
+              ? questionClues
+                  .filter(c => c?.clueScore >= vm.quizMaster.pendingQuestion.questionScore)
+                  .map(c => '<br/>\n' + c?.clueText)
+                  .filter(Boolean)
+                  .join('')
+              : ''
+          )
+        }))(vm.quizMaster.pendingQuestion)
+      );
     },
     createNewQuestion: function() {
       console.log("Skapa ny fråga");

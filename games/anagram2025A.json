@@ -1,0 +1,193 @@
+[
+  {
+    "questionNumber": "X",
+    "questionType" : "WELCOME",
+    "questionText": "Anagram 2025",
+    "correctAnswer": "",
+    "questionScore": 5,
+    "questionClues" : [
+      { "clueScore" : 0, "clueText" : ""}
+    ]
+  },
+  {
+    "questionNumber": "1",
+    "questionType": "RED_THREAD",
+    "questionText": "ONE OR SO BUZZY",
+    "correctAnswer": "Ozzy Osbourne",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q7.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Sångare, låtskrivare och TV-personlighet" },
+      { "clueScore": 3, "clueText": "Brittisk" },
+      { "clueScore": 2, "clueText": "Sångare i Black Sabbath" },
+      { "clueScore": 1, "clueText": "O _ _ _ &nbsp; O _ _ _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "2",
+    "questionType": "RED_THREAD",
+    "questionText": "FIXERBAR TIMNAGEL",
+    "correctAnswer": "Felix Baumgartner",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q9.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Äventyrare" },
+      { "clueScore": 3, "clueText": "Österrikisk" },
+      { "clueScore": 2, "clueText": "Red Bull" },
+      { "clueScore": 1, "clueText": "F _ _ _ _ &nbsp; B _ _ _ _ _ _ _ _ _ _" }
+    ]
+  },
+  
+  {
+    "questionNumber": "3",
+    "questionType": "RED_THREAD",
+    "questionText": "BITTER GODBITAR",
+    "correctAnswer": "Brigitte Bardot",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q1.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Skådespelare och sångare" },
+      { "clueScore": 3, "clueText": "Fransk" },
+      { "clueScore": 2, "clueText": "Kallas ibland B.B." },
+      { "clueScore": 1, "clueText": "B _ _ _ _ _ _ _ &nbsp; B _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "4",
+    "questionType": "RED_THREAD",
+    "questionText": "GNOLADE OLJA",
+    "correctAnswer": "Jane Goodall",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q5.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Zoolog" },
+      { "clueScore": 3, "clueText": "Brittisk" },
+      { "clueScore": 2, "clueText": "Schimpansforskare" },
+      { "clueScore": 1, "clueText": "J _ _ _ &nbsp; G _ _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "5",
+    "questionType": "RED_THREAD",
+    "questionText": "HAR ERICS",
+    "correctAnswer": "Chris Rea",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q2.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},	
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Musiker" },
+      { "clueScore": 3, "clueText": "Amerikansk" },
+      { "clueScore": 2, "clueText": "Road to hell, Driving home for Christmas" },
+      { "clueScore": 1, "clueText": "C _ _ _ _ &nbsp; R _ _" }
+    ]
+  },
+  {
+    "questionNumber": "6",
+    "questionType": "RED_THREAD",
+    "questionText": "ALFONS SOLROCK",
+    "correctAnswer": "Clark Olofsson",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q10.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Kriminell" },
+      { "clueScore": 3, "clueText": "Svensk" },
+      { "clueScore": 2, "clueText": "Norrmalmstorgsdramat" },
+      { "clueScore": 1, "clueText": "C _ _ _ _ &nbsp; O _ _ _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "7",
+    "questionType": "RED_THREAD",
+    "questionText": "VARM KILLE",
+    "correctAnswer": "Val Kilmer",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q12.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Skådespelare" },
+      { "clueScore": 3, "clueText": "Amerikansk" },
+      { "clueScore": 2, "clueText": "Iceman, Batman" },
+      { "clueScore": 1, "clueText": "V _ _ &nbsp; K _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "8",
+    "questionType": "RED_THREAD",
+    "questionText": "\"OLLE\" OLOFS INSEKT",
+    "correctAnswer": "Leif \"Loket\" Olsson",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q14.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "TV-programledare" },
+      { "clueScore": 3, "clueText": "Svensk" },
+      { "clueScore": 2, "clueText": "Programledare för Bingo-Lotto" },
+      { "clueScore": 1, "clueText": "L _ _ _ &nbsp; \"L _ _ _ _\" &nbsp; O _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "9",
+    "questionType": "RED_THREAD",
+    "questionText": "ORGAN I ORIGAMI",
+    "correctAnswer": "Giorgio Armani",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q20.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Designer" },
+      { "clueScore": 3, "clueText": "Italiensk" },
+      { "clueScore": 2, "clueText": "Grundade känt modehus" },
+      { "clueScore": 1, "clueText": "G _ _ _ _ _ _ &nbsp; A _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "10",
+    "questionType": "RED_THREAD",
+    "questionText": "SNUSKFISAR",
+    "correctAnswer": "Fransiskus",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q17.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Ledare" },
+      { "clueScore": 3, "clueText": "Argentinsk" },
+      { "clueScore": 2, "clueText": "Påve" },
+      { "clueScore": 1, "clueText": "F _ _ _ _ _ _ _ _ _" }
+    ]
+  }
+]

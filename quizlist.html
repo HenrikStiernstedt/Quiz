@@ -52,7 +52,7 @@
                     <div class="card-body">
                       <!--<div class="QuestionCountdownOverlay">10</div>-->
                       
-                      <h5 class="card-title">{{ status.question.questionText }}</h5>
+                      <h5 class="card-title" v-html="status.question.questionText"></h5>
                       
                       <p class="card-text">
                         <strong><span style="white-space: normal;"></span></strong>
@@ -72,7 +72,7 @@
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                       <h5 class="card-title">Fråga {{status.question.questionNumber}}: Majoriteten bestämmer</h5>
                       <p class="card-text">
-                        <strong><span style="white-space: normal;">{{ status.question.questionText.replace(/&nbsp;/g, ' ') }}</span></strong>
+                        <strong><span style="white-space: normal;" v-html="status.question.questionText"></span></strong>
                         <span v-if="status.question.questionScore != '0'"><br/>Värd
                           <transition name="bounce" mode="out-in">
                             <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
@@ -94,7 +94,8 @@
 <!--                      <h5 class="card-title">Fråga {{status.question.questionNumber}}: Quiz</h5> -->
 
                       <p class="card-text">
-                        <span style="white-space: normal;">{{ status.question.questionText.replace(/&nbsp;/g, ' ') }}</span>
+                        <!--<span style="white-space: normal;">{{ status.question.questionText.replace(/&nbsp;/g, ' ') }}</span>-->
+                        <span style="white-space: normal;" v-html="status.question.questionText"></span>
                       </p>
                     </div>
                   </span>
@@ -102,12 +103,13 @@
                   <span v-if="status.question.questionType == 'RED_THREAD'">
                     <img v-if="status.question.questionImage" class="card-img-top quiz-image" v-bind:src='"/images/"+status.question.questionImage' v-bind:style="status.question.questionImageStyle">
                     <img v-else class="card-img-top quiz-image" src="/images/Pasparet3.jpg" style="object-fit: cover" alt="Röda tråden">
-                    <div class="card-body">
+                    <div class="card-body question-text">
                       <div v-if="status.questionTime" class="QuestionCountdownOverlay" :key="`countdown-${status.questionTime}`"> {{status.questionTime}}</div>
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
-                      <h5 class="card-title">Fråga {{status.question.questionNumber}}: Röda tråden</h5>
+                      <div class="QuestionNumberOverlay" :key="'q' + status.question.questionNumber"> {{status.question.questionNumber}}</div>
+                      <!--<h5 class="card-title">Fråga {{status.question.questionNumber}}: Röda tråden</h5>-->
                       <p class="card-text">
-                        <strong><span style="white-space: normal;">{{ status.question.questionText.replace(/&nbsp;/g, ' ') }}</span></strong>
+                        <strong><span style="white-space: normal;" v-html="status.question.questionText"></span></strong>
                         <span v-if="status.question.questionScore != '0'"><br/>Värd
                           <transition name="bounce" mode="out-in">
                             <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
@@ -127,7 +129,7 @@
                       <div class="QuestionScoreOverlay" :key="status.question.questionScore"> {{status.question.questionScore}}</div>
                       <h5 class="card-title">Fråga {{status.question.questionNumber}}: Handen på buzzern!</h5>
                       <p class="card-text">
-                        <strong><span style="white-space: normal;">{{ status.question.questionText.replace(/&nbsp;/g, ' ') }}</span></strong>
+                        <strong><span style="white-space: normal;" v-html="status.question.questionText"></span></strong>
                         <span v-if="status.question.questionScore != '0'"><br/>Värd
                           <transition name="bounce" mode="out-in">
                             <span :key="status.question.questionScore" class="badge badge-pill badge-secondary">{{status.question.questionScore}}</span>
@@ -390,6 +392,12 @@
                   <span class="input-group-text" id="inputGroup-sizing-default">Fråga</span>
                 </div>
                 <textarea v-model="quizMaster.pendingQuestion.questionText" class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+              </div>
+              <div class="input-group mb-1">
+                <div v-for="clue in quizMaster.pendingQuestion.questionClues" class="input-group-prepend">
+                  <span class="input-group-text" id="inputGroup-sizing-default">Ledtråd {{clue.clueScore}}</span>
+                  <input type="text" v-model="clue.clueText"></input>
+                 </div>
               </div>
               <div class="input-group mb-1">
                 <div class="input-group-prepend">

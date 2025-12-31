@@ -1,0 +1,390 @@
+[
+  {
+    "questionNumber": "X",
+    "questionType" : "WELCOME",
+    "questionText": "Anagram 2025",
+    "correctAnswer": "",
+    "questionScore": 5,
+    "questionClues" : [
+      { "clueScore" : 0, "clueText" : ""}
+    ]
+  },
+  {
+    "questionNumber": "1",
+    "questionType": "RED_THREAD",
+    "questionText": "BITTER GODBITAR",
+    "correctAnswer": "Brigitte Bardot",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q1.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Skådespelare" },
+      { "clueScore": 3, "clueText": "Fransk" },
+      { "clueScore": 2, "clueText": "Kallas ibland B.B." },
+      { "clueScore": 1, "clueText": "B _ _ _ _ _ _ _ &nbsp; B _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "HAR ERICS",
+    "correctAnswer": "Chris Rea",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q2.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},	
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Musiker" },
+      { "clueScore": 3, "clueText": "Amerikansk" },
+      { "clueScore": 2, "clueText": "Road to hell, Driving home for Christmas" },
+      { "clueScore": 1, "clueText": "C _ _ _ _ &nbsp; R _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "HES EKOLOGG",
+    "correctAnswer": "Helge Skoog",
+	"answerImage": "2025/q3.webp",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionScore": 5,
+    "answerType": "text",
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Skådis och komiker" },
+      { "clueScore": 3, "clueText": "Svensk" },
+      { "clueScore": 2, "clueText": "Ture Sventon" },
+      { "clueScore": 1, "clueText": "H _ _ _ _ &nbsp; S _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "BALLONGERS HAJ",
+    "correctAnswer": "Jonas Hallberg",
+	"answerImage": "2025/q4.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionScore": 5,
+    "answerType": "text",
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Radiopratare/Programledare" },
+      { "clueScore": 3, "clueText": "Svensk" },
+      { "clueScore": 2, "clueText": "Spanarna" },
+      { "clueScore": 1, "clueText": "J _ _ _ _ &nbsp; H _ _ _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "GNOLADE OLJA",
+    "correctAnswer": "Jane Goodall",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q5.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Zoolog" },
+      { "clueScore": 3, "clueText": "Brittisk" },
+      { "clueScore": 2, "clueText": "Schimpansforskare" },
+      { "clueScore": 1, "clueText": "J _ _ _ &nbsp; G _ _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "HANK GHOUL",
+    "correctAnswer": "Hulk Hogan",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q6.webp",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Fribrottare, skådespelare och TV-personlighet" },
+      { "clueScore": 3, "clueText": "Amerikansk" },
+      { "clueScore": 2, "clueText": "Hans fans kallas Hulkamaniacs" },
+      { "clueScore": 1, "clueText": "H _ _ _ &nbsp; H _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "ONE OR SO BUZZY",
+    "correctAnswer": "Ozzy Osbourne",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q7.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Sångare, låtskrivare och TV-personlighet" },
+      { "clueScore": 3, "clueText": "Brittisk" },
+      { "clueScore": 2, "clueText": "Sångare i Black Sabbath" },
+      { "clueScore": 1, "clueText": "O _ _ _ &nbsp; O _ _ _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "NYPER BIVACKER",
+    "correctAnswer": "Percy Barnevik",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q8.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Företagsledare" },
+      { "clueScore": 3, "clueText": "Svensk" },
+      { "clueScore": 2, "clueText": "ABB" },
+      { "clueScore": 1, "clueText": "P _ _ _ _ &nbsp; B _ _ _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "FIXERBAR TIMNAGEL",
+    "correctAnswer": "Felix Baumgartner",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q9.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Äventyrare" },
+      { "clueScore": 3, "clueText": "Österrikisk" },
+      { "clueScore": 2, "clueText": "Red Bull" },
+      { "clueScore": 1, "clueText": "F _ _ _ _ &nbsp; B _ _ _ _ _ _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "ALFONS SOLROCK",
+    "correctAnswer": "Clark Olofsson",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q10.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Kriminell" },
+      { "clueScore": 3, "clueText": "Svensk" },
+      { "clueScore": 2, "clueText": "Norrmalmstorgsdramat" },
+      { "clueScore": 1, "clueText": "C _ _ _ _ &nbsp; O _ _ _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "WHOM I. BECLATTER",
+    "correctAnswer": "Michael B. Tretow",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q11.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Ljudtekniker, kompositör och musiker" },
+      { "clueScore": 3, "clueText": "Svensk" },
+      { "clueScore": 2, "clueText": "Den makalösa manicken, Hubba Hubba Zoot Zoot" },
+      { "clueScore": 1, "clueText": "M _ _ _ _ _ _ &nbsp; B. &nbsp; T _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "VARM KILLE",
+    "correctAnswer": "Val Kilmer",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q12.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Skådespelare" },
+      { "clueScore": 3, "clueText": "Amerikansk" },
+      { "clueScore": 2, "clueText": "Iceman, Batman" },
+      { "clueScore": 1, "clueText": "V _ _ &nbsp; K _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "BOJ KISSAR PISS",
+    "correctAnswer": "Boris Spasskij",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q13.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Schackvärldsmästare" },
+      { "clueScore": 3, "clueText": "Sovjetisk" },
+      { "clueScore": 2, "clueText": "Förlorade mot Bobby Fisher 1972" },
+      { "clueScore": 1, "clueText": "B _ _ _ _ &nbsp; S _ _ _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "\"OLLE\" OLOFS INSEKT",
+    "correctAnswer": "Leif \"Loket\" Olsson",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q14.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "TV-programledare" },
+      { "clueScore": 3, "clueText": "Svensk" },
+      { "clueScore": 2, "clueText": "Programledare för Bingo-Lotto" },
+      { "clueScore": 1, "clueText": "L _ _ _ &nbsp; \"L _ _ _ _\" &nbsp; O _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "LYNCHAD VID",
+    "correctAnswer": "David Lynch",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q15.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Regisör" },
+      { "clueScore": 3, "clueText": "Amerikansk" },
+      { "clueScore": 2, "clueText": "Twin Peaks" },
+      { "clueScore": 1, "clueText": "D _ _ _ _ &nbsp; L _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "LED LOJT-FOLK FEL",
+    "correctAnswer": "Kjell-Olof Feldt",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q16.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Politiker" },
+      { "clueScore": 3, "clueText": "Svensk" },
+      { "clueScore": 2, "clueText": "Finansminister 82-90" },
+      { "clueScore": 1, "clueText": "K _ _ _ _ - O _ _ _ &nbsp; F _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "SNUSKFISAR",
+    "correctAnswer": "Fransiskus",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q17.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Ledare" },
+      { "clueScore": 3, "clueText": "Argentinsk" },
+      { "clueScore": 2, "clueText": "Påve" },
+      { "clueScore": 1, "clueText": "F _ _ _ _ _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "IBLAND HAR ERIC CHARM",
+    "correctAnswer": "Richard Chamberlain",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q18.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Skådespelare" },
+      { "clueScore": 3, "clueText": "Amerikansk" },
+      { "clueScore": 2, "clueText": "Shogun" },
+      { "clueScore": 1, "clueText": "R _ _ _ _ _ _ &nbsp; C _ _ _ _ _ _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "EROGEN FROMAGE",
+    "correctAnswer": "George Forman",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q19.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Tungviktsboxare" },
+      { "clueScore": 3, "clueText": "Amerikansk" },
+      { "clueScore": 2, "clueText": "Förlorade mot Mohamed Ali, 1974, Rumble in the jungle" },
+      { "clueScore": 1, "clueText": "G _ _ _ _ _ &nbsp; F _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "ORGAN I ORIGAMI",
+    "correctAnswer": "Giorgio Armani",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q20.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Designer" },
+      { "clueScore": 3, "clueText": "Italiensk" },
+      { "clueScore": 2, "clueText": "Grundade känt modehus" },
+      { "clueScore": 1, "clueText": "G _ _ _ _ _ _ &nbsp; A _ _ _ _ _" }
+    ]
+  },
+  {
+    "questionNumber": "",
+    "questionType": "RED_THREAD",
+    "questionText": "BERT ERFOR RODD",
+    "correctAnswer": "Robert Redford",
+    "questionScore": 5,
+    "answerType": "text",
+	"answerImage": "2025/q21.jpg",
+	"answerImageStyle": {
+		"object-fit": "cover"
+	},
+    "questionClues": [
+      { "clueScore": 4, "clueText": "Skådespelare" },
+      { "clueScore": 3, "clueText": "Amerikansk" },
+      { "clueScore": 2, "clueText": "Butch Cassidy och Sundance Kid, Mannen som kunde tala med hästar" },
+      { "clueScore": 1, "clueText": "R _ _ _ _ _ &nbsp; R _ _ _ _ _ _" }
+    ]
+  }
+]
